@@ -167,15 +167,27 @@ class AdController extends Zend_Controller_Action
         }
     }
 
+    public function _createEditLink($id, $name) {
+        if (empty($name))
+            $name = "Empty name";
+        return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
+    }
+
     public function activeAction()
     {
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt", "status"));
-        $grid->updateColumn('field',array('class'=>'my_css_class'));
-        $grid->updateColumn("name", array("title" => "Ad Name"));
+        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->updateColumn('name',array(
+            "title" => "Ad Name",
+            'class'=>'my_css_class',
+            'callback'=>array(
+                'function'=>array($this, '_createEditLink'),
+                'params'=>array('{{id}}', "{{name}}")
+            )
+        ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
         $grid->setExport(array());
@@ -189,9 +201,15 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?, ?)", array(Application_Model_DbTable_Ad::STATUS_DRAFT, Application_Model_DbTable_Ad::STATUS_READY));
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt", "status"));
-        $grid->updateColumn('field',array('class'=>'my_css_class'));
-        $grid->updateColumn("name", array("title" => "Ad Name"));
+        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->updateColumn('name',array(
+            "title" => "Ad Name",
+            'class'=>'my_css_class',
+            'callback'=>array(
+                'function'=>array($this, '_createEditLink'),
+                'params'=>array('{{id}}', "{{name}}")
+            )
+        ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
         $grid->setExport(array());
@@ -205,9 +223,15 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ?", Application_Model_DbTable_Ad::STATUS_ARCHIVE);
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt", "status"));
-        $grid->updateColumn('field',array('class'=>'my_css_class'));
-        $grid->updateColumn("name", array("title" => "Ad Name"));
+        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->updateColumn('name',array(
+            "title" => "Ad Name",
+            'class'=>'my_css_class',
+            'callback'=>array(
+                'function'=>array($this, '_createEditLink'),
+                'params'=>array('{{id}}', "{{name}}")
+            )
+        ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
         $grid->setExport(array());
