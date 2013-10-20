@@ -1,0 +1,28 @@
+<div class="row-fluid">
+    <div class="span6">
+        <a href="#" class="img-wrapper">
+            <img width="550" height="auto" src="/ads/<?php echo $this->ad->image; ?>" class="img-polaroid">
+            <div class="img-info"><p><?php echo $this->ad->name; ?></p></div>
+        </a>
+        <br><br><br>
+        <address>
+            <strong><?php echo $this->user->enterprise; ?></strong>
+            <?php echo $this->ad->address; ?>
+            <br>
+            <abbr title="Phone">Тел:</abbr> <?php echo $this->ad->phone; ?>
+        </address>
+
+        <address>
+            <strong>Черновцы</strong><br>
+            <a href="mailto:email@email.com">email@email.com</a>
+        </address>
+
+    </div>
+    <div class="span6">
+        <h3><?php echo $this->ad->name; ?></h3>
+        <?php echo $this->ad->description; ?>
+
+        <p><a class="btn" href="<?php echo $this->ad->url; ?>">Перейти »</a></p>
+
+    </div>
+</div>

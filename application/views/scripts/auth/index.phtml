@@ -1,0 +1,9 @@
+<?php $this->headTitle('Sign in'); ?>
+
+<div class="">
+	<legend>Please sign in</legend>
+	<?php if ($this->errorStatus) { ?>
+		<div class="alert alert-error"><h4>Error!</h4> Wrong email or password</div>
+	<?php } ?>
+	<?php echo $this->form->setAction($this->url()); ?>
+</div>

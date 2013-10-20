@@ -1,0 +1,12 @@
+<br/>
+<p>
+	<a href="<?php echo $this->url(array('controller' => 'User', 'action' => 'add')); ?>"><input type="button" class="btn btn-primary" value="Create new" /></a>
+</p>
+<?php
+    echo $this->displayTableHelper($this->itemsList, array(
+		"name" => "Name",
+		"role" => "Role",
+		"date_created" => "Created",
+		"deleted" => "Deleted"
+	));
+?>

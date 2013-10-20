@@ -1,0 +1,30 @@
+<br />
+<div id="view-content">
+    <ul class="nav nav-tabs" id="ad">
+        <li class="active"><a href="#main">Main</a></li>
+        <li><a href="#dates">Dates</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#media">Media</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="main"><?php echo $this->mainForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="dates"><?php echo $this->datesForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="settings"><?php echo $this->settingsForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="contacts"><?php echo $this->contactsForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="media"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#ad a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+        $('#start_dt').datepicker({format: 'yyyy-mm-dd'});
+        $('#end_dt').datepicker({format: 'yyyy-mm-dd'});
+        $('#public_dt').datepicker({format: 'yyyy-mm-dd'});
+    });
+</script>
+

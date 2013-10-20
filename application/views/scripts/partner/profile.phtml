@@ -1,0 +1,15 @@
+<br />
+<div id="view-content">
+    <div class="row">
+        <div class="span6">
+            <legend>Info</legend>
+            <p><?php echo $this->email; ?></p>
+            <a href="#"><button>Set new password</button></a>
+        </div>
+
+        <div class="span6">
+            <legend>Profile</legend>
+            <?php echo $this->form->setAction($this->url()); ?>
+        </div>
+    </div>
+</div>

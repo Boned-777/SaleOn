@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<?php
+			echo $this->jQuery()
+				->setVersion('1.9.1')
+				->setUiVersion('1.10.3')
+				->enable()
+				->uiEnable();
+		?>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap & Jquery-->
+		<?php //echo $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap.css')); ?>
+		<?php //echo $this->headLink()->prependStylesheet($this->baseUrl('/css/redmond/jquery-ui-1.10.3.custom.min.css')); ?>
+		<?php //echo $this->headLink()->prependStylesheet($this->baseUrl('/css/style.css')); ?>
+	</head>
+	<body>
+		<?php //echo $this->navigationBar(); ?>
+		
+		<div class="container">
+			<?php echo $this->layout()->content; ?>
+		</div>
+		<!-- script src="/js/bootstrap.min.js"></script-->
+	</body>
+</html>

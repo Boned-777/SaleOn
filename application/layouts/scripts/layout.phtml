@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php
+    echo $this->jQuery()
+        ->setVersion('1.9.1')
+        ->setUiVersion('1.10.3')
+        ->enable()
+        ->uiEnable();
+    ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap.css')); ?>
+    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap-responsive.css')); ?>
+    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/datepicker.css')); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl('/css/style.css')); ?>
+</head>
+<body>
+<div class="topbg"></div>
+
+<div id="wrap">
+    <div class="container">
+        <div class="masthead">
+            <div class="row">
+                <div class="span4 offset1">
+                    <button id="btn1" title="Регионы" class="btn btn-large" type="button"><i class="myicon-region"></i></button>
+                    <button id="btn2" title="Категории" class="btn btn-large" type="button"><i class="myicon-category"></i></button>
+                    <button id="btn3" title="Бренды" class="btn btn-large" type="button"><i class="myicon-brands"></i></button>
+                </div>
+                <div class="span3 jumbotron">
+                    <div class="logo"></div>
+                </div>
+                <div class="span5">
+                    <a href="#" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
+                    <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
+                    <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+
+                </div>
+            </div>
+        </div>
+
+        <?php echo $this->navigationBar($this->link); //print_r($this->getAllParams()); ?>
+
+        <div class="layout-content">
+            <?php echo $this->layout()->content; ?>
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+
+<div id="footer" class="footer footer-gradient">
+    <div class="container">
+        <p class="credit">ВАУ - Все акции Украины, 2013 </p>
+        <div id="footer-social" class="socials"></div>
+    </div>
+</div>
+
+
+<script src="/js/bootstrap-transition.js"></script>
+<script src="/js/bootstrap-alert.js"></script>
+<script src="/js/bootstrap-modal.js"></script>
+<script src="/js/bootstrap-dropdown.js"></script>
+<script src="/js/bootstrap-scrollspy.js"></script>
+<script src="/js/bootstrap-tab.js"></script>
+<script src="/js/bootstrap-tooltip.js"></script>
+<script src="/js/bootstrap-popover.js"></script>
+<script src="/js/bootstrap-button.js"></script>
+<script src="/js/bootstrap-collapse.js"></script>
+<script src="/js/bootstrap-carousel.js"></script>
+<script src="/js/bootstrap-typeahead.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+</body>
+</html>
