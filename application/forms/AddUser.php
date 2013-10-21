@@ -13,7 +13,6 @@ class Application_Form_AddUser extends Zend_Form
 		
 		$this->addElement('text', 'name', array(
 			'class' => "input-block-level",
-			'placeholder' => "Name",
 			'validators' => array(
 				array('StringLength', false, array(0, 50)),
 			),
@@ -22,7 +21,6 @@ class Application_Form_AddUser extends Zend_Form
 		$this->addElement('text', 'email', array(
 			'filters' => array('StringTrim', 'StringToLower'),
 			'class' => "input-block-level",
-			'placeholder' => "Email",
 			'validators' => array(
 				array('EmailAddress', true),
 			),

@@ -14,7 +14,6 @@ class Application_Form_AdMain extends Zend_Form
 
         $this->addElement('text', 'name', array(
             'class' => "input-block-level",
-            'placeholder' => "Name",
             'label' => "Name",
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
@@ -24,7 +23,6 @@ class Application_Form_AdMain extends Zend_Form
 
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level",
-            'placeholder' => "Description",
             'label' => "Description",
             'validators' => array(
                 array('StringLength', false, array(0, 500))

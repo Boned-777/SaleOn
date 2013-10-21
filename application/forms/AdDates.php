@@ -14,7 +14,6 @@ class Application_Form_AdDates extends Zend_Form
 
         $this->addElement('text', 'public_dt', array(
             'class' => "input-block-level",
-            'placeholder' => "Publication Date",
             'label' => "Publication Date",
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
@@ -24,7 +23,6 @@ class Application_Form_AdDates extends Zend_Form
 
         $this->addElement('text', 'start_dt', array(
             'class' => "input-block-level",
-            'placeholder' => "Start Date",
             'label' => "Start Date",
             'validators' => array(
                 array('StringLength', false, array(0, 45)),
@@ -34,7 +32,6 @@ class Application_Form_AdDates extends Zend_Form
 
         $this->addElement('text', 'end_dt', array(
             'class' => "input-block-level",
-            'placeholder' => "End Date",
             'label' => "End Date",
             'validators' => array(
                 array('StringLength', false, array(0, 45)),

@@ -19,20 +19,18 @@ class Application_Form_AdMedia extends Zend_Form
         $this->getElement("form")->setValue("AdMedia");
         $this->getElement("form")->setDecorators(array('ViewHelper'));
 
-        $this->addElement('textarea', 'video', array(
-            'class' => "input-block-level",
-            'placeholder' => "Code of video",
-            'label' => "Video",
+        $this->addElement('file', 'image_file', array(
+            'label' => "Image",
         ));
 
         $this->addElement('file', 'banner_file', array(
-            'class' => "input-block-level",
             'label' => "Banner",
         ));
-        
-        $doc_file = new Zend_Form_Element_File("img");
-        $doc_file->setLabel("Image");
-        $this->addElement($doc_file);
+
+        $this->addElement('textarea', 'video', array(
+            'class' => "input-block-level",
+            'label' => "Video",
+        ));
 
         $this->addElement('submit', 'submit', array(
             //'class' => 'btn btn-primary',

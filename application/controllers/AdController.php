@@ -55,17 +55,26 @@ class AdController extends Zend_Controller_Action
                 $item->get($formData["id"]);
             $form = $forms[$formData["form"]];
             if ($form->isValid($formData)) {
-                $image = "";
                 if ($formData["form"] == "AdMedia") {
                     $upload = new Zend_File_Transfer_Adapter_Http();
-                    $image = $this->_processImage($upload);
+                    $images = $this->_processImage($upload);
                 }
 
                 $itemData = $form->getValues();
-                if (!empty($image)) {
-                    $itemData["image"] = $image;
-                    $itemData["banner"] = $image;
+                if (sizeof($images)) {
+                    foreach ($images as $imgKey => $imgVal) {
+                        switch ($imgKey) {
+                            case "image_file" :
+                                $itemData["image"] = $imgVal;
+                                break;
+
+                            case "banner_file" :
+                                $itemData["banner"] = $imgVal;
+                                break;
+                        }
+                    }
                 }
+
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
                 $id = $item->save();
@@ -85,14 +94,14 @@ class AdController extends Zend_Controller_Action
 
     private function _processImage($upload)
     {
-        //$upload->addValidator('Size', false, array('max' => "90MB"));
+        $upload->addValidator('Size', false, array('max' => "5MB"));
         $upload->addValidator('MimeType', false, array('image/gif', 'image/jpeg', 'image/png'));
 
-        $files = $upload->getFileInfo("img");
+        $resArray = array();
+        $files = $upload->getFileInfo();
         foreach ($files as $file => $info) {
-            if (!$upload->isValid()) {
-                print_r($upload->getMessages()); die("out");
-                return false;
+            if (!$upload->isValid($file)) {
+                continue;
             }
 
             $newName = uniqid() . "_" . $info['name'];
@@ -100,13 +109,16 @@ class AdController extends Zend_Controller_Action
             $upload->addFilter('Rename', APPLICATION_PATH . "/../public/ads" . DIRECTORY_SEPARATOR . $newName);
 
             try {
-                $upload->receive('img');
+                $upload->receive($file);
             } catch (Zend_File_Transfer_Exception $e) {
                 $e->getMessage();
                 return false;
             }
-            return $newName;
+
+            $resArray[$file] = $newName;
         }
+
+        return $resArray;
     }
 
     public function editAction()
@@ -131,25 +143,33 @@ class AdController extends Zend_Controller_Action
         $formData = $this->getAllParams();
         if ($formData["id"])
             $item->get($formData["id"]);
-
+        $this->view->image = $item->image;
+        $this->view->banner = $item->banner;
         $request = $this->getRequest();
         if ($request->isPost()) {
             $formData = $this->getAllParams();
-            if ($formData["id"])
-                $item->get($formData["id"]);
             $form = $forms[$formData["form"]];
             if ($form->isValid($formData)) {
-                $image = "";
                 if ($formData["form"] == "AdMedia") {
                     $upload = new Zend_File_Transfer_Adapter_Http();
-                    $image = $this->_processImage($upload);
+                    $images = $this->_processImage($upload);
                 }
 
                 $itemData = $form->getValues();
-                if (!empty($image)) {
-                    $itemData["image"] = $image;
-                    $itemData["banner"] = $image;
+                if (sizeof($images)) {
+                    foreach ($images as $imgKey => $imgVal) {
+                        switch ($imgKey) {
+                            case "image_file" :
+                                $itemData["image"] = $imgVal;
+                                break;
+
+                            case "banner_file" :
+                                $itemData["banner"] = $imgVal;
+                                break;
+                        }
+                    }
                 }
+
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
                 $id = $item->save();
@@ -182,7 +202,7 @@ class AdController extends Zend_Controller_Action
         $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" => "Ad Name",
-            'class'=>'my_css_class',
+            //'class'=>'my_css_class',
             'callback'=>array(
                 'function'=>array($this, '_createEditLink'),
                 'params'=>array('{{id}}', "{{name}}")

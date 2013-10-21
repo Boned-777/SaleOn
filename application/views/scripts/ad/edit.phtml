@@ -12,7 +12,17 @@
         <div class="tab-pane" id="dates"><?php echo $this->datesForm->setAction($this->url()); ?></div>
         <div class="tab-pane" id="settings"><?php echo $this->settingsForm->setAction($this->url()); ?></div>
         <div class="tab-pane" id="contacts"><?php echo $this->contactsForm->setAction($this->url()); ?></div>
-        <div class="tab-pane" id="media"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="media">
+            <div class="span5"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
+            <div class="span6">
+                <?php if (!empty($this->image)) { ?>
+                    <img src="/ads/<?php echo $this->image; ?>" />
+                <?php } ?>
+                <?php if (!empty($this->banner)) { ?>
+                    <img src="/ads/<?php echo $this->banner; ?>" />
+                <?php } ?>
+            </div>
+        </div>
     </div>
 </div>
 
