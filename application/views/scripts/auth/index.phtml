@@ -1,10 +1,13 @@
 <?php global $translate; ?>
 <?php $this->headTitle($translate->getAdapter()->translate("enter")); ?>
 <div class="row">
-    <div class="span6">
-        <legend><?php echo $translate->getAdapter()->translate("enter"); ?></legend>
-	<?php if ($this->errorStatus) { ?>
-		<div class="alert alert-error"><h4><?php echo $translate->getAdapter()->translate("error"); ?>!</h4>&nbsp;<?php echo $translate->getAdapter()->translate("wrong_email_or_password"); ?></div>
-	<?php } ?>
-	<?php echo $this->form->setAction($this->url()); ?>
+    <div class="span6 offset3">
+        <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
+		<?php if ($this->errorStatus) { ?>
+			<div class="alert alert-error"><h4>
+				<?php echo $translate->getAdapter()->translate("error"); ?>!</h4>&nbsp;<?php echo $translate->getAdapter()->translate("wrong_email_or_password"); ?>
+			</div>
+		<?php } ?>
+		<?php echo $this->form->setAction($this->url()); ?>
+	</div>	
 </div>

@@ -10,10 +10,12 @@
         ->uiEnable();
     ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap.css')); ?>
-    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap-responsive.css')); ?>
+    
+    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/style.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/datepicker.css')); ?>
-    <?php echo $this->headLink()->prependStylesheet($this->baseUrl('/css/style.css')); ?>
+    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap-responsive.css')); ?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap.css')); ?>
+    
 </head>
 <body>
 <div class="topbg"></div>
@@ -28,7 +30,7 @@
                     <button id="btn3" title="Бренды" class="btn btn-large" type="button"><i class="myicon-brands"></i></button>
                 </div>
                 <div class="span3 jumbotron">
-                    <div class="logo"></div>
+                    <a href="/"><div class="logo"></div></a>
                 </div>
                 <div class="span5">
                     <a href="#" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>

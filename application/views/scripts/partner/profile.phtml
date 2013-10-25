@@ -3,13 +3,13 @@
 <div id="view-content">
     <div class="row">
         <div class="span6">
-            <legend><?php echo $translate->getAdapter()->translate("info"); ?></legend>
+            <div class="legend"><?php echo $translate->getAdapter()->translate("info"); ?></div>
             <p><?php echo $this->email; ?></p>
             <a href="#"><button><?php echo $translate->getAdapter()->translate("set_new_password"); ?></button></a>
         </div>
 
         <div class="span6">
-            <legend><?php echo $translate->getAdapter()->translate("profile"); ?></legend>
+            <div class="legend"><?php echo $translate->getAdapter()->translate("profile"); ?></div>
             <?php echo $this->form->setAction($this->url()); ?>
         </div>
     </div>
