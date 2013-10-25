@@ -5,6 +5,8 @@ class Application_Form_AddUser extends Zend_Form
 
     public function init()
     {
+        global $translate;
+
         $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));
 

@@ -5,6 +5,7 @@ class Application_Form_AdContacts extends Zend_Form
 
     public function init()
     {
+        global $translate;
 
         $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));
@@ -16,7 +17,7 @@ class Application_Form_AdContacts extends Zend_Form
         $this->addElement('text', 'address', array(
             'filters' => array('StringTrim', 'StringToLower'),
             'class' => "input-block-level",
-            'label' => "Address",
+            'label' => $translate->getAdapter()->translate("address"),
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
             ),
@@ -26,7 +27,7 @@ class Application_Form_AdContacts extends Zend_Form
         $this->addElement('text', 'phone', array(
             'filters' => array('StringTrim', 'StringToLower'),
             'class' => "input-block-level",
-            'label' => "Phone",
+            'label' => $translate->getAdapter()->translate("phone"),
             'validators' => array(
                 array('StringLength', false, array(0, 45)),
             ),
@@ -36,7 +37,7 @@ class Application_Form_AdContacts extends Zend_Form
         $this->addElement('text', 'url', array(
             'filters' => array('StringTrim', 'StringToLower'),
             'class' => "input-block-level",
-            'label' => "URL",
+            'label' => $translate->getAdapter()->translate("url"),
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
             ),
@@ -47,7 +48,7 @@ class Application_Form_AdContacts extends Zend_Form
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
             'ignore' => true,
-            'label' => 'Submit',
+            'label' => $translate->getAdapter()->translate("save_and_next"),
         ));
     }
 }

@@ -24,6 +24,14 @@ $autoloader->registerNamespace('Zendx');
 //$autoloader->suppressNotFoundWarnings(false);
 //$autoloader->setFallbackAutoloader(true);
 
+$locale = 'ru';
+$translate = new Zend_Translate(
+    'array',
+    APPLICATION_PATH . '/locale/lang_' . $locale . ".php",
+    "ru"
+);
+$translate->setlocale ($locale);
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 // Create application, bootstrap, and run

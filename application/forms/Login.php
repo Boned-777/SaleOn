@@ -5,6 +5,8 @@ class Application_Form_Login extends Zend_Form
 
     public function init()
 	{
+        global $translate;
+
 		$this->setName("login");
 		$this->setMethod('post');
 
@@ -14,8 +16,7 @@ class Application_Form_Login extends Zend_Form
         $this->addElement('text', 'username', array(
 			'filters' => array('StringTrim', 'StringToLower'),
 			'class' => "input-block-level",
-			'placeholder' => "Email address",
-            'label' => 'Email',
+            'label' => $translate->getAdapter()->translate("email"),
 			'validators' => array(
 				array('StringLength', false, array(0, 50)),
 			),
@@ -25,8 +26,7 @@ class Application_Form_Login extends Zend_Form
 		$this->addElement('password', 'password', array(
 			'filters' => array('StringTrim'),
 			'class' => "input-block-level",
-			'placeholder' => "Password",
-            'label' => 'Password',
+            'label' => $translate->getAdapter()->translate("password"),
 			'validators' => array(
 			array('StringLength', false, array(0, 50)),
 			),
@@ -37,7 +37,7 @@ class Application_Form_Login extends Zend_Form
 			//'class' => 'btn btn-large btn-primary',
 			'required' => false,
 			'ignore' => true,
-			'label' => 'Sign in',
+			'label' => $translate->getAdapter()->translate("sign_in"),
 		));
 	}
 }

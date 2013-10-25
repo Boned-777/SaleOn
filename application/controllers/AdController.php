@@ -193,20 +193,46 @@ class AdController extends Zend_Controller_Action
         return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
     }
 
+    private function _cropImage($image, $targetWidth, $targetHeight) {
+        list($width, $height, $type) = getimagesize($image);
+        $types = array("", "gif", "jpeg", "png");
+        $ext = $types[$type];
+        if ($ext) {
+            $func = 'imagecreatefrom'.$ext;
+            $img_i = $func($image);
+        }
+        $img_o = imagecreatetruecolor($targetWidth, $targetHeight);
+        imagecopy($img_o, $img_i, 0, 0, 0, 0, $targetWidth, $targetHeight);
+        $func = 'image'.$ext;
+        $newName = uniqid() . "." . $ext;
+        return $func($img_o, "/ads/" . $newName);
+
+    }
+
     public function activeAction()
     {
+        global $translate;
+
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
-            "title" => "Ad Name",
-            //'class'=>'my_css_class',
+            "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
                 'function'=>array($this, '_createEditLink'),
                 'params'=>array('{{id}}', "{{name}}")
             )
+        ));
+        $grid->updateColumn('public_dt',array(
+            "title" =>  $translate->getAdapter()->translate("public_date"),
+        ));
+        $grid->updateColumn('start_dt',array(
+            "title" =>  $translate->getAdapter()->translate("start_date"),
+        ));
+        $grid->updateColumn('end_dt',array(
+            "title" =>  $translate->getAdapter()->translate("end_date"),
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
@@ -217,18 +243,28 @@ class AdController extends Zend_Controller_Action
 
     public function noactiveAction()
     {
+        global $translate;
+
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?, ?)", array(Application_Model_DbTable_Ad::STATUS_DRAFT, Application_Model_DbTable_Ad::STATUS_READY));
         $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
-            "title" => "Ad Name",
-            'class'=>'my_css_class',
+            "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
                 'function'=>array($this, '_createEditLink'),
                 'params'=>array('{{id}}', "{{name}}")
             )
+        ));
+        $grid->updateColumn('public_dt',array(
+            "title" =>  $translate->getAdapter()->translate("public_date"),
+        ));
+        $grid->updateColumn('start_dt',array(
+            "title" =>  $translate->getAdapter()->translate("start_date"),
+        ));
+        $grid->updateColumn('end_dt',array(
+            "title" =>  $translate->getAdapter()->translate("end_date"),
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
@@ -239,18 +275,28 @@ class AdController extends Zend_Controller_Action
 
     public function archiveAction()
     {
+        global $translate;
+
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ?", Application_Model_DbTable_Ad::STATUS_ARCHIVE);
         $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
-            "title" => "Ad Name",
-            'class'=>'my_css_class',
+            "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
                 'function'=>array($this, '_createEditLink'),
                 'params'=>array('{{id}}', "{{name}}")
             )
+        ));
+        $grid->updateColumn('public_dt',array(
+            "title" =>  $translate->getAdapter()->translate("public_date"),
+        ));
+        $grid->updateColumn('start_dt',array(
+            "title" =>  $translate->getAdapter()->translate("start_date"),
+        ));
+        $grid->updateColumn('end_dt',array(
+            "title" =>  $translate->getAdapter()->translate("end_date"),
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);

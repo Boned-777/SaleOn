@@ -5,13 +5,14 @@ class Application_Form_Partner extends Zend_Form
 
     public function init()
     {
+        global $translate;
+
         $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));
 
         $this->addElement('text', 'enterprise', array(
             'class' => "input-block-level",
-            'placeholder' => "Enterprise",
-            'label' => "Enterprise",
+            'label' => $translate->getAdapter()->translate("enterprise"),
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
             ),
@@ -20,8 +21,7 @@ class Application_Form_Partner extends Zend_Form
 
         $this->addElement('text', 'brand', array(
             'class' => "input-block-level",
-            'placeholder' => "Brand",
-            'label' => "Brand",
+            'label' => $translate->getAdapter()->translate("brand"),
             'validators' => array(
                 array('StringLength', false, array(0, 50))
             ),
@@ -30,8 +30,7 @@ class Application_Form_Partner extends Zend_Form
 
         $this->addElement('text', 'phone', array(
             'class' => "input-block-level",
-            'placeholder' => "Phone",
-            'label' => "Phone",
+            'label' => $translate->getAdapter()->translate("phone"),
             'validators' => array(
                 array('StringLength', false, array(0, 14))
             ),
@@ -40,8 +39,7 @@ class Application_Form_Partner extends Zend_Form
 
         $this->addElement('text', 'web', array(
             'class' => "input-block-level",
-            'placeholder' => "Web",
-            'label' => "Web",
+            'label' => $translate->getAdapter()->translate("url"),
             'validators' => array(
                 array('StringLength', false, array(0, 100))
             ),
@@ -50,8 +48,7 @@ class Application_Form_Partner extends Zend_Form
 
         $this->addElement('textarea', 'address', array(
             'class' => "input-block-level",
-            'placeholder' => "Address",
-            'label' => "Address",
+            'label' => $translate->getAdapter()->translate("address"),
 //            'validators' => array(
 //                array('StringLength', false, array(0, 100))
 //            ),
@@ -62,7 +59,7 @@ class Application_Form_Partner extends Zend_Form
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
             'ignore' => true,
-            'label' => 'Update',
+            'label' => $translate->getAdapter()->translate("update"),
         ));
     }
 

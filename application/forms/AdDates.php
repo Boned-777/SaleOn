@@ -5,6 +5,8 @@ class Application_Form_AdDates extends Zend_Form
 
     public function init()
     {
+        global $translate;
+
         $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));
 
@@ -14,7 +16,7 @@ class Application_Form_AdDates extends Zend_Form
 
         $this->addElement('text', 'public_dt', array(
             'class' => "input-block-level",
-            'label' => "Publication Date",
+            'label' => $translate->getAdapter()->translate("public_date"),
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
             ),
@@ -23,7 +25,7 @@ class Application_Form_AdDates extends Zend_Form
 
         $this->addElement('text', 'start_dt', array(
             'class' => "input-block-level",
-            'label' => "Start Date",
+            'label' => $translate->getAdapter()->translate("start_date"),
             'validators' => array(
                 array('StringLength', false, array(0, 45)),
             ),
@@ -32,7 +34,7 @@ class Application_Form_AdDates extends Zend_Form
 
         $this->addElement('text', 'end_dt', array(
             'class' => "input-block-level",
-            'label' => "End Date",
+            'label' => $translate->getAdapter()->translate("end_date"),
             'validators' => array(
                 array('StringLength', false, array(0, 45)),
             ),
@@ -43,7 +45,7 @@ class Application_Form_AdDates extends Zend_Form
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
             'ignore' => true,
-            'label' => 'Submit',
+            'label' => $translate->getAdapter()->translate("save_and_next"),
         ));
     }
 }

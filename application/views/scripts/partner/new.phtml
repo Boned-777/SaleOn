@@ -1,11 +1,12 @@
+<?php global $translate; ?>
 
 <div class="row">
     <div class="span6">
-        <legend>Sign in</legend>
+        <legend><?php echo $translate->getAdapter()->translate("enter"); ?></legend>
         <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
     </div>
     <div class="span6">
-        <legend>New partner registration</legend>
+        <legend><?php echo $translate->getAdapter()->translate("new_partner_reg"); ?></legend>
         <?php echo $this->registrationForm->setAction($this->url()); ?>
     </div>
 </div>
