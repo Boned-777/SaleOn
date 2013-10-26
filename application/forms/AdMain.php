@@ -26,10 +26,15 @@ class Application_Form_AdMain extends Zend_Form
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("description"),
-            'validators' => array(
-                array('StringLength', false, array(0, 500))
-            ),
+//            'validators' => array(
+//                array('StringLength', false, array(0, 500))
+//            ),
             // 'required' => true,
+        ));
+
+        $this->addElement('textarea', 'full_description', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("full_description"),
         ));
 
         $this->addElement('submit', 'login', array(

@@ -187,13 +187,15 @@ class AdController extends Zend_Controller_Action
         }
     }
 
-    public function _createEditLink($id, $name) {
+    public function _createEditLink($id, $name)
+    {
         if (empty($name))
             $name = "Empty name";
         return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
     }
 
-    private function _cropImage($image, $targetWidth, $targetHeight) {
+    private function _cropImage($image, $targetWidth, $targetHeight)
+    {
         list($width, $height, $type) = getimagesize($image);
         $types = array("", "gif", "jpeg", "png");
         $ext = $types[$type];
@@ -304,7 +306,20 @@ class AdController extends Zend_Controller_Action
         $grid->setImagesUrl('/img/');
         $this->view->grid = $grid;
     }
+
+    public function getfullinfoAction()
+    {
+        $vars = $this->getAllParams();
+        $item = new Application_Model_Ad();
+        $item->get((int)$vars["id"]);
+        echo $item->full_description;
+        exit();
+    }
+
+
 }
+
+
 
 
 

@@ -5,6 +5,7 @@ class Application_Model_Ad
 	public $id;
 	public $name;
 	public $description;
+    public $full_description;
 	public $public_dt;
 	public $start_dt;
 	public $end_dt;
@@ -19,6 +20,7 @@ class Application_Model_Ad
     public $image;
     public $banner;
     public $owner;
+
 
     public function load($data) {
         $vars = get_class_vars(get_class());
