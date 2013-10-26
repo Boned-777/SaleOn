@@ -45,11 +45,6 @@
         <?php echo $this->navigationBar($this->link); //print_r($this->getAllParams()); ?>
 
         <div class="layout-content">
-            <div class="alert alert-block alert-success fade in">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <?php echo $translate->getAdapter()->translate("success_save"); ?>
-            </div>
-
             <?php echo $this->layout()->content; ?>
         </div>
     </div>
@@ -58,7 +53,7 @@
 
 <div id="success-modal-block" class="alert-success hide">
     <div class="save-modal-body">
-        <p class="block-label text-center"><?php echo $translate->getAdapter()->translate("success_save"); ?></p>
+        <p class="block-label text-center"><?php echo $this->message; ?></p>
     </div>
 </div>
 

@@ -52,6 +52,14 @@ class Application_Model_Partner
         return $data;
     }
 
+    public function getByUserId($id) {
+        $dbItem = new Application_Model_DbTable_Partner();
+        $data = $dbItem->fetchAll(array("user_id" => $id))->toArray();
+        if ($data !== false)
+            $this->load($data);
+
+        return $data;
+    }
 
 }
 

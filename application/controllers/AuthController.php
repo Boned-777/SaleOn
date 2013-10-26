@@ -26,18 +26,37 @@ class AuthController extends Zend_Controller_Action
 				}
 			}
 		}
+
+        $vars = $this->getAllParams();
+        if ( isset($vars["username"]) && isset($vars["password"]) ) {
+            $data = array(
+                "username" => $vars["username"],
+                "password" => $vars["password"]
+            );
+            $user = $this->_process($data);
+            if ($user) {
+                if ($user->role == "PARTNER")
+                    $this->_helper->redirector('profile', 'partner');
+                else
+                    $this->_helper->redirector('index', 'index');
+            } else {
+                $this->view->errorStatus = TRUE;
+            }
+            $form->populate($data);
+        }
+
 		$this->view->form = $form;
 	}
 
-	protected function _process($values)
+	private function _process($values)
 	{
 		$adapter = $this->_getAuthAdapter();
 		$adapter->setIdentity($values['username']);
 		$adapter->setCredential($values['password']);
-		
+
 		$auth = Zend_Auth::getInstance();
 		$result = $auth->authenticate($adapter);
-		
+
 		if ($result->isValid()) {
 			$user = $adapter->getResultRowObject();
 			$auth->getStorage()->write($user);

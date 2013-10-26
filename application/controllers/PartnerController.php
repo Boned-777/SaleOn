@@ -26,7 +26,7 @@ class PartnerController extends Zend_Controller_Action
         }
 
         $item = new Application_Model_Partner();
-        $data = $item->get($id);
+        $data = $item->getByUserId($id);
 
         if ($data === false)
             die("Invalid ID");
@@ -62,10 +62,16 @@ class PartnerController extends Zend_Controller_Action
 
         if ($request->isPost()) {
             if ($registrationForm->isValid($request->getPost())) {
-                if ($this->_create($registrationForm->getValues())) {
-                    $this->_helper->redirector('index', 'partner');
+                $data = $registrationForm->getValues();
+                if ($this->_create($data)) {
+                    $this->_helper->redirector('index', 'auth', null, array(
+                        "username" => $data["username"],
+                        "password" => $data["password"],
+                    ));
                 } else {
-                    $this->view->errorStatus = TRUE;
+                    $layout = Zend_Layout::getMvcInstance();
+                    $view = $layout->getView();
+                    $view->message = "Error! Data did not save";
                 }
             }
         }
@@ -75,7 +81,8 @@ class PartnerController extends Zend_Controller_Action
 
     private function _create($data) {
         $item = new Application_Model_Partner();
-        $item->create($data);
+        return $item->create($data);
+
     }
 
     public function addAction()
