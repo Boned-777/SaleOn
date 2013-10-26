@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <?php
+    global $translate;
     echo $this->jQuery()
         ->setVersion('1.9.1')
         ->setUiVersion('1.10.3')
@@ -44,10 +45,21 @@
         <?php echo $this->navigationBar($this->link); //print_r($this->getAllParams()); ?>
 
         <div class="layout-content">
+            <div class="alert alert-block alert-success fade in">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <?php echo $translate->getAdapter()->translate("success_save"); ?>
+            </div>
+
             <?php echo $this->layout()->content; ?>
         </div>
     </div>
     <div id="push"></div>
+</div>
+
+<div id="success-modal-block" class="alert-success hide">
+    <div class="save-modal-body">
+        <p class="block-label text-center"><?php echo $translate->getAdapter()->translate("success_save"); ?></p>
+    </div>
 </div>
 
 <div id="footer" class="footer footer-gradient">

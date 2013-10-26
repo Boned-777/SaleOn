@@ -125,12 +125,6 @@ body {
 	margin-bottom: 20px;
 }
 /*
-hr {
-	margin: 15px 0;
-	border-top: 1px solid #eeeeee;
-	border-bottom: 1px solid #ffffff;
-	display: none;
-}
 .jumbotron .lead {
 	font-size: 25px;
 	line-height: 1.25;
@@ -298,7 +292,7 @@ hr {
 }
 /*Super slider*/
 
-
+/* Slider images */
 .img-wrapper {
 	display: block;
 	position: relative;
@@ -336,6 +330,8 @@ hr {
 .img-info p{
 	padding: 10px;
 }
+/* Slider images */
+
 
 .legend {
   display: block;
@@ -349,6 +345,7 @@ hr {
   border-bottom: 1px solid #e5e5e5;
 }
 
+/* Forms */
 dl dt {
 	color: #999999;
 	margin-left: 10px;
@@ -364,6 +361,31 @@ input[type="file"] {
 .nav-pills > li {
     margin-left: 15px;
 }
+
+ul.errors {
+	margin-left: 0;
+}
+
+.errors li {
+	color: #D14;
+	list-style-type: none;
+	line-height: 10px;
+}
+#success-modal-block {
+  position : fixed;
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  border-top-width: 2px;
+}
+
+#success-modal-block .block-label {
+    padding: 25px 0;
+} 
+/* Forms */
+
 
 /*IE fix. find for 8*/
 .masthead .offset1 {

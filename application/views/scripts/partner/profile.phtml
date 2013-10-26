@@ -5,7 +5,7 @@
         <div class="span6">
             <div class="legend"><?php echo $translate->getAdapter()->translate("info"); ?></div>
             <p><?php echo $this->email; ?></p>
-            <a href="#"><button><?php echo $translate->getAdapter()->translate("set_new_password"); ?></button></a>
+            <a id="change-pass" href="#"><button><?php echo $translate->getAdapter()->translate("set_new_password"); ?></button></a>
         </div>
 
         <div class="span6">
@@ -14,3 +14,8 @@
         </div>
     </div>
 </div>
+<script>
+$( "#change-pass" ).click(function() {
+    $( "#success-modal-block" ).fadeIn( "slow" ).delay( 5000 ).fadeOut( "slow" );
+});
+</script>

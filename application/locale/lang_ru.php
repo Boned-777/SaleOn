@@ -44,6 +44,7 @@ return array(
     'register' => 'Зарегистрировать',
 
     'error' => "Ошибка",
+    'success_save' => "<strong>Внимание!</strong> Ваши данные успешно сохранены",
 
     'wrong_email_or_password' => "Электронная почта или пароль не верны"
 );
