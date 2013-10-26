@@ -16,7 +16,7 @@ class Application_Form_Partner extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
             ),
-            'required' => true,
+//            'required' => true,
         ));
 
         $this->addElement('text', 'brand', array(
@@ -25,7 +25,7 @@ class Application_Form_Partner extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 50))
             ),
-            'required' => true,
+//            'required' => true,
         ));
 
         $this->addElement('text', 'phone', array(
@@ -34,7 +34,7 @@ class Application_Form_Partner extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 14))
             ),
-            'required' => true,
+//            'required' => true,
         ));
 
         $this->addElement('text', 'web', array(
@@ -43,7 +43,7 @@ class Application_Form_Partner extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 100))
             ),
-            'required' => true,
+//            'required' => true,
         ));
 
         $this->addElement('textarea', 'address', array(
@@ -52,7 +52,7 @@ class Application_Form_Partner extends Zend_Form
 //            'validators' => array(
 //                array('StringLength', false, array(0, 100))
 //            ),
-            'required' => true,
+//            'required' => true,
         ));
 
         $this->addElement('submit', 'login', array(

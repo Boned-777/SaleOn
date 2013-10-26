@@ -23,14 +23,15 @@ class PartnerController extends Zend_Controller_Action
         $view = $layout->getView();
 
         $vars = $this->getAllParams();
+        $item = new Application_Model_Partner();
+
         if (isset($vars["id"])) {
             $id = $vars["id"];
+            $data = $item->get($id);
         } else {
             $id = $this->user->id;
+            $data = $item->getByUserId($id);
         }
-
-        $item = new Application_Model_Partner();
-        $data = $item->getByUserId($id);
 
         if ($data === false)
             die("Invalid ID");

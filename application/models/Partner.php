@@ -54,11 +54,16 @@ class Application_Model_Partner
 
     public function getByUserId($id) {
         $dbItem = new Application_Model_DbTable_Partner();
-        $data = $dbItem->fetchAll(array("user_id" => $id))->toArray();
-        if ($data !== false)
-            $this->load($data[0]);
+        $stmt = $dbItem->select()->where("user_id = ?", $id);
+        $stmt = $stmt->query();
+        $result = $stmt->fetchAll();
+        if (isset($result[0])) {
+            $this->load($result[0]);
+        } else {
+            return false;
+        }
 
-        return $data[0];
+        return $result[0];
     }
 
 }
