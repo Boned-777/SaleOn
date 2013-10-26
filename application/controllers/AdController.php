@@ -33,6 +33,10 @@ class AdController extends Zend_Controller_Action
 
     public function newAction()
     {
+        global $translate;
+        $layout = Zend_Layout::getMvcInstance();
+        $view = $layout->getView();
+
         $this->view->mainForm = new Application_Form_AdMain();
         $this->view->contactsForm = new Application_Form_AdContacts();
         $this->view->datesForm = new Application_Form_AdDates();
@@ -80,9 +84,12 @@ class AdController extends Zend_Controller_Action
                 $id = $item->save();
                 if ($id) {
                     $this->_helper->redirector('edit', 'ad', null, array("id" => $item->id));
+                    $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
-
+                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
+            } else {
+                $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
         }
 
@@ -123,6 +130,10 @@ class AdController extends Zend_Controller_Action
 
     public function editAction()
     {
+        global $translate;
+        $layout = Zend_Layout::getMvcInstance();
+        $view = $layout->getView();
+
         $vars = $this->getAllParams();
 
         $this->view->mainForm = new Application_Form_AdMain();
@@ -175,9 +186,12 @@ class AdController extends Zend_Controller_Action
                 $id = $item->save();
                 if ($item->id) {
                     $this->_helper->redirector('edit', 'ad', null, array("id" => $item->id));
+                    $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
-
+                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
+            } else {
+                $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
         }
 

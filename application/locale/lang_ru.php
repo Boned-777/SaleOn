@@ -44,8 +44,10 @@ return array(
     'set_new_password' => "Сменить пароль",
     'register' => 'Зарегистрировать',
 
-    'error' => "Ошибка",
-    'success_save' => "<strong>Внимание!</strong> Ваши данные успешно сохранены",
+    'error' => "Ошибка!",
+    'success' => "",
+    'data_save_error' => "Данные не были сохранены",
+    'data_save_success' => "Данные были успешно сохранены",
 
     'wrong_email_or_password' => "Электронная почта или пароль не верны"
 );

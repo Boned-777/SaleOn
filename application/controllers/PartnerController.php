@@ -18,6 +18,10 @@ class PartnerController extends Zend_Controller_Action
 
     public function profileAction()
     {
+        global $translate;
+        $layout = Zend_Layout::getMvcInstance();
+        $view = $layout->getView();
+
         $vars = $this->getAllParams();
         if (isset($vars["id"])) {
             $id = $vars["id"];
@@ -39,10 +43,13 @@ class PartnerController extends Zend_Controller_Action
             if ($form->isValid($request->getPost())) {
                 $item->load($form->getValues());
                 if ($item->save()) {
-                    $this->_helper->redirector('index', 'partner');
+                    $this->_helper->redirector('profile', 'partner');
+                    $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
-                    $this->view->errorStatus = TRUE;
+                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
+            } else {
+                $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
         } else {
             $form->populate($data);
@@ -54,11 +61,16 @@ class PartnerController extends Zend_Controller_Action
 
     public function newAction()
     {
+        global $translate;
+
         $registrationForm = new Application_Form_User();
         $registrationForm->setName("partner_registration");
         $loginForm = new Application_Form_Login();
         $loginForm->setName("login");
         $request = $this->getRequest();
+
+        $layout = Zend_Layout::getMvcInstance();
+        $view = $layout->getView();
 
         if ($request->isPost()) {
             if ($registrationForm->isValid($request->getPost())) {
@@ -68,10 +80,9 @@ class PartnerController extends Zend_Controller_Action
                         "username" => $data["username"],
                         "password" => $data["password"],
                     ));
+                    $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
-                    $layout = Zend_Layout::getMvcInstance();
-                    $view = $layout->getView();
-                    $view->message = "Error! Data did not save";
+                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
             }
         }
@@ -82,7 +93,6 @@ class PartnerController extends Zend_Controller_Action
     private function _create($data) {
         $item = new Application_Model_Partner();
         return $item->create($data);
-
     }
 
     public function addAction()

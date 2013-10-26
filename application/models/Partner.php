@@ -56,9 +56,9 @@ class Application_Model_Partner
         $dbItem = new Application_Model_DbTable_Partner();
         $data = $dbItem->fetchAll(array("user_id" => $id))->toArray();
         if ($data !== false)
-            $this->load($data);
+            $this->load($data[0]);
 
-        return $data;
+        return $data[0];
     }
 
 }
