@@ -51,6 +51,13 @@ class AdController extends Zend_Controller_Action
             "AdMedia" => $this->view->mediaForm
         );
 
+        $formsOrder = array(
+            'AdMain' => "dates",
+            'AdDates' => "settings",
+            'AdSettings' => "contacts",
+            'AdContacts' => "media"
+        );
+
         $item = new Application_Model_Ad();
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -83,7 +90,12 @@ class AdController extends Zend_Controller_Action
                 $item->load($itemData);
                 $id = $item->save();
                 if ($id) {
-                    $this->_helper->redirector('edit', 'ad', null, array("id" => $item->id));
+                    $url = $this->_helper->url('edit', 'ad', null, array("id" => $item->id));
+                    if ($formData["form"] != "AdMain")
+                        $url .= '#main';
+                    else
+                        $url .= '#' . $formsOrder[$formData["form"]];
+                    $this->redirect($url);
                     $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
                     $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
@@ -150,6 +162,13 @@ class AdController extends Zend_Controller_Action
             "AdMedia" => $this->view->mediaForm
         );
 
+        $formsOrder = array(
+            'AdMain' => "dates",
+            'AdDates' => "settings",
+            'AdSettings' => "contacts",
+            'AdContacts' => "media"
+        );
+
         $item = new Application_Model_Ad();
         $formData = $this->getAllParams();
         if ($formData["id"])
@@ -185,7 +204,12 @@ class AdController extends Zend_Controller_Action
                 $item->load($itemData);
                 $id = $item->save();
                 if ($item->id) {
-                    $this->_helper->redirector('edit', 'ad', null, array("id" => $item->id));
+                    $url = $this->_helper->url->url(array(
+                        'controller' => 'ad',
+                        'action' => 'edit'
+                    ));
+                    $url .= '#' . $formsOrder[$vars["form"]];
+                    $this->_helper->redirector->gotoUrl($url);
                     $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
                     $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
