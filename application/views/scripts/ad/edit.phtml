@@ -29,6 +29,9 @@
 
 <script>
     $(function () {
+        var hash = window.location.hash;
+        hash && $('#ad a[href="'+hash+'"]').tab('show');
+
         $('#ad a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');

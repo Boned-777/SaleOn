@@ -20,7 +20,7 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
 		if ($auth->hasIdentity()) {
 			if ($auth->getIdentity()->role == "PARTNER") {
         ?>
-        <div class="row offset1">
+        <div class="row">
             <ul class="nav nav-pills">
                 <?php
                 foreach ($menuItems as $value) {

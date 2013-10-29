@@ -358,8 +358,20 @@ input[type="file"] {
     height: auto;
 }
 
+.nav-pills {
+	width: 850px;
+	margin: 0 auto;
+}
 .nav-pills > li {
     margin-left: 15px;
+}
+@media (max-width: 978px)  {
+	.nav-pills {
+		width: 720px;
+	}
+	.nav-pills > li {
+	    margin-left: 5px;
+	}
 }
 
 ul.errors {
