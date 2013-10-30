@@ -383,7 +383,7 @@ ul.errors {
 	list-style-type: none;
 	line-height: 10px;
 }
-#success-modal-block {
+.footer-message  {
   position : fixed;
   z-index: 1000;
   bottom: 0;
@@ -393,7 +393,7 @@ ul.errors {
   border-top-width: 2px;
 }
 
-#success-modal-block .block-label {
+.footer-message .block-label {
     padding: 25px 0;
 } 
 /* Forms */
