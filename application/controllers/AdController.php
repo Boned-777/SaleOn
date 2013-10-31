@@ -76,11 +76,14 @@ class AdController extends Zend_Controller_Action
                     foreach ($images as $imgKey => $imgVal) {
                         switch ($imgKey) {
                             case "image_file" :
+                                if (!isset($images["banner_file"])) {
+                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                }
                                 $itemData["image"] = $imgVal;
                                 break;
 
                             case "banner_file" :
-                                $itemData["banner"] = $imgVal;
+                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
                                 break;
                         }
                     }
@@ -190,11 +193,14 @@ class AdController extends Zend_Controller_Action
                     foreach ($images as $imgKey => $imgVal) {
                         switch ($imgKey) {
                             case "image_file" :
+                                if (!isset($images["banner_file"])) {
+                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                }
                                 $itemData["image"] = $imgVal;
                                 break;
 
                             case "banner_file" :
-                                $itemData["banner"] = $imgVal;
+                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
                                 break;
                         }
                     }
@@ -245,7 +251,47 @@ class AdController extends Zend_Controller_Action
         imagecopy($img_o, $img_i, 0, 0, 0, 0, $targetWidth, $targetHeight);
         $func = 'image'.$ext;
         $newName = uniqid() . "." . $ext;
-        return $func($img_o, "/ads/" . $newName);
+        $res = $func($img_o, APPLICATION_PATH . "/../public/ads/" . $newName);
+        if ($res)
+            return $newName;
+    }
+
+    private function _resizeImage($src, $width, $height, $rgb=0xFFFFFF, $quality=100)
+    {
+        if (!file_exists($src)) return false;
+
+        $size = getimagesize($src);
+
+        if ($size === false) return false;
+        $format = strtolower(substr($size['mime'], strpos($size['mime'], '/')+1));
+        $icfunc = "imagecreatefrom" . $format;
+        if (!function_exists($icfunc)) return false;
+
+        $x_ratio = $width / $size[0];
+        $y_ratio = $height / $size[1];
+
+        $ratio       = min($x_ratio, $y_ratio);
+        $use_x_ratio = ($x_ratio == $ratio);
+
+        $new_width   = $use_x_ratio  ? $width  : floor($size[0] * $ratio);
+        $new_height  = !$use_x_ratio ? $height : floor($size[1] * $ratio);
+        $new_left    = $use_x_ratio  ? 0 : floor(($width - $new_width) / 2);
+        $new_top     = !$use_x_ratio ? 0 : floor(($height - $new_height) / 2);
+
+        $isrc = $icfunc($src);
+        $idest = imagecreatetruecolor($width, $height);
+
+        imagefill($idest, 0, 0, $rgb);
+        imagecopyresampled($idest, $isrc, $new_left, $new_top, 0, 0,
+            $new_width, $new_height, $size[0], $size[1]);
+
+        $newName = uniqid() . ".jpg";
+        imagejpeg($idest, APPLICATION_PATH . "/../public/ads/" . $newName, $quality);
+
+        imagedestroy($isrc);
+        imagedestroy($idest);
+
+        return $newName;
 
     }
 
@@ -256,7 +302,7 @@ class AdController extends Zend_Controller_Action
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
-        $grid->getSelect()->where("status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $grid->getSelect()->where("status = ? AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
@@ -288,7 +334,7 @@ class AdController extends Zend_Controller_Action
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
-        $grid->getSelect()->where("status IN (?, ?)", array(Application_Model_DbTable_Ad::STATUS_DRAFT, Application_Model_DbTable_Ad::STATUS_READY));
+        $grid->getSelect()->where("status IN (?, ?) AND owner = " . $this->user->id, array(Application_Model_DbTable_Ad::STATUS_DRAFT, Application_Model_DbTable_Ad::STATUS_READY));
         $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
@@ -320,7 +366,7 @@ class AdController extends Zend_Controller_Action
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
-        $grid->getSelect()->where("status = ?", Application_Model_DbTable_Ad::STATUS_ARCHIVE);
+        $grid->getSelect()->where("status = ? AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ARCHIVE);
         $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),

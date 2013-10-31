@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <?php echo $this->navigationBar($this->link); //print_r($this->getAllParams()); ?>
+        <?php echo $this->navigationBar($this->link); ?>
         <div class="layout-content">
             <?php echo $this->layout()->content; ?>
         </div>
@@ -54,7 +54,7 @@
 </div>
 
 <div id="error-modal-block" class="footer-message alert-error hide">
-    <p class="block-label text-center">ВАУ - Все акции Украины<?php echo $this->errorMessage; ?></p>
+    <p class="block-label text-center"><?php echo $this->errorMessage; ?></p>
 </div>
 
 <div id="footer" class="footer footer-gradient">

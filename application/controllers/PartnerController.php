@@ -44,10 +44,9 @@ class PartnerController extends Zend_Controller_Action
             if ($form->isValid($request->getPost())) {
                 $item->load($form->getValues());
                 if ($item->save()) {
-                    $this->_helper->redirector('profile', 'partner');
                     $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
-                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
+                    //$view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
             } else {
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
