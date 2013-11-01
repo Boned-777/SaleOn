@@ -38,11 +38,10 @@ class Application_Form_AdSettings extends Zend_Form
             'label' => $translate->getAdapter()->translate("category"),
             'multiOptions' => $categories->getAll()
         ));
-
-        $this->addElement('select', 'brand', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("brand"),
-        ));
+        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand');
+        $brand->setLabel($translate->getAdapter()->translate("brand"));
+        $brand->setJQueryParam('source', '/brands/autocomp');
+        $this->addElement($brand);
 
         $this->addElement('submit', 'login', array(
             //'class' => 'btn btn-large btn-primary',
