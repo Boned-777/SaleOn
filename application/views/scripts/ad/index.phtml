@@ -2,7 +2,11 @@
     <div class="span6 details-left">
         <a href="#" class="img-wrapper">
             <!-- /img/item2.jpg -->
-            <img width="550" height="auto" src="/ads/<?php echo $this->ad->image; ?>" class="img-polaroid">
+            <?php if ($this->ad->video == "") { ?>
+                <img width="550" height="auto" src="/ads/<?php echo $this->ad->image; ?>" class="img-polaroid">
+            <?php } else { ?>
+                <div style="width:550px;"><?php echo $this->ad->video; ?></div>
+            <?php } ?>
             <div class="img-info"><p><?php echo $this->ad->name; ?></p></div>
         </a>
         <br><br><br>
@@ -14,7 +18,7 @@
         </address>
 
         <address>
-            <strong>Черновцы</strong><br>
+<!--            <strong>Черновцы</strong><br>-->
             <a href="mailto:email@email.com">email@email.com</a>
         </address>
 
