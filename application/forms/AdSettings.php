@@ -14,6 +14,17 @@ class Application_Form_AdSettings extends Zend_Form
         $this->getElement("form")->setValue("AdSettings");
         $this->getElement("form")->setDecorators(array('ViewHelper'));
 
+        $categories = new Application_Model_Category();
+        $this->addElement('select', 'category', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("category"),
+            'multiOptions' => $categories->getAll()
+        ));
+        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand');
+        $brand->setLabel($translate->getAdapter()->translate("brand"));
+        $brand->setJQueryParam('source', '/brands/autocomp');
+        $this->addElement($brand);
+
         $geo = new Application_Model_Geo();
         $this->addElement('select', 'country', array(
             'class' => "input-block-level",
@@ -31,17 +42,6 @@ class Application_Form_AdSettings extends Zend_Form
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("city"),
         ));
-
-        $categories = new Application_Model_Category();
-        $this->addElement('select', 'category', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("category"),
-            'multiOptions' => $categories->getAll()
-        ));
-        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand');
-        $brand->setLabel($translate->getAdapter()->translate("brand"));
-        $brand->setJQueryParam('source', '/brands/autocomp');
-        $this->addElement($brand);
 
         $this->addElement('submit', 'login', array(
             //'class' => 'btn btn-large btn-primary',
