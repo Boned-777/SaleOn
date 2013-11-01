@@ -17,10 +17,10 @@
             <div class="span5"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
             <div class="span6">
                 <?php if (!empty($this->image)) { ?>
-                    <img src="/ads/<?php echo $this->image; ?>" />
+                    <img src="<?php echo $this->serverUrl() . "/ads/" . $this->image; ?>" />
                 <?php } ?>
                 <?php if (!empty($this->banner)) { ?>
-                    <img src="/ads/<?php echo $this->banner; ?>" />
+                    <img src="<?php echo $this->serverUrl() . "/ads/" . $this->banner; ?>" />
                 <?php } ?>
             </div>
         </div>
