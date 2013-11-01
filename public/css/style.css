@@ -4,11 +4,6 @@ body {
 	background-color: #FFF;
 }
 
-.masthead {
-	margin: 40px 0 20px;
-}
-
-
 /* Wrapper for page content to push down footer */
 #wrap {
 	min-height: 100%;
@@ -358,6 +353,17 @@ input[type="file"] {
     height: auto;
 }
 
+ul.errors {
+	margin-left: 0;
+}
+
+.errors li {
+	color: #D14;
+	list-style-type: none;
+	line-height: 10px;
+}
+
+/*partner menu*/
 .nav-pills {
 	width: 850px;
 	margin: 0 auto;
@@ -374,15 +380,48 @@ input[type="file"] {
 	}
 }
 
-ul.errors {
-	margin-left: 0;
+/*item details*/
+@media (min-width: 979px) and (max-width: 1200px) {
+	.details-left {
+		width: 350px;
+	}
+	.details-left img {
+		width: 340px;	
+	}
+	.details-right {
+	    width: 570px;
+	}
+}
+@media (max-width: 978px) {
+	.details-left {
+		width: 290px;
+	}
+	.details-left img {
+		width: 285px;	
+	}
+	.details-right {
+	    width: 405px;
+	}
 }
 
-.errors li {
-	color: #D14;
-	list-style-type: none;
-	line-height: 10px;
+/*Top menu*/
+
+.top-menu {
+	height: 50px;
+    margin: 40px auto 15px;
+    width: 970px;
 }
+@media (min-width: 979px) and (max-width: 1200px) {
+	.top-menu {
+		width: 770px;
+	}
+}
+@media (max-width: 978px) {
+	.top-menu {
+		width: 630px;
+	}
+}
+
 .footer-message  {
   position : fixed;
   z-index: 1000;
@@ -400,11 +439,8 @@ ul.errors {
 
 
 /*IE fix. find for 8*/
-.masthead .offset1 {
-    *margin-left: 60px;
-}
-.masthead .span4 {
-    *width: 360px;
+.top-menu .span4 {
+	width: 360px\9;
 }
 textarea {
     height: 150px !important;

@@ -23,9 +23,9 @@
 
 <div id="wrap">
     <div class="container">
-        <div class="masthead">
             <div class="row">
-                <div class="span4 offset1">
+                <div class="top-menu">
+                <div class="span4">
                     <button id="btn1" title="Регионы" class="btn btn-large" type="button"><i class="myicon-region"></i></button>
                     <button id="btn2" title="Категории" class="btn btn-large" type="button"><i class="myicon-category"></i></button>
                     <button id="btn3" title="Бренды" class="btn btn-large" type="button"><i class="myicon-brands"></i></button>
@@ -33,14 +33,13 @@
                 <div class="span3 jumbotron">
                     <a href="/"><div class="logo"></div></a>
                 </div>
-                <div class="span5">
+                <div class="span4">
                     <a href="#" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
                     <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
                     <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
-
+                </div>
                 </div>
             </div>
-        </div>
         <?php echo $this->navigationBar($this->link); ?>
         <div class="layout-content">
             <?php echo $this->layout()->content; ?>

@@ -1,6 +1,7 @@
-<div class="row-fluid">
-    <div class="span6">
+<div class="row">
+    <div class="span6 details-left">
         <a href="#" class="img-wrapper">
+            <!-- /img/item2.jpg -->
             <img width="550" height="auto" src="/ads/<?php echo $this->ad->image; ?>" class="img-polaroid">
             <div class="img-info"><p><?php echo $this->ad->name; ?></p></div>
         </a>
@@ -18,11 +19,11 @@
         </address>
 
     </div>
-    <div class="span6">
+    <div class="span6 details-righ">
         <h3><?php echo $this->ad->name; ?></h3>
         <?php echo $this->ad->description; ?>
 
-        <p><a class="btn" href="<?php echo $this->ad->url; ?>">Перейти »</a></p>
+        <p><a class="btn" href="<?php echo $this->ad->url; ?>">Полное описание</a></p>
 
     </div>
 </div>
