@@ -7,6 +7,7 @@ class Application_Model_Partner
     public $phone;
     public $enterprise;
     public $brand;
+    public $brand_name;
     public $address;
     public $web;
 
@@ -27,8 +28,19 @@ class Application_Model_Partner
     public function load($data) {
         $vars = get_class_vars(get_class());
         foreach ($vars as $key => $value) {
-            if (isset($data[$key]))
-                $this->$key = $data[$key];
+            switch ($key) {
+                case "brand_name":
+                    if ($data['brand']) {
+                        $item = new Application_Model_DbTable_Brand();
+                        $this->brand_name = $item->getNameById($data['brand']);
+                    }
+                    break;
+
+                default:
+                    if (isset($data[$key]))
+                        $this->$key = $data[$key];
+                    break;
+            }
         }
     }
 
@@ -36,7 +48,15 @@ class Application_Model_Partner
         $vars = get_class_vars(get_class());
         $data = array();
         foreach ($vars as $key => $value) {
-            $data[$key] = $this->$key;
+            switch ($key) {
+                case 'brand_name' :
+                    break;
+
+                default:
+                    $data[$key] = $this->$key;
+                    break;
+            }
+
         }
         $dbItem = new Application_Model_DbTable_Partner();
         $res = $dbItem->save($data, $this->id);
@@ -64,6 +84,15 @@ class Application_Model_Partner
         }
 
         return $result[0];
+    }
+
+    public function toArray() {
+        $vars = get_class_vars(get_class());
+        $data = array();
+        foreach ($vars as $key => $value) {
+            $data[$key] = $this->$key;
+        }
+        return $data;
     }
 
 }
