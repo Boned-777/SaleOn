@@ -404,6 +404,14 @@ textarea {
 	}
 }
 
+.details-left div {
+    text-align: justify;
+}
+
+.details-left h4 {
+    margin: 0 0 10px 0;
+}
+
 /*Top menu*/
 .top-menu {
 	height: 50px;
