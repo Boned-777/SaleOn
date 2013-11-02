@@ -7,14 +7,19 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
 
 		$auth = Zend_Auth::getInstance();
         $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+
+        $URIArr = explode("/", $uri);
+        if (sizeof($URIArr) < 3)
+            return false;
+        $uri = '/' . $URIArr[1] . '/' . $URIArr[2];
         $menuItems = array(
-            "profile" => array("link" => "/partner/profile", "caption" => $translate->getAdapter()->translate("profile")),
-            "active" => array("link" => "/ad/active", "caption" => $translate->getAdapter()->translate("active")),
-            "archive" => array("link" => "/ad/archive", "caption" => $translate->getAdapter()->translate("archive")),
-            "noactive" => array("link" => "/ad/noactive", "caption" => $translate->getAdapter()->translate("noactive")),
-            "add_new" => array("link" => "/ad/new", "caption" => $translate->getAdapter()->translate("add_new")),
-            "rules" => array("link" => "#", "caption" => $translate->getAdapter()->translate("rules")),
-            "exit" => array("link" => "/auth/logout", "caption" => $translate->getAdapter()->translate("exit"))
+            "profile" => array("link" => array("/partner/profile"), "caption" => $translate->getAdapter()->translate("profile")),
+            "active" => array("link" => array("/ad/active"), "caption" => $translate->getAdapter()->translate("active")),
+            "archive" => array("link" => array("/ad/archive"), "caption" => $translate->getAdapter()->translate("archive")),
+            "noactive" => array("link" => array("/ad/noactive", "/ad/edit"), "caption" => $translate->getAdapter()->translate("noactive")),
+            "add_new" => array("link" => array("/ad/new"), "caption" => $translate->getAdapter()->translate("add_new")),
+            "rules" => array("link" => array("#"), "caption" => $translate->getAdapter()->translate("rules")),
+            "exit" => array("link" => array("/auth/logout"), "caption" => $translate->getAdapter()->translate("exit"))
         );
 
 		if ($auth->hasIdentity()) {
@@ -24,10 +29,10 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
             <ul class="nav nav-pills">
                 <?php
                 foreach ($menuItems as $value) {
-                    if ($uri == $value["link"])
-                        echo '<li class="active"><a href="' . $value["link"] . '">' . $value["caption"] . '</a></li>';
+                    if (in_array($uri, $value["link"]))
+                        echo '<li class="active"><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
                     else
-                        echo '<li><a href="' . $value["link"] . '">' . $value["caption"] . '</a></li>';
+                        echo '<li><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
                 }
                 ?>
             </ul>
