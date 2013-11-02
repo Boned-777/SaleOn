@@ -26,4 +26,12 @@
         </div>
     </div>
 </div>
+<?php if (!empty($this->gotoTab)) {?>
+    <script type="text/javascript">
+        $(function () {
+            <?php echo "window.location.hash = \"" . $this->gotoTab . "\";"; ?>
+            <?php echo "$('#ad a[href=\"" . $this->gotoTab . "\"]').tab('show');"; ?>
+        })
+    </script>
+<?php } ?>
 <script src="/js/createAdv.js"></script>

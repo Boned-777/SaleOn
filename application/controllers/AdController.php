@@ -55,7 +55,8 @@ class AdController extends Zend_Controller_Action
             'AdMain' => "dates",
             'AdDates' => "settings",
             'AdSettings' => "contacts",
-            'AdContacts' => "media"
+            'AdContacts' => "media",
+            'AdMedia' => "main"
         );
 
         $item = new Application_Model_Ad();
@@ -169,7 +170,8 @@ class AdController extends Zend_Controller_Action
             'AdMain' => "dates",
             'AdDates' => "settings",
             'AdSettings' => "contacts",
-            'AdContacts' => "media"
+            'AdContacts' => "media",
+            'AdMedia' => "main"
         );
 
         $item = new Application_Model_Ad();
@@ -221,6 +223,8 @@ class AdController extends Zend_Controller_Action
                     $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
             } else {
+                $tabs = explode("Ad", $formData["form"]);
+                $this->view->gotoTab = strtolower($tabs[1]);
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
         }
