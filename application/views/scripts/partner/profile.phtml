@@ -3,9 +3,10 @@
 <div id="view-content">
     <div class="row">
         <div class="span6">
+            <legend><?php echo $translate->getAdapter()->translate("set_new_password"); ?></legend>
+            <?php echo $this->changePasswordForm->setAction($this->url()); ?>
             <div class="legend"><?php echo $translate->getAdapter()->translate("info"); ?></div>
             <p><?php echo $this->email; ?></p>
-            <a id="change-pass" href="#"><button><?php echo $translate->getAdapter()->translate("set_new_password"); ?></button></a>
         </div>
 
         <div class="span6">

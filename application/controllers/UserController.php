@@ -47,7 +47,6 @@ class UserController extends Zend_Controller_Action
     private function _add($vars)
     {
 		$item = new Application_Model_DbTable_User();
-
 		$data = $item->add($vars);
 		
 		if ($data === false) {
@@ -55,26 +54,26 @@ class UserController extends Zend_Controller_Action
 		}
 		
 		
-		$mailhost= '127.0.0.1';
-		$mailconfig = array(
-			'port'    =>  '25',
-		);
-		
-		$transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
-		Zend_Mail::setDefaultTransport($transport);
-		
-		$text = "We have created an account for you in the DigitalIO.\nLog in using the details below:\n\n".
-		"Email: " . $data["username"] . "\n".
-		"Password: " . $data["real_password"];
-		
-		//echo "<h1>This is temporary solution!</h1> Message is: <br/>" . $text; exit;
-
-		$mail = new Zend_Mail();
-		$mail->setBodyText($text);
-		$mail->setFrom('admin@digitalio.ksl.com', 'DigitalIO');
-		$mail->addTo($data["username"], '');
-		$mail->setSubject('New account for you');
-		$mail->send();
+//		$mailhost= '127.0.0.1';
+//		$mailconfig = array(
+//			'port'    =>  '25',
+//		);
+//
+//		$transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
+//		Zend_Mail::setDefaultTransport($transport);
+//
+//		$text = "We have created an account for you in the.\nLog in using the details below:\n\n".
+//		"Email: " . $data["username"] . "\n".
+//		"Password: " . $data["real_password"];
+//
+//		//echo "<h1>This is temporary solution!</h1> Message is: <br/>" . $text; exit;
+//
+//		$mail = new Zend_Mail();
+//		$mail->setBodyText($text);
+//		$mail->setFrom('admin@test.com', 'test');
+//		$mail->addTo($data["username"], '');
+//		$mail->setSubject('New account for you');
+//		$mail->send();
 		
 		return true;
     }
@@ -90,7 +89,6 @@ class UserController extends Zend_Controller_Action
     {
         // action body
     }
-
 
 }
 

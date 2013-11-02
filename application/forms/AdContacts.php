@@ -21,7 +21,7 @@ class Application_Form_AdContacts extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
             ),
-            //'required' => true,
+            'required' => true,
         ));
 
         $this->addElement('text', 'phone', array(
@@ -31,7 +31,16 @@ class Application_Form_AdContacts extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 45)),
             ),
-            //'required' => true,
+            'required' => true,
+        ));
+
+        $this->addElement('text', 'email', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("email"),
+            'validators' => array(
+                array('EmailAddress')
+            ),
+            'required' => true,
         ));
 
         $this->addElement('text', 'url', array(
@@ -42,15 +51,6 @@ class Application_Form_AdContacts extends Zend_Form
                 array('StringLength', false, array(0, 255)),
             ),
             //'required' => true,
-        ));
-
-        $this->addElement('text', 'email', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("email"),
-            'validators' => array(
-                array('EmailAddress')
-            ),
-//            'required' => true,
         ));
 
         $this->addElement('submit', 'login', array(

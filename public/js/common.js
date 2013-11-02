@@ -57,3 +57,7 @@ function textAreaSymCalculator(obj) {
         $(counter).css("color", "grey");
     $(counter).html($(obj).val().length + "/" + $(obj).attr("max_length"));
 }
+
+function changePassword() {
+
+}

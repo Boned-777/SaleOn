@@ -57,5 +57,7 @@ return array(
     "rules" => "Правила",
     "exit" => "Выход",
 
+    "change_password" => "Изменить пароль",
+
     'wrong_email_or_password' => "Электронная почта или пароль не верны"
 );
