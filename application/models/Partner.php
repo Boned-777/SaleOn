@@ -10,6 +10,8 @@ class Application_Model_Partner
     public $brand_name;
     public $address;
     public $web;
+    public $email;
+
 
     public function create($data) {
         $dbItem = new Application_Model_DbTable_User();

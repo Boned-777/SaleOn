@@ -21,6 +21,7 @@ class Application_Model_Ad
     public $image;
     public $banner;
     public $owner;
+    public $email;
 
 
     public function load($data) {

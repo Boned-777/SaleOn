@@ -52,6 +52,15 @@ class Application_Form_Partner extends Zend_Form
 //            'required' => true,
         ));
 
+        $this->addElement('text', 'email', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("email"),
+            'validators' => array(
+                array('EmailAddress')
+            ),
+//            'required' => true,
+        ));
+
         $this->addElement('textarea', 'address', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("address"),

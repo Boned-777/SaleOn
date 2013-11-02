@@ -44,6 +44,15 @@ class Application_Form_AdContacts extends Zend_Form
             //'required' => true,
         ));
 
+        $this->addElement('text', 'email', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("email"),
+            'validators' => array(
+                array('EmailAddress')
+            ),
+//            'required' => true,
+        ));
+
         $this->addElement('submit', 'login', array(
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
