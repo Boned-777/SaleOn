@@ -404,11 +404,11 @@ textarea {
 	}
 }
 
-.details-left div {
+.details-right div {
     text-align: justify;
 }
 
-.details-left h4 {
+.details-right h4 {
     margin: 0 0 10px 0;
 }
 
