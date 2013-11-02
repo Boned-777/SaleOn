@@ -1,3 +1,4 @@
+<?php global $translate; ?>
 <div class="row">
     <div class="span6 details-left">
         <a href="#" class="img-wrapper">
@@ -23,7 +24,24 @@
         <h3><?php echo $this->ad->name; ?></h3>
         <?php echo $this->ad->description; ?>
 
-        <p><a class="btn" href="<?php echo $this->ad->url; ?>">Полное описание</a></p>
+        <br><br>
+        <a id="full-description" class="btn" href="#full-description-modal" data-id="<?php echo $this->ad->id; ?>">
+            <?php echo $translate->getAdapter()->translate("full_description"); ?>
+        </a>
+        
 
+    </div>
+</div>
+
+<div id="full-description-modal" class="modal hide" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("full_description"); ?></h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Close</button>
     </div>
 </div>

@@ -327,7 +327,6 @@ body {
 }
 /* Slider images */
 
-
 .legend {
   display: block;
   width: 100%;
@@ -348,25 +347,26 @@ dl dt {
 dl dt label {
 	margin: 0px;
 }
-
 input[type="file"] {
     height: auto;
 }
-
 ul.errors {
 	margin-left: 0;
 }
-
 .errors li {
 	color: #D14;
 	list-style-type: none;
 	line-height: 10px;
 }
+textarea {
+    height: 150px !important;
+}
+/* Forms */
 
 /*partner menu*/
 .nav-pills {
 	width: 850px;
-	margin: 0 auto;
+	margin: 0 auto 20px;
 }
 .nav-pills > li {
     margin-left: 15px;
@@ -405,7 +405,6 @@ ul.errors {
 }
 
 /*Top menu*/
-
 .top-menu {
 	height: 50px;
     margin: 40px auto 15px;
@@ -421,7 +420,7 @@ ul.errors {
 		width: 630px;
 	}
 }
-
+/*Success and Error msg*/
 .footer-message  {
   position : fixed;
   z-index: 1000;
@@ -435,13 +434,14 @@ ul.errors {
 .footer-message .block-label {
     padding: 25px 0;
 } 
-/* Forms */
+
+.modal {
+    margin-left: -380px;
+    width: 760px;
+}
 
 
 /*IE fix. find for 8*/
 .top-menu .span4 {
 	width: 360px\9;
-}
-textarea {
-    height: 150px !important;
 }
