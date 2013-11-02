@@ -20,9 +20,20 @@ class Application_Form_AdSettings extends Zend_Form
             'label' => $translate->getAdapter()->translate("category"),
             'multiOptions' => $categories->getAll()
         ));
-        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand');
+
+        $this->addElement('hidden', 'brand');
+        $this->getElement("brand")->setDecorators(array('ViewHelper'));
+
+        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name');
         $brand->setLabel($translate->getAdapter()->translate("brand"));
         $brand->setJQueryParam('source', '/brands/autocomp');
+        $brand->setJQueryParam('select', new Zend_Json_Expr(
+        'function (e, data) {
+            console.log(data);
+            $("#brand_name").val(data.item.label);
+            $("#brand").val(data.item.value);
+            return false;
+        }'));
         $this->addElement($brand);
 
         $geo = new Application_Model_Geo();

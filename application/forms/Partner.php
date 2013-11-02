@@ -19,14 +19,20 @@ class Application_Form_Partner extends Zend_Form
 //            'required' => true,
         ));
 
-        $this->addElement('text', 'brand', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("brand"),
-            'validators' => array(
-                array('StringLength', false, array(0, 50))
-            ),
-//            'required' => true,
-        ));
+        $this->addElement('hidden', 'brand');
+        $this->getElement("brand")->setDecorators(array('ViewHelper'));
+
+        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name');
+        $brand->setLabel($translate->getAdapter()->translate("brand"));
+        $brand->setJQueryParam('source', '/brands/autocomp');
+        $brand->setJQueryParam('select', new Zend_Json_Expr(
+            'function (e, data) {
+                console.log(data);
+                $("#brand_name").val(data.item.label);
+                $("#brand").val(data.item.value);
+                return false;
+            }'));
+        $this->addElement($brand);
 
         $this->addElement('text', 'phone', array(
             'class' => "input-block-level",

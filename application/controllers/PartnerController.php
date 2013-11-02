@@ -52,7 +52,7 @@ class PartnerController extends Zend_Controller_Action
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
         } else {
-            $form->populate($data);
+            $form->populate($item->toArray());
         }
 
         $this->view->form = $form;
