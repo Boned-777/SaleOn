@@ -105,6 +105,8 @@ class AdController extends Zend_Controller_Action
                     $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
             } else {
+                $tabs = explode("Ad", $formData["form"]);
+                $this->view->gotoTab = strtolower($tabs[1]);
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
         }
@@ -181,6 +183,24 @@ class AdController extends Zend_Controller_Action
         $this->view->image = $item->image;
         $this->view->banner = $item->banner;
         $request = $this->getRequest();
+        $geoItem = new Application_Model_Geo();
+
+        $geoVals = $item->geo;
+        if ($this->_getParam('geo'))
+            $geoVals = $this->_getParam('geo');
+
+        if ($geoVals) {
+            $geoVals = explode(".", $geoVals);
+            if (isset($geoVals[1])) {
+                $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
+                $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
+            }
+            if (isset($geoVals[2])) {
+                $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
+                $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
+            }
+        }
+
         if ($request->isPost()) {
             $formData = $this->getAllParams();
             $form = $forms[$formData["form"]];
@@ -207,7 +227,7 @@ class AdController extends Zend_Controller_Action
                         }
                     }
                 }
-
+                $itemData["geo_name"] = $geoItem->getFullGeoName($itemData["geo"]);
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
                 $id = $item->save();
@@ -228,6 +248,8 @@ class AdController extends Zend_Controller_Action
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
         }
+
+
 
         $data = $item->toArray();
         foreach ($forms as $form) {
@@ -307,7 +329,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ? AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -323,6 +345,9 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
+        ));
+        $grid->updateColumn('geo_name',array(
+            "title" =>  $translate->getAdapter()->translate("geo_name"),
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
@@ -339,7 +364,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?, ?) AND owner = " . $this->user->id, array(Application_Model_DbTable_Ad::STATUS_DRAFT, Application_Model_DbTable_Ad::STATUS_READY));
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name","geo_name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -355,6 +380,9 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
+        ));
+        $grid->updateColumn('geo_name',array(
+            "title" =>  $translate->getAdapter()->translate("geo_name"),
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
@@ -371,7 +399,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ? AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ARCHIVE);
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -387,6 +415,9 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
+        ));
+        $grid->updateColumn('geo_name',array(
+            "title" =>  $translate->getAdapter()->translate("geo_name"),
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);

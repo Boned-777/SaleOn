@@ -1,5 +1,4 @@
 <?php
-
 class Application_Form_AdSettings extends Zend_Form
 {
 
@@ -36,17 +35,20 @@ class Application_Form_AdSettings extends Zend_Form
         }'));
         $this->addElement($brand);
 
+        $this->addElement('hidden', 'geo');
+        $this->getElement("geo")->setDecorators(array('ViewHelper'));
+
         $geo = new Application_Model_Geo();
         $this->addElement('select', 'country', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("country"),
-            'multiOptions' => $geo->getAll("_.")
+            'multiOptions' => $geo->getAll("")
         ));
 
         $this->addElement('select', 'region', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("region"),
-            'multiOptions' => $geo->getAll("1._.")
+            //'multiOptions' => $geo->getAll("1")
         ));
 
         $this->addElement('select', 'district', array(

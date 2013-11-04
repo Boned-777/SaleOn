@@ -22,7 +22,8 @@ class Application_Model_Ad
     public $banner;
     public $owner;
     public $email;
-
+    public $geo;
+    public $geo_name;
 
     public function load($data) {
         $vars = get_class_vars(get_class());

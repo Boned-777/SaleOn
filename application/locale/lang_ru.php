@@ -13,6 +13,7 @@ return array(
     'public_date' => 'Дата публикации',
     'start_date' => 'Дата начала',
     'end_date' => 'Дата окончания',
+    'geo_name' => "Регион",
     'country' => 'Страна',
     'region' => 'Область',
     'city' => 'Населенный пункт',

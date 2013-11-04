@@ -10,9 +10,11 @@ class Application_Model_Geo
 
     public $name;
 
-    public function getAll($pattern = "%", $lang="uk") {
+    public function getAll($pattern = "", $lang="uk") {
         $dbItem = new Application_Model_DbTable_Geo();
-        $res = $dbItem->fetchAll('code LIKE "' . $pattern . '"');
+        if ($pattern !== "")
+            $pattern .= ".";
+        $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
 
         $itemsArr = $res->toArray();
 
@@ -22,6 +24,50 @@ class Application_Model_Geo
         }
 
         return $resArr;
+    }
+
+    public function getAllChild($pattern = "", $lang="uk") {
+        $dbItem = new Application_Model_DbTable_Geo();
+        $originalPattern = $pattern;
+        if ($pattern !== "")
+            $pattern .= ".";
+        $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
+
+        $itemsArr = $res->toArray();
+
+        $resArr = array(array(
+            "value" => $originalPattern,
+            "option" => "Любой"
+        ));
+        foreach ($itemsArr as $value) {
+            $resArr[] = array(
+                "value" => $value["code"],
+                "option" => $value["name_" . $lang]
+            );
+        }
+
+        return $resArr;
+    }
+
+    public function getFullGeoName ($geoCode = "") {
+        $indexes = explode(".", $geoCode);
+
+        $condList = array();
+        $tmp = "";
+        foreach ($indexes as $val) {
+            $condList[] = $tmp . $val;
+            $tmp .= $val . ".";
+        }
+
+        $dbItem = new Application_Model_DbTable_Geo();
+        $res = $dbItem->fetchAll('code IN ("' . implode ('","', $condList) . '")')->toArray();
+
+        $result = array();
+        foreach ($res as $value) {
+            $result[] = $value["name_uk"];
+        }
+        return implode(", ", $result);
+
     }
 }
 

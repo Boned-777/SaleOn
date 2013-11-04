@@ -10,7 +10,8 @@ class TestController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $test = "aaa";
+        $test = new Application_Model_Geo();
+        echo $test->getFullGeoName("1.2.10"); die();
 	}
 }
 
