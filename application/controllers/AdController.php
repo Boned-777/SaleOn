@@ -61,6 +61,28 @@ class AdController extends Zend_Controller_Action
 
         $item = new Application_Model_Ad();
         $request = $this->getRequest();
+        $geoItem = new Application_Model_Geo();
+
+        if ($this->_getParam('geo'))
+            $geoVal = $this->_getParam('geo');
+        else
+            $geoVal = "1";
+
+        if ($geoVal) {
+            $geoVals = explode(".", $geoVal);
+            $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
+            if (isset($geoVals[1])) {
+                $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
+                $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
+            }
+            if (isset($geoVals[2])) {
+                $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
+            } else {
+                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => "Любой"));
+                $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);;
+            }
+        }
+
         if ($request->isPost()) {
             $formData = $request->getPost();
             if ($formData["id"])
@@ -89,7 +111,7 @@ class AdController extends Zend_Controller_Action
                         }
                     }
                 }
-
+                $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
                 $id = $item->save();
@@ -185,19 +207,22 @@ class AdController extends Zend_Controller_Action
         $request = $this->getRequest();
         $geoItem = new Application_Model_Geo();
 
-        $geoVals = $item->geo;
+        $geoVal = $item->geo;
         if ($this->_getParam('geo'))
-            $geoVals = $this->_getParam('geo');
+            $geoVal = $this->_getParam('geo');
 
-        if ($geoVals) {
-            $geoVals = explode(".", $geoVals);
+        if ($geoVal) {
+            $geoVals = explode(".", $geoVal);
+            $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
             if (isset($geoVals[1])) {
-                $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
+                $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
                 $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
             }
             if (isset($geoVals[2])) {
-                $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
                 $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
+            } else {
+                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => "Любой"));
+                $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);;
             }
         }
 
@@ -227,7 +252,7 @@ class AdController extends Zend_Controller_Action
                         }
                     }
                 }
-                $itemData["geo_name"] = $geoItem->getFullGeoName($itemData["geo"]);
+                $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
                 $id = $item->save();

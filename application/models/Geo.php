@@ -12,6 +12,7 @@ class Application_Model_Geo
 
     public function getAll($pattern = "", $lang="uk") {
         $dbItem = new Application_Model_DbTable_Geo();
+        $originalPattern = $pattern;
         if ($pattern !== "")
             $pattern .= ".";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
@@ -19,6 +20,8 @@ class Application_Model_Geo
         $itemsArr = $res->toArray();
 
         $resArr = array();
+        if ($originalPattern !== "")
+            $resArr[$originalPattern] = "Любой";
         foreach ($itemsArr as $value) {
             $resArr[$value["code"]] = $value["name_" . $lang];
         }
