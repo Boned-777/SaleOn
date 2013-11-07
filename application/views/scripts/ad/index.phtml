@@ -15,12 +15,20 @@
             <strong><?php echo $this->user->enterprise; ?></strong>
             <?php echo $this->ad->address; ?>
             <br>
-            <abbr title="Phone">Тел:</abbr> <?php echo $this->ad->phone; ?>
+            <div><abbr title="Phone"><?php echo $translate->getAdapter()->translate("phone") ?>:</abbr> <?php echo $this->ad->phone; ?></div>
+        <?php if ($this->ad->phone1) { ?>
+            <div><abbr title="Phone"><?php echo $translate->getAdapter()->translate("phone") ?>:</abbr> <?php echo $this->ad->phone1; ?></div>
+        <?php } ?>
+        <?php if ($this->ad->phone2) { ?>
+            <div><abbr title="Phone"><?php echo $translate->getAdapter()->translate("phone") ?>:</abbr> <?php echo $this->ad->phone2; ?></div>
+        <?php } ?>
         </address>
 
         <address>
-<!--            <strong>Черновцы</strong><br>-->
-            <a href="mailto:email@email.com">email@email.com</a>
+            <?php if ($this->ad->url) { ?>
+                <div><a href="<?php echo $this->ad->url; ?>" target="_blank"><?php echo $this->ad->url; ?></a></div>
+            <?php } ?>
+            <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
         </address>
 
     </div>
@@ -29,9 +37,12 @@
         <div><?php echo $this->ad->description; ?></div>
 
         <br><br>
-        <a id="full-description" class="btn" href="#full-description-modal" data-id="<?php echo $this->ad->id; ?>">
-            <?php echo $translate->getAdapter()->translate("full_description"); ?>
-        </a>
+        <?php if ($this->ad->full_description) { ?>
+            <a id="full-description" class="btn" href="#full-description-modal" data-id="<?php echo $this->ad->id; ?>">
+                <?php echo $translate->getAdapter()->translate("full_description"); ?>
+            </a>
+        <?php } ?>
+
         
 
     </div>

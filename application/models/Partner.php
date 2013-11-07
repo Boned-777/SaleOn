@@ -5,6 +5,8 @@ class Application_Model_Partner
     public $id;
     public $user_id;
     public $phone;
+    public $phone1;
+    public $phone2;
     public $enterprise;
     public $brand;
     public $brand_name;

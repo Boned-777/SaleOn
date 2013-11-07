@@ -43,6 +43,24 @@ class Application_Form_Partner extends Zend_Form
 //            'required' => true,
         ));
 
+        $this->addElement('text', 'phone1', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("additional_phone"),
+            'validators' => array(
+                array('StringLength', false, array(0, 14))
+            ),
+//            'required' => true,
+        ));
+
+        $this->addElement('text', 'phone2', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("additional_phone"),
+            'validators' => array(
+                array('StringLength', false, array(0, 14))
+            ),
+//            'required' => true,
+        ));
+
         $this->addElement('text', 'web', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("url"),

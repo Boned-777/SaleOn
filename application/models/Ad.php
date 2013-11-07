@@ -15,6 +15,8 @@ class Application_Model_Ad
     public $brand_name;
 	public $address;
 	public $phone;
+    public $phone1;
+    public $phone2;
 	public $fax;
 	public $url;
     public $video;

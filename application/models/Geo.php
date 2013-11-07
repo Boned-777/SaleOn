@@ -11,6 +11,7 @@ class Application_Model_Geo
     public $name;
 
     public function getAll($pattern = "", $lang="uk") {
+        global $translate;
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
         if ($pattern !== "")
@@ -21,7 +22,7 @@ class Application_Model_Geo
 
         $resArr = array();
         if ($originalPattern !== "")
-            $resArr[$originalPattern] = "Любой";
+            $resArr[$originalPattern] = $translate->getAdapter()->translate("any");
         foreach ($itemsArr as $value) {
             $resArr[$value["code"]] = $value["name_" . $lang];
         }
@@ -30,6 +31,7 @@ class Application_Model_Geo
     }
 
     public function getAllChild($pattern = "", $lang="uk") {
+        global $translate;
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
         if ($pattern !== "")
@@ -40,7 +42,7 @@ class Application_Model_Geo
 
         $resArr = array(array(
             "value" => $originalPattern,
-            "option" => "Любой"
+            "option" => $translate->getAdapter()->translate("any")
         ));
         foreach ($itemsArr as $value) {
             $resArr[] = array(
@@ -53,6 +55,7 @@ class Application_Model_Geo
     }
 
     public function getFullGeoName ($geoCode = "") {
+        global $translate;
         $indexes = explode(".", $geoCode);
 
         $condList = array();
