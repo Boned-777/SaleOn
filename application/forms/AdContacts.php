@@ -15,7 +15,6 @@ class Application_Form_AdContacts extends Zend_Form
         $this->getElement("form")->setDecorators(array('ViewHelper'));
 
         $this->addElement('text', 'address', array(
-            'filters' => array('StringTrim', 'StringToLower'),
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("address"),
             'validators' => array(
