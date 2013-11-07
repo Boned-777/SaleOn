@@ -18,7 +18,7 @@ class Application_Form_AdMain extends Zend_Form
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("name"),
             'validators' => array(
-                array('StringLength', false, array(0, 255)),
+                array('StringLength', false, array(0, 500)),
             ),
             // 'required' => true,
         ));
@@ -37,6 +37,9 @@ class Application_Form_AdMain extends Zend_Form
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("full_description"),
             'max_length' => 2500,
+            'validators' => array(
+                array('StringLength', false, array(0, 2500)),
+            ),
         ));
 
         $this->addElement('submit', 'login', array(
