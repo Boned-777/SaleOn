@@ -2,6 +2,13 @@
 
 class Application_Form_AdDates extends Zend_Form
 {
+    public $isReady;
+
+    public function __construct($options = null)
+    {
+        $this->isReady = $options["isReady"]?true:false;
+        parent::__construct($options);
+    }
 
     public function init()
     {
@@ -45,7 +52,7 @@ class Application_Form_AdDates extends Zend_Form
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
             'ignore' => true,
-            'label' => $translate->getAdapter()->translate("save_and_next"),
+            'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")
         ));
     }
 }

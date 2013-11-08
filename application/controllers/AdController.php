@@ -178,11 +178,25 @@ class AdController extends Zend_Controller_Action
 
         $vars = $this->getAllParams();
 
-        $this->view->mainForm = new Application_Form_AdMain();
-        $this->view->contactsForm = new Application_Form_AdContacts();
-        $this->view->datesForm = new Application_Form_AdDates();
-        $this->view->settingsForm = new Application_Form_AdSettings();
-        $this->view->mediaForm = new Application_Form_AdMedia();
+        $item = new Application_Model_Ad();
+        $formData = $this->getAllParams();
+        if ($formData["id"])
+            $item->get($formData["id"]);
+
+        $isReady = $item->isValid();
+
+        $partner = new Application_Model_Partner();
+        $partner->getByUserId($this->user->id);
+        $partnerData = $partner->toArray();
+        unset($partnerData["id"]);
+
+        $item->loadIfEmpty($partnerData);
+
+        $this->view->mainForm = new Application_Form_AdMain(array("isReady" => $isReady));
+        $this->view->contactsForm = new Application_Form_AdContacts(array("isReady" => $isReady));
+        $this->view->datesForm = new Application_Form_AdDates(array("isReady" => $isReady));
+        $this->view->settingsForm = new Application_Form_AdSettings(array("isReady" => $isReady));
+        $this->view->mediaForm = new Application_Form_AdMedia(array("isReady" => $isReady));
 
         $forms = array(
             "AdMain" => $this->view->mainForm,
@@ -200,10 +214,6 @@ class AdController extends Zend_Controller_Action
             'AdMedia' => "main"
         );
 
-        $item = new Application_Model_Ad();
-        $formData = $this->getAllParams();
-        if ($formData["id"])
-            $item->get($formData["id"]);
         $this->view->image = $item->image;
         $this->view->banner = $item->banner;
         $request = $this->getRequest();
@@ -254,6 +264,9 @@ class AdController extends Zend_Controller_Action
                                 break;
                         }
                     }
+                }
+                if ($isReady) {
+                    $item->status = Application_Model_DbTable_Ad::STATUS_READY;
                 }
                 $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
                 $itemData["owner"] = $this->user->id;

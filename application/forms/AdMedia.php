@@ -2,8 +2,11 @@
 
 class Application_Form_AdMedia extends Zend_Form
 {
+    public $isReady;
+
     public function __construct($options = null)
     {
+        $this->isReady = $options["isReady"]?true:false;
         parent::__construct($options);
         $this->setName('media');
         $this->setAttrib('enctype', 'multipart/form-data');
@@ -38,7 +41,7 @@ class Application_Form_AdMedia extends Zend_Form
             //'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
-            'label' => $translate->getAdapter()->translate("finish"),
+            'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")
         ));
     }
 }
