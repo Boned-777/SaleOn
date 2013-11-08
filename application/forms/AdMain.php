@@ -20,7 +20,7 @@ class Application_Form_AdMain extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
             ),
-            // 'required' => true,
+            'required' => true,
         ));
 
         $this->addElement('textarea', 'description', array(
@@ -30,7 +30,7 @@ class Application_Form_AdMain extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 500))
             ),
-            // 'required' => true,
+            'required' => true,
         ));
 
         $this->addElement('textarea', 'full_description', array(
