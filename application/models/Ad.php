@@ -52,10 +52,8 @@ class Application_Model_Ad
         foreach ($vars as $key => $value) {
             switch ($key) {
                 case "brand_name":
-                    if ($data['brand']) {
-                        $item = new Application_Model_DbTable_Brand();
-                        $this->brand_name = $item->getNameById($data['brand']);
-                    }
+                    $item = new Application_Model_DbTable_Brand();
+                    $this->brand_name = $item->getNameById($this->brand);
                     break;
 
                 default:

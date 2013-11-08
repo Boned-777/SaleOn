@@ -100,6 +100,18 @@ class AdController extends Zend_Controller_Action
                     $images = $this->_processImage($upload);
                 }
 
+                if ($formData["form"] == "AdSettings") {
+                    if ((!empty($formData["brand_name"]))&(!$formData["brand"])) {
+                        $brand = new Application_Model_DbTable_Brand();
+                        $brand_res = $brand->save(array(
+                            "name" => $formData["brand_name"]
+                        ));
+                    }
+                    if ($brand_res) {
+                        $formData["brand"] = $brand_res;
+                    }
+                }
+
                 $itemData = $form->getValues();
                 if (sizeof($images)) {
                     foreach ($images as $imgKey => $imgVal) {
@@ -247,13 +259,26 @@ class AdController extends Zend_Controller_Action
         if ($request->isPost()) {
             $formData = $this->getAllParams();
             $form = $forms[$formData["form"]];
+            $itemData = $form->getValues();
             if ($form->isValid($formData)) {
+                if ($formData["form"] == "AdSettings") {
+                    if ((!empty($formData["brand_name"])) && (!$formData["brand"])) {
+                        $brand = new Application_Model_DbTable_Brand();
+                        $brand_res = $brand->save(array(
+                            "name" => $formData["brand_name"]
+                        ));
+                        if ($brand_res) {
+                            $itemData["brand_name"] = $formData["brand_name"];
+                            $itemData["brand"] = $brand_res;
+                        }
+                    }
+                }
+
                 if ($formData["form"] == "AdMedia") {
                     $upload = new Zend_File_Transfer_Adapter_Http();
                     $images = $this->_processImage($upload);
                 }
 
-                $itemData = $form->getValues();
                 if (sizeof($images)) {
                     foreach ($images as $imgKey => $imgVal) {
                         switch ($imgKey) {

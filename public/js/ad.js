@@ -16,7 +16,10 @@ $(function () {
         $("#geo").val($("#district").val());
     });
 
-
+    $("#brand_name").click(function() {
+        $("#brand_name").val("");
+        $("#brand").val("0");
+    });
 });
 
 function getGeo(term, target) {

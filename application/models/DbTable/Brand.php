@@ -22,6 +22,22 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
         return $result;
     }
 
+    public function save($data, $id=null) {
+        try {
+            if (!empty($id)) {
+                $res = $this->update($data, 'id = '. (int)$id);
+                $res = $id;
+            } else {
+                if (isset($data["id"]))
+                    unset($data["id"]);
+                $res = $this->insert($data);
+            }
+            return $res;
+        } catch (Exception $e) {
+            return FALSE;
+        }
+    }
+
     public function getNameById($id) {
         $select = $this->select(array("name", "id"))
             ->where('id = ? ', $id)
