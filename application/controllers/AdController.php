@@ -63,6 +63,12 @@ class AdController extends Zend_Controller_Action
         $request = $this->getRequest();
         $geoItem = new Application_Model_Geo();
 
+        $partner = new Application_Model_Partner();
+        $partner->getByUserId($this->user->id);
+        $partnerData = $partner->toArray();
+        unset($partnerData["id"]);
+        $item->loadIfEmpty($partnerData);
+
         if ($this->_getParam('geo'))
             $geoVal = $this->_getParam('geo');
         else
@@ -189,7 +195,6 @@ class AdController extends Zend_Controller_Action
         $partner->getByUserId($this->user->id);
         $partnerData = $partner->toArray();
         unset($partnerData["id"]);
-
         $item->loadIfEmpty($partnerData);
 
         $this->view->mainForm = new Application_Form_AdMain(array("isReady" => $isReady));
