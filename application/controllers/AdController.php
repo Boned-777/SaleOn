@@ -137,6 +137,8 @@ class AdController extends Zend_Controller_Action
         foreach ($forms as $form) {
             $form->populate($data);
         }
+        if (isset($formData["form"]))
+            $forms[$formData["form"]]->populate($formData);
     }
 
     private function _processImage($upload)
@@ -275,12 +277,12 @@ class AdController extends Zend_Controller_Action
             }
         }
 
-
-
         $data = $item->toArray();
-        foreach ($forms as $form) {
+        foreach ($forms as $key => $form) {
             $form->populate($data);
         }
+        if (isset($formData["form"]))
+            $forms[$formData["form"]]->populate($formData);
     }
 
     public function _createEditLink($id, $name)
