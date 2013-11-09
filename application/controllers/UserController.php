@@ -48,7 +48,7 @@ class UserController extends Zend_Controller_Action
     {
 		$item = new Application_Model_DbTable_User();
 		$data = $item->add($vars);
-		
+
 		if ($data === false) {
 			return false;
 		}

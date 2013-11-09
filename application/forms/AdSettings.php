@@ -35,12 +35,25 @@ class Application_Form_AdSettings extends Zend_Form
         $brand->setJQueryParam('source', '/brands/autocomp');
         $brand->setJQueryParam('select', new Zend_Json_Expr(
         'function (e, data) {
-            console.log(data);
             $("#brand_name").val(data.item.label);
             $("#brand").val(data.item.value);
             return false;
         }'));
         $this->addElement($brand);
+
+        $this->addElement('hidden', 'product');
+        $this->getElement("product")->setDecorators(array('ViewHelper'));
+
+        $product = new ZendX_JQuery_Form_Element_AutoComplete('product_name');
+        $product->setLabel($translate->getAdapter()->translate("product"));
+        $product->setJQueryParam('source', '/products/autocomp');
+        $product->setJQueryParam('select', new Zend_Json_Expr(
+            'function (e, data) {
+                $("#product_name").val(data.item.label);
+                $("#product").val(data.item.value);
+                return false;
+            }'));
+        $this->addElement($product);
 
         $this->addElement('hidden', 'geo');
         $this->getElement("geo")->setDecorators(array('ViewHelper'));

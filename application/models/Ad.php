@@ -13,6 +13,8 @@ class Application_Model_Ad
 	public $category;
 	public $brand;
     public $brand_name;
+    public $product;
+    public $product_name;
 	public $address;
 	public $phone;
     public $phone1;
@@ -39,6 +41,13 @@ class Application_Model_Ad
                     }
                     break;
 
+                case "product_name":
+                    if ($data['product']) {
+                        $item = new Application_Model_DbTable_Product();
+                        $this->product_name = $item->getNameById($data['product']);
+                    }
+                    break;
+
                 default:
                     if (isset($data[$key]))
                         $this->$key = $data[$key];
@@ -54,6 +63,11 @@ class Application_Model_Ad
                 case "brand_name":
                     $item = new Application_Model_DbTable_Brand();
                     $this->brand_name = $item->getNameById($this->brand);
+                    break;
+
+                case "product_name":
+                    $item = new Application_Model_DbTable_Product();
+                    $this->product_name = $item->getNameById($this->product);
                     break;
 
                 default:
@@ -72,7 +86,7 @@ class Application_Model_Ad
             switch ($key) {
                 case "brand_name":
                 case "full_description":
-                case "brand_name":
+                case "product_name":
                 case "phone1":
                 case "phone2":
                 case "fax":
@@ -99,6 +113,7 @@ class Application_Model_Ad
         foreach ($vars as $key => $value) {
             switch ($key) {
                 case 'brand_name' :
+                case 'product_name':
                 case "geo_name":
                     break;
 

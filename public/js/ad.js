@@ -20,6 +20,11 @@ $(function () {
         $("#brand_name").val("");
         $("#brand").val("0");
     });
+
+    $("#product_name").click(function() {
+        $("#product_name").val("");
+        $("#product").val("0");
+    });
 });
 
 function getGeo(term, target) {

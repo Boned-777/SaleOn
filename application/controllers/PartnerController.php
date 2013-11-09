@@ -113,6 +113,7 @@ class PartnerController extends Zend_Controller_Action
                     ));
                     $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
+                    $registrationForm->getElement("username")->addError($translate->getAdapter()->translate("error_username_exists"));
                     $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                 }
             }
@@ -123,7 +124,8 @@ class PartnerController extends Zend_Controller_Action
 
     private function _create($data) {
         $item = new Application_Model_Partner();
-        return $item->create($data);
+        $a =  $item->create($data);
+        return $a;
     }
 
     public function addAction()

@@ -1,9 +1,9 @@
 <?php
 
-class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'brands';
+    protected $_name = 'products';
 
     public function autocompleteSearch($condition) {
         $select = $this->select(array("name", "id"))

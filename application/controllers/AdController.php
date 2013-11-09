@@ -84,7 +84,7 @@ class AdController extends Zend_Controller_Action
             if (isset($geoVals[2])) {
                 $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
             } else {
-                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => "Любой"));
+                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => $translate->getAdapter()->translate("any")));
                 $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);;
             }
         }
@@ -250,7 +250,7 @@ class AdController extends Zend_Controller_Action
             if (isset($geoVals[2])) {
                 $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
             } else {
-                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => "Любой"));
+                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => $translate->getAdapter()->translate("any")));
                 $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);;
             }
         }
@@ -259,8 +259,8 @@ class AdController extends Zend_Controller_Action
         if ($request->isPost()) {
             $formData = $this->getAllParams();
             $form = $forms[$formData["form"]];
-            $itemData = $form->getValues();
             if ($form->isValid($formData)) {
+                $itemData = $form->getValues();
                 if ($formData["form"] == "AdSettings") {
                     if ((!empty($formData["brand_name"])) && (!$formData["brand"])) {
                         $brand = new Application_Model_DbTable_Brand();
@@ -272,29 +272,41 @@ class AdController extends Zend_Controller_Action
                             $itemData["brand"] = $brand_res;
                         }
                     }
+
+                    if ((!empty($formData["product_name"])) && (!$formData["product"])) {
+                        $product = new Application_Model_DbTable_Product();
+                        $product_res = $product->save(array(
+                            "name" => $formData["product_name"]
+                        ));
+                        if ($product_res) {
+                            $itemData["product_name"] = $formData["product_name"];
+                            $itemData["product"] = $product_res;
+                        }
+                    }
                 }
 
                 if ($formData["form"] == "AdMedia") {
                     $upload = new Zend_File_Transfer_Adapter_Http();
                     $images = $this->_processImage($upload);
-                }
 
-                if (sizeof($images)) {
-                    foreach ($images as $imgKey => $imgVal) {
-                        switch ($imgKey) {
-                            case "image_file" :
-                                if (!isset($images["banner_file"])) {
+                    if (sizeof($images)) {
+                        foreach ($images as $imgKey => $imgVal) {
+                            switch ($imgKey) {
+                                case "image_file" :
+                                    if (!isset($images["banner_file"])) {
+                                        $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                    }
+                                    $itemData["image"] = $imgVal;
+                                    break;
+
+                                case "banner_file" :
                                     $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
-                                }
-                                $itemData["image"] = $imgVal;
-                                break;
-
-                            case "banner_file" :
-                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
-                                break;
+                                    break;
+                            }
                         }
                     }
                 }
+
                 if ($isReady) {
                     $item->status = Application_Model_DbTable_Ad::STATUS_READY;
                 }
