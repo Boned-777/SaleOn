@@ -114,7 +114,6 @@ class Application_Model_Ad
             switch ($key) {
                 case 'brand_name' :
                 case 'product_name':
-                case "geo_name":
                     break;
 
                 case "status":

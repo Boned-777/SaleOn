@@ -283,6 +283,8 @@ class AdController extends Zend_Controller_Action
                             $itemData["product"] = $product_res;
                         }
                     }
+
+                    $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal); //die();
                 }
 
                 if ($formData["form"] == "AdMedia") {
@@ -310,8 +312,9 @@ class AdController extends Zend_Controller_Action
                 if ($isReady) {
                     $item->status = Application_Model_DbTable_Ad::STATUS_READY;
                 }
-                $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
+
                 $itemData["owner"] = $this->user->id;
+                //print_r($itemData); die();
                 $item->load($itemData);
                 $id = $item->save();
                 if ($item->id) {
