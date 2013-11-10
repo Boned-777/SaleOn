@@ -64,7 +64,7 @@ return array(
     'empty_name' => "Название не указано",
     'any' => "Все",
 
-    'preview' => "Предварительный просмотр",
+    'preview' => "Просмотр",
     "change_password" => "Изменить пароль",
 
     //ERRORS

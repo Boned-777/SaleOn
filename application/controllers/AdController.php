@@ -240,19 +240,28 @@ class AdController extends Zend_Controller_Action
         if ($this->_getParam('geo'))
             $geoVal = $this->_getParam('geo');
 
+        if (empty($geoVal)) {
+            $geoVal = "1";
+        }
+
         if ($geoVal) {
             $geoVals = explode(".", $geoVal);
+
             $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
             if (isset($geoVals[1])) {
                 $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
                 $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
-            }
-            if (isset($geoVals[2])) {
-                $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
+
+                if (isset($geoVals[2])) {
+                    $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
+                }
             } else {
-                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => $translate->getAdapter()->translate("any")));
-                $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);;
+                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVals[0] => $translate->getAdapter()->translate("any")));
+                $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);
+                $this->view->settingsForm->getElement("region")->setValue($geoVals[0]);
             }
+
+
         }
 
         $this->view->ad = $item;
@@ -284,7 +293,7 @@ class AdController extends Zend_Controller_Action
                         }
                     }
 
-                    $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal); //die();
+                    $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
                 }
 
                 if ($formData["form"] == "AdMedia") {
