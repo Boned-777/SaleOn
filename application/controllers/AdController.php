@@ -314,7 +314,6 @@ class AdController extends Zend_Controller_Action
                 }
 
                 $itemData["owner"] = $this->user->id;
-                //print_r($itemData); die();
                 $item->load($itemData);
                 $id = $item->save();
                 if ($item->id) {
