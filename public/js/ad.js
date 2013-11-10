@@ -32,7 +32,6 @@ $(function () {
     });
 });
 
-//option helps to get empty list of target values
 function getGeo(term, target) {
     $.ajax({
         url: "/geo/get",
