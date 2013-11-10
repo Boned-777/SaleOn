@@ -22,7 +22,7 @@ class Application_Model_Geo
 
         $resArr = array();
         if ($originalPattern !== "")
-            $resArr[$originalPattern] = $translate->getAdapter()->translate("any");
+            $resArr[$originalPattern . ".0"] = $translate->getAdapter()->translate("any");
         foreach ($itemsArr as $value) {
             $resArr[$value["code"]] = $value["name_" . $lang];
         }

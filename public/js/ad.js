@@ -1,21 +1,11 @@
 $(function () {
-//    if (!$("#geo").val()) {
-//        getGeo($("#country").val(), "region");
-//        getGeo("1.", "district");
-//    }
-
     $("#country").change(function() {
         getGeo($("#country").val(), "region");
-        $("#geo").val($("#country").val());
+        $("#geo").val($("#country").val() + ".0.0");
     });
     $("#region").change(function() {
-        if ($("#region").val() != $("#country").val()) {
-            getGeo($("#region").val(), "district");
-            $("#geo").val($("#region").val());
-        } else {
-            $("#district-label").hide();
-            $("#district-element").hide();
-        }
+        getGeo($("#region").val(), "district");
+        $("#geo").val($("#region").val()  + ".0");
     });
     $("#district").change(function() {
         $("#geo").val($("#district").val());
@@ -32,11 +22,17 @@ $(function () {
     });
 });
 
-function getGeo(term, target) {
+function getGeo(term, target, getEmpty) {
+    if (getEmpty) {
+        getEmpty = 1;
+    } else {
+        getEmpty = 0;
+    }
     $.ajax({
         url: "/geo/get",
         data: {
-            term: term
+            term: term,
+            empty: getEmpty
         },
         success: function (res) {
             $("#" + target).html("");

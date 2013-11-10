@@ -71,23 +71,22 @@ class AdController extends Zend_Controller_Action
 
         if ($this->_getParam('geo'))
             $geoVal = $this->_getParam('geo');
-        else
-            $geoVal = "1";
-
-        if ($geoVal) {
-            $geoVals = explode(".", $geoVal);
-            $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
-            if (isset($geoVals[1])) {
-                $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
-                $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
-            }
-            if (isset($geoVals[2])) {
-                $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
-            } else {
-                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVal => $translate->getAdapter()->translate("any")));
-                $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);;
-            }
+        if (empty($geoVal)) {
+            $geoVal = "1.0.0";
         }
+        $geoVals = explode(".", $geoVal);
+        if (!isset($geoVals[1])) {
+            $geoVals[1] = 0;
+        }
+        if (!isset($geoVals[2])) {
+            $geoVals[2] = 0;
+        }
+
+        $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
+        $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
+
+        $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
+        $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
 
         if ($request->isPost()) {
             $formData = $request->getPost();
@@ -235,38 +234,33 @@ class AdController extends Zend_Controller_Action
         $this->view->banner = $item->banner;
         $request = $this->getRequest();
         $geoItem = new Application_Model_Geo();
-
         $geoVal = $item->geo;
         if ($this->_getParam('geo'))
             $geoVal = $this->_getParam('geo');
-
         if (empty($geoVal)) {
-            $geoVal = "1";
+            $geoVal = "1.0.0";
+        }
+        $geoVals = explode(".", $geoVal);
+        if (!isset($geoVals[1])) {
+            $geoVals[1] = 0;
+        }
+        if (!isset($geoVals[2])) {
+            $geoVals[2] = 0;
         }
 
-        if ($geoVal) {
-            $geoVals = explode(".", $geoVal);
+        $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
+        $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
 
-            $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
-            if (isset($geoVals[1])) {
-                $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
-                $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
-
-                if (isset($geoVals[2])) {
-                    $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
-                }
-            } else {
-                $this->view->settingsForm->getElement("district")->setMultiOptions(array($geoVals[0] => $translate->getAdapter()->translate("any")));
-                $this->view->settingsForm->getElement("district")->setValue($geoVals[0]);
-                $this->view->settingsForm->getElement("region")->setValue($geoVals[0]);
-            }
-
-
-        }
+        $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
+        $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
 
         $this->view->ad = $item;
         if ($request->isPost()) {
             $formData = $this->getAllParams();
+            if (isset($formData["district"])) {
+                if (sizeof(explode(".", $formData["district"])) == 2)
+                    $formData["district"] .= ".0";
+            }
             $form = $forms[$formData["form"]];
             if ($form->isValid($formData)) {
                 $itemData = $form->getValues();
@@ -347,6 +341,7 @@ class AdController extends Zend_Controller_Action
         foreach ($forms as $key => $form) {
             $form->populate($data);
         }
+
         if (isset($formData["form"]))
             $forms[$formData["form"]]->populate($formData);
     }

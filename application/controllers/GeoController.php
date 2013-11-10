@@ -17,8 +17,7 @@ class GeoController extends Zend_Controller_Action
     {
         $item = new Application_Model_Geo();
         $results = $item->getAllChild($this->_getParam('term'));
-        echo json_encode($results); die();
-        $this->_helper->json(array_values($results));
+        echo json_encode($results); exit;
     }
 
 
