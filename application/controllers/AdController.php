@@ -262,8 +262,32 @@ class AdController extends Zend_Controller_Action
                     $formData["district"] .= ".0";
             }
             $form = $forms[$formData["form"]];
+            $mediaItemData = array();
             if ($form->isValid($formData)) {
+                if ($formData["form"] == "AdMedia") {
+                    $upload = new Zend_File_Transfer_Adapter_Http();
+                    $images = $this->_processImage($upload);
+
+                    if (sizeof($images)) {
+                        foreach ($images as $imgKey => $imgVal) {
+                            switch ($imgKey) {
+                                case "image_file" :
+                                    if (!isset($images["banner_file"])) {
+                                        $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                    }
+                                    $mediaItemData["image"] = $imgVal;
+                                    break;
+
+                                case "banner_file" :
+                                    $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                    break;
+                            }
+                        }
+                    }
+                }
+
                 $itemData = $form->getValues();
+                $itemData = array_merge($mediaItemData, $itemData);
                 if ($formData["form"] == "AdSettings") {
                     if ((!empty($formData["brand_name"])) && (!$formData["brand"])) {
                         $brand = new Application_Model_DbTable_Brand();
@@ -288,28 +312,6 @@ class AdController extends Zend_Controller_Action
                     }
 
                     $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
-                }
-
-                if ($formData["form"] == "AdMedia") {
-                    $upload = new Zend_File_Transfer_Adapter_Http();
-                    $images = $this->_processImage($upload);
-
-                    if (sizeof($images)) {
-                        foreach ($images as $imgKey => $imgVal) {
-                            switch ($imgKey) {
-                                case "image_file" :
-                                    if (!isset($images["banner_file"])) {
-                                        $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
-                                    }
-                                    $itemData["image"] = $imgVal;
-                                    break;
-
-                                case "banner_file" :
-                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
-                                    break;
-                            }
-                        }
-                    }
                 }
 
                 if ($isReady) {
