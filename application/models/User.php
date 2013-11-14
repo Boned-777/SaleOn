@@ -9,7 +9,8 @@ class Application_Model_User
     public function load($data) {
         $vars = get_class_vars(get_class());
         foreach ($vars as $key => $value) {
-            $this->$key = $data[$key];
+            if (isset($data[$key]))
+                $this->$key = $data[$key];
         }
     }
 
@@ -37,6 +38,16 @@ class Application_Model_User
         $data = $dbItem->get($id);
         if ($data !== false)
             $this->load($data);
+            print_r($data); die();
+
+        return $data;
+    }
+
+    public function getUser($id) {
+        $dbItem = new Application_Model_DbTable_User();
+        $data = $dbItem->get($id);
+        if ($data !== false)
+            $this->load($data);
 
         return $data;
     }
@@ -44,6 +55,17 @@ class Application_Model_User
     public function getByUsername($username) {
         $dbItem = new Application_Model_DbTable_User();
         $data = $dbItem->getByUsername($username);
+        if ($data !== false)
+            $this->load($data);
+        else
+            return false;
+
+        return $data;
+    }
+
+    public function getByRecoveryCode($code) {
+        $dbItem = new Application_Model_DbTable_User();
+        $data = $dbItem->getByRecoveryCode($code);
         if ($data !== false)
             $this->load($data);
         else

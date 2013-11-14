@@ -97,7 +97,9 @@ class UserController extends Zend_Controller_Action
             $item = new Application_Model_User();
             $data = $item->getByUsername($vars["username"]);
             if ($data !== false) {
-                $this->view->successMsg = $translate->getAdapter()->translate("recovery_success");
+                $item->recovery = uniqid().uniqid().uniqid();
+                $item->save();
+                $this->view->successMsg = $translate->getAdapter()->translate("recovery_success") . $item->recovery;
             } else {
                 $form->populate($request->getPost());
                 $this->view->errorMsg = $translate->getAdapter()->translate("recovery_error_email_not_found");
@@ -106,7 +108,58 @@ class UserController extends Zend_Controller_Action
         $this->view->form = $form;
     }
 
-    private function _createRecovery($user) {
+    public function passrecoveryAction()
+    {
+        global $translate;
+        $vars = $this->getAllParams();
+        $item = new Application_Model_User();
+
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $form = new Application_Form_ChangePassword();
+            if ($form->isValid($vars)) {
+                $item->getUser($vars["id"]);
+                if ($item->recovery == $vars["recovery"]) {
+                    $this->_changePassword($vars);
+                    $this->view->successMsg = $translate->getAdapter()->translate("password_change_success");
+                } else {
+                    $this->view->errorMsg = $translate->getAdapter()->translate("recovery_error");
+                }
+            } else {
+                $form->populate($request->getPost());
+                $this->view->form = $form;
+            }
+        } else {
+            $res = $item->getByRecoveryCode(isset($vars["code"])?$vars["code"]:"");
+            if ($res !== false) {
+                $form = new Application_Form_ChangePassword();
+                $form->populate(array("id" => $item->id, "recovery" => $item->recovery));
+                $this->view->form = $form;
+            } else {
+                $this->view->errorMsg = $translate->getAdapter()->translate("recovery_error_code_not_found");
+            }
+        }
+
+    }
+
+    private function _changePassword ($vars) {
+        $item = new Application_Model_DbTable_User();
+        if (!$item->find((int)$vars["id"])) {
+            return false;
+        }
+
+        $data = array();
+        $password = $vars["password"];
+        $data["salt"] = md5(uniqid().uniqid().uniqid());
+        $data["password"] = sha1($password.$data["salt"]);
+        $data["recovery"] = "";
+
+        $item->save($data, $vars["id"]);
+        return true;
+    }
+
+    private function _createRecovery($user) {-
         $item = new Application_Model_User();
 
     }

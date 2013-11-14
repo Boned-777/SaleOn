@@ -10,6 +10,9 @@ class Application_Form_ChangePassword extends Zend_Form
         $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));
 
+        $this->addElement('hidden', 'recovery');
+        $this->getElement("recovery")->setDecorators(array('ViewHelper'));
+
         $this->addElement('hidden', 'form');
         $this->getElement("form")->setDecorators(array('ViewHelper'));
         $this->getElement("form")->setValue("change_password");

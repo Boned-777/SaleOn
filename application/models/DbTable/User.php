@@ -74,6 +74,34 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
             return false;
     }
 
+    public function get($val)
+    {
+        try {
+            $stmt = $this->select()->where('id = ?', $val);
+            $res = $this->fetchAll($stmt);
+        } catch (Exception $e) {
+            return false;
+        }
+        if ($res->count()) {
+            $res = $res->getRow(0)->toArray();
+            return $res;
+        } else
+            return false;
+    }
 
+    public function getByRecoveryCode($val)
+    {
+        try {
+            $stmt = $this->select()->where('recovery = ?', $val);
+            $res = $this->fetchAll($stmt);
+        } catch (Exception $e) {
+            return false;
+        }
+        if ($res->count()) {
+            $res = $res->getRow(0)->toArray();
+            return $res;
+        } else
+            return false;
+    }
 }
 
