@@ -59,6 +59,21 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		return $res["name"] . " (" . $res["id"] .")";
     }
 
+    public function getByUsername($val)
+    {
+        try {
+            $stmt = $this->select()->where('username = ?', $val);
+            $res = $this->fetchAll($stmt);
+        } catch (Exception $e) {
+            return false;
+        }
+        if ($res->count()) {
+            $res = $res->getRow(0)->toArray();
+            return $res;
+        } else
+            return false;
+    }
+
 
 }
 

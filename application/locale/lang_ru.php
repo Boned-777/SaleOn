@@ -67,7 +67,14 @@ return array(
     'preview' => "Просмотр",
     "change_password" => "Изменить пароль",
 
-    //ERRORS
+    "password_recovery" => 'Восстановление пароля',
+    "recover" => 'Восстановить пароль',
+    "password_recovery_btn_caption" => "Восстановление пароля",
+
+    //ERRORS AND MESSAGES
     'wrong_email_or_password' => "Электронная почта или пароль не верны",
     'error_username_exists' => "Пользователь с такой электронной почтой уже существует",
+
+    "recovery_error_email_not_found" => 'Пользователь с такой элетронной почтой не найден',
+    "recovery_success" => 'Ссылка для изменения пароля отправлена на вашу электронную почту'
 );

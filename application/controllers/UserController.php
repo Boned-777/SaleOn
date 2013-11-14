@@ -5,15 +5,15 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
-    	$accessDenied = array("salesperson");
-		
-		$auth = Zend_Auth::getInstance();
-		if ($auth->hasIdentity()) {
-			if (in_array($auth->getIdentity()->role, $accessDenied))
-				$this->_helper->redirector('index', 'index');
-		} else {
-			$this->_helper->redirector('index', 'auth');
-		}
+//    	$accessDenied = array("salesperson");
+//
+//		$auth = Zend_Auth::getInstance();
+//		if ($auth->hasIdentity()) {
+//			if (in_array($auth->getIdentity()->role, $accessDenied))
+//				$this->_helper->redirector('index', 'index');
+//		} else {
+//			$this->_helper->redirector('index', 'auth');
+//		}
     }
 
     public function indexAction()
@@ -85,9 +85,30 @@ class UserController extends Zend_Controller_Action
 		$this->_helper->json(array_values($results));
     }
 
-    public function listsalespersonsAction()
+    public function recoveryAction()
     {
-        // action body
+        global $translate;
+
+        $form = new Application_Form_PasswordRecovery();
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $vars = $this->getAllParams();
+            $item = new Application_Model_User();
+            $data = $item->getByUsername($vars["username"]);
+            if ($data !== false) {
+                $this->view->successMsg = $translate->getAdapter()->translate("recovery_success");
+            } else {
+                $form->populate($request->getPost());
+                $this->view->errorMsg = $translate->getAdapter()->translate("recovery_error_email_not_found");
+            }
+        }
+        $this->view->form = $form;
+    }
+
+    private function _createRecovery($user) {
+        $item = new Application_Model_User();
+
     }
 
 }

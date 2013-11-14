@@ -1,0 +1,14 @@
+<?php global $translate; ?>
+<?php $this->headTitle($translate->getAdapter()->translate("password_recovery")); ?>
+<br/>
+<?php if ($this->successMsg) { ?>
+    <div class="alert alert-success"><?php echo $this->successMsg; ?></div>
+<?php } else { ?>
+<div class="form-horizontal well">
+    <div class="legend"><?php echo $translate->getAdapter()->translate("password_recovery"); ?></div>
+    <?php echo $this->form->setAction($this->url()); ?>
+    <?php if ($this->errorMsg) { ?>
+        <div class="alert alert-error"><?php echo $this->errorMsg; ?></div>
+    <?php } ?>
+</div>
+<?php } ?>

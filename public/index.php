@@ -1,5 +1,5 @@
 <?php
-// Define path to application directory
+// Define path to/var/www/digitalio/application/forms/elements/Universal.php application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
 
