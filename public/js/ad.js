@@ -12,15 +12,18 @@ $(function () {
     });
 
     $("#brand_name").click(function() {
-        $("#brand_name").val("");
-        $("#brand").val("0");
+        clearAutocompleter($("#brand_name"), $("#brand"));
     });
 
     $("#product_name").click(function() {
-        $("#product_name").val("");
-        $("#product").val("0");
+        clearAutocompleter($("#product_name"), $("#product"));
     });
 });
+
+function clearAutocompleter (select, hidden) {
+    select.val("");
+    hidden.val("0");    
+}
 
 function getGeo(term, target, getEmpty) {
     if (getEmpty) {
