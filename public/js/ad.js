@@ -34,6 +34,8 @@ $(function () {
     }
 
     function textAreaSymCalculator(obj) {
+        //var clearText = $(obj).html().replace(/\s+/g, emptyString);
+        //$(obj).html(clearText);
         var counter = $($(obj).parent().find(".symb_counter"));
         if (!counter.html()) {
             counter = $('<div class="symb_counter" style="text-align: right"></div>');

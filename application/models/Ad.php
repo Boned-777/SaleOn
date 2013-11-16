@@ -86,6 +86,7 @@ class Application_Model_Ad
             switch ($key) {
                 case "brand_name":
                 case "full_description":
+                case "product":
                 case "product_name":
                 case "phone1":
                 case "phone2":
@@ -93,6 +94,7 @@ class Application_Model_Ad
                 case "url":
                 case "video":
                 case "image":
+                case "geo":
                 case "geo_name":
                 case "status":
                     break;
@@ -121,6 +123,12 @@ class Application_Model_Ad
                         $data[$key] = $this->status;
                     } else {
                         $data[$key] = Application_Model_DbTable_Ad::STATUS_DRAFT;
+                    }
+                    break;
+
+                case "geo":
+                    if (!empty($this->geo)) {
+                        $data[$key] = "1";
                     }
                     break;
 
