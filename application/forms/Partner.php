@@ -34,6 +34,15 @@ class Application_Form_Partner extends Zend_Form
             }'));
         $this->addElement($brand);
 
+        $this->addElement('text', 'address', array(
+            'class' => "input-block-level",
+            'label' => $translate->getAdapter()->translate("address"),
+//            'validators' => array(
+//                array('StringLength', false, array(0, 100))
+//            ),
+//            'required' => true,
+        ));
+
         $this->addElement('text', 'phone', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("phone"),
@@ -76,15 +85,6 @@ class Application_Form_Partner extends Zend_Form
             'validators' => array(
                 array('EmailAddress')
             ),
-//            'required' => true,
-        ));
-
-        $this->addElement('textarea', 'address', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("address"),
-//            'validators' => array(
-//                array('StringLength', false, array(0, 100))
-//            ),
 //            'required' => true,
         ));
 

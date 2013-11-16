@@ -37,3 +37,10 @@
 <?php } ?>
 <script src="/js/createAdv.js"></script>
 <script src="/js/ad.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="/js/jquery.geocomplete.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#address").geocomplete();
+    });
+</script>
