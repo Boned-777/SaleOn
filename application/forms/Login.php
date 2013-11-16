@@ -33,7 +33,7 @@ class Application_Form_Login extends Zend_Form
 			'required' => true,
 		));
 
-        $recoveryBtn = new Custom_Form_Element_Universal('back');
+        $recoveryBtn = new Custom_Form_Element_Universal('recovery');
         $recoveryBtn->setValue('<a href="/user/recovery">' . $translate->getAdapter()->translate("password_recovery_btn_caption") . '</a>');
         $recoveryBtn->removeDecorator("Label");
         $this->addElement($recoveryBtn);

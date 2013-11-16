@@ -14,36 +14,26 @@ class AuthController extends Zend_Controller_Action
 		$request = $this->getRequest();
 		
 		if ($request->isPost()) {
-			if ($form->isValid($request->getPost())) {
-                $user = $this->_process($form->getValues());
-				if ($user) {
+            $vars = $request->getPost();
+			if ($form->isValid($vars)) {
+                $data = array(
+                    "username" => $vars["username"],
+                    "password" => $vars["password"]
+                );
+                $user = $this->_process($data);
+                if ($user) {
                     if ($user->role == "PARTNER")
                         $this->_helper->redirector('profile', 'partner');
                     else
-					    $this->_helper->redirector('index', 'index');
-				} else {
-					$this->view->errorStatus = TRUE;
-				}
+                        $this->_helper->redirector('index', 'index');
+                } else {
+                    $this->view->errorStatus = TRUE;
+                }
+                $form->populate($data);
 			}
 		}
 
-        $vars = $this->getAllParams();
-        if ( isset($vars["username"]) && isset($vars["password"]) ) {
-            $data = array(
-                "username" => $vars["username"],
-                "password" => $vars["password"]
-            );
-            $user = $this->_process($data);
-            if ($user) {
-                if ($user->role == "PARTNER")
-                    $this->_helper->redirector('profile', 'partner');
-                else
-                    $this->_helper->redirector('index', 'index');
-            } else {
-                $this->view->errorStatus = TRUE;
-            }
-            $form->populate($data);
-        }
+
 
 		$this->view->form = $form;
 	}
