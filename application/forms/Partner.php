@@ -22,7 +22,9 @@ class Application_Form_Partner extends Zend_Form
         $this->addElement('hidden', 'brand');
         $this->getElement("brand")->setDecorators(array('ViewHelper'));
 
-        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name');
+        $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name', array(
+            'class' => "input-block-level",
+        ));
         $brand->setLabel($translate->getAdapter()->translate("brand"));
         $brand->setJQueryParam('source', '/brands/autocomp');
         $brand->setJQueryParam('select', new Zend_Json_Expr(

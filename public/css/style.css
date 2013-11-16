@@ -350,6 +350,11 @@ dl dt label {
 input[type="file"] {
     height: auto;
 }
+
+.input-block-level-date {
+	width: 250px;
+}
+
 ul.errors {
 	margin-left: 0;
 }
@@ -373,10 +378,10 @@ textarea {
 }
 @media (max-width: 978px)  {
 	.nav-pills {
-		width: 720px;
+		width: 750px;
 	}
 	.nav-pills > li {
-	    margin-left: 5px;
+	    margin-left: 2px;
 	}
 }
 
