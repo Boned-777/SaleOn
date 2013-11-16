@@ -350,6 +350,11 @@ dl dt label {
 input[type="file"] {
     height: auto;
 }
+
+.input-block-level-date {
+	width: 250px;
+}
+
 ul.errors {
 	margin-left: 0;
 }

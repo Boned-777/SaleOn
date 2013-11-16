@@ -30,9 +30,10 @@
     <script type="text/javascript">
         $(function () {
             <?php echo "window.location.hash = \"" . $this->gotoTab . "\";"; ?>
-            <?php echo "$('#ad a[href=\"" . $this->gotoTab . "\"]').tab('show');"; ?>
+            <?php //echo "$('#ad a[href=\"" . $this->gotoTab . "\"]').tab('show');"; ?>
         })
     </script>
 <?php } ?>
-<script src="/js/createAdv.js"></script>
 <script src="/js/ad.js"></script>
+<script src="/js/select2/select2.min.js"></script>
+<script src="/js/select2/select2_locale_ru.js"></script>
