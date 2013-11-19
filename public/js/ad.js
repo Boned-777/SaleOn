@@ -1,9 +1,10 @@
 $(function () {
     var emptyString = "",
+        spaceString = " ",
         settingsTabLoaded = false,
         datesTabLoaded    = false,
         mainTabLoaded     = false;
-
+    /* Helper functions */
     function getGeo(term, target, getEmpty) {
         getEmpty ? (getEmpty = 1) : (getEmpty = 0);
         $.ajax({
@@ -34,7 +35,8 @@ $(function () {
     }
 
     function textAreaSymCalculator(obj) {
-        //var clearText = $(obj).html().replace(/\s+/g, emptyString);
+        // use it to clear line breaks and double spaces
+        //var clearText = $(obj).html().replace(/(\r\n|\n|\r)/gm, spaceString).replace(/\s+/g, spaceString);
         //$(obj).html(clearText);
         var counter = $($(obj).parent().find(".symb_counter"));
         if (!counter.html()) {
@@ -46,6 +48,7 @@ $(function () {
         (textAreaVal.length > maxLength) ? counter.css("color", "red") : counter.css("color", "grey");
         counter.html(textAreaVal.length + "/" + maxLength);
     }
+    /* Helper functions */
 
     /*Date Tab*/
     function initDatapickers () {
@@ -90,8 +93,6 @@ $(function () {
             clearAutocompleter(productName, $("#product"));
         });
         
-
-
         settingsTabLoaded = true;
     }
 
@@ -132,6 +133,7 @@ $(function () {
     /* tabs on add/edit action screen */
     var hash = window.location.hash;
     hash && $('#ad a[href="'+hash+'"]').tab('show');
+    $("#address").geocomplete();
     initScreen(hash);
     
     $('#ad a').click(function (e) {

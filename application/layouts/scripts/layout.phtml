@@ -38,7 +38,14 @@
                 <div class="span4">
                     <a href="#" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
                     <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
-                    <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+                    <?php //switch to more correct implememntation
+                        $auth = Zend_Auth::getInstance();
+                        if ($auth->hasIdentity()) { ?>
+                            <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                        <?php } else { ?>
+                            <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+                        <?php }
+                    ?>
                 </div>
                 </div>
             </div>
