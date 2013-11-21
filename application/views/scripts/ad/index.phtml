@@ -13,7 +13,10 @@
         <br><br><br>
         <address>
             <strong><?php echo $this->user->enterprise; ?></strong>
-            <?php echo $this->ad->address; ?>
+            <a id="action-address" href="#">
+                <?php echo $this->ad->address; ?>
+            </a>
+            
             <br>
             <div><abbr title="Phone"><?php echo $translate->getAdapter()->translate("phone") ?>:</abbr> <?php echo $this->ad->phone; ?></div>
         <?php if ($this->ad->phone1) { ?>
@@ -42,8 +45,7 @@
                 <?php echo $translate->getAdapter()->translate("full_description"); ?>
             </a>
         <?php } ?>
-
-        
+       
 
     </div>
 </div>
@@ -57,6 +59,25 @@
         <p>One fine body…</p>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal">Close</button>
+        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
     </div>
 </div>
+
+<div id="action-address-modal" class="modal hide" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("map_position"); ?></h3>
+    </div>
+    <div class="modal-body">
+        <input type="hidden" id="full-address" value="<?php echo $this->ad->address; ?>">
+        <div class="map_canvas"></div>
+
+           </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+    </div>
+</div>
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="/js/jquery.geocomplete.min.js"></script>
+

@@ -443,8 +443,21 @@ textarea {
 } 
 
 .modal {
-    margin-left: -380px;
-    width: 760px;
+    margin-left: -410px;
+    width: 820px;
+}
+
+#action-address-modal img {
+	max-width: none;
+}
+
+#action-address-modal .modal-body {
+	height: 400px;
+}
+
+#action-address-modal .map_canvas {
+	height: 400px;
+    width: 790px;
 }
 
 
