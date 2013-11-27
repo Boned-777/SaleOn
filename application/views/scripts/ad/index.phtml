@@ -6,7 +6,7 @@
             <?php if ($this->ad->video == "") { ?>
                 <img width="550" height="auto" src="/ads/<?php echo $this->ad->image; ?>" class="img-polaroid">
             <?php } else { ?>
-                <div style="width:550px;"><?php echo $this->ad->video; ?></div>
+                <?php echo $this->ad->video; ?>
             <?php } ?>
             <div class="img-info"><p><?php echo $this->ad->name; ?></p></div>
         </a>
