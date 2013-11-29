@@ -17,13 +17,14 @@ class AdController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $auth = Zend_Auth::getInstance();
         $item = new Application_Model_Ad();
         $owner = new Application_Model_Partner();
         $vars = $this->getAllParams();
 
         if (isset($vars["id"])) {
             $item->get($vars["id"]);
-            $owner->get(2);
+            $owner->getByUserId($auth->getIdentity()->id);
             $this->view->ad = $item;
             $this->view->user = $owner;
         } else {
@@ -185,6 +186,16 @@ class AdController extends Zend_Controller_Action
         }
 
         return $resArray;
+    }
+
+    public function listAction () {
+        $ad = new Application_Model_Ad();
+        $res = $ad->getList("");
+        $data = array();
+        foreach ($res AS $val) {
+            $data[] = $val->toListArray();
+        }
+        $this->_helper->json($data);
     }
 
     public function editAction()

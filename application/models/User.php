@@ -5,6 +5,7 @@ class Application_Model_User
     public $id;
     public $username;
     public $recovery;
+    public $favorites_ads;
 
     public function load($data) {
         $vars = get_class_vars(get_class());
@@ -72,6 +73,25 @@ class Application_Model_User
             return false;
 
         return $data;
+    }
+
+    public function addFavoriteAd($adId) {
+        $list = explode(",",$this->favorites_ads);
+        if (empty($list[0]))
+            $list = array();
+        $list[] = $adId;
+        $list = array_unique($list);
+        $this->favorites_ads = implode(",",$list);
+    }
+
+    public function removeFavoriteAd($adId) {
+        $list = explode(",",$this->favorites_ads);
+        $res = array();
+        foreach ($list as $value) {
+            if ($value != $adId)
+                $res[] = $value;
+        }
+        $this->favorites_ads = implode(",",$res);
     }
 }
 

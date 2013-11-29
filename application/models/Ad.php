@@ -156,6 +156,50 @@ class Application_Model_Ad
         }
     }
 
+    public function getList($params) {
+        $item = new Application_Model_DbTable_Ad();
+        $stmt = $item->select()
+            ->where("status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->limit(4);
+        $data = $item->fetchAll($stmt);
+        if ($data !== false) {
+            $res = array();
+            $data = $data->toArray();
+            foreach ($data AS $val) {
+                $tmp = new Application_Model_Ad();
+                $tmp->load($val);
+                $res[] = $tmp;
+            }
+            return $res;
+        } else {
+            return false;
+        }
+    }
+
+    public function toListArray() {
+        global $translate;
+        $vars = array(
+            "post_id" => "id",
+            "post_full_url" => "url",
+            "region" => "geo_name",
+            "brand_name" => "brand_name",
+            "partner_name" => "name",
+            "photoimg" => "banner",
+        );
+
+        $data = array();
+        foreach ($vars AS $key => $value) {
+            $data[$key] = $this->$value;
+        }
+
+
+        $data["favorites_link"] = "#";
+        $data["days_left_text"] = $translate->getAdapter()->translate("days_left");
+        $data["days"] = ceil((strtotime($this->end_dt) - time()) / 86400);
+
+        return $data;
+    }
+
     public function toArray() {
         $vars = get_class_vars(get_class());
         $data = array();

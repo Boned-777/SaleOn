@@ -79,5 +79,7 @@ return array(
     "recovery_success" => 'Ссылка для изменения пароля отправлена на вашу электронную почту',
     "recovery_error" => 'Ошибка восстановления пароля',
     "recovery_error_code_not_found" => 'Код ошибочный или уже был использован',
-    "password_change_success" => "Пароль успешно изменён"
+    "password_change_success" => "Пароль успешно изменён",
+
+    "days_left" => "Дней до окнончания акции"
 );

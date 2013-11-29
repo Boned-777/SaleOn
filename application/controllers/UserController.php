@@ -159,9 +159,21 @@ class UserController extends Zend_Controller_Action
         return true;
     }
 
-    private function _createRecovery($user) {-
-        $item = new Application_Model_User();
+    public function favoritesAction() {
+        $auth = Zend_Auth::getInstance();
 
+        $user = new Application_Model_User();
+        $user->getUser($auth->getIdentity()->id);
+
+
+        if ($this->getParam("act") == "add")
+            $user->addFavoriteAd($this->getParam("ad_id"));
+        else
+            $user->removeFavoriteAd($this->getParam("ad_id"));
+        //Zend_Debug::dump($user); die();
+
+        $res = $user->save();
+        $this->_helper->json(array("success" => $res));
     }
 
 }
