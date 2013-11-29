@@ -10,6 +10,7 @@ return array(
     'name' => 'Название',
     'description' => 'Описание',
     'full_description' => 'Полное описание',
+    'map_position' => 'Расположение на карте',
     'public_date' => 'Дата публикации',
     'start_date' => 'Дата начала',
     'end_date' => 'Дата окончания',
@@ -65,6 +66,7 @@ return array(
     'any' => "Все",
 
     'preview' => "Просмотр",
+    'close' => "Закрыть",
     "change_password" => "Изменить пароль",
 
     "password_recovery" => 'Восстановление пароля',
