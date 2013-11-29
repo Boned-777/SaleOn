@@ -63,7 +63,7 @@ class AuthController extends Zend_Controller_Action
 		$authAdapter->setTableName('users')
 			->setIdentityColumn('username')
 			->setCredentialColumn('password')
-			->setCredentialTreatment('SHA1(CONCAT(?,salt)) AND deleted=0');
+			->setCredentialTreatment('UNHEX(SHA1(CONCAT(?,salt))) AND deleted=0');
 		
 		return $authAdapter;
 	}
