@@ -9,7 +9,7 @@ class IndexController extends Zend_Controller_Action
 		if ($auth->hasIdentity()) {
 			
 		} else {
-			$this->_redirect("/auth");
+			//$this->_redirect("/auth");
 		}
     }
 
