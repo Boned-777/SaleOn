@@ -189,13 +189,20 @@ class AdController extends Zend_Controller_Action
     }
 
     public function listAction () {
+        global $translate;
         $ad = new Application_Model_Ad();
         $res = $ad->getList("");
         $data = array();
         foreach ($res AS $val) {
             $data[] = $val->toListArray();
         }
-        $this->_helper->json($data);
+        $res = array(
+            "data" => $data,
+            "options" => array(
+                "days_left_text" => $translate->getAdapter()->translate("days_left")
+            )
+        );
+        $this->_helper->json($res);
     }
 
     public function editAction()
@@ -569,18 +576,7 @@ class AdController extends Zend_Controller_Action
         $vars = $this->getAllParams();
         $item = new Application_Model_Ad();
         $item->get((int)$vars["id"]);
-        echo $item->full_description;
+        echo nl2br($item->full_description);
         exit();
     }
-
-
 }
-
-
-
-
-
-
-
-
-

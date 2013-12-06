@@ -190,12 +190,8 @@ class Application_Model_Ad
         foreach ($vars AS $key => $value) {
             $data[$key] = $this->$value;
         }
-
-
         $data["favorites_link"] = "#";
-        $data["days_left_text"] = $translate->getAdapter()->translate("days_left");
         $data["days"] = ceil((strtotime($this->end_dt) - time()) / 86400);
-
         return $data;
     }
 
