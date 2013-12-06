@@ -190,11 +190,12 @@ body {
       
 .carousel-inner {
 	overflow: visible;
-	height: 620px;
+	height: 560px;
 }
 	  	  
 /* Waw slider */
 .img-polaroid {
+	width: 240px;
 	-webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
@@ -358,6 +359,13 @@ body {
     width: 16px;
 	cursor: pointer;
 }
+.page-number {
+    color: #aaa;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
 .lock-loading {
 	display: none;
     bottom: 0;
@@ -366,7 +374,7 @@ body {
     right: 0;
     top: 0;
     z-index: 2040;
-    background: url("/img/loading.gif") center center no-repeat;
+    background: url("/img/loading64.gif") center center no-repeat;
 }
 /* Slider images */
 
