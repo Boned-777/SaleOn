@@ -180,9 +180,9 @@ class Application_Model_Ad
         $vars = array(
             "post_id" => "id",
             "post_full_url" => "url",
-            "region" => "geo_name",
+            //"region" => "geo_name",
             "brand_name" => "brand_name",
-            "partner_name" => "name",
+            "name" => "name",
             "photoimg" => "banner",
         );
 
