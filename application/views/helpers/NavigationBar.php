@@ -20,7 +20,7 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
             "active" => array("link" => array("/ad/active"), "caption" => $translate->getAdapter()->translate("active")),
             "archive" => array("link" => array("/ad/archive"), "caption" => $translate->getAdapter()->translate("archive")),
             "rules" => array("link" => array("#"), "caption" => $translate->getAdapter()->translate("rules")),
-            "exit" => array("link" => array("/auth/logout"), "caption" => $translate->getAdapter()->translate("exit"))
+            //"exit" => array("link" => array("/auth/logout"), "caption" => $translate->getAdapter()->translate("exit"))
         );
 
 		if ($auth->hasIdentity()) {

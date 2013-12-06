@@ -34,8 +34,17 @@ class Application_Form_AdMain extends Zend_Form
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("description"),
             'max_length' => 500,
-            'validators' => array(
-                array('StringLength', false, array(0, 500))
+            'validators'    => array(
+                array(
+                    'validator' =>  'StringLength',
+                    'options'   => array(
+                        'encoding' => 'UTF-8',
+                        'max' => 500,
+                        'messages'  =>  array(
+                               Zend_Validate_StringLength::TOO_LONG => $translate->getAdapter()->translate("too_long"),
+                        )
+                    )
+                ),
             ),
             'required' => true,
         ));
@@ -44,8 +53,17 @@ class Application_Form_AdMain extends Zend_Form
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("full_description"),
             'max_length' => 2500,
-            'validators' => array(
-                array('StringLength', false, array(0, 2500)),
+            'validators'    => array(
+                array(
+                    'validator' =>  'StringLength',
+                    'options'   => array(
+                        'encoding' => 'UTF-8',
+                        'max' => 2500,
+                        'messages'  =>  array(
+                            Zend_Validate_StringLength::TOO_LONG => $translate->getAdapter()->translate("too_long"),
+                        )
+                    )
+                ),
             ),
         ));
 
