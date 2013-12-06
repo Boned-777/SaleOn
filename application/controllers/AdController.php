@@ -374,6 +374,14 @@ class AdController extends Zend_Controller_Action
         return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
     }
 
+    public function _createPreviewLink($id, $name)
+    {
+        global $translate;
+        if (empty($name))
+            $name = $translate->getAdapter()->translate("empty_name");
+        return '<a href="/ad/index/id/' . $id . '">' . $name . '</a>';
+    }
+
     private function _cropImage($image, $targetWidth, $targetHeight)
     {
         list($width, $height, $type) = getimagesize($image);
@@ -549,6 +557,41 @@ class AdController extends Zend_Controller_Action
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
                 'function'=>array($this, '_createEditLink'),
+                'params'=>array('{{id}}', "{{name}}")
+            )
+        ));
+        $grid->updateColumn('public_dt',array(
+            "title" =>  $translate->getAdapter()->translate("public_date"),
+        ));
+        $grid->updateColumn('start_dt',array(
+            "title" =>  $translate->getAdapter()->translate("start_date"),
+        ));
+        $grid->updateColumn('end_dt',array(
+            "title" =>  $translate->getAdapter()->translate("end_date"),
+        ));
+        $grid->updateColumn('geo_name',array(
+            "title" =>  $translate->getAdapter()->translate("geo_name"),
+        ));
+        $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
+        $grid->setNoFilters(true);
+        $grid->setExport(array());
+        $grid->setImagesUrl('/img/');
+        $this->view->grid = $grid;
+    }
+
+    public function favoritesAction()
+    {
+        global $translate;
+
+        $grid = Bvb_Grid::factory('Table');
+        $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
+        $grid->setSource($source);
+        $grid->getSelect()->where("status = ? AND id IN (" . $this->user->favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
+        $grid->updateColumn('name',array(
+            "title" =>  $translate->getAdapter()->translate("name"),
+            'callback'=>array(
+                'function'=>array($this, '_createPreviewLink'),
                 'params'=>array('{{id}}', "{{name}}")
             )
         ));
