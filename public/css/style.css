@@ -360,11 +360,15 @@ body {
 	cursor: pointer;
 }
 .page-number {
-    color: #aaa;
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
+    color: #888;
+    display: none;
+    margin: 10px 0;
+	font-size: 18px;
+}
+.no-data {
+	margin-top: 100px;
+	color: #888;
+	display: none;
 }
 .lock-loading {
 	display: none;

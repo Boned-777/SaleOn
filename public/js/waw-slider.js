@@ -38,6 +38,7 @@
 				this.bindEvents();
 				this.initStartPages();
 				this.initCarousel();
+				this.displayCurrentPage();
 			},
 
 			bindEvents : function () {
@@ -102,11 +103,13 @@
 					} else {j++;}
 				}
 				container.html(result);
-				console.log("Page is :" + indexes.startIndex +"="+indexes.endIndex);
+				
+				//console.log("Page is :" + indexes.startIndex +"="+indexes.endIndex);
 			},
 			
 			buildNextHiddenPage : function (){
 				this.currentPage = this.getNextPage(this.currentPage + NEXT_PREVIOUS_PAGE_SHIFT);
+				this.displayCurrentPage();
 				if (this.isCycleAvailable()) {
 					var pageToBuild  = this.getNextPage(this.currentPage + HIDDEN_PAGE_SHIFT);
 					var container = $(".hover-right.hide-right.item").find(".items-wrapper");
@@ -116,6 +119,7 @@
 			
 			buildPreviousHiddenPage : function (){
 				this.currentPage = this.getNextPage(this.currentPage - NEXT_PREVIOUS_PAGE_SHIFT);
+				this.displayCurrentPage();
 				if (this.isCycleAvailable()) {
 					var pageToBuild  = this.getNextPage(this.currentPage - HIDDEN_PAGE_SHIFT);
 					var container = $(".hover-left.hide-left.item").find(".items-wrapper");
@@ -147,7 +151,14 @@
 			isCycleAvailable : function (page) {
 				var pageCount = this.getPageCount();
 				return (pageCount >= 3);
-			}	
+			},
+
+			displayCurrentPage : function () {
+				var pageNumber = $("#page-number");	
+				pageNumber.html(this.currentPage);
+				pageNumber.parent().show();
+			}
+			
 				
 		};
 		
@@ -160,8 +171,13 @@
 	        dataType: "json",
 			cache: false
 		}).done(function( data ) {
-			// console.dir(data);
 			var slider = new wawSlyder(data.concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data));
+			//var slider = new wawSlyder(data);
+			$(".lock-loading").hide();
+
+		}).fail(function( data ) {
+			$(".no-data").show();
+			$("#myCarousel").hide();
 			$(".lock-loading").hide();
 
 		});

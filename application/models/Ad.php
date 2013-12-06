@@ -159,8 +159,7 @@ class Application_Model_Ad
     public function getList($params) {
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
-            ->where("status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->limit(4);
+            ->where("status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
             $res = array();

@@ -1,6 +1,8 @@
+<?php global $translate; ?>
 <!-- <h2><?php echo $this->loggedInAs(); ?></h2> -->
 <div class="row-fluid">
 
+	<div class="text-center lead no-data"><?php echo $translate->getAdapter()->translate("no_data_available"); ?></div>
 	<div id="myCarousel" class="carousel slide">
 		<div class="carousel-inner">
 
@@ -28,10 +30,11 @@
 		
 		<div id="left-paging" class="mycarousel-control left" href="#myCarousel" data-slide="prev"></div>        
 		<div id="right-paging" class="mycarousel-control right" href="#myCarousel" data-slide="next"></div>
+		<div class="text-center lead page-number"><?php echo $translate->getAdapter()->translate("page_number"); ?><span id="page-number"></span></div>
 
 	</div>
 </div>
-<div class="page-number">Страница: 1</div>
+
 <div class="lock-loading"></div>
 
 <script src="/js/bootstrap-transition.js"></script>
