@@ -194,7 +194,7 @@ class AdController extends Zend_Controller_Action
         $res = $ad->getList("");
         $data = array();
         foreach ($res AS $val) {
-            $data[] = $val->toListArray();
+            $data[] = $val->toListArray($this->user);
         }
         $res = array(
             "data" => $data,
