@@ -1,14 +1,14 @@
 <?php global $translate; ?>
 <div class="row">
     <div class="span6 details-left">
-        <a href="#" class="img-wrapper">
+        <a href="#">
             <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
                 <img width="550" height="auto" src="/ads/<?php echo $this->ad->image; ?>" class="img-polaroid">
             <?php } else { ?>
                 <?php echo $this->ad->video; ?>
             <?php } ?>
-            <div class="img-info"><p><?php echo $this->ad->name; ?></p></div>
+            
         </a>
         <br><br><br>
         <address>

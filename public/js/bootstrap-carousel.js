@@ -81,17 +81,19 @@
       this.interval = null
       return this
     }
-
-  , next: function () {
+	/* modified for waw slider */
+  , next: function (postSlideCallback) {
+	  this.callback = postSlideCallback;
       if (this.sliding) return
       return this.slide('next')
     }
-
-  , prev: function () {
+	/* modified for waw slider */
+  , prev: function (postSlideCallback) {
+	  this.callback = postSlideCallback;
       if (this.sliding) return
       return this.slide('prev')
     }
-
+	/* modified for waw slider */
   , slide: function (type, next) {
       var $active = this.$element.find('.item.active')
         , $next = next || $active[type]()
@@ -141,41 +143,8 @@
         $next[0].offsetWidth // force reflow
 
         $toRemove.addClass(directionToHideClass);
-		/*firefox fix*/
-		/*	
-		if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-			$active.find('img').animate({width:'190px'}, {
-				queue :true,
-				duration :100,	
-				easing : 'linear',
-				always: function(){$active.find('img').removeAttr('style');}
-			})
-			$active.find('.items-wrapper').animate({width:'950px', margin: "200px"}, {
-				  queue :true,
-				  duration :50,	
-				  easing : 'linear',
-				  always: function(){$active.find('.items-wrapper').removeAttr('style');}
-			   })
-		}
-		*/
-
-		if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {		
-			$active.find('img').animate({opacity: "0.5"}, {
-				queue :true,
-				duration :200,	
-				easing : 'linear',
-				always: function(){$active.find('img').removeAttr('style');}
-		   })  
-			$active.find('.items-wrapper').animate({margin: "0 0 0 " + mathOperand + "20px"}, {
-				queue :true,
-				duration :500,	
-				easing : 'swing',
-				always: function(){$active.find('.items-wrapper').removeAttr('style');}
-			})
-		}
-
 		$active.addClass(direction).addClass(directionToClass);
-		$next.addClass(direction).removeClass(directionFromClass)
+		$next.addClass(direction).removeClass(directionFromClass);
 
         $toShow.removeClass(directionFromHideClass);
         $toPutFirst.hide();
@@ -183,11 +152,14 @@
         $toPutFirst.addClass(directionFromClass + " " + directionFromHideClass);
                
         this.$element.one($.support.transition.end, function () {
-		  $next.removeClass([type, direction].join(' ')).addClass('active')
-          $active.removeClass(['active', direction].join(' '))
+		
+		  $next.removeClass([type, direction].join(' ')).addClass('active');
+          $active.removeClass(['active', direction].join(' '));
           $toPutFirst.show();
+		  that.callback();
+		  //console.log("post-slide");
           that.sliding = false
-          setTimeout(function () { that.$element.trigger('slid') }, 1000)
+          setTimeout(function () { that.$element.trigger('slid') }, 1000);
         })
       } else {
         this.$element.trigger(e)
@@ -195,8 +167,8 @@
         $active.removeClass('active')
 		
 		$toRemove.addClass(directionToHideClass);
-        $active.addClass(directionToClass) 
-		$next.removeClass(directionFromClass)
+        $active.addClass(directionToClass);
+		$next.removeClass(directionFromClass);
 		$toShow.removeClass(directionFromHideClass);
 
         $toPutFirst.hide();
@@ -204,13 +176,14 @@
         $toPutFirst.addClass(directionFromClass + " " + directionFromHideClass);
         $toPutFirst.show();
 		
-        $next.addClass('active')   
-		    this.sliding = false
-        this.$element.trigger('slid')
+        $next.addClass('active');
+		this.callback();
+		//console.log("post-slide");
+		this.sliding = false
+        this.$element.trigger('slid');
       }
 
       isCycling && this.cycle()
-
       return this
     }
 
@@ -230,7 +203,7 @@
         , action = typeof option == 'string' ? option : options.slide
       if (!data) $this.data('carousel', (data = new Carousel(this, options)))
       if (typeof option == 'number') data.to(option)
-      else if (action) data[action]()
+      else if (action) data[action](options.postSlideCallback)
       else if (options.interval) data.pause().cycle()
     })
   }
@@ -254,10 +227,10 @@
  /* CAROUSEL DATA-API
   * ================= */
 
-  $(document).on('click.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
+  $(document).on('click.carousel.data-api', '[data-slide], [data-slide-to]', function (e, callback) {
     var $this = $(this), href
       , $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
-      , options = $.extend({}, $target.data(), $this.data())
+      , options = $.extend({}, $target.data(), $this.data(), callback)
       , slideIndex
 
     $target.carousel(options)

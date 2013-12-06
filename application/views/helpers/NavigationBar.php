@@ -14,7 +14,7 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
         $uri = '/' . $URIArr[1] . '/' . $URIArr[2];
         $menuItems = array(
             "profile" => array("link" => array("/partner/profile"), "caption" => $translate->getAdapter()->translate("profile")),
-            "add_new" => array("link" => array("/ad/new"), "caption" => $translate->getAdapter()->translate("add_new")),
+            "add_new" => array("link" => array("/ad/new#main"), "caption" => $translate->getAdapter()->translate("add_new")),
             "noactive" => array("link" => array("/ad/noactive", "/ad/edit"), "caption" => $translate->getAdapter()->translate("noactive")),
             "ready" => array("link" => array("/ad/ready"), "caption" => $translate->getAdapter()->translate("ready")),
             "active" => array("link" => array("/ad/active"), "caption" => $translate->getAdapter()->translate("active")),

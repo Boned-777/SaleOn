@@ -193,9 +193,11 @@ body {
 	height: 620px;
 }
 	  	  
-/* Super slider */
+/* Waw slider */
 .img-polaroid {
-	/*width: 240px;*/
+	-webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 /* opera fix */
@@ -276,20 +278,24 @@ body {
 	width:950px;
 	margin: 0 0 0 40px;
 }
-/*Super slider*/
+/*Waw slider*/
 
 /* Slider images */
 .img-wrapper {
 	display: block;
 	position: relative;
+	width: 240px;
+	-webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
+
+/*.img-wrapper:hover {
+	text-decoration: none;
+}*/
 
 .img-wrapper:hover img{
 	opacity: 0.8;
-}
-
-.img-wrapper:hover {
-	text-decoration: none;
 }
 
 .active .img-wrapper:hover .img-info {
@@ -304,17 +310,63 @@ body {
 .img-info {
 	display: none;
 	position: absolute;
-	bottom: 0;
-	height: 50px;
-	left: 0;
-	margin: 5px;
-	position: absolute;
-	width: 240px;
+	bottom: 5px;
+	left: 5px;
+	right: 5px;
+	padding: 10px 10px 5px;
 	color: #fff;
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+	-webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
 }
-.img-info p{
-	padding: 10px;
+.img-info p {
+	line-height: 15px;
+	font-size: 13px;
+	margin: 0 15px 3px 0;
+}
+
+.img-info p.brand {
+	margin-bottom: 15px;
+}
+.ellipsis { 
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;  
+	-ms-text-overflow: ellipsis;
+}
+
+.post-link {
+	color: #fff;
+}
+.post-link:hover {
+	color: #fff;
+}
+.post-link:hover p{
+	text-decoration: underline;
+}
+
+.favorites-icon {
+	display: block;
+    background: url("/img/favorite-icon.png") no-repeat scroll right center transparent;
+    height: 16px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 16px;
+	cursor: pointer;
+}
+.lock-loading {
+	display: none;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2040;
+    background: url("/img/loading.gif") center center no-repeat;
 }
 /* Slider images */
 

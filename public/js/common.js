@@ -1,6 +1,5 @@
 $(function () {
 
-    
     var fullDescription      = $("#full-description"),
         fullDescriptionModal = $('#full-description-modal'),
         actionAddress        = $('#action-address'),
