@@ -109,7 +109,7 @@
         , $toRemove          = this.$element.find("." + directionToClass)
         , $toShow            = this.$element.find("." + directionFromHideClass)
         , $toPutFirst        = this.$element.find("." + directionToHideClass)
-		, mathOperand = type == 'next' ? '-' : ''
+		    , mathOperand = type == 'next' ? '-' : ''
         
         , that = this
         , e
@@ -143,8 +143,8 @@
         $next[0].offsetWidth // force reflow
 
         $toRemove.addClass(directionToHideClass);
-		$active.addClass(direction).addClass(directionToClass);
-		$next.addClass(direction).removeClass(directionFromClass);
+    		$active.addClass(direction).addClass(directionToClass);
+    		$next.addClass(direction).removeClass(directionFromClass);
 
         $toShow.removeClass(directionFromHideClass);
         $toPutFirst.hide();
@@ -153,11 +153,11 @@
                
         this.$element.one($.support.transition.end, function () {
 		
-		  $next.removeClass([type, direction].join(' ')).addClass('active');
+		      $next.removeClass([type, direction].join(' ')).addClass('active');
           $active.removeClass(['active', direction].join(' '));
           $toPutFirst.show();
-		  that.callback();
-		  //console.log("post-slide");
+    		  that.callback();
+    		  //console.log("post-slide");
           that.sliding = false
           setTimeout(function () { that.$element.trigger('slid') }, 1000);
         })
@@ -166,10 +166,10 @@
         if (e.isDefaultPrevented()) return
         $active.removeClass('active')
 		
-		$toRemove.addClass(directionToHideClass);
+    		$toRemove.addClass(directionToHideClass);
         $active.addClass(directionToClass);
-		$next.removeClass(directionFromClass);
-		$toShow.removeClass(directionFromHideClass);
+    		$next.removeClass(directionFromClass);
+    		$toShow.removeClass(directionFromHideClass);
 
         $toPutFirst.hide();
         $toPutFirst.removeClass(directionToClass + " " + directionToHideClass);
@@ -177,9 +177,9 @@
         $toPutFirst.show();
 		
         $next.addClass('active');
-		this.callback();
-		//console.log("post-slide");
-		this.sliding = false
+    		this.callback();
+    		//console.log("post-slide");
+    		this.sliding = false
         this.$element.trigger('slid');
       }
 
