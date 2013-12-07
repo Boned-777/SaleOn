@@ -175,14 +175,13 @@ class Application_Model_Ad
         }
     }
 
-    public function toListArray() {
-        global $translate;
+    public function toListArray($user) {
         $vars = array(
             "post_id" => "id",
             "post_full_url" => "url",
-            "region" => "geo_name",
+            //"region" => "geo_name",
             "brand_name" => "brand_name",
-            "partner_name" => "name",
+            "name" => "name",
             "photoimg" => "banner",
         );
 
@@ -191,11 +190,19 @@ class Application_Model_Ad
             $data[$key] = $this->$value;
         }
 
-
-        $data["favorites_link"] = "#";
-        $data["days_left_text"] = $translate->getAdapter()->translate("days_left");
-        $data["days"] = ceil((strtotime($this->end_dt) - time()) / 86400);
-
+        if (is_null($user)) {
+            $data["favorites_link"] = '/auth';
+            $data["is_favorite"] = 0;
+        } else {
+            if (!in_array($this->id, explode(",",$user->favorites_ads))) {
+                $data["is_favorite"] = 0;
+                $data["favorites_link"] = '/user/favorites?ad_id=' . $this->id . '&act=add';
+            } else {
+                $data["is_favorite"] = 1;
+                $data["favorites_link"] = '/user/favorites?ad_id=' . $this->id . '&act=remove';
+            }
+        }
+        $data["days"] = ceil((strtotime($this->end_dt) - time()) / 86400) + 1;
         return $data;
     }
 

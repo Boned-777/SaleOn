@@ -37,7 +37,7 @@
     </div>
     <div class="span6 details-right">
         <h4><?php echo $this->ad->name; ?></h4>
-        <div><?php echo $this->ad->description; ?></div>
+        <div><?php echo nl2br($this->ad->description); ?></div>
 
         <br><br>
         <?php if ($this->ad->full_description) { ?>
@@ -45,8 +45,6 @@
                 <?php echo $translate->getAdapter()->translate("full_description"); ?>
             </a>
         <?php } ?>
-       
-
     </div>
 </div>
 
