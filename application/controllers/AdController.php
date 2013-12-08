@@ -197,7 +197,7 @@ class AdController extends Zend_Controller_Action
             $data[] = $val->toListArray($this->user);
         }
         $res = array(
-            "data" => $data,
+            "list" => $data,
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             )
