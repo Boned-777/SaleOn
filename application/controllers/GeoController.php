@@ -17,7 +17,14 @@ class GeoController extends Zend_Controller_Action
     {
         $item = new Application_Model_Geo();
         $results = $item->getAllChild($this->_getParam('term'));
-        echo json_encode($results); exit;
+        $this->_helper->json($results);
+    }
+
+    public function listAction()
+    {
+        $item = new Application_Model_Geo();
+        $results = $item->getAllChildList($this->_getParam('term'));
+        $this->_helper->json(array("list" => $results));
     }
 
 

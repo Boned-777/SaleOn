@@ -22,6 +22,22 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
         return $result;
     }
 
+    public function search($condition) {
+        $select = $this->select(array("name", "id"))
+            ->where('name LIKE ? ', $condition . '%');
+
+        $res = $this->fetchAll($select)->toArray();
+        $result = array();
+
+        foreach ($res as $value) {
+            $result[] = array(
+                "name" => $value["name"],
+                "value" => $value["id"]
+            );
+        }
+        return $result;
+    }
+
     public function save($data, $id=null) {
         try {
             if (!empty($id)) {

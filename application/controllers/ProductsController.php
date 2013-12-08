@@ -20,6 +20,12 @@ class ProductsController extends Zend_Controller_Action
         $this->_helper->json(array_values($results));
     }
 
+    public function listAction()
+    {
+        $item = new Application_Model_DbTable_Product();
+        $results = $item->search($this->_getParam('term'));
+        $this->_helper->json(array("list" => $results));
+    }
 
 }
 

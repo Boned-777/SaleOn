@@ -54,6 +54,35 @@ class Application_Model_Geo
         return $resArr;
     }
 
+    public function getAllChildList($pattern = "", $lang="uk") {
+        global $translate;
+        $dbItem = new Application_Model_DbTable_Geo();
+        $originalPattern = $pattern;
+        if ($pattern !== "")
+            $pattern .= ".";
+        $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
+
+        $itemsArr = $res->toArray();
+
+        $resArr = array(array(
+            "name" => $originalPattern,
+            "value" => $translate->getAdapter()->translate("any"),
+            "is_path" => 0
+        ));
+        $is_path = 0;
+        if (sizeof(explode(".", $pattern)) == 2)
+            $is_path = 1;
+        foreach ($itemsArr as $value) {
+            $resArr[] = array(
+                "name" => $value["code"],
+                "value" => $value["name_" . $lang],
+                "is_path" => $is_path
+            );
+        }
+
+        return $resArr;
+    }
+
     public function getFullGeoName ($geoCode = "") {
         global $translate;
         $indexes = explode(".", $geoCode);
