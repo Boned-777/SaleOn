@@ -23,7 +23,7 @@ class Application_Form_AdSettings extends Zend_Form
         $categories = new Application_Model_Category();
         $this->addElement('select', 'category', array(
             'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("category"),
+            'label' => $translate->getAdapter()->translate("category") . ' *',
             'multiOptions' => $categories->getAll()
         ));
 
@@ -33,7 +33,7 @@ class Application_Form_AdSettings extends Zend_Form
         $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name', array(
             'class' => "input-block-level",
         ));
-        $brand->setLabel($translate->getAdapter()->translate("brand"));
+        $brand->setLabel($translate->getAdapter()->translate("brand") . ' *');
         $brand->setJQueryParam('source', '/brands/autocomp');
         $brand->setJQueryParam('select', new Zend_Json_Expr(
         'function (e, data) {

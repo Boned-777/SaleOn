@@ -23,7 +23,7 @@ class Application_Form_AdMain extends Zend_Form
 
         $this->addElement('text', 'name', array(
             'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("name"),
+            'label' => $translate->getAdapter()->translate("name") . ' *',
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
             ),
@@ -32,7 +32,7 @@ class Application_Form_AdMain extends Zend_Form
 
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("description"),
+            'label' => $translate->getAdapter()->translate("description") . ' *',
             'max_length' => 500,
             'validators'    => array(
                 array(

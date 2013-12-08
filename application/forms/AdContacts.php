@@ -23,7 +23,7 @@ class Application_Form_AdContacts extends Zend_Form
 
         $this->addElement('text', 'address', array(
             'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("address"),
+            'label' => $translate->getAdapter()->translate("address") . ' *',
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
             ),
@@ -33,7 +33,7 @@ class Application_Form_AdContacts extends Zend_Form
         $this->addElement('text', 'phone', array(
             'filters' => array('StringTrim', 'StringToLower'),
             'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("phone"),
+            'label' => $translate->getAdapter()->translate("phone") . ' *',
             'validators' => array(
                 array('StringLength', false, array(0, 45)),
             ),
@@ -60,7 +60,7 @@ class Application_Form_AdContacts extends Zend_Form
 
         $this->addElement('text', 'email', array(
             'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("email"),
+            'label' => $translate->getAdapter()->translate("email") . ' *',
             'validators' => array(
                 array('EmailAddress')
             ),

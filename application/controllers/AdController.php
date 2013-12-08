@@ -340,6 +340,9 @@ class AdController extends Zend_Controller_Action
                 $item->load($itemData);
                 $id = $item->save();
                 if ($item->id) {
+                    if ($isReady) {
+                        $this->_helper->redirector('ready', 'ad');
+                    }
                     $url = $this->_helper->url->url(array(
                         'controller' => 'ad',
                         'action' => 'edit'
@@ -372,6 +375,21 @@ class AdController extends Zend_Controller_Action
         if (empty($name))
             $name = $translate->getAdapter()->translate("empty_name");
         return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
+    }
+
+    public function _paidText($val)
+    {
+        global $translate;
+        if ($val)
+            $text = $translate->getAdapter()->translate("yes");
+        else
+            $text = $translate->getAdapter()->translate("no");
+        return $text;
+    }
+
+    public function _daysLeft($val)
+    {
+        return ceil((strtotime($val) - time()) / 86400) + 1;
     }
 
     public function _createPreviewLink($id, $name)
@@ -446,8 +464,8 @@ class AdController extends Zend_Controller_Action
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
-        $grid->getSelect()->where("status = ? AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
+        $grid->getSelect()->where("status = ? AND end_dt > NOW() AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $grid->setGridColumns(array("name", "days_left", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -464,9 +482,16 @@ class AdController extends Zend_Controller_Action
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
         ));
-        $grid->updateColumn('geo_name',array(
-            "title" =>  $translate->getAdapter()->translate("geo_name"),
-        ));
+
+        $grid->addExtraColumn(array(
+            "name" => "days_left",
+            "position" => "right",
+            "title" =>  $translate->getAdapter()->translate("days_left"),
+            'callback'=>array(
+                'function'=>array($this, '_daysLeft'),
+                'params'=>array('{{end_dt}}')
+            ))
+        );
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
         $grid->setExport(array());
@@ -482,7 +507,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?) AND owner = " . $this->user->id, array(Application_Model_DbTable_Ad::STATUS_DRAFT));
-        $grid->setGridColumns(array("name","geo_name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -498,9 +523,6 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
-        ));
-        $grid->updateColumn('geo_name',array(
-            "title" =>  $translate->getAdapter()->translate("geo_name"),
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
@@ -517,7 +539,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?) AND owner = " . $this->user->id, array(Application_Model_DbTable_Ad::STATUS_READY));
-        $grid->setGridColumns(array("name","geo_name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", 'paid', "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -534,8 +556,12 @@ class AdController extends Zend_Controller_Action
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
         ));
-        $grid->updateColumn('geo_name',array(
-            "title" =>  $translate->getAdapter()->translate("geo_name"),
+        $grid->updateColumn('paid',array(
+            "title" =>  $translate->getAdapter()->translate("paid"),
+            'callback'=>array(
+                'function'=>array($this, '_paidText'),
+                'params'=>array('{{paid}}')
+            )
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
@@ -551,8 +577,8 @@ class AdController extends Zend_Controller_Action
         $grid = Bvb_Grid::factory('Table');
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
-        $grid->getSelect()->where("status = ? AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ARCHIVE);
-        $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
+        $grid->getSelect()->where("(status = ? OR end_dt < NOW()) AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ARCHIVE);
+        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -569,9 +595,6 @@ class AdController extends Zend_Controller_Action
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
         ));
-        $grid->updateColumn('geo_name',array(
-            "title" =>  $translate->getAdapter()->translate("geo_name"),
-        ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
         $grid->setExport(array());
@@ -582,36 +605,37 @@ class AdController extends Zend_Controller_Action
     public function favoritesAction()
     {
         global $translate;
-
-        $grid = Bvb_Grid::factory('Table');
-        $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
-        $grid->setSource($source);
-        $grid->getSelect()->where("status = ? AND id IN (" . $this->user->favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
-        $grid->updateColumn('name',array(
-            "title" =>  $translate->getAdapter()->translate("name"),
-            'callback'=>array(
-                'function'=>array($this, '_createPreviewLink'),
-                'params'=>array('{{id}}', "{{name}}")
-            )
-        ));
-        $grid->updateColumn('public_dt',array(
-            "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
-        ));
-        $grid->updateColumn('end_dt',array(
-            "title" =>  $translate->getAdapter()->translate("end_date"),
-        ));
-        $grid->updateColumn('geo_name',array(
-            "title" =>  $translate->getAdapter()->translate("geo_name"),
-        ));
-        $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
-        $grid->setNoFilters(true);
-        $grid->setExport(array());
-        $grid->setImagesUrl('/img/');
-        $this->view->grid = $grid;
+        if (!empty($this->user->favorites_ads)) {
+            $grid = Bvb_Grid::factory('Table');
+            $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
+            $grid->setSource($source);
+            $grid->getSelect()->where("status = ? AND id IN (" . $this->user->favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+            $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
+            $grid->updateColumn('name',array(
+                "title" =>  $translate->getAdapter()->translate("name"),
+                'callback'=>array(
+                    'function'=>array($this, '_createPreviewLink'),
+                    'params'=>array('{{id}}', "{{name}}")
+                )
+            ));
+            $grid->updateColumn('public_dt',array(
+                "title" =>  $translate->getAdapter()->translate("public_date"),
+            ));
+            $grid->updateColumn('start_dt',array(
+                "title" =>  $translate->getAdapter()->translate("start_date"),
+            ));
+            $grid->updateColumn('end_dt',array(
+                "title" =>  $translate->getAdapter()->translate("end_date"),
+            ));
+            $grid->updateColumn('geo_name',array(
+                "title" =>  $translate->getAdapter()->translate("geo_name"),
+            ));
+            $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
+            $grid->setNoFilters(true);
+            $grid->setExport(array());
+            $grid->setImagesUrl('/img/');
+            $this->view->grid = $grid;
+        }
     }
 
     public function getfullinfoAction()

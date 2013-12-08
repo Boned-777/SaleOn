@@ -19,14 +19,14 @@ return array(
     'region' => 'Область',
     'city' => 'Населенный пункт',
     'category' => 'Категория',
-    'brand' => 'Бренд предприятия',
-    'product' => 'Бренд товара',
+    'brand' => 'Бренд вашего предприятия',
+    'product' => 'Бренд аукционного товара',
     'address' => 'Адрес',
     'phone' => 'Телефон',
     'additional_phone' => "Дополнительный телефон",
     'url' => 'Сайт',
-    'image' => 'Изображение',
-    'banner' => 'Баннер',
+    'image' => 'Большой баннер',
+    'banner' => 'Маленький баннер',
     'video' => 'Код видео',
 
     // Partner profile form
@@ -42,7 +42,7 @@ return array(
     'confirm_password' => "Подтверждение пароля",
 
     'sign_in' => "Войти",
-    'finish' => 'Закончить',
+    'finish' => 'Завершить',
     'save_and_next' => 'Сохранить и далее',
     'update' => "Обновить",
     'set_new_password' => "Сменить пароль",
@@ -87,5 +87,9 @@ return array(
     "recovery_error_code_not_found" => 'Код ошибочный или уже был использован',
     "password_change_success" => "Пароль успешно изменён",
 
-    "days_left" => "Дней до окнончания акции"
+    "days_left" => "Осталось дней",
+    "paid" => "Оплачено",
+    "yes" => "Да",
+    "no" => "Нет",
+
 );
