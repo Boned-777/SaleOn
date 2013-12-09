@@ -119,20 +119,20 @@
 			
 			buildPage : function (container, indexes){
 				var	j		= 0,
-					responce = this.data,
+					data = this.data,
 					result 	= EMPTY_STRING;
 					
 				for (var i = indexes.startIndex; i <= indexes.endIndex; i++) {
 					if (j==0) {result += this.rowTemplate[0]}
-						if (responce.data[i]) {
+						if (data.list[i]) {
 							result += this.itemTemplate
-								.replace("$imageLink", 		responce.data[i].photoimg)
-								.replace("$link", 			responce.data[i]["post id"])
-								//.replace("$favoriteLink", 	responce.data[i].favorites_link)
-								.replace("$name", 			responce.data[i].name)
-								.replace("$brand", 			responce.data[i]["brand name"])
-								.replace("$daysLeft", 		responce.data[i].days)
-								.replace("$daysMsgText", 	responce.options.days_left_text); 
+								.replace("$imageLink", 		data.list[i].photoimg)
+								.replace("$link", 			data.list[i]["post id"])
+								//.replace("$favoriteLink", 	data.data[i].favorites_link)
+								.replace("$name", 			data.list[i].name)
+								.replace("$brand", 			data.list[i]["brand name"])
+								.replace("$daysLeft", 		data.list[i].days)
+								.replace("$daysMsgText", 	data.options.days_left_text); 
 						}
 					if (j==3) {
 						j = 0;
@@ -170,7 +170,7 @@
 			},
 			
 			getPageCount : function () {
-				return Math.ceil(this.data.data.length / ITEMS_PER_PAGE);
+				return Math.ceil(this.data.list.length / ITEMS_PER_PAGE);
 			},
 			
 			getNextPage : function (page) {
@@ -207,9 +207,9 @@
 		var originalData, slider;
 		var duplicateResponce = function (source, count) {
 			var result = {};
-			result.data = source.data;
+			result.list = source.list;
 			for (var i = 0; i<= count; i++) {
-				result.data = result.data.concat(source.data);
+				result.list = result.list.concat(source.list);
 			}
 			result.options = source.options;
 			return result;
