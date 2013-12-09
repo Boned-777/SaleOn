@@ -16,13 +16,9 @@ set_include_path(implode(PATH_SEPARATOR, array(
 include "Zend/Loader/Autoloader.php";
 
 $autoloader = Zend_Loader_Autoloader::getInstance();
-//$autoloader->registerNamespace('ZFDebug');
 $autoloader->registerNamespace('Bvb');
-//$autoloader->registerNamespace('My');
-//$autoloader->registerNamespace('OFC');
 $autoloader->registerNamespace('Zendx');
-//$autoloader->suppressNotFoundWarnings(false);
-//$autoloader->setFallbackAutoloader(true);
+$autoloader->registerNamespace('SAuth');
 
 $locale = 'ru';
 $translate = new Zend_Translate(

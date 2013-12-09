@@ -24,21 +24,22 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
         );
 
 		if ($auth->hasIdentity()) {
-			if ($auth->getIdentity()->role == "PARTNER") {
-        ?>
-        <div class="row">
-            <ul class="nav nav-pills">
-                <?php
-                foreach ($menuItems as $value) {
-                    if (in_array($uri, $value["link"]))
-                        echo '<li class="active"><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
-                    else
-                        echo '<li><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
-		<?php }
+            if (isset($auth->getIdentity()->role))
+			    if ($auth->getIdentity()->role == "PARTNER") {
+            ?>
+            <div class="row">
+                <ul class="nav nav-pills">
+                    <?php
+                    foreach ($menuItems as $value) {
+                        if (in_array($uri, $value["link"]))
+                            echo '<li class="active"><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
+                        else
+                            echo '<li><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
+                    }
+                    ?>
+                </ul>
+            </div>
+            <?php }
         }
 	}
 }
