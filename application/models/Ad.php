@@ -194,7 +194,10 @@ class Application_Model_Ad
             $data["favorites_link"] = '/auth';
             $data["is_favorite"] = 0;
         } else {
-            if (!in_array($this->id, explode(",",$user->favorites_ads))) {
+            $favoritesAdsList = "";
+            if (isset($user->favorites_ads))
+                $favoritesAdsList = $user->favorites_ads;
+            if (!in_array($this->id, explode(",",$favoritesAdsList))) {
                 $data["is_favorite"] = 0;
                 $data["favorites_link"] = '/user/favorites?ad_id=' . $this->id . '&act=add';
             } else {
