@@ -37,7 +37,7 @@
 										<div class="img-info">\
 											<a href="$favoriteLink" class="favorites-icon"></a>\
 											<a href="/ad/index/id/$link" class="post-link"><p class="ellipsis">$name</p></a>\
-											<p class="ellipsis brand">$brand</p>\
+											<p class="ellipsis">$brand</p>\
 											<p class="ellipsis">$daysMsgText: $daysLeft</p>\
 										</div>\
 									</div>\
@@ -127,10 +127,10 @@
 						if (data.list[i]) {
 							result += this.itemTemplate
 								.replace("$imageLink", 		data.list[i].photoimg)
-								.replace("$link", 			data.list[i]["post id"])
-								//.replace("$favoriteLink", 	data.data[i].favorites_link)
+								.replace("$link", 			data.list[i].post_id)
+								.replace("$favoriteLink", 	data.list[i].favorites_link)
 								.replace("$name", 			data.list[i].name)
-								.replace("$brand", 			data.list[i]["brand name"])
+								.replace("$brand", 			data.list[i].brand_name)
 								.replace("$daysLeft", 		data.list[i].days)
 								.replace("$daysMsgText", 	data.options.days_left_text); 
 						}
@@ -215,6 +215,15 @@
 			return result;
 		};
 
+		var setCookies = function () {
+			var cookieOptions = { expires: 7, path: '/' };
+			$.cookie('geo', '1.2', 		cookieOptions);
+			$.cookie('category', '3', 	cookieOptions);
+			$.cookie('brands', '111', 	cookieOptions);
+			$.cookie('products', '3', 	cookieOptions);	
+			//$.removeCookie("geo");
+		}
+
 		$("#btn1").on("click", function(e){
 			slider = null;
 			slider = new wawSlyder(duplicateResponce(originalData, 1));	
@@ -231,6 +240,8 @@
 		/**
 		** run waw slider
 		*/
+		
+		setCookies();
 		$(".lock-loading").show();
 		$.ajax({
 			url: "/ad/list",

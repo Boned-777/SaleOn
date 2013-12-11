@@ -10,14 +10,14 @@ body {
 	height: auto !important;
 	height: 100%;
 	/* Negative indent footer by it's height */
-	margin: 0 auto -60px;
+	margin: 0 auto -46px;
 	overflow: hidden;
 }
 
       /* Set the fixed height of the footer here */
 #push,
 #footer {
-	height: 60px;
+	height: 45px;
 }
 .footer {
 	background: rgb(79,79,79); /* Old browsers */
@@ -35,10 +35,10 @@ body {
 .socials {
 	background: url("/img/social.png") right center no-repeat;
 	position: absolute;
-	top: 10px;
+	top: 7px;
 	right: 0;
 	width: 160px;
-	height: 45px;
+	height: 35px;
 }
 
 .footer-gradient {
@@ -59,7 +59,7 @@ body {
 }
 
 .container .credit {
-	margin: 20px 0;
+	margin: 15px 0 0 0;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
@@ -324,9 +324,9 @@ body {
 	margin: 0 15px 3px 0;
 }
 
-.img-info p.brand {
+/*.img-info p.brand {
 	margin-bottom: 15px;
-}
+}*/
 .ellipsis { 
 	white-space:nowrap;
 	overflow:hidden;
