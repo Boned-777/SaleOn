@@ -291,12 +291,14 @@ body {
             box-sizing: border-box;
 }
 
-.img-wrapper:hover img{
+/*.img-wrapper:hover img{
 	opacity: 0.8;
-}
+}*/
 
 .active .img-wrapper:hover .img-info {
-	display: block;
+	visibility: visible;
+	opacity: 1;
+	transition-delay: 0.4s;
 }
 
 .hover-left  .img-wrapper:hover img,
@@ -305,28 +307,32 @@ body {
 }
 
 .img-info {
-	display: none;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: 0.4s ease-in-out opacity;
+       -moz-transition: 0.4s ease-in-out opacity;
+	     -o-transition: 0.4s ease-in-out opacity;
+		    transition: 0.4s ease-in-out opacity;
 	position: absolute;
+	top: 5px;
 	bottom: 5px;
 	left: 5px;
 	right: 5px;
-	padding: 10px 10px 5px;
+	padding: 15px 10px 5px 15px;
 	color: #fff;
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+	background: none repeat scroll 0 0 transparent;
+	background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAAaSURBVBhXY2RgYGgAYgwAEkTHGAJgncSpBADIYQqCpd00mAAAAABJRU5ErkJggg==");
 	-webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
-
 }
+
 .img-info p {
 	line-height: 15px;
 	font-size: 13px;
 	margin: 0 15px 3px 0;
 }
 
-/*.img-info p.brand {
-	margin-bottom: 15px;
-}*/
 .ellipsis { 
 	white-space:nowrap;
 	overflow:hidden;
@@ -349,8 +355,8 @@ body {
     background: url("/img/favorite-icon.png") no-repeat scroll right center transparent;
     height: 16px;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 15px;
+    top: 15px;
     width: 16px;
 	cursor: pointer;
 }
