@@ -38,12 +38,18 @@
                 </div>
                 <div class="span4">
                     <a href="#" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
-                    <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
-                    <?php //switch to more correct implememntation
+                    <?php
                         $auth = Zend_Auth::getInstance();
                         if ($auth->hasIdentity()) { ?>
-                            <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                            <?php if ($auth->getIdentity()->role == "PARTNER") { ?>
+                                <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+                                <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                            <?php } else { ?>
+                                <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
+                                <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                            <?php } ?>
                         <?php } else { ?>
+                            <a href="/auth/user" id="btn4" title="Пользователь" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
                             <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
                         <?php }
                     ?>
