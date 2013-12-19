@@ -531,7 +531,7 @@ textarea {
 
 /*partner menu*/
 .nav-pills {
-	width: 900px;
+	width: 800px;
 	margin: 0 auto 20px;
 }
 .nav-pills > li {
@@ -539,7 +539,7 @@ textarea {
 }
 @media (max-width: 979px)  {
 	.nav-pills {
-		width: 750px;
+		width: 690px;
 	}
 	.nav-pills > li {
 	    margin-left: 2px;

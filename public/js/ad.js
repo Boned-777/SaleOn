@@ -1,9 +1,11 @@
 $(function () {
     var emptyString = "",
         spaceString = " ",
+        mainTabLoaded     = false,
         settingsTabLoaded = false,
         datesTabLoaded    = false,
-        mainTabLoaded     = false;
+        contactsTabLoaded = false,
+        mediaTabLoaded    = false;
     /* Helper functions */
     function getGeo(term, target, getEmpty) {
         getEmpty ? (getEmpty = 1) : (getEmpty = 0);
@@ -124,10 +126,36 @@ $(function () {
         mainTabLoaded = true;
     }
 
+    /* Media Tab */
+    function initPopover () {
+        if(mediaTabLoaded) return;
+
+        var smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."\
+        data-placement="top" data-toggle="popover" data-trigger="hover"></i>',
+        videoHelp = '&nbsp;<i class="icon-info-sign" id="video-help" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."\
+        data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
+
+        $('#banner_file-label').find("label").append(smallBannerHelp);
+        $('#video-label').find("label").append(videoHelp);
+        $("#small-banner-help").add("#video-help").popover();
+
+        mediaTabLoaded = true; 
+    }
+
+    function initInputMask () {
+        if(contactsTabLoaded) return;
+        $("#phone").add("#phone1").add("#phone2").mask("(999) 999-9999");
+
+        contactsTabLoaded = true;
+    }
+
+
     function initScreen (tabName) {
+        (tabName == "#main")     && initTextCounter();
         (tabName == "#dates")    && initDatapickers();    
         (tabName == "#settings") && initDynamicSelectboxes();
-        (tabName == "#main")     && initTextCounter();
+        (tabName == "#contacts") && initInputMask();
+        (tabName == "#media")    && initPopover();
     }
 
     /* tabs on add/edit action screen */

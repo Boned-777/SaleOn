@@ -18,8 +18,10 @@
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery.geocomplete.min.js"></script>
+<script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
 <script type="text/javascript">
     $(function () {
+        $("#phone").add("#phone1").add("#phone2").mask("(999) 999-9999");
         $("#address").geocomplete();
     });
 </script>
