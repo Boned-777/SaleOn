@@ -1,0 +1,15 @@
+<?php global $translate; ?>
+
+<div class="row">
+    <div class="span6">
+        <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
+        <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
+        <div class="legend"><?php echo $translate->getAdapter()->translate("enter_throw"); ?></div>
+        <div><a href="/auth/auth/by/facebook">Facebook</a></div>
+        <div><a href="/auth/auth/by/twitter">Twitter</a></div>
+    </div>
+    <div class="span6">
+        <div class="legend"><?php echo $translate->getAdapter()->translate("new_user_reg"); ?></div>
+        <?php echo $this->registrationForm->setAction($this->url()); ?>
+    </div>
+</div>

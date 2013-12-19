@@ -123,7 +123,8 @@ class PartnerController extends Zend_Controller_Action
     }
 
     private function _create($data) {
-        $item = new Application_Model_Partner();
+        $item = new Application_Model_User();
+        $data["role"] = Application_Model_User::PARTNER;
         $a =  $item->create($data);
         return $a;
     }

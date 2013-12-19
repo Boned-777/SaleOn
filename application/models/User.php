@@ -2,6 +2,9 @@
 
 class Application_Model_User
 {
+    const  PARTNER = "PARTNER";
+    const  USER = "USER";
+
     public $id;
     public $username;
     public $recovery;
@@ -92,6 +95,18 @@ class Application_Model_User
                 $res[] = $value;
         }
         $this->favorites_ads = implode(",",$res);
+    }
+
+    public function create($data) {
+        $dbItem = new Application_Model_DbTable_User();
+        $res = $dbItem->create(array(
+            "password" => $data["password"],
+            "username" => $data["username"],
+            "role" => $data["role"],
+        ));
+        if (!$res)
+            return false;
+        return true;
     }
 }
 

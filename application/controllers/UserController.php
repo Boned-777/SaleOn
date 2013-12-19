@@ -176,6 +176,43 @@ class UserController extends Zend_Controller_Action
         $this->_helper->json(array("success" => $res));
     }
 
+    public function newAction() {
+        global $translate;
+        $registrationForm = new Application_Form_User();
+        $registrationForm->setName("partner_registration");
+        $loginForm = new Application_Form_Login();
+        $loginForm->setName("login");
+        $request = $this->getRequest();
+
+        $layout = Zend_Layout::getMvcInstance();
+        $view = $layout->getView();
+
+        if ($request->isPost()) {
+            if ($registrationForm->isValid($request->getPost())) {
+                $data = $registrationForm->getValues();
+                if ($this->_create($data)) {
+                    $this->_helper->redirector('index', 'auth', null, array(
+                        "username" => $data["username"],
+                        "password" => $data["password"],
+                    ));
+                    $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
+                } else {
+                    $registrationForm->getElement("username")->addError($translate->getAdapter()->translate("error_username_exists"));
+                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
+                }
+            }
+        }
+        $this->view->registrationForm = $registrationForm;
+        $this->view->loginForm = $loginForm;
+    }
+
+    private function _create($data) {
+        $item = new Application_Model_User();
+        $data["role"] = Application_Model_User::USER;
+        $a = $item->create($data);
+        return $a;
+    }
+
 }
 
 
