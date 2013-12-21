@@ -86,18 +86,41 @@
 			bindEvents : function () {
 				var	that = this;
 				this.dom.itemWrapper.on("click", function(e){
-					if ($(e.currentTarget).parent().hasClass("hover-right")){
-						that.dom.rightPagingBtn.trigger("click", {
-							postSlideCallback : function() {that.buildNextHiddenPage()}
-						});
+					var wrapperContainer = $(e.currentTarget).parent()
+					if (wrapperContainer.hasClass("hover-right")){
+						that.showNextPage();	
 					}
-					if ($(e.currentTarget).parent().hasClass("hover-left")){
-						that.dom.leftPagingBtn.trigger("click", { 
-							postSlideCallback : function() {that.buildPreviousHiddenPage()}
-						});
+					if (wrapperContainer.hasClass("hover-left")){
+						that.showPreviousPage();	
 					}
 					$(e.target).parent().hasClass("post-link") || e.preventDefault();
 				})
+
+				$(document).on("keyup", function (e) {
+					var keyCode = e.which;
+					if(keyCode == 39) { //right key
+						(that.isCycleAvailable() || (that.currentPage == 1 && that.isTwoPages())) && that.showNextPage();
+					}
+					if(keyCode == 37) { //left key
+						(that.isCycleAvailable() || (that.currentPage == 2 && that.isTwoPages())) && that.showPreviousPage();
+					}
+				    e.preventDefault(); 
+				})
+			},
+
+
+			showNextPage : function () {
+				var that = this;
+				that.dom.rightPagingBtn.trigger("click", {
+					postSlideCallback : function() {that.buildNextHiddenPage()}
+				});
+			},
+
+			showPreviousPage : function () {
+				var that = this;
+				that.dom.leftPagingBtn.trigger("click", { 
+					postSlideCallback : function() {that.buildPreviousHiddenPage()}
+				});
 			},
 					
 			initStartPages : function () {
@@ -186,6 +209,11 @@
 			isCycleAvailable : function (page) {
 				var pageCount = this.getPageCount();
 				return (pageCount >= 3);
+			},
+
+			isTwoPages : function () {
+				var pageCount = this.getPageCount();
+				return (pageCount == 2);	
 			},
 
 			refreshHiddenElements : function () {

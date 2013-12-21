@@ -458,7 +458,7 @@
   }
 }
 
-@media (max-width: 979px) {
+/*@media (max-width: 979px) {
   .row {
     margin-left: -20px;
     *zoom: 1;
@@ -797,9 +797,9 @@
   .uneditable-input.span1 {
     width: 28px;
   }
-}
+}*/
 
-@media (max-width: 979px) {
+/*@media (max-width: 979px) {
   body {
     padding-top: 0;
   }
@@ -949,7 +949,8 @@
     padding-right: 10px;
     padding-left: 10px;
   }
-}
+}*/
+
 
 @media (min-width: 980px) {
   .nav-collapse.collapse {

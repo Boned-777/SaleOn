@@ -2,6 +2,7 @@ html,
 body {
 	height: 100%;
 	background-color: #FFF;
+	min-width: 1005px;
 }
 
 /* Wrapper for page content to push down footer */
@@ -62,22 +63,13 @@ body {
 	margin: 15px 0 0 0;
 }
 
-/* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 767px) {
-	#footer {
-	  margin-left: -20px;
-	  margin-right: -20px;
-	  padding-left: 20px;
-	  padding-right: 20px;
-	}
-}
-
 .topbg {
 	background: url("/img/topbg.png") center center repeat-x;
 	position: absolute;
 	top: 0;
 	height: 5px;
 	width: 100%;
+	min-width: 1005px;
 }
 
 .logo {
@@ -97,24 +89,24 @@ body {
     width: 135px !important;
 }
 
-@media (min-width: 980px) and (max-width: 1199px) {
+@media (max-width: 1199px) {
 	.jumbotron {
 		margin-left: -15px !important;
 	}
 }
 
-@media (max-width: 979px)  {
+/*@media (max-width: 979px)  {
 	.jumbotron {
 		margin-left: 3px !important;
 		width: 117px !important;
 	}
-}
+}*/
 
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
 	.container {
 		width: 724px;
 	}
-}
+}*/
 
 .bottom-offset {
 	margin-bottom: 20px;
@@ -158,27 +150,31 @@ body {
 	padding: 5px 30px;
 }
 
-@media (min-width: 980px) and (max-width: 1199px) {
+@media (max-width: 1199px) {
 	.btn-large {
 		margin-right: 10px;
 		padding: 5px 20px;
 	}
 }
-@media (max-width: 979px)  {
+/*@media (max-width: 979px)  {
 	.btn-large {
 		margin-right: 3px;
 		padding: 5px 17px;
 	}
-}
+}*/
 
 /*Carousel, images, slyder */
 
+.carousel {
+	margin-bottom: 0;
+}
+
 .mycarousel-control {
-	height: 5px;
+	height: 0px;
 	position: absolute;
 	text-align: center;
 	top: 0px;
-	width: 4px;
+	width: 0px;
 	cursor: pointer;
 }
 .mycarousel-control.left {
@@ -409,7 +405,7 @@ body {
     	font-size: 15px;
     	font-weight: bold;
     	line-height: 20px;
-    	margin: 15px 0;
+    	margin: 5px 0 15px 0;
 	}
 }
 
@@ -537,14 +533,14 @@ textarea {
 .nav-pills > li {
     margin-left: 15px;
 }
-@media (max-width: 979px)  {
+/*@media (max-width: 979px)  {
 	.nav-pills {
 		width: 690px;
 	}
 	.nav-pills > li {
 	    margin-left: 2px;
 	}
-}
+}*/
 
 /*check on new mozilla*/
 .tab-content #media {
@@ -567,7 +563,7 @@ textarea {
 	}
 }
 
-@media (min-width: 980px) and (max-width: 1199px) {
+@media (max-width: 1199px) {
 	.details-left {
 		width: 350px;
 	}
@@ -579,7 +575,7 @@ textarea {
 	    width: 570px;
 	}
 }
-@media (max-width: 979px) {
+/*@media (max-width: 979px) {
 	.details-left {
 		width: 290px;
 	}
@@ -590,7 +586,7 @@ textarea {
 	.details-right {
 	    width: 405px;
 	}
-}
+}*/
 
 .details-right div {
     text-align: justify;
@@ -603,19 +599,19 @@ textarea {
 /*Top menu*/
 .top-menu {
 	height: 50px;
-    margin: 40px auto 15px;
+    margin: 35px auto 15px;
     width: 970px;
 }
-@media (min-width: 980px) and (max-width: 1199px) {
+@media (max-width: 1199px) {
 	.top-menu {
 		width: 770px;
 	}
 }
-@media (max-width: 979px) {
+/*@media (max-width: 979px) {
 	.top-menu {
 		width: 630px;
 	}
-}
+}*/
 /*Success and Error msg*/
 .footer-message  {
   position : fixed;
