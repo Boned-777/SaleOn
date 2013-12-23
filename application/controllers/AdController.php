@@ -13,6 +13,11 @@ class AdController extends Zend_Controller_Action
         }
 
         $this->user = $auth->getIdentity();
+        $vars = $this->getAllParams();
+
+        if (($vars["action"] == "set-status") && ($this->user->role !== Application_Model_User::ADMIN)) {
+            $this->_helper->redirector('index', 'index');
+        }
     }
 
     public function indexAction()
@@ -203,6 +208,20 @@ class AdController extends Zend_Controller_Action
             )
         );
         $this->_helper->json($res);
+    }
+
+    public function setStatusAction () {
+        global $translate;
+
+        $vars = $this->getAllParams();
+        $ad = new Application_Model_Ad();
+        if ($ad->get($vars["id"])){
+            eval("\$ad->status = Application_Model_DbTable_Ad::STATUS_" . $vars["status"] . ";");
+            $ad->save();
+            $this->_helper->json(array("success" => true));
+        } else {
+            $this->_helper->json(array("success" => false));
+        };
     }
 
     public function editAction()

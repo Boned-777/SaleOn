@@ -1,0 +1,39 @@
+<?php global $translate; ?>
+<div id="view-content">
+    <ul class="nav nav-tabs" id="ad">
+        <li class="active"><a href="#main"><?php echo $translate->getAdapter()->translate("main"); ?></a></li>
+        <li><a href="#dates"><?php echo $translate->getAdapter()->translate("dates"); ?></a></li>
+        <li><a href="#settings"><?php echo $translate->getAdapter()->translate("settings"); ?></a></li>
+        <li><a href="#contacts"><?php echo $translate->getAdapter()->translate("contacts"); ?></a></li>
+        <li><a href="#media"><?php echo $translate->getAdapter()->translate("media"); ?></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="main"><?php echo $this->mainForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="dates"><?php echo $this->datesForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="settings"><?php echo $this->settingsForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="contacts"><?php echo $this->contactsForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="media">
+            <div class="span4"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
+            <div class="span5">
+                <?php if (!empty($this->image)) { ?>
+                    <img src="/ads/<?php echo $this->image; ?>" class="img-polaroid"/><br/><br/>
+                <?php } ?>
+                <?php if (!empty($this->banner)) { ?>
+                    <img src="/ads/<?php echo $this->banner; ?>" class="img-polaroid"/>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php if (!empty($this->gotoTab)) {?>
+    <script type="text/javascript">
+        <?php echo "window.location.hash = \"" . $this->gotoTab . "\";"; ?>
+    </script>
+<?php } ?>
+<script src="/js/select2/select2.min.js"></script>
+<script src="/js/select2/select2_locale_ru.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="/js/jquery.geocomplete.min.js"></script>
+<script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
+
+<script src="/js/ad.js"></script>

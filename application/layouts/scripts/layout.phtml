@@ -41,7 +41,7 @@
                     <?php
                         $auth = Zend_Auth::getInstance();
                         if ($auth->hasIdentity()) { ?>
-                            <?php if ($auth->getIdentity()->role == "PARTNER") { ?>
+                            <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
                                 <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
                                 <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
                             <?php } else { ?>
@@ -57,6 +57,7 @@
                 </div>
             </div>
         <?php echo $this->navigationBar($this->link); ?>
+        <?php echo $this->adminNavigationBar($this->link); ?>
         <div class="layout-content">
             <?php echo $this->layout()->content; ?>
         </div>

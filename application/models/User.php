@@ -4,6 +4,7 @@ class Application_Model_User
 {
     const  PARTNER = "PARTNER";
     const  USER = "USER";
+    const  ADMIN = "ADMIN";
 
     public $id;
     public $username;

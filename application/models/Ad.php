@@ -159,7 +159,7 @@ class Application_Model_Ad
     public function getList($params) {
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
-            ->where("status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+            ->where("end_dt > NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
             $res = array();
@@ -173,6 +173,11 @@ class Application_Model_Ad
         } else {
             return false;
         }
+    }
+
+    public function setStatus($value) {
+        $this->status = $value;
+        return $this->save();
     }
 
     public function toListArray($user) {
