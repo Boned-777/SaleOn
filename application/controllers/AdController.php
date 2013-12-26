@@ -123,13 +123,13 @@ class AdController extends Zend_Controller_Action
                         switch ($imgKey) {
                             case "image_file" :
                                 if (!isset($images["banner_file"])) {
-                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
                                 }
                                 $itemData["image"] = $imgVal;
                                 break;
 
                             case "banner_file" :
-                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
                                 break;
                         }
                     }
@@ -310,13 +310,13 @@ class AdController extends Zend_Controller_Action
                             switch ($imgKey) {
                                 case "image_file" :
                                     if (!isset($images["banner_file"])) {
-                                        $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                        $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
                                     }
                                     $mediaItemData["image"] = $imgVal;
                                     break;
 
                                 case "banner_file" :
-                                    $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 166);
+                                    $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
                                     break;
                             }
                         }
@@ -419,61 +419,16 @@ class AdController extends Zend_Controller_Action
         return '<a href="/ad/index/id/' . $id . '">' . $name . '</a>';
     }
 
-    private function _cropImage($image, $targetWidth, $targetHeight)
+    private function _resizeImage($src, $target_width, $target_height)
     {
-        list($width, $height, $type) = getimagesize($image);
-        $types = array("", "gif", "jpeg", "png");
-        $ext = $types[$type];
-        if ($ext) {
-            $func = 'imagecreatefrom'.$ext;
-            $img_i = $func($image);
-        }
-        $img_o = imagecreatetruecolor($targetWidth, $targetHeight);
-        imagecopy($img_o, $img_i, 0, 0, 0, 0, $targetWidth, $targetHeight);
-        $func = 'image'.$ext;
-        $newName = uniqid() . "." . $ext;
-        $res = $func($img_o, APPLICATION_PATH . "/../public/ads/" . $newName);
-        if ($res)
-            return $newName;
-    }
-
-    private function _resizeImage($src, $width, $height, $rgb=0xFFFFFF, $quality=100)
-    {
-        if (!file_exists($src)) return false;
-
-        $size = getimagesize($src);
-
-        if ($size === false) return false;
-        $format = strtolower(substr($size['mime'], strpos($size['mime'], '/')+1));
-        $icfunc = "imagecreatefrom" . $format;
-        if (!function_exists($icfunc)) return false;
-
-        $x_ratio = $width / $size[0];
-        $y_ratio = $height / $size[1];
-
-        $ratio       = min($x_ratio, $y_ratio);
-        $use_x_ratio = ($x_ratio == $ratio);
-
-        $new_width   = $use_x_ratio  ? $width  : floor($size[0] * $ratio);
-        $new_height  = !$use_x_ratio ? $height : floor($size[1] * $ratio);
-        $new_left    = $use_x_ratio  ? 0 : floor(($width - $new_width) / 2);
-        $new_top     = !$use_x_ratio ? 0 : floor(($height - $new_height) / 2);
-
-        $isrc = $icfunc($src);
-        $idest = imagecreatetruecolor($width, $height);
-
-        imagefill($idest, 0, 0, $rgb);
-        imagecopyresampled($idest, $isrc, $new_left, $new_top, 0, 0,
-            $new_width, $new_height, $size[0], $size[1]);
-
+        if (!file_exists($src))
+            return false;
+        $image = new Application_Model_Image();
+        $image->load($src);
+        $image->smartResize($target_width, $target_height);
         $newName = uniqid() . ".jpg";
-        imagejpeg($idest, APPLICATION_PATH . "/../public/ads/" . $newName, $quality);
-
-        imagedestroy($isrc);
-        imagedestroy($idest);
-
+        $image->save(APPLICATION_PATH . "/../public/ads/" . $newName);
         return $newName;
-
     }
 
     public function activeAction()
