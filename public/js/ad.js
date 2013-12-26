@@ -130,14 +130,17 @@ $(function () {
     function initPopover () {
         if(mediaTabLoaded) return;
 
-        var smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."\
+        var bigBannerHelp = '&nbsp;<i class="icon-info-sign" id="big-banner-help" data-content="Здесь можно загрузить большой баннер для страницы полного описания акции"\
         data-placement="top" data-toggle="popover" data-trigger="hover"></i>',
-        videoHelp = '&nbsp;<i class="icon-info-sign" id="video-help" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."\
+        smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="Здесь можно загрузить маленький баннер для главной страницы"\
+        data-placement="top" data-toggle="popover" data-trigger="hover"></i>',
+        videoHelp = '&nbsp;<i class="icon-info-sign" id="video-help" data-content="Здесь можно загрузить видео для страницы полного описания акции"\
         data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
 
+        $('#image_file-label').find("label").append(bigBannerHelp);
         $('#banner_file-label').find("label").append(smallBannerHelp);
         $('#video-label').find("label").append(videoHelp);
-        $("#small-banner-help").add("#video-help").popover();
+        $("#big-banner-help").add("#small-banner-help").add("#video-help").popover();
 
         mediaTabLoaded = true; 
     }

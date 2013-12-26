@@ -1,4 +1,5 @@
 $(function () {
+    // move scripts for action page somewhere
 
     var fullDescription      = $("#full-description"),
         fullDescriptionModal = $('#full-description-modal'),
