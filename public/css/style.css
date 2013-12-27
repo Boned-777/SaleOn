@@ -11,14 +11,14 @@ body {
 	height: auto !important;
 	height: 100%;
 	/* Negative indent footer by it's height */
-	margin: 0 auto -46px;
+	margin: 0 auto -36px;
 	overflow: hidden;
 }
 
       /* Set the fixed height of the footer here */
 #push,
 #footer {
-	height: 45px;
+	height: 35px;
 }
 .footer {
 	background: rgb(79,79,79); /* Old browsers */
@@ -34,6 +34,7 @@ body {
 }
 
 .socials {
+	display: none;
 	background: url("/img/social.png") right center no-repeat;
 	position: absolute;
 	top: 7px;
@@ -60,7 +61,7 @@ body {
 }
 
 .container .credit {
-	margin: 15px 0 0 0;
+	margin: 8px 0 0 0;
 }
 
 .topbg {
@@ -364,7 +365,7 @@ body {
 
 @media (max-width: 1199px)  {
 	.carousel-inner {
-    	height: 435px;
+    	height: 405px;
 	}
 	.item.hover-left .items-wrapper,
 	.item.hover-right .items-wrapper {
@@ -404,13 +405,13 @@ body {
     	font-size: 15px;
     	font-weight: bold;
     	line-height: 20px;
-    	margin: 5px 0 15px 0;
+    	margin: 5px 0 5px 0;
 	}
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
 	.carousel-inner {
-    	height: 530px;
+    	height: 470px;
 	}
 	.item.hover-left .items-wrapper,
 	.item.hover-right .items-wrapper {
@@ -457,7 +458,7 @@ body {
     	font-size: 15px;
     	font-weight: bold;
     	line-height: 20px;
-    	margin: 15px 0;
+    	margin: 5px 0 10px 0;
 	}
 }
 
