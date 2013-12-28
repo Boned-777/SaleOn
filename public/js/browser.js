@@ -9,9 +9,5 @@
     if((tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
     navigator.sayswho = M.join(' ');
 
-
-    if (navigator.sayswho == "MSIE 8.0") {
-    	$("body").addClass("ie-slider");
-    }
 })();
 

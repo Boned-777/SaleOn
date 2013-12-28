@@ -6,29 +6,28 @@
 			EMPTY_STRING = "";
 		
 		var wawSlyder = function(sliderData) {
-			this.mainTemplate = '<div class="text-center lead no-data">$noData</div>\
-									<div id="myCarousel" class="carousel slide">\
-										<div class="carousel-inner">\
-											<div class="hover-left hide-left item">\
-												<div class="items-wrapper"></div>\
-											</div>\
-											<div class="hover-left visible item">\
-												<div class="items-wrapper"></div>\
-											</div>\
-											<div class="item active">\
-												<div class="items-wrapper"></div>\
-											</div>\
-											<div class="hover-right visible item">\
-												<div class="items-wrapper"></div>\
-											</div>\
-											<div class="hover-right hide-right item">\
-												<div class="items-wrapper"></div>\
-											</div>\
+			this.mainTemplate = '<div id="myCarousel" class="carousel slide">\
+									<div class="carousel-inner">\
+										<div class="hover-left hide-left item">\
+											<div class="items-wrapper"></div>\
 										</div>\
-										<div id="left-paging" class="mycarousel-control left" href="#myCarousel" data-slide="prev"></div>\
-										<div id="right-paging" class="mycarousel-control right" href="#myCarousel" data-slide="next"></div>\
-										<div class="text-center lead page-number">$pageNumber <span id="page-number"></span></div>\
-									</div>';
+										<div class="hover-left visible item">\
+											<div class="items-wrapper"></div>\
+										</div>\
+										<div class="item active">\
+											<div class="items-wrapper"></div>\
+										</div>\
+										<div class="hover-right visible item">\
+											<div class="items-wrapper"></div>\
+										</div>\
+										<div class="hover-right hide-right item">\
+											<div class="items-wrapper"></div>\
+										</div>\
+									</div>\
+									<div id="left-paging" class="mycarousel-control left" href="#myCarousel" data-slide="prev"></div>\
+									<div id="right-paging" class="mycarousel-control right" href="#myCarousel" data-slide="next"></div>\
+									<div class="text-center lead page-number">- <span id="page-number"></span> -</div>\
+								</div>';
 			
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
 			this.itemTemplate = '<div class="span3 bottom-offset">\
@@ -42,6 +41,12 @@
 										</div>\
 									</div>\
 								</div>';	
+
+			this.noImgTemplate = '<div class="span3 bottom-offset">\
+									<div class="img-wrapper">\
+										<img  src="/img/no-image.jpg" class="img-polaroid">\
+									</div>\
+								</div>';									
 			this.init(sliderData);	 
 		};
 		
@@ -64,7 +69,7 @@
 				mainPageSlider && mainPageSlider.empty();
 				var template = this.mainTemplate
 					.replace("$noData", 	window.messages.noData)
-					.replace("$pageNumber", window.messages.pageNumber);
+					//.replace("$pageNumber", window.messages.pageNumber);
 				mainPageSlider.html(template);
 			},
 
@@ -129,7 +134,7 @@
 											
 				this.buildPage(this.dom.activeWrapper, this.getIndexes(1));
 				
-				this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(2));
+				this.isTwoPages() || this.isCycleAvailable() && this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(2));
 				this.isCycleAvailable() && this.buildPage(this.dom.rightHiddenWrapper, this.getIndexes(3));
 			},
 
@@ -156,6 +161,8 @@
 								.replace("$brand", 			data.list[i].brand_name)
 								.replace("$daysLeft", 		data.list[i].days)
 								.replace("$daysMsgText", 	data.options.days_left_text); 
+						} else {
+							result += this.noImgTemplate;
 						}
 					if (j==3) {
 						j = 0;
@@ -265,23 +272,39 @@
 			slider = new wawSlyder(duplicateResponce(originalData, 9));	
 		});
 
+		var isBrowserCompatible = function () {
+		    if (navigator.sayswho == "MSIE 8.0") {
+		    	$("body").addClass("ie-slider");
+		    }	
+		    if (navigator.sayswho == "MSIE 7.0") {
+		    	$(".no-data").html(window.messages.notSupported).show();
+				$("#myCarousel").hide();
+				return false;
+		    }	
+		    return true;
+		}
+
+
 		/**
 		** run waw slider
 		*/
 		
-		setCookies();
-		$(".lock-loading").show();
-		$.ajax({
-			url: "/ad/list",
-	        dataType: "json",
-			cache: false
-		}).done(function( data ) {
-			originalData = data;
-			slider = new wawSlyder(data);
-			$(".lock-loading").hide();
-		}).fail(function( data ) {
-			$(".no-data").show();
-			$("#myCarousel").hide();
-			$(".lock-loading").hide();
-		});
+		if (isBrowserCompatible()){
+			setCookies();
+			$(".lock-loading").show();
+			$.ajax({
+				url: "/ad/list",
+		        dataType: "json",
+				cache: false
+			}).done(function( data ) {
+				originalData = data;
+				slider = new wawSlyder(data);
+				$(".lock-loading").hide();
+			}).fail(function( data ) {
+				$(".no-data").show();
+				$("#myCarousel").hide();
+				$(".lock-loading").hide();
+			});			
+		}
+
 	})
