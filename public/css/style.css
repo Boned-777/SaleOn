@@ -160,16 +160,12 @@ body {
 		padding: 5px 20px;
 	}
 }
-/*@media (max-width: 979px)  {
-	.btn-large {
-		margin-right: 3px;
-		padding: 5px 17px;
-	}
-}*/
 
 /*Carousel, images, slyder */
-#main-page-slider {
-	margin-top: 60px;
+@media (min-height: 801px) {
+		#main-page-slider {
+    		margin-top: 60px;
+		}
 }
 
 .carousel {
