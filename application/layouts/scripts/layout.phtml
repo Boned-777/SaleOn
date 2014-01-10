@@ -22,74 +22,72 @@
     
 </head>
 <body>
-<div class="topbg"></div>
+    <div class="topbg"></div>
 
-<div id="wrap">
-    <div class="container">
-            <div class="row">
-                <div class="top-menu">
-                <div class="span4">
-                    <button id="btn1" title="Регионы" class="btn btn-large" type="button"><i class="myicon-region"></i></button>
-                    <button id="btn2" title="Категории" class="btn btn-large" type="button"><i class="myicon-category"></i></button>
-                    <button id="btn3" title="Бренды" class="btn btn-large" type="button"><i class="myicon-brands"></i></button>
-                </div>
-                <div class="span3 jumbotron">
-                    <a href="/"><div class="logo"></div></a>
-                </div>
-                <div class="span4">
-                    <a href="#" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
-                    <?php
-                        $auth = Zend_Auth::getInstance();
-                        if ($auth->hasIdentity()) { ?>
-                            <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
-                                <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
-                                <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+    <div id="wrap">
+        <div class="container fix-content-position">
+                <div class="row">
+                    <div class="top-menu">
+                    <div class="span4">
+                        <button id="btn1" title="Регионы" class="btn btn-large" type="button"><i class="myicon-region"></i></button>
+                        <button id="btn2" title="Категории" class="btn btn-large" type="button"><i class="myicon-category"></i></button>
+                        <button id="btn3" title="Бренды" class="btn btn-large" type="button"><i class="myicon-brands"></i></button>
+                    </div>
+                    <div class="span3 jumbotron">
+                        <a href="/"><div class="logo"></div></a>
+                    </div>
+                    <div class="span4">
+                        <a href="#" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
+                        <?php
+                            $auth = Zend_Auth::getInstance();
+                            if ($auth->hasIdentity()) { ?>
+                                <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
+                                    <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+                                    <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                                <?php } else { ?>
+                                    <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
+                                    <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                                <?php } ?>
                             <?php } else { ?>
-                                <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
-                                <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
-                            <?php } ?>
-                        <?php } else { ?>
-                            <a href="/user/new" id="btn4" title="Пользователь" class="btn btn-large" type="button"><i class="myicon-user"></i></a>
-                            <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
-                        <?php }
-                    ?>
+                                <a href="/user/new" id="btn4" title="Пользователь" class="btn btn-large" type="button"><i class="myicon-user"></i></a>
+                                <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+                            <?php }
+                        ?>
+                    </div>
+                    </div>
                 </div>
-                </div>
+            <?php echo $this->navigationBar($this->link); ?>
+            <?php echo $this->adminNavigationBar(); ?>
+            <div class="layout-content">
+                <?php echo $this->layout()->content; ?>
             </div>
-        <?php echo $this->navigationBar($this->link); ?>
-        <?php echo $this->adminNavigationBar(); ?>
-        <div class="layout-content">
-            <?php echo $this->layout()->content; ?>
+        </div>
+        <div id="push"></div>
+    </div>
+
+    <div id="success-modal-block" class="footer-message alert-success hide">
+        <p class="block-label text-center"><?php echo $this->successMessage; ?></p>
+    </div>
+
+    <div id="error-modal-block" class="footer-message alert-error hide">
+        <p class="block-label text-center"><?php echo $this->errorMessage; ?></p>
+    </div>
+
+    <div id="footer" class="footer footer-gradient">
+        <div class="container">
+            <p class="credit">ВАУ - Все акции Украины, 2013 </p>
+            <div id="footer-social" class="socials"></div>
         </div>
     </div>
-    <div id="push"></div>
-</div>
 
-<div id="success-modal-block" class="footer-message alert-success hide">
-    <p class="block-label text-center"><?php echo $this->successMessage; ?></p>
-</div>
-
-<div id="error-modal-block" class="footer-message alert-error hide">
-    <p class="block-label text-center"><?php echo $this->errorMessage; ?></p>
-</div>
-
-<div id="footer" class="footer footer-gradient">
-    <div class="container">
-        <p class="credit">ВАУ - Все акции Украины, 2013 </p>
-        <div id="footer-social" class="socials"></div>
-    </div>
-</div>
-
-
-
-<script src="/js/bootstrap-modal.js"></script>
-<script src="/js/bootstrap-dropdown.js"></script>
-<script src="/js/bootstrap-tab.js"></script>
-<script src="/js/bootstrap-tooltip.js"></script>
-<script src="/js/bootstrap-button.js"></script>
-<script src="/js/bootstrap-popover.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
-<script src="/js/common.js"></script>
+    <script src="/js/bootstrap-modal.js"></script>
+    <script src="/js/bootstrap-dropdown.js"></script>
+    <script src="/js/bootstrap-tab.js"></script>
+    <script src="/js/bootstrap-tooltip.js"></script>
+    <script src="/js/bootstrap-button.js"></script>
+    <script src="/js/bootstrap-popover.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/common.js"></script>
 
 </body>
 </html>
