@@ -230,6 +230,7 @@ body {
 	top: 55px;
 	position: absolute;
 	width: 100%;
+	z-index: 1000;
 	-webkit-transition: 0.5s ease-in-out left, 0.5s linear top;
 	   -moz-transition: 0.5s ease-in-out left, 0.5s linear top;
 		 -o-transition: 0.5s ease-in-out left, 0.5s linear top;
@@ -288,6 +289,32 @@ body {
 	-webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+}
+.no-image {
+	background: url("/img/no-image.jpg") center center no-repeat;
+	bottom: 5px;
+    left: 5px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.item.hover-left .no-image, .item.hover-right .no-image {
+    width: 180px;
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+	.item.hover-left .no-image, .item.hover-right .no-image {
+    	width: 150px;
+	}
+}
+@media (max-width: 1199px) {
+	.item.hover-left .no-image, .item.hover-right .no-image {
+	    width: 130px;
+	}
+}
+
+.no-image:hover {
+	background: url("/img/no-image-hover.jpg") center center no-repeat;
 }
 
 .active .img-wrapper:hover .img-info {
@@ -361,6 +388,9 @@ body {
     margin: 10px 0;
 	font-size: 18px;
 }
+.page-number span {
+	margin-left: -25px;
+}
 
 @media (max-width: 1199px)  {
 
@@ -427,6 +457,10 @@ body {
     	font-weight: bold;
     	line-height: 20px;
     	margin: 5px 0 5px 0;
+	}
+
+	.page-number span {
+		margin-left: -5px;
 	}
 }
 
@@ -503,9 +537,15 @@ body {
     	line-height: 20px;
     	margin: 2px 0 10px 0;
 	}
+	.page-number span {
+		margin-left: -45px;
+	}
 }
 
 /*fix ie 8*/
+.ie-slider .top-menu {
+	margin: 35px 0 15px 1px;
+}
 .ie-slider #main-page-slider {
 	margin-top: 0px;
 }
@@ -545,6 +585,10 @@ body {
 .ie-slider .item.hover-right img {
 	width: 160px;
 }
+.ie-slider .item.hover-left .no-image, 
+.ie-slider .item.hover-right .no-image {
+   	width: 150px;
+}
 .ie-slider .carousel-inner > .prev.right img,
 .ie-slider .carousel-inner > .next.left img {
 	width: 200px;
@@ -576,6 +620,11 @@ body {
 	line-height: 20px;
 	margin: 15px 0;
 }
+.ie-slider .page-number span {
+	margin-left: -80px;
+}
+
+
 
 
 
@@ -716,19 +765,22 @@ textarea {
 /*Top menu*/
 .top-menu {
 	height: 50px;
-    margin: 35px auto 15px;
+    margin: 35px 0 15px 138px;
     width: 970px;
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+	.top-menu {
+		margin: 35px 0 15px 126px;
+	}
 }
 @media (max-width: 1199px) {
 	.top-menu {
+		margin: 35px 0 15px 121px;
 		width: 770px;
 	}
 }
-/*@media (max-width: 979px) {
-	.top-menu {
-		width: 630px;
-	}
-}*/
+
 /*Success and Error msg*/
 .footer-message  {
   position : fixed;

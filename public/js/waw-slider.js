@@ -26,7 +26,7 @@
 									</div>\
 									<div id="left-paging" class="mycarousel-control left" href="#myCarousel" data-slide="prev"></div>\
 									<div id="right-paging" class="mycarousel-control right" href="#myCarousel" data-slide="next"></div>\
-									<div class="text-center lead page-number">- <span id="page-number"></span> -</div>\
+									<div class="text-center lead page-number"><span id="page-number"></span></div>\
 								</div>';
 			
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
@@ -44,7 +44,9 @@
 
 			this.noImgTemplate = '<div class="span3 bottom-offset">\
 									<div class="img-wrapper">\
-										<img  src="/img/no-image.jpg" class="img-polaroid">\
+										<img src="/img/no-image.jpg" class="img-polaroid">\
+										<div class="no-image">\
+										</div>\
 									</div>\
 								</div>';									
 			this.init(sliderData);	 
@@ -91,12 +93,17 @@
 			bindEvents : function () {
 				var	that = this;
 				this.dom.itemWrapper.on("click", function(e){
-					var wrapperContainer = $(e.currentTarget).parent()
+					
+					var wrapperContainer = $(e.currentTarget).parent();
 					if (wrapperContainer.hasClass("hover-right")){
 						that.showNextPage();	
 					}
 					if (wrapperContainer.hasClass("hover-left")){
 						that.showPreviousPage();	
+					}
+					if ($(e.target).closest(".img-info").get(0)) {
+						var link = $(e.target).parent().find(".post-link").attr("href");
+						window.location.href = link;
 					}
 					$(e.target).parent().hasClass("post-link") || e.preventDefault();
 				})
@@ -288,7 +295,6 @@
 		/**
 		** run waw slider
 		*/
-		
 		if (isBrowserCompatible()){
 			setCookies();
 			$(".lock-loading").show();
