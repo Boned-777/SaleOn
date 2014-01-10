@@ -623,6 +623,9 @@ body {
 .ie-slider .page-number span {
 	margin-left: -80px;
 }
+.ie-slider .top-menu .span4 {
+	width: 360px;
+}
 
 
 
@@ -814,8 +817,3 @@ textarea {
     width: 790px;
 }
 
-
-/*IE fix. find for 8*/
-.top-menu .span4 {
-	width: 360px\9;
-}
