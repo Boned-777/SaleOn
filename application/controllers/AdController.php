@@ -218,10 +218,17 @@ class AdController extends Zend_Controller_Action
         if ($ad->get($vars["id"])){
             eval("\$ad->status = Application_Model_DbTable_Ad::STATUS_" . $vars["status"] . ";");
             $ad->save();
-            $this->_helper->json(array("success" => true));
-        } else {
-            $this->_helper->json(array("success" => false));
-        };
+        }
+        switch ($vars["status"]) {
+            case Application_Model_DbTable_Ad::STATUS_ACTIVE :
+                $dest = "ready";
+                break;
+
+            case Application_Model_DbTable_Ad::STATUS_ARCHIVE :
+                $dest = "active";
+                break;
+        }
+        $this->_helper->redirector($dest, 'admin');
     }
 
     public function editAction()

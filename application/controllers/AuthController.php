@@ -70,6 +70,8 @@ class AuthController extends Zend_Controller_Action
                 if ($user) {
                     if ($user->role == "PARTNER")
                         $this->_helper->redirector('profile', 'partner');
+                    elseif ($user->role == "ADMIN")
+                        $this->_helper->redirector('admin', 'index');
                     else
                         $this->_helper->redirector('index', 'index');
                 } else {
