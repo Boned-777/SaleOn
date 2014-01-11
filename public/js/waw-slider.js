@@ -93,7 +93,6 @@
 			bindEvents : function () {
 				var	that = this;
 				this.dom.itemWrapper.on("click", function(e){
-					
 					var wrapperContainer = $(e.currentTarget).parent();
 					if (wrapperContainer.hasClass("hover-right")){
 						that.showNextPage();	
@@ -101,11 +100,12 @@
 					if (wrapperContainer.hasClass("hover-left")){
 						that.showPreviousPage();	
 					}
-					if ($(e.target).closest(".img-info").get(0)) {
-						var link = $(e.target).parent().find(".post-link").attr("href");
+					var target = $(e.target);
+					if (target.closest(".img-info").get(0)) {
+						var link = target.parent().find(".post-link").attr("href");
 						window.location.href = link;
 					}
-					$(e.target).parent().hasClass("post-link") || e.preventDefault();
+					target.parent().hasClass("post-link") || e.preventDefault();
 				})
 
 				$(document).on("keyup", function (e) {
@@ -280,6 +280,9 @@
 		});
 
 		var isBrowserCompatible = function () {
+			if (navigator.sayswho.search("Firefox") != -1) {
+		    	$("body").addClass("firefox-slider");
+		    }
 		    if (navigator.sayswho == "MSIE 8.0") {
 		    	$("body").addClass("ie-slider");
 		    }	

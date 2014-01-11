@@ -175,6 +175,11 @@ body {
 	margin-right: 20px;
 	padding: 5px 30px;
 }
+.btn:focus,
+.logo:focus {
+	outline: 1px auto #BDBDBD;
+}
+
 
 @media (max-width: 1199px) {
 	.btn-large {
@@ -649,6 +654,66 @@ body {
 	width: 360px;
 }
 /*fix IE 8 end*/
+
+
+/*fix firefox start*/
+.firefox-slider .item.hover-left, 
+.firefox-slider .item.hover-right {
+	top: 1px;
+}
+.firefox-slider .item.hover-left {
+    left: -105%;
+}
+.firefox-slider .item.hover-right {
+    left: 105%;
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+	.firefox-slider .item.hover-left {
+    	left: -93%;
+	}
+	.firefox-slider .item.hover-right {
+    	left: 94%;
+	}
+	.firefox-slider .item.hover-left .no-image, 
+	.firefox-slider .item.hover-right .no-image {
+    	width: 200px;
+	}
+}
+@media (max-width: 1199px) {
+	.firefox-slider .item.hover-left {
+    	left: -96%;
+	}
+	.firefox-slider .item.hover-right {
+    	left: 99%;
+	}
+	.firefox-slider .item.hover-left .no-image, 
+	.firefox-slider .item.hover-right .no-image {
+    	width: 180px;
+	}
+}
+
+.firefox-slider .item.hover-left.hide-left {
+    left: -150%;
+}
+.firefox-slider .item.hover-right.hide-right {
+    left: 150%;
+}
+
+.firefox-slider .item.hover-left .items-wrapper,
+.firefox-slider .item.hover-right .items-wrapper {
+    margin: 0;
+    width: inherit;
+}
+.firefox-slider .item.hover-left img, 
+.firefox-slider .item.hover-right img {
+    width: inherit;
+}
+.firefox-slider .item.hover-left .no-image, 
+.firefox-slider .item.hover-right .no-image {
+    width: 240px;
+}
+/*fix firefox end*/
 
 .no-data {
 	margin-top: 100px;
