@@ -399,23 +399,32 @@ body {
 .post-link:hover p{
 	text-decoration: underline;
 }
+
 .favorites-icon {
 	display: block;
-    background: url("/img/favorite-icon.png") no-repeat scroll center center transparent;
-    height: 22px;
-    position: absolute;
+	position: absolute;
+	height: 22px;
+    width: 22px;
     right: 10px;
     top: 10px;
-    width: 22px;
 	cursor: pointer;
 }
-.favorites-icon:hover {
-    background: url("/img/favorite-icon-hover.png") no-repeat scroll center center transparent;
-    height: 22px;
-    right: 10px;
-    top: 10px;
-    width: 22px;
+
+.favorites-icon-on {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -67px center transparent;
 }
+.favorites-icon-on:hover {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -45px center transparent;
+}
+
+.favorites-icon-off {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -23px center transparent;
+}
+.favorites-icon-off:hover {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -1px center transparent;
+}
+
+
 .page-number {
     color: #888;
     display: none;
