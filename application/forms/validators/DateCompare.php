@@ -15,7 +15,7 @@ class Custom_Form_Validator_DateCompare extends Zend_Validate_Abstract
      * Error codes
      * @const string
      */
-    const NOT_SAME      = 'notSame';
+    const NOT_ACTUAL    = 'notActual';
     const MISSING_TOKEN = 'missingToken';
     const NOT_LATER     = 'notLater';
     const NOT_EARLIER   = 'notEarlier';
@@ -26,11 +26,8 @@ class Custom_Form_Validator_DateCompare extends Zend_Validate_Abstract
      * @var array
      */
     protected $_messageTemplates = array(
-        self::NOT_SAME       => "The date '%value%' does not match the required",
-        self::NOT_BETWEEN    => "The date is not in the valid range",
+        self::NOT_ACTUAL     => "The date '%value%' does not actual",
         self::NOT_LATER      => "The date '%value%' is not later than the required",
-        self::NOT_EARLIER    => "The date '%value%' is not earlier than required",
-        self::MISSING_TOKEN  => 'No date was provided to match against',
     );
 
     /**
@@ -127,9 +124,15 @@ class Custom_Form_Validator_DateCompare extends Zend_Validate_Abstract
             $this->_error(self::MISSING_TOKEN);
             return false;
         }
+        try {
+            $date1 = new Zend_Date($value);
+            $date2 = new Zend_Date($context[$token]);
+        } catch (Exception $e) {
+            $this->_error(self::NOT_LATER);
+            return false;
+        }
 
-        $date1 = new Zend_Date($value);
-        $date2 = new Zend_Date($context[$token]);
+
 
         // Not Later
         if ($this->getCompare()) {
@@ -142,6 +145,12 @@ class Custom_Form_Validator_DateCompare extends Zend_Validate_Abstract
                 $this->_error(self::NOT_EARLIER);
                 return false;
             }
+        }
+
+        $today = new Zend_Date();
+        if ($date1->compare($today) < 0) {
+            $this->_error(self::NOT_ACTUAL);
+            return false;
         }
 
         // Date is valid
