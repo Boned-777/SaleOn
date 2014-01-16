@@ -39,6 +39,9 @@ class Application_Form_AdDates extends Zend_Form
             'required' => true,
         ));
 
+        $start_dt = $this->getElement("start_dt");
+        $start_dt->addValidator(new Custom_Form_Validator_DateCompare("public_dt", false));
+
         $this->addElement('text', 'end_dt', array(
             'class' => "input-block-level-date",
             'label' => $translate->getAdapter()->translate("end_date") . ' *',
@@ -47,6 +50,10 @@ class Application_Form_AdDates extends Zend_Form
             ),
             'required' => true,
         ));
+
+        $end_dt = $this->getElement("end_dt");
+        $end_dt->addValidator(new Custom_Form_Validator_DateCompare("start_dt", true));
+        $end_dt->addValidator(new Custom_Form_Validator_DateCompare("public_dt", true));
 
         $this->addElement('submit', 'login', array(
             //'class' => 'btn btn-large btn-primary',
