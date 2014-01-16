@@ -1,0 +1,23 @@
+<?php global $translate; ?>
+
+<div id="main-page-slider" class="row-fluid">
+</div>
+
+<div class="text-center lead no-data"></div>
+<div class="lock-loading"></div>
+
+<script type="text/javascript">
+	window.messages = {};
+    <?php 
+    	echo "window.messages.noData = \"" . $translate->getAdapter()->translate("no_data_available") . "\";";
+    	//echo "window.messages.pageNumber = \"" . $translate->getAdapter()->translate("page_number") . "\";"; 
+		echo "window.messages.notSupported = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
+    	
+    ?>
+</script>
+
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/browser.js"></script>
+<script src="/js/bootstrap-transition.js"></script>
+<script src="/js/bootstrap-carousel.js"></script>
+<script src="/js/waw-slider.js"></script>
