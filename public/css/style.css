@@ -341,7 +341,7 @@ body {
 }
 
 .no-image:hover {
-	background: url("/img/no-image-hover.jpg") center center no-repeat;
+	background: url("/img/no-image-hover-2.jpg") center center no-repeat;
 }
 
 .active .img-wrapper:hover .img-info {
@@ -401,13 +401,20 @@ body {
 }
 .favorites-icon {
 	display: block;
-    background: url("/img/favorite-icon.png") no-repeat scroll right center transparent;
-    height: 16px;
+    background: url("/img/favorite-icon.png") no-repeat scroll center center transparent;
+    height: 22px;
     position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 16px;
+    right: 10px;
+    top: 10px;
+    width: 22px;
 	cursor: pointer;
+}
+.favorites-icon:hover {
+    background: url("/img/favorite-icon-hover.png") no-repeat scroll center center transparent;
+    height: 22px;
+    right: 10px;
+    top: 10px;
+    width: 22px;
 }
 .page-number {
     color: #888;
@@ -668,6 +675,27 @@ body {
     left: 105%;
 }
 
+.firefox-slider .item.hover-left.hide-left {
+    left: -150%;
+}
+.firefox-slider .item.hover-right.hide-right {
+    left: 150%;
+}
+
+.firefox-slider .item.hover-left .items-wrapper,
+.firefox-slider .item.hover-right .items-wrapper {
+    margin: 0;
+    width: inherit;
+}
+.firefox-slider .item.hover-left img, 
+.firefox-slider .item.hover-right img {
+    width: inherit;
+}
+.firefox-slider .item.hover-left .no-image, 
+.firefox-slider .item.hover-right .no-image {
+    width: 240px;
+}
+
 @media (min-width: 1200px) and (max-width: 1500px) {
 	.firefox-slider .item.hover-left {
     	left: -93%;
@@ -693,26 +721,6 @@ body {
 	}
 }
 
-.firefox-slider .item.hover-left.hide-left {
-    left: -150%;
-}
-.firefox-slider .item.hover-right.hide-right {
-    left: 150%;
-}
-
-.firefox-slider .item.hover-left .items-wrapper,
-.firefox-slider .item.hover-right .items-wrapper {
-    margin: 0;
-    width: inherit;
-}
-.firefox-slider .item.hover-left img, 
-.firefox-slider .item.hover-right img {
-    width: inherit;
-}
-.firefox-slider .item.hover-left .no-image, 
-.firefox-slider .item.hover-right .no-image {
-    width: 240px;
-}
 /*fix firefox end*/
 
 .no-data {

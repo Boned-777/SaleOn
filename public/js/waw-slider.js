@@ -34,7 +34,7 @@
 									<div class="img-wrapper">\
 										<img  src="/ads/$imageLink" class="img-polaroid">\
 										<div class="img-info">\
-											<a href="$favoriteLink" class="favorites-icon"></a>\
+											<a href="$favoriteLink" title="Добавить в избранное" class="favorites-icon"></a>\
 											<a href="/ad/index/id/$link" class="post-link"><p class="ellipsis">$name</p></a>\
 											<p class="ellipsis">$brand</p>\
 											<p class="ellipsis">$daysMsgText: $daysLeft</p>\
