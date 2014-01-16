@@ -175,6 +175,29 @@ class Application_Model_Ad
         }
     }
 
+    public function getFavorites($favorites_ads) {
+        if (!empty($favorites_ads)) {
+            $item = new Application_Model_DbTable_Ad();
+            $stmt = $item->select()
+                ->where("end_dt > NOW() AND status = ? AND id IN (" . $favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+            $data = $item->fetchAll($stmt);
+            if ($data !== false) {
+                $res = array();
+                $data = $data->toArray();
+                foreach ($data AS $val) {
+                    $tmp = new Application_Model_Ad();
+                    $tmp->load($val);
+                    $res[] = $tmp;
+                }
+                return $res;
+            } else {
+                return false;
+            }
+        } else {
+            return array();
+        }
+    }
+
     public function setStatus($value) {
         $this->status = $value;
         return $this->save();

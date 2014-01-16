@@ -10,9 +10,18 @@ class TestController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $auth = Zend_Auth::getInstance();
-        $user = $auth->getIdentity();
-        Zend_Debug::dump($user); die();
+        $a = new Application_Model_LiqPay();
+//        $src = "/var/www/waw/public/ads/1.jpg";
+//
+//        $target_width = 240;
+//        $target_height = 153;
+//        $image = new Application_Model_Image();
+//        $image->load($src);
+//        $image->smartResize($target_width, $target_height);
+//        $image->save("/var/www/waw/public/ads/2.jpg");
+
+        die();
+
 	}
 
     public function authAction() {
