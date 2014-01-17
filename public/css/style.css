@@ -367,7 +367,7 @@ body {
 	bottom: 5px;
 	left: 5px;
 	right: 5px;
-	padding: 15px 10px 5px 15px;
+	padding: 10px 20px 5px 10px;
 	color: #fff;
 	background: none repeat scroll 0 0 transparent;
 	background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAAaSURBVBhXY2RgYGgAYgwAEkTHGAJgncSpBADIYQqCpd00mAAAAABJRU5ErkJggg==");
@@ -399,23 +399,32 @@ body {
 .post-link:hover p{
 	text-decoration: underline;
 }
+
 .favorites-icon {
 	display: block;
-    background: url("/img/favorite-icon.png") no-repeat scroll center center transparent;
-    height: 22px;
-    position: absolute;
+	position: absolute;
+	height: 22px;
+    width: 22px;
     right: 10px;
     top: 10px;
-    width: 22px;
 	cursor: pointer;
 }
-.favorites-icon:hover {
-    background: url("/img/favorite-icon-hover.png") no-repeat scroll center center transparent;
-    height: 22px;
-    right: 10px;
-    top: 10px;
-    width: 22px;
+
+.favorites-icon-on {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -67px center transparent;
 }
+.favorites-icon-on:hover {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -45px center transparent;
+}
+
+.favorites-icon-off {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -23px center transparent;
+}
+.favorites-icon-off:hover {
+    background: url("/img/favorites-sprite.png") no-repeat scroll -1px center transparent;
+}
+
+
 .page-number {
     color: #888;
     display: none;

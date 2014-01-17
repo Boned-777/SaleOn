@@ -34,7 +34,7 @@
 									<div class="img-wrapper">\
 										<img  src="/ads/$imageLink" class="img-polaroid">\
 										<div class="img-info">\
-											<a href="$favoriteLink" title="Добавить в избранное" class="favorites-icon"></a>\
+											<a href="$favoriteLink" title="$favoritesTooltip" class="favorites-icon $isFavorite"></a>\
 											<a href="/ad/index/id/$link" class="post-link"><p class="ellipsis">$name</p></a>\
 											<p class="ellipsis">$brand</p>\
 											<p class="ellipsis">$daysMsgText: $daysLeft</p>\
@@ -70,8 +70,7 @@
 				var mainPageSlider = $("#main-page-slider");
 				mainPageSlider && mainPageSlider.empty();
 				var template = this.mainTemplate
-					.replace("$noData", 	window.messages.noData)
-					//.replace("$pageNumber", window.messages.pageNumber);
+					.replace("$noData", 	window.messages.noData);
 				mainPageSlider.html(template);
 			},
 
@@ -93,19 +92,26 @@
 			bindEvents : function () {
 				var	that = this;
 				this.dom.itemWrapper.on("click", function(e){
-					var wrapperContainer = $(e.currentTarget).parent();
-					if (wrapperContainer.hasClass("hover-right")){
+					var wrapperContainer = $(e.currentTarget).parent(),
+						target = $(e.target);
+
+					if (that.isRightClick(wrapperContainer)){
 						that.showNextPage();	
 					}
-					if (wrapperContainer.hasClass("hover-left")){
+					if (that.isLeftClick(wrapperContainer)){
 						that.showPreviousPage();	
 					}
-					var target = $(e.target);
-					if (target.closest(".img-info").get(0)) {
-						var link = target.parent().find(".post-link").attr("href");
-						window.location.href = link;
+					
+					if (that.isFavoritesClick(target)) {
+						//console.log("add to fav");
+					
+					} else if (that.isPostLinkClick(target)) {
+						if (!target.parent().hasClass("post-link")){
+							e.preventDefault();
+							window.location.href = target.parent().find(".post-link").attr("href");
+						}
 					}
-					target.parent().hasClass("post-link") || e.preventDefault();
+					
 				})
 
 				$(document).on("keyup", function (e) {
@@ -154,7 +160,7 @@
 			
 			buildPage : function (container, indexes){
 				var	j		= 0,
-					data = this.data,
+					data 	= this.data,
 					result 	= EMPTY_STRING;
 					
 				for (var i = indexes.startIndex; i <= indexes.endIndex; i++) {
@@ -164,6 +170,10 @@
 								.replace("$imageLink", 		data.list[i].photoimg)
 								.replace("$link", 			data.list[i].post_id)
 								.replace("$favoriteLink", 	data.list[i].favorites_link)
+
+								.replace("$isFavorite", 		(data.list[i].is_favorite) ? "favorites-icon-on" : "favorites-icon-off")
+								.replace("$favoritesTooltip", 	(data.list[i].is_favorite) ? window.messages.removeFromFavorites : window.messages.addToFavorites)
+
 								.replace("$name", 			data.list[i].name)
 								.replace("$brand", 			data.list[i].brand_name)
 								.replace("$daysLeft", 		data.list[i].days)
@@ -197,6 +207,19 @@
 					this.refreshHiddenElements();
 					this.buildPage(this.dom.leftHiddenWrapper, this.getIndexes(pageToBuild));
 				}
+			},
+
+			isRightClick : function (el) {
+				return el.hasClass("hover-right");
+			},
+			isLeftClick : function (el) {
+				return el.hasClass("hover-left");
+			},
+			isFavoritesClick : function (el) {
+				return el.hasClass("favorites-icon");
+			},
+			isPostLinkClick : function (el) {
+				return el.closest(".img-info").get(0);
 			},
 			
 			getIndexes : function (page) {

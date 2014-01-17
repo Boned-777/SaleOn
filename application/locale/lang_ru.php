@@ -93,6 +93,9 @@ return array(
     "recovery_error_code_not_found" => 'Код ошибочный или уже был использован',
     "password_change_success" => "Пароль успешно изменён",
 
+    "add_to_favorites" => "Добавить в избранное",
+    "remove_from_favorites" => "Удалить из избранного",
+
     "days_left" => "Осталось дней",
     "paid" => "Оплачено",
     "yes" => "Да",
