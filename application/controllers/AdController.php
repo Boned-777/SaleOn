@@ -29,7 +29,7 @@ class AdController extends Zend_Controller_Action
 
         if (isset($vars["id"])) {
             $item->get($vars["id"]);
-            $owner->getByUserId($auth->getIdentity()->id);
+            $owner->getByUserId($item->owner);
             $this->view->ad = $item;
             $this->view->user = $owner;
         } else {

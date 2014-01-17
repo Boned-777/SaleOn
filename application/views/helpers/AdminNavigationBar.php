@@ -9,9 +9,9 @@ class Zend_View_Helper_AdminNavigationBar extends Zend_View_Helper_Abstract
         $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
 
         $URIArr = explode("/", $uri);
-        if (sizeof($URIArr) < 3)
+        if (sizeof($URIArr) < 2)
             return false;
-        $uri = '/' . $URIArr[1] . '/' . $URIArr[2];
+        $uri = '/' . implode("/", $URIArr);
         $menuItems = array(
             "noactive" => array("link" => array("/admin/noactive", "/ad/edit"), "caption" => $translate->getAdapter()->translate("noactive")),
             "ready" => array("link" => array("/admin/ready"), "caption" => $translate->getAdapter()->translate("ready")),
