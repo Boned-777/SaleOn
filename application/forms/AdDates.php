@@ -14,6 +14,22 @@ class Application_Form_AdDates extends Zend_Form
     {
         global $translate;
 
+        //Validators
+        $dateCompareValidatorsMessages = array(
+            Custom_Form_Validator_DateCompare::NOT_ACTUAL => $translate->getAdapter()->translate("date_compare_not_actual"),
+            Custom_Form_Validator_DateCompare::NOT_LATER => $translate->getAdapter()->translate("date_compare_not_later")
+        );
+
+        $publicDTValidatorFalse = new Custom_Form_Validator_DateCompare("public_dt", false);
+        $publicDTValidatorFalse->setMessages($dateCompareValidatorsMessages);
+        $startDTValidatorFalse = new Custom_Form_Validator_DateCompare("start_dt", false);
+        $startDTValidatorFalse->setMessages($dateCompareValidatorsMessages);
+        $publicDTValidatorTrue = new Custom_Form_Validator_DateCompare("public_dt", true);
+        $publicDTValidatorTrue->setMessages($dateCompareValidatorsMessages);
+        $startDTValidatorTrue = new Custom_Form_Validator_DateCompare("start_dt", true);
+        $startDTValidatorTrue->setMessages($dateCompareValidatorsMessages);
+
+        //Elements
         $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));
 
@@ -24,29 +40,30 @@ class Application_Form_AdDates extends Zend_Form
         $this->addElement('text', 'public_dt', array(
             'class' => "input-block-level-date",
             'label' => $translate->getAdapter()->translate("public_date") . ' *',
-            'validators' => array(
-                array('StringLength', false, array(0, 255)),
-            ),
             'required' => true,
         ));
+
+        $public_dt = $this->getElement("public_dt");
+        $public_dt->addValidator($publicDTValidatorFalse);
 
         $this->addElement('text', 'start_dt', array(
             'class' => "input-block-level-date",
             'label' => $translate->getAdapter()->translate("start_date") . ' *',
-            'validators' => array(
-                array('StringLength', false, array(0, 45)),
-            ),
             'required' => true,
         ));
+
+        $start_dt = $this->getElement("start_dt");
+        $start_dt->addValidator($publicDTValidatorFalse);
 
         $this->addElement('text', 'end_dt', array(
             'class' => "input-block-level-date",
             'label' => $translate->getAdapter()->translate("end_date") . ' *',
-            'validators' => array(
-                array('StringLength', false, array(0, 45)),
-            ),
             'required' => true,
         ));
+
+        $end_dt = $this->getElement("end_dt");
+        $end_dt->addValidator($startDTValidatorTrue);
+        $end_dt->addValidator($publicDTValidatorTrue);
 
         $this->addElement('submit', 'login', array(
             //'class' => 'btn btn-large btn-primary',
