@@ -207,7 +207,7 @@
 						if (data.list[i]) {
 							result += this.itemTemplate
 								.replace("$imageLink", 		data.list[i].photoimg)
-								.replace("$link", 			data.list[i].post_id)
+								.replace(/\$link/gi, 		data.list[i].post_id)
 								.replace("$favoriteLink", 	data.list[i].favorites_link)
 
 								.replace("$isFavorite", 		(data.list[i].is_favorite) ? "favorites-icon-on" : "favorites-icon-off")
