@@ -10,6 +10,7 @@
 	window.messages = {};
     <?php 
     	echo "window.messages.noData 		 = \"" . $translate->getAdapter()->translate("no_data_available") . "\";";
+    	echo "window.messages.serverError 	 = \"" . $translate->getAdapter()->translate("server_error") . "\";";
     	echo "window.messages.notSupported 	 = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
     	echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
     	echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
@@ -18,6 +19,7 @@
 
 <script src="/js/jquery.cookie.js"></script>
 <script src="/js/browser.js"></script>
+<script src="/js/underscore-min.js"></script>
 <script src="/js/bootstrap-transition.js"></script>
 <script src="/js/bootstrap-carousel.js"></script>
 <script src="/js/waw-slider.js"></script>

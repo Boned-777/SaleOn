@@ -34,7 +34,7 @@
 									<div class="img-wrapper">\
 										<img  src="/ads/$imageLink" class="img-polaroid">\
 										<div class="img-info">\
-											<a href="$favoriteLink" title="$favoritesTooltip" class="favorites-icon $isFavorite"></a>\
+											<a href="$favoriteLink" title="$favoritesTooltip" data-id=$link class="favorites-icon $isFavorite"></a>\
 											<a href="/ad/index/id/$link" class="post-link"><p class="ellipsis">$name</p></a>\
 											<p class="ellipsis">$brand</p>\
 											<p class="ellipsis">$daysMsgText: $daysLeft</p>\
@@ -69,8 +69,7 @@
 			renderMainTemplate : function () {
 				var mainPageSlider = $("#main-page-slider");
 				mainPageSlider && mainPageSlider.empty();
-				var template = this.mainTemplate
-					.replace("$noData", 	window.messages.noData);
+				var template = this.mainTemplate.replace("$noData", window.messages.noData);
 				mainPageSlider.html(template);
 			},
 
@@ -103,7 +102,8 @@
 					}
 					
 					if (that.isFavoritesClick(target)) {
-						//console.log("add to fav");
+						e.preventDefault();
+						that.processFavoritesClick(target);
 					
 					} else if (that.isPostLinkClick(target)) {
 						if (!target.parent().hasClass("post-link")){
@@ -111,9 +111,7 @@
 							window.location.href = target.parent().find(".post-link").attr("href");
 						}
 					}
-					
 				})
-
 				$(document).on("keyup", function (e) {
 					var keyCode = e.which;
 					if(keyCode == 39) { //right key
@@ -124,6 +122,57 @@
 					}
 				    e.preventDefault(); 
 				})
+			},
+
+			/* Bind handlers */
+			processFavoritesClick : function (target) {
+				var link = target.attr("href");
+				if (link == "/auth") {
+					window.location.href = link;
+				} else {
+					this.isFavoritesOff(target) ? this.addToFavorites(target, link) : this.removeFromFavorites(target, link);	
+				}
+				
+			},
+
+			addToFavorites : function (target, link) {
+				$(".lock-loading").show();
+				$.ajax({
+					url: link,
+			        dataType: "json",
+					cache: false
+				}).done(_.bind(function(data) {
+					data.success && this.onFavoritesUpdated(target);
+					$(".lock-loading").hide();
+				}, this)).fail(function(data) {
+					$("#error-modal-block").show().find("p").html(window.messages.serverError);
+					$(".lock-loading").hide();
+				});		
+			},
+
+			removeFromFavorites : function (link) {
+				//window.location.href = link;
+			},
+
+			onFavoritesUpdated : function (target) {
+				var itemId = target.data("id");
+				_.each(this.data.list, function(item) {
+					if (item.post_id == itemId) {
+						if (this.isFavoritesOff(target)) {
+							item.is_favorite = 1;
+							target.toggleClass("favorites-icon-off favorites-icon-on")
+						} else {
+							item.is_favorite = 0;
+							target.toggleClass("favorites-icon-on favorites-icon-off")
+						}  
+					}
+				}, this);
+			},
+
+			isFavoritesOff : function (target) {
+				var itemId = target.data("id"),
+					itemData = _.findWhere(this.data.list, {post_id: itemId}); 
+				return target.hasClass("favorites-icon-off") && (itemData.is_favorite == 0);
 			},
 
 
@@ -140,6 +189,7 @@
 					postSlideCallback : function() {that.buildPreviousHiddenPage()}
 				});
 			},
+			/* Bind handlers */
 					
 			initStartPages : function () {
 				this.isCycleAvailable() && this.buildPage(this.dom.leftHiddenWrapper, this.getIndexes(this.getPageCount()-1));			
@@ -208,19 +258,6 @@
 					this.buildPage(this.dom.leftHiddenWrapper, this.getIndexes(pageToBuild));
 				}
 			},
-
-			isRightClick : function (el) {
-				return el.hasClass("hover-right");
-			},
-			isLeftClick : function (el) {
-				return el.hasClass("hover-left");
-			},
-			isFavoritesClick : function (el) {
-				return el.hasClass("favorites-icon");
-			},
-			isPostLinkClick : function (el) {
-				return el.closest(".img-info").get(0);
-			},
 			
 			getIndexes : function (page) {
 				return {
@@ -241,6 +278,19 @@
 				if (page == 0) 			{return pageCount}
 				if (page == -1)			{return pageCount - 1}
 				return page;
+			},
+
+			isRightClick : function (el) {
+				return el.hasClass("hover-right");
+			},
+			isLeftClick : function (el) {
+				return el.hasClass("hover-left");
+			},
+			isFavoritesClick : function (el) {
+				return el.hasClass("favorites-icon");
+			},
+			isPostLinkClick : function (el) {
+				return el.closest(".img-info").get(0);
 			},
 			
 			isCycleAvailable : function (page) {
