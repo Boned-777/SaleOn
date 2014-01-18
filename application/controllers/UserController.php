@@ -173,6 +173,8 @@ class UserController extends Zend_Controller_Action
         //Zend_Debug::dump($user); die();
 
         $res = $user->save();
+        $systemUser = $auth->getIdentity();
+        $systemUser->favorites_ads = $user->favorites_ads;
         $this->_helper->json(array("success" => $res));
     }
 
