@@ -27,6 +27,7 @@
 									<div id="left-paging" class="mycarousel-control left" href="#myCarousel" data-slide="prev"></div>\
 									<div id="right-paging" class="mycarousel-control right" href="#myCarousel" data-slide="next"></div>\
 									<div class="text-center lead page-number"><span id="page-number"></span></div>\
+									<div class="lock-gray"></div>\
 								</div>';
 			
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
@@ -103,7 +104,7 @@
 					
 					if (that.isFavoritesClick(target)) {
 						e.preventDefault();
-						that.processFavoritesClick(target);
+						that.favoritesClickHandler(target);
 					
 					} else if (that.isPostLinkClick(target)) {
 						if (!target.parent().hasClass("post-link")){
@@ -125,56 +126,44 @@
 			},
 
 			/* Bind handlers */
-			processFavoritesClick : function (target) {
+			favoritesClickHandler : function (target) {
 				var link = target.attr("href");
-				if (link == "/auth") {
-					window.location.href = link;
-				} else {
-					this.isFavoritesOff(target) ? this.addToFavorites(target, link) : this.removeFromFavorites(target, link);	
-				}
-				
+				(link == "/auth") ? (window.location.href = link) : (this.updateFavorites(target, link));
 			},
 
-			addToFavorites : function (target, link) {
-				$(".lock-loading").show();
+			updateFavorites : function (target, link) {
+				$(".lock-gray").show();
 				$.ajax({
-					url: link,
-			        dataType: "json",
-					cache: false
+					dataType: "json",
+					url		: link,
+					cache	: false
 				}).done(_.bind(function(data) {
-					data.success && this.onFavoritesUpdated(target);
-					$(".lock-loading").hide();
-				}, this)).fail(function(data) {
-					$("#error-modal-block").show().find("p").html(window.messages.serverError);
-					$(".lock-loading").hide();
-				});		
-			},
-
-			removeFromFavorites : function (link) {
-				//window.location.href = link;
+					data.success ? this.onFavoritesUpdated(target) : this.showError();
+					$(".lock-gray").hide();
+				}, this)).fail(_.bind(function(data) {
+					this.showError();
+					$(".lock-gray").hide();
+				}, this));		
 			},
 
 			onFavoritesUpdated : function (target) {
-				var itemId = target.data("id");
 				_.each(this.data.list, function(item) {
-					if (item.post_id == itemId) {
+					if (item.post_id == target.data("id")) {
+
 						if (this.isFavoritesOff(target)) {
 							item.is_favorite = 1;
+							item.favorites_link = item.favorites_link.replace("add", "remove");
+							target.attr("href", item.favorites_link);
 							target.toggleClass("favorites-icon-off favorites-icon-on")
 						} else {
 							item.is_favorite = 0;
+							item.favorites_link = item.favorites_link.replace("remove", "add");
+							target.attr("href", item.favorites_link);
 							target.toggleClass("favorites-icon-on favorites-icon-off")
 						}  
 					}
 				}, this);
 			},
-
-			isFavoritesOff : function (target) {
-				var itemId = target.data("id"),
-					itemData = _.findWhere(this.data.list, {post_id: itemId}); 
-				return target.hasClass("favorites-icon-off") && (itemData.is_favorite == 0);
-			},
-
 
 			showNextPage : function () {
 				var that = this;
@@ -292,7 +281,13 @@
 			isPostLinkClick : function (el) {
 				return el.closest(".img-info").get(0);
 			},
-			
+
+			isFavoritesOff : function (target) {
+				var itemId = target.data("id"),
+					itemData = _.findWhere(this.data.list, {post_id: itemId}); 
+				return target.hasClass("favorites-icon-off") && (itemData.is_favorite == 0);
+			},
+
 			isCycleAvailable : function (page) {
 				var pageCount = this.getPageCount();
 				return (pageCount >= 3);
@@ -312,6 +307,12 @@
 				var pageNumber = $("#page-number");	
 				pageNumber.html(this.currentPage);
 				pageNumber.parent().show();
+			},
+
+			showError : function () {
+				var errorModal = $("#error-modal-block");
+					errorModal.find(".block-label").html(window.messages.serverError);
+					errorModal.fadeIn( "slow" ).delay( 5000 ).fadeOut( "slow" ); 
 			}
 				
 		};
@@ -375,7 +376,7 @@
 			setCookies();
 			$(".lock-loading").show();
 			$.ajax({
-				url: "/ad/list",
+				url: window.favoritesPage ? "/ad/favorites" : "/ad/list",
 		        dataType: "json",
 				cache: false
 			}).done(function( data ) {

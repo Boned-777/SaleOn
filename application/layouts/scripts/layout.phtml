@@ -12,6 +12,7 @@
         ->uiEnable();
     ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/style.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/select2.css')); ?>
@@ -45,7 +46,7 @@
                                     <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
                                     <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
                                 <?php } else { ?>
-                                    <button id="btn5" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></button>
+                                    <a href="/index/favorites" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></a>
                                     <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
                                 <?php } ?>
                             <?php } else { ?>

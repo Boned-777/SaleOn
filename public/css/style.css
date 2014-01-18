@@ -752,6 +752,18 @@ body {
     background: url("/img/loading64.gif") center center no-repeat;
 }
 
+.lock-gray {
+	display: none;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2040;
+    opacity: 0.2;
+    background-color: gray;
+}
+
 .legend {
   display: block;
   width: 100%;
