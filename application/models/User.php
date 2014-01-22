@@ -9,6 +9,7 @@ class Application_Model_User
     public $id;
     public $username;
     public $recovery;
+    public $role;
     public $favorites_ads;
 
     public function load($data) {
@@ -107,6 +108,21 @@ class Application_Model_User
         ));
         if (!$res)
             return false;
+        return true;
+    }
+
+    public function getBySocial($socialId, $socialType) {
+        $dbItem = new Application_Model_DbTable_User();
+        $data = $dbItem->getBySocial($socialId, $socialType);
+        if ($data === false) {
+            $createUserRes = $dbItem->createSocial($socialId, $socialType);
+            if ($createUserRes) {
+                $data = $dbItem->getBySocial($socialId, $socialType);
+            } else {
+                return false;
+            }
+        }
+        $this->load($data);
         return true;
     }
 }

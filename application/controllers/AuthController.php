@@ -47,6 +47,9 @@ class AuthController extends Zend_Controller_Action
         $adapter = new $adapterClass($this->config[$adapterName]);
         $result  = $auth->authenticate($adapter);
         if ($result->isValid()) {
+            $authData = $result->getIdentity();
+            $user = $adapter->getUser($authData["id"], $adapterName);
+            $auth->getStorage()->write($user);
             $this->_helper->redirector('index', 'index');
         } else {
             $this->view->auth = false;

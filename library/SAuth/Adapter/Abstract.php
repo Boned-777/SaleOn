@@ -237,4 +237,15 @@ abstract class SAuth_Adapter_Abstract {
         $identity['authTime'] = time();
         return $identity;
     }
+
+    public function getUser($socialId, $socialType) {
+        $user = new Application_Model_User();
+        $res = $user->getBySocial($socialId, $socialType);
+        if ($res) {
+            return $user;
+        } else {
+            return false;
+        }
+
+    }
 }

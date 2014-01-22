@@ -103,5 +103,39 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         } else
             return false;
     }
+
+    public function getBySocial($val, $socialType)
+    {
+        try {
+            $stmt = $this->select()->where("social_id = '$val' AND social_type = '$socialType'");
+            $res = $this->fetchAll($stmt);
+        } catch (Exception $e) {
+            return false;
+        }
+        if ($res->count()) {
+            $res = $res->getRow(0)->toArray();
+            return $res;
+        } else
+            return false;
+    }
+
+    public function createSocial($socialId, $socialType) {
+        $data = array();
+        $password = $this->_passwordGenerator(6);
+        $data["salt"] = md5($this->_passwordGenerator(6));
+        $data["password"] = sha1($password.$data["salt"]);
+        $data["date_created"] = "NOW()";
+        $data["username"] = $socialId;
+        $data["social_id"] = $socialId;
+        $data["social_type"] = $socialType;
+        $data["role"] = Application_Model_User::USER;
+        $res = $this->save($data);
+
+        if ($res === false) {
+            return false;
+        }
+
+        return $data;
+    }
 }
 
