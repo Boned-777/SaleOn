@@ -48,9 +48,22 @@ class AuthController extends Zend_Controller_Action
         $result  = $auth->authenticate($adapter);
         if ($result->isValid()) {
             $authData = $result->getIdentity();
-            $user = $adapter->getUser($authData["id"], $adapterName);
-            $auth->getStorage()->write($user);
-            $this->_helper->redirector('index', 'index');
+            $socialUserId = null;
+            switch ($adapterName) {
+                case "vkontakte":
+                    $socialUserId = $authData["uid"];
+                    break;
+
+                default:
+                    $socialUserId = $authData["id"];
+            }
+            if (!is_null($socialUserId)) {
+                $user = $adapter->getUser($socialUserId, $adapterName);
+                $auth->getStorage()->write($user);
+                $this->_helper->redirector('index', 'index');
+            } else {
+                $auth->clearIdentity();
+            }
         } else {
             $this->view->auth = false;
             $this->view->errors = $result->getMessages();

@@ -32,12 +32,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'id' => 'https://www.google.com/accounts/o8/id',
             'callbackUrl' => $url . 'by/google',
             'exchangeExtension' => array(
-                'openid.ns.ax' => 'http://openid.net/srv/ax/1.0',
+                'openid.ns.ax' => 'https://accounts.google.com/o/oauth2/auth',
                 'openid.ax.mode' => 'fetch_request',
-                'openid.ax.type.email' => 'http://axschema.org/contact/email',
+                'openid.ax.type.email' => '596664800521@developer.gserviceaccount.com',
                 'openid.ax.required' => 'email',
             ),
         );
+
+//        $sauthConf['google'] = array(
+//            'id' => 'https://www.google.com/accounts/o8/id',
+//            'callbackUrl' => $url . 'by/google',
+//            'exchangeExtension' => array(
+//                'openid.ns.ax' => 'http://openid.net/srv/ax/1.0',
+//                'openid.ax.mode' => 'fetch_request',
+//                'openid.ax.type.email' => 'http://axschema.org/contact/email',
+//                'openid.ax.required' => 'email',
+//            ),
+//        );
 
         $sauthConf['twitter'] = array(
             'consumerKey' => 'zTMUlfNyrW8VuStaR6kgjw',
@@ -46,8 +57,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
 
         $sauthConf['facebook'] = array(
-            'consumerId' => '247425758754919',
-            'consumerSecret' => '64be33d726079d25f6258d0781e0b692',
+            'consumerId' => '570943869640380',
+            'consumerSecret' => 'da1e69c41727f1747bd98a44b5aefa16',
             'callbackUrl' => $url . 'by/facebook',
             'display' => SAuth_Adapter_Facebook::DISPLAY_POPUP,
             'scope' => array(
@@ -56,57 +67,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
 
         $sauthConf['vkontakte'] = array(
-            'consumerId' => '',
-            'consumerSecret' => '',
+            'consumerId' => '4138930',
+            'consumerSecret' => 'vvtR6C0BRP5KnANSloef',
             'callbackUrl' => $url . 'by/vkontakte',
         );
-//
-//        $sauthConf['skyrock'] = array(
-//            'consumerKey' => '',
-//            'consumerSecret' => '',
-//            'callbackUrl' => $siteUrl . $siteDir . '/index/auth/by/skyrock',
-//        );
-//
+
 //        $sauthConf['mailru'] = array(
 //            'consumerId' => '',
 //            'privateKey' => '',
 //            'consumerSecret' => '',
 //            'callbackUrl' => $siteUrl . $siteDir . '/index/auth/by/mailru',
-//        );
-//
-//        $sauthConf['foursquare'] = array(
-//            'consumerSecret' => '',
-//            'consumerId' => '',
-//            'callbackUrl' => $siteUrl . $siteDir . '/index/auth/by/foursquare',
-//        );
-//
-//        $sauthConf['flickr'] = array(
-//            'consumerKey' => '',
-//            'consumerSecret' => '',
-//            'userAuthorizationUrl' => 'http://flickr.com/services/auth/',
-//            'permission' => SAuth_Adapter_Flickr::PERMS_READ,
-//        );
-//
-//        $sauthConf['gowalla'] = array(
-//            'consumerSecret' => '',
-//            'consumerId' => '',
-//            'callbackUrl' => $siteUrl . $siteDir . '/index/auth/by/gowalla',
-//        );
-//
-//        $sauthConf['github'] = array(
-//            'consumerSecret' => '',
-//            'consumerId' => '',
-//            'callbackUrl' => $siteUrl . $siteDir . '/index/auth/by/github',
-//        );
-//
-//        $sauthConf['linkedin'] = array(
-//            'consumerKey' => '',
-//            'consumerSecret' => '',
-//            'callbackUrl' => $siteUrl . $siteDir . '/index/auth/by/linkedin',
-//            'scope' => array(
-//                'r_fullprofile', 'r_emailaddress',
-//            ), // list of the available permissions https://developer.linkedin.com/documents/authentication#granting
-//            'userFields' => array('id', 'first-name', 'last-name') // list of the available fields https://developer.linkedin.com/documents/profile-fields
 //        );
 
         Zend_Registry::set('sauthConf', $sauthConf);
