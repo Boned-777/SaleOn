@@ -154,10 +154,12 @@
 							item.is_favorite = 1;
 							item.favorites_link = item.favorites_link.replace("add", "remove");
 							target.attr("href", item.favorites_link);
+							target.attr("title", window.messages.removeFromFavorites);
 							target.toggleClass("favorites-icon-off favorites-icon-on")
 						} else {
 							item.is_favorite = 0;
 							item.favorites_link = item.favorites_link.replace("remove", "add");
+							target.attr("title", window.messages.addToFavorites);
 							target.attr("href", item.favorites_link);
 							target.toggleClass("favorites-icon-on favorites-icon-off")
 						}  
@@ -354,12 +356,12 @@
 		});
 
 		var isBrowserCompatible = function () {
-			if (navigator.sayswho.search("Firefox") != -1) {
-		    	$("body").addClass("firefox-slider");
-		    }
-		    if (navigator.sayswho == "MSIE 8.0") {
-		    	$("body").addClass("ie-slider");
-		    }	
+			// if (navigator.sayswho.search("Firefox") != -1) {
+		 //    	$("body").addClass("firefox-slider");
+		 //    }
+		 //    if (navigator.sayswho == "MSIE 8.0") {
+		 //    	$("body").addClass("ie-slider");
+		 //    }	
 		    if (navigator.sayswho == "MSIE 7.0") {
 		    	$(".no-data").html(window.messages.notSupported).show();
 				$("#myCarousel").hide();

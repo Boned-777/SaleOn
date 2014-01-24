@@ -655,6 +655,9 @@ body {
 .ie-slider .img-polaroid {
 	width: 200px;
 }
+.ie-slider .details-left .img-polaroid {
+	width: 450px;	
+}
 .ie-slider .page-number {
 	color: #888888;
 	display: none;
@@ -760,7 +763,7 @@ body {
     right: 0;
     top: 0;
     z-index: 2040;
-    opacity: 0.2;
+    opacity: 0.1;
     background-color: gray;
 }
 
