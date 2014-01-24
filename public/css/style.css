@@ -424,15 +424,18 @@ body {
     background: url("/img/favorites-sprite.png") no-repeat scroll -1px center transparent;
 }
 
-
+@font-face {
+    font-family: NumberFont; 
+    src: url(/fonts/rusfont436.ttf); /* Путь к файлу со шрифтом */
+}
 .page-number {
     color: #888;
     display: none;
     margin: 10px 0;
-	font-size: 18px;
+    font-family: NumberFont;
 }
 .page-number span {
-	margin-left: -20px;
+	margin-left: -30px;
 }
 
 @media (max-width: 1199px)  {

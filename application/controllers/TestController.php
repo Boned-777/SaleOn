@@ -15,5 +15,9 @@ class TestController extends Zend_Controller_Action
         die();
 
 	}
+	public function favoritesAction()
+    {
+        // action body
+    }
 }
 

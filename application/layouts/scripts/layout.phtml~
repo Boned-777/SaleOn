@@ -21,6 +21,5 @@
 		<div class="container">
 			<?php echo $this->layout()->content; ?>
 		</div>
-		<!-- script src="/js/bootstrap.min.js"></script-->
 	</body>
 </html>
