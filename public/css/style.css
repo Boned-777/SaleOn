@@ -89,7 +89,7 @@ body {
 }
 
 .logo {
-	background: url("/img/logo6.png") center center no-repeat;
+	background: url("/img/logo7.png") center center no-repeat;
 	width: 135px;
 	height: 70px;
 }
@@ -99,7 +99,7 @@ body {
 }
 
 .jumbotron {
-	margin-left: 5px !important;
+	margin-left: 0px !important;
     margin-top: -20px;
     text-align: center;
     width: 135px !important;
@@ -318,7 +318,7 @@ body {
             box-sizing: border-box;
 }
 .no-image {
-	background: url("/img/no-image.jpg") center center no-repeat;
+	background: url("/img/no-image-gray.jpg") center center no-repeat;
 	bottom: 5px;
     left: 5px;
     position: absolute;
@@ -341,7 +341,7 @@ body {
 }
 
 .no-image:hover {
-	background: url("/img/no-image-hover-2.jpg") center center no-repeat;
+	background: url("/img/no-image-hover-gray.jpg") center center no-repeat;
 }
 
 .active .img-wrapper:hover .img-info {
@@ -435,7 +435,7 @@ body {
     font-family: NumberFont;
 }
 .page-number span {
-	margin-left: -30px;
+	margin-left: -25px;
 }
 
 @media (max-width: 1199px)  {
@@ -900,4 +900,73 @@ textarea {
 	height: 400px;
     width: 790px;
 }
+
+
+#filters-modal {
+	width: 1000px;
+	margin-left: -500px;
+}
+
+
+.shopping-icon {
+      background: url("/img/shopping_cart.png") -5px -4px;
+      background-repeat: no-repeat;
+      height: 45px;
+      width: 55px;
+      float: left;
+}
+
+.top-offset {
+	margin-top: 10px;  
+}
+
+.counter {
+	display: none;
+}    
+.flagi-wrapper-big {
+	height: 50px;
+	margin-left: 40px;
+	text-align: center;
+}  
+.flagi-wrapper-big .counter {
+	font-size: 21px;
+} 
+.flagi-right-big {
+	float: left;
+	font-size: 25px;
+	font-weight: bold;
+	margin: 12px 0;
+	text-rendering: optimizelegibility;
+}     
+
+.flagi-wrapper {
+	/*margin-left: 40px;*/
+	width: 200px; 
+	height: 40px; 
+}
+
+.flagi-wrapper:hover {
+	background-color: #eee;   
+	/*text-decoration: underline;*/     
+}
+
+      
+.flagi-wrapper:hover span.counter,
+.flagi-wrapper-big:hover span.counter {
+	text-decoration: none;
+	display: inline-block;
+	clear: both;
+}
+
+.flagi-text {
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 5px 5px 10px;
+	-webkit-border-radius: 6px;
+	   -moz-border-radius: 6px;
+	        border-radius: 6px;
+
+}
+
+
 

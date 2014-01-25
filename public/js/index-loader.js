@@ -36,8 +36,7 @@
 			originalData, slider;
 
 		$("#btn1").on("click", function(e){
-			slider = null;
-			slider = new wawSlyder(duplicateResponce(originalData, 1));	
+			$("#filters-modal").modal({show: true});
 		});
 		$("#btn2").on("click", function(e){
 			slider = null;

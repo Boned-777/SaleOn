@@ -6,6 +6,78 @@
 <div class="text-center lead no-data"></div>
 <div class="lock-loading"></div>
 
+<div id="filters-modal" class="modal hide" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Выбор категории</h3>
+    </div>
+    <div class="modal-body">
+    	<div class="row">
+        	<div class="span5 flagi-wrapper-big"><i class="shopping-icon"></i><div class="flagi-right-big">Товари <span class="counter">7 258</span></div>
+        	</div>
+        	<div class="span5"></div>
+      	</div>
+
+		<div class="row top-offset">
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right">Авто, транспорт <br><span class="counter">748</span></div>
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right">Одежда, обувь<br><span class="counter">748</span></div>         
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right">Красота<br><span class="counter">3 000</span></div>
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right">Здоровье<br> <span class="counter">748</span></div>  
+			</div>
+		</div>
+		<div class="row top-offset">
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right">Строительные материалы<br><span class="counter">748</span></div>
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Продукты<br> <span class="counter">45 6767</span></div> 
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Электроника<br><span class="counter">45 6767</span>   </div>    
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Техника<br><span class="counter">748</span></div>
+			</div>
+		</div>
+		<div class="row top-offset">
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right">Мебель и интерьер<br><span class="counter">45 6767</span> </div>    
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Оборудование, инструмент<br><span class="counter">748</span></div>
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Детские товары<br><span class="counter">748</span></div>        
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Спорт и туризм <br><span class="counter">34</span></div>    
+			</div>
+		</div>
+		<div class="row top-offset">
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Подарки, сувениры <br><span class="counter">748</span></div>    
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Посуда<br><span class="counter">7655</span></div>       
+			</div>
+			<div class="span2 flagi-wrapper flagi-text">
+				<div class="flagi-right"> Другое <br><span class="counter">748</span></div>   
+			</div>	
+		</div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+    </div>
+</div>
+
 <script type="text/javascript">
 	window.messages = {};
     <?php 
