@@ -10,30 +10,7 @@ class AuthController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-		$form = new Application_Form_Login();
-		$request = $this->getRequest();
-		
-		if ($request->isPost()) {
-            $vars = $request->getPost();
-			if ($form->isValid($vars)) {
-                $data = array(
-                    "username" => $vars["username"],
-                    "password" => $vars["password"]
-                );
-                $user = $this->_process($data);
-                if ($user) {
-                    if ($user->role == "PARTNER")
-                        $this->_helper->redirector('profile', 'partner');
-                    else
-                        $this->_helper->redirector('index', 'index');
-                } else {
-                    $this->view->errorStatus = TRUE;
-                }
-                $form->populate($data);
-			}
-		}
-
-		$this->view->form = $form;
+        $this->_helper->redirector('new', 'user');
 	}
 
     public function authAction() {
@@ -134,7 +111,7 @@ class AuthController extends Zend_Controller_Action
 	public function logoutAction()
 	{
 		Zend_Auth::getInstance()->clearIdentity();
-		$this->_helper->redirector('index');
+		$this->_helper->redirector('index', 'index');
 	}
 }
 

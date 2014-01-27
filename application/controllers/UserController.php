@@ -28,7 +28,6 @@ class UserController extends Zend_Controller_Action
     {
 		$form = new Application_Form_AddUser();
 		$request = $this->getRequest();
-		
 		if ($request->isPost()) {
 			if ($form->isValid($request->getPost())) {
 				$res = $this->_add($form->getValues());
@@ -88,10 +87,8 @@ class UserController extends Zend_Controller_Action
     public function recoveryAction()
     {
         global $translate;
-
         $form = new Application_Form_PasswordRecovery();
         $request = $this->getRequest();
-
         if ($request->isPost()) {
             $vars = $this->getAllParams();
             $item = new Application_Model_User();
@@ -113,9 +110,7 @@ class UserController extends Zend_Controller_Action
         global $translate;
         $vars = $this->getAllParams();
         $item = new Application_Model_User();
-
         $request = $this->getRequest();
-
         if ($request->isPost()) {
             $form = new Application_Form_ChangePassword();
             if ($form->isValid($vars)) {
@@ -140,7 +135,6 @@ class UserController extends Zend_Controller_Action
                 $this->view->errorMsg = $translate->getAdapter()->translate("recovery_error_code_not_found");
             }
         }
-
     }
 
     private function _changePassword ($vars) {
@@ -148,30 +142,23 @@ class UserController extends Zend_Controller_Action
         if (!$item->find((int)$vars["id"])) {
             return false;
         }
-
         $data = array();
         $password = $vars["password"];
         $data["salt"] = md5(uniqid().uniqid().uniqid());
         $data["password"] = sha1($password.$data["salt"]);
         $data["recovery"] = "";
-
         $item->save($data, $vars["id"]);
         return true;
     }
 
     public function favoritesAction() {
         $auth = Zend_Auth::getInstance();
-
         $user = new Application_Model_User();
         $user->getUser($auth->getIdentity()->id);
-
-
         if ($this->getParam("act") == "add")
             $user->addFavoriteAd($this->getParam("ad_id"));
         else
             $user->removeFavoriteAd($this->getParam("ad_id"));
-        //Zend_Debug::dump($user); die();
-
         $res = $user->save();
         $systemUser = $auth->getIdentity();
         $systemUser->favorites_ads = $user->favorites_ads;
@@ -185,10 +172,8 @@ class UserController extends Zend_Controller_Action
         $loginForm = new Application_Form_Login();
         $loginForm->setName("login");
         $request = $this->getRequest();
-
         $layout = Zend_Layout::getMvcInstance();
         $view = $layout->getView();
-
         if ($request->isPost()) {
             if ($registrationForm->isValid($request->getPost())) {
                 $data = $registrationForm->getValues();
