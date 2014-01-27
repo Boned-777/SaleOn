@@ -10,6 +10,8 @@ class Application_Model_Category
     public $name;
 
     public function getAll($lang="uk") {
+        global $translate;
+
         $dbItem = new Application_Model_DbTable_Category();
         $res = $dbItem->fetchAll();
 
@@ -17,7 +19,7 @@ class Application_Model_Category
 
         $resArr = array();
         foreach ($itemsArr as $value) {
-            $resArr[$value["id"]] = $value["name_" . $lang];
+            $resArr[$value["id"]] = $translate->getAdapter()->translate($value["name"]);
         }
 
         return $resArr;
