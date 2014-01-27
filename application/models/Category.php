@@ -22,5 +22,29 @@ class Application_Model_Category
 
         return $resArr;
     }
+
+    public function listAll() {
+        global $translate;
+
+        $dbItem = new Application_Model_DbTable_Category();
+        $res = $dbItem->fetchAll();
+        $itemsArr = $res->toArray();
+
+        $resArray = array();
+        foreach($itemsArr as $item) {
+            if ($item["parent"] == 0) {
+                $resArray[$item["id"]]["name"] = $translate->getAdapter()->translate($item["name"]);
+            } else {
+                $tmp = array(
+                    "id" => $item["id"],
+                    "name" => $translate->getAdapter()->translate($item["name"])
+                );
+                $resArray[$item["parent"]]["sub"][] = $tmp;
+            }
+        }
+        echo "<pre>";
+        print_r($resArray); die();
+    }
+
 }
 

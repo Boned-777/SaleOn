@@ -104,6 +104,36 @@ return array(
 
     "set_ACTIVE" => "Активировать",
     "set_ARCHIVE" => "Архивировать",
-    "set_status" => ""
+    "set_status" => "",
+
+
+    "cat_goods" => "Товары",
+    "cat_services" => "Услуги",
+    "goods_transport" =>"Авто, транспорт",
+    "goods_building" =>"Строительные материалы",
+    "goods_children" =>"Детский мир",
+    "goods_food" =>"Продукты",
+    "goods_clothing" =>"Одежда, обувь, аксессуары",
+    "goods_electronic" =>"Цифровая и бытовая техника",
+    "goods_furniture" =>"Мебель, интерьер, освещение",
+    "goods_dishes" =>"Посуда, текстиль, подарки",
+    "goods_health" =>"Красота и здоровье",
+    "goods_equipment" =>"Оборудование, техника, инструменты",
+    "goods_sport" =>"Спорт и туризм",
+    "goods_hygiene" =>"Средства гигиены",
+    "goods_other_products" =>"Другие товары",
+    "serv_transport" =>"Автомобильные",
+    "serv_construction" =>"Строительство, ремонт, дизайн",
+    "serv_entertainment" =>"Отдых и развлечения",
+    "serv_health" =>"Красота и здоровье",
+    "serv_household" =>"Бытовые",
+    "serv_financial" =>"Финансовые",
+    "serv_education" =>"Образовательные",
+    "serv_insurance" =>"Страховые",
+    "serv_telecommunication" =>"Телекоммуникационные",
+    "serv_legal" =>"Юридические",
+    "serv_travel" =>"Туристические",
+    "serv_advertising" =>"Рекламные",
+    "serv_other_services" =>"Другие услуги"
 
 );
