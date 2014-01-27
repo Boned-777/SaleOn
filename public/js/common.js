@@ -46,6 +46,14 @@ $(function () {
         
     });
 
+    /* Add browser depended classes */
+    if (navigator.sayswho.search("Firefox") != -1) {
+        $("body").addClass("firefox-slider");
+    }
+    if (navigator.sayswho == "MSIE 8.0") {
+        $("body").addClass("ie-slider");
+    }   
+
 
 	/*Handle success and error message*/
 	var successModal = $("#success-modal-block"),
