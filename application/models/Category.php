@@ -42,8 +42,7 @@ class Application_Model_Category
                 $resArray[$item["parent"]]["sub"][] = $tmp;
             }
         }
-        echo "<pre>";
-        print_r($resArray); die();
+        return $resArray;
     }
 
 }
