@@ -9,20 +9,28 @@ class Application_Model_Category
 
     public $name;
 
-    public function getAll($lang="uk") {
+    public function getAll() {
         global $translate;
 
         $dbItem = new Application_Model_DbTable_Category();
         $res = $dbItem->fetchAll();
-
         $itemsArr = $res->toArray();
 
-        $resArr = array();
-        foreach ($itemsArr as $value) {
-            $resArr[$value["id"]] = $translate->getAdapter()->translate($value["name"]);
+        $resArray = array();
+        foreach($itemsArr as $item) {
+            if ($item["parent"] == 0) {
+                $resArray[$item["id"]]["name"] = $translate->getAdapter()->translate($item["name"]);
+            } else {
+                $resArray[$item["parent"]]["sub"][$item["id"]] = $translate->getAdapter()->translate($item["name"]);
+            }
         }
 
-        return $resArr;
+        $result = array(
+            $resArray[1]["name"] => $resArray[1]["sub"],
+            $resArray[2]["name"] => $resArray[2]["sub"],
+        );
+
+        return $result;
     }
 
     public function listAll() {
