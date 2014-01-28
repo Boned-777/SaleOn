@@ -400,7 +400,8 @@ class AdController extends Zend_Controller_Action
 
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
-                $id = $item->save();
+
+                $item->save();
                 if ($item->id) {
                     if ($isReady) {
                         $this->_helper->redirector('ready', 'ad');
@@ -439,13 +440,13 @@ class AdController extends Zend_Controller_Action
         return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
     }
 
-    public function _paidText($val)
+    public function _paidText($val, $id)
     {
         global $translate;
         if ($val)
             $text = $translate->getAdapter()->translate("yes");
         else
-            $text = $translate->getAdapter()->translate("no");
+            $text = '<a href="/payment/prepare/item_id/' . $id .'">' . $translate->getAdapter()->translate("make_payment") . '</a>';
         return $text;
     }
 
@@ -577,7 +578,7 @@ class AdController extends Zend_Controller_Action
             "title" =>  $translate->getAdapter()->translate("paid"),
             'callback'=>array(
                 'function'=>array($this, '_paidText'),
-                'params'=>array('{{paid}}')
+                'params'=>array('{{paid}}','{{id}}')
             )
         ));
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));

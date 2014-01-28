@@ -98,10 +98,12 @@ return array(
     "add_to_favorites" => "Добавить в избранное",
     "remove_from_favorites" => "Удалить из избранного",
 
-    "prev_ad" => "Предидущая акция",
+    "prev_ad" => "Предыдущая акция",
     "next_ad" => "Следующая акция",
 
     "days_left" => "Осталось дней",
+    "days_count" => "Количество дней акции",
+    "price" => "Цена",
     "paid" => "Оплачено",
     "yes" => "Да",
     "no" => "Нет",
@@ -109,7 +111,9 @@ return array(
     "set_ACTIVE" => "Активировать",
     "set_ARCHIVE" => "Архивировать",
     "set_status" => "",
-
+    "continue_payment" => "Продолжить оплату",
+    "cancel" => "Отменить",
+    "make_payment" => "Оплатить",
 
     "cat_goods" => "Товары",
     "cat_services" => "Услуги",

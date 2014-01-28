@@ -25,19 +25,19 @@ class Application_Model_LiqPay
         $this->merchant_id = $config->liqpay->merchant_id;
         $this->merchant_sign = $config->liqpay->merchant_sign;
         $this->result_url = "http://" . $_SERVER['HTTP_HOST'] . "/payment/finish";
-        $this->server_url = "http://" . $_SERVER['HTTP_HOST'] . "/payment/result";
-
+        $this->server_url = "http://" . $_SERVER['HTTP_HOST'
+            ] . "/payment/result";
         $this->currency = "UAH";
-        $this->order_id;
-        $this->amount = "1";
-        $this->description = "";
-        $this->default_phone = "380509999999";
         $this->pay_way = "card";
         $this->goods_id = 1;
-
+        $this->default_phone = "380509999999";
     }
 
-    private function _createXML() {
+    private function _createXML($order) {
+        $this->order_id = $order->id;
+        $this->amount = $order->amount;
+        $this->description = "Оплата послуги публікації контенту відповідно до замовлення №" . $order->id;
+
         $this->xml =
 "<request>
     <version>$this->version</version>
@@ -59,11 +59,10 @@ class Application_Model_LiqPay
         $this->encoded_signature = base64_encode(sha1($this->merchant_sign.$this->xml.$this->merchant_sign,1));
     }
 
-    function prepareRequest() {
-        $this->_createXML();
+    function prepareRequest($order) {
+        $this->_createXML($order);
         $this->_createSignature();
     }
-
 
 }
 

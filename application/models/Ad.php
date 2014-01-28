@@ -98,6 +98,7 @@ class Application_Model_Ad
                 case "geo":
                 case "geo_name":
                 case "status":
+                case "order_index":
                     break;
 
                 default:
@@ -243,6 +244,10 @@ class Application_Model_Ad
         return ceil((strtotime($this->end_dt) - time()) / 86400) + 1;
     }
 
+    public function getDaysCount() {
+        return ceil((strtotime($this->end_dt) - strtotime($this->public_dt)) / 86400) + 1;
+    }
+
     public function toArray() {
         $vars = get_class_vars(get_class());
         $data = array();
@@ -329,6 +334,12 @@ class Application_Model_Ad
 
         $this->checkFavorites($user, $template, $resultUrl);
         return $resultUrl;
+    }
+
+    public function getPrice() {
+        $basePrice = 20;
+        $daysCount = $this->getDaysCount();
+        return $basePrice * $daysCount;
     }
 }
 
