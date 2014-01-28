@@ -36,5 +36,18 @@ class Application_Model_DbTable_Ad extends Zend_Db_Table_Abstract
         $res = $res->getRow(0)->toArray();
         return $res;
     }
+
+    public function clearOrderIndexes() {
+        $sql = "UPDATE $this->_name SET order_index=NULL";
+        $db = $this->getAdapter();
+        $db->query($sql);
+    }
+
+    public function archiveAllFinished() {
+        $sql = "UPDATE $this->_name SET status='".self::STATUS_ARCHIVE."' WHERE end_dt < NOW()";
+        $db = $this->getAdapter();
+        $db->query($sql);
+    }
+
 }
 

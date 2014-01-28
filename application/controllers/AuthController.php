@@ -10,7 +10,32 @@ class AuthController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
-        $this->_helper->redirector('new', 'user');
+        $form = new Application_Form_Login();
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $vars = $request->getPost();
+            if ($form->isValid($vars)) {
+                $data = array(
+                    "username" => $vars["username"],
+                    "password" => $vars["password"]
+                );
+                $user = $this->_process($data);
+                if ($user) {
+                    if ($user->role == "PARTNER")
+                        $this->_helper->redirector('profile', 'partner');
+                    else
+                        $this->_helper->redirector('index', 'index');
+                } else {
+                    $this->view->errorStatus = TRUE;
+                }
+                $form->populate($data);
+            }
+        } else {
+            $this->_helper->redirector('new', 'user');
+        }
+        $this->view->form = $form;
+
+
 	}
 
     public function authAction() {

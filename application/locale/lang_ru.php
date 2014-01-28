@@ -98,6 +98,9 @@ return array(
     "add_to_favorites" => "Добавить в избранное",
     "remove_from_favorites" => "Удалить из избранного",
 
+    "prev_ad" => "Предидущая акция",
+    "next_ad" => "Следующая акция",
+
     "days_left" => "Осталось дней",
     "paid" => "Оплачено",
     "yes" => "Да",

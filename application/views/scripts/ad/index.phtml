@@ -76,6 +76,15 @@
     </div>
 </div>
 
+<div>
+    <?= $translate->getAdapter()->translate("days_left") . ": " . $this->ad->getDaysLeft() ?>
+    <? if ($this->prevAdUrl) : ?><a href="<?= $this->prevAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("prev_ad") ?></button></a><? endif ?>
+    <? if ($this->nextAdUrl) : ?><a href="<?= $this->nextAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("next_ad") ?></button></a><? endif ?>
+
+    <a href="<?= $this->notFavoritesUrl ?>" <?= !$this->isFavorite?"":"hidden" ?>><button class="btn"> <?= $translate->getAdapter()->translate("add_to_favorites") ?></button></a>
+    <a href="<?= $this->isFavoritesUrl  ?>" <?= $this->isFavorite?"":"hidden" ?>><button class="btn"> <?= $translate->getAdapter()->translate("remove_from_favorites") ?></button></a>
+</div>
+
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
 

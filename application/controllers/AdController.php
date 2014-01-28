@@ -32,9 +32,28 @@ class AdController extends Zend_Controller_Action
             $owner->getByUserId($item->owner);
             $this->view->ad = $item;
             $this->view->user = $owner;
+
+            $neighborArr = $item->getNeighborhood();
+            $this->view->nextAdUrl = !is_null($neighborArr["previous"])?$neighborArr["previous"]->createUrl():null;
+            $this->view->prevAdUrl = !is_null($neighborArr["next"])?$neighborArr["next"]->createUrl():null;
+
+            if ($auth->hasIdentity()) {
+                $this->view->isFavorite = $item->checkFavorites($auth->getIdentity());
+                $this->view->isFavoritesUrl = $item->getFavoritesUrl(null, "remove");
+                $this->view->notFavoritesUrl = $item->getFavoritesUrl(null, "add");
+            } else {
+                $this->view->isFavorite = false;
+                $this->view->isFavoritesUrl = $item->getFavoritesUrl();
+                $this->view->notFavoritesUrl = $item->getFavoritesUrl();
+            }
         } else {
             $this->redirect("/index/index");
         }
+    }
+
+    public function randomizeAction() {
+        $item = new Application_Model_Ad();
+        $item->randomizeAll();
     }
 
     public function newAction()
@@ -599,42 +618,6 @@ class AdController extends Zend_Controller_Action
         $grid->setImagesUrl('/img/');
         $this->view->grid = $grid;
     }
-
-//    public function favoritesAction()
-//    {
-//        global $translate;
-//        if (!empty($this->user->favorites_ads)) {
-//            $grid = Bvb_Grid::factory('Table');
-//            $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
-//            $grid->setSource($source);
-//            $grid->getSelect()->where("status = ? AND id IN (" . $this->user->favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-//            $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
-//            $grid->updateColumn('name',array(
-//                "title" =>  $translate->getAdapter()->translate("name"),
-//                'callback'=>array(
-//                    'function'=>array($this, '_createPreviewLink'),
-//                    'params'=>array('{{id}}', "{{name}}")
-//                )
-//            ));
-//            $grid->updateColumn('public_dt',array(
-//                "title" =>  $translate->getAdapter()->translate("public_date"),
-//            ));
-//            $grid->updateColumn('start_dt',array(
-//                "title" =>  $translate->getAdapter()->translate("start_date"),
-//            ));
-//            $grid->updateColumn('end_dt',array(
-//                "title" =>  $translate->getAdapter()->translate("end_date"),
-//            ));
-//            $grid->updateColumn('geo_name',array(
-//                "title" =>  $translate->getAdapter()->translate("geo_name"),
-//            ));
-//            $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
-//            $grid->setNoFilters(true);
-//            $grid->setExport(array());
-//            $grid->setImagesUrl('/img/');
-//            $this->view->grid = $grid;
-//        }
-//    }
 
     public function getfullinfoAction()
     {

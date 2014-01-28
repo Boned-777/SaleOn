@@ -29,6 +29,7 @@ class Application_Model_Ad
     public $geo;
     public $geo_name;
     public $status;
+    public $order_index;
 
     public function load($data) {
         $vars = get_class_vars(get_class());
@@ -159,7 +160,8 @@ class Application_Model_Ad
     public function getList($params) {
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
-            ->where("end_dt > NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+            ->where("end_dt > NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->order("order_index DESC");
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
             $res = array();
@@ -233,8 +235,12 @@ class Application_Model_Ad
                 $data["favorites_link"] = '/user/favorites?ad_id=' . $this->id . '&act=remove';
             }
         }
-        $data["days"] = ceil((strtotime($this->end_dt) - time()) / 86400) + 1;
+        $data["days"] = $this->getDaysLeft();
         return $data;
+    }
+
+    public function getDaysLeft() {
+        return ceil((strtotime($this->end_dt) - time()) / 86400) + 1;
     }
 
     public function toArray() {
@@ -246,5 +252,83 @@ class Application_Model_Ad
         return $data;
     }
 
+    public function randomizeAll() {
+        $item = new Application_Model_DbTable_Ad();
+        $item->clearOrderIndexes();
+        $item->archiveAllFinished();
+        $select = $item->select()
+            ->where("status = ? AND end_dt > NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->order("RAND()");
+        $data = $item->fetchAll($select);
+        $index = 1;
+        foreach ($data->toArray() as $value) {
+            $item->save(array("order_index" => $index), $value["id"]);
+            $index++;
+        }
+        die("Randomize finished");
+    }
+
+    public function getNeighborhood() {
+        $item = new Application_Model_DbTable_Ad();
+        $select = $item->select()
+            ->where("order_index IN (?,?)", array($this->order_index-1, $this->order_index+1))
+            ->order("order_index");
+        $data = $item->fetchAll($select);
+        $data = $data->toArray();
+
+        if (isset($data[0]) && $this->order_index > $data[0]["order_index"]) {
+            $previousItem = new Application_Model_Ad();
+            $previousItem->load($data[0]);
+        } else {
+            $previousItem = null;
+        }
+
+        if (isset($data[1]) || $this->order_index < $data[0]["order_index"]) {
+            $i = 1;
+            if ($this->order_index < $data[0]["order_index"])
+                $i = 0;
+            $nextItem = new Application_Model_Ad();
+            $nextItem->load($data[$i]);
+        } else {
+            $nextItem = null;
+        }
+
+        $res = array(
+            "previous" => $previousItem,
+            "next" => $nextItem
+        );
+        return $res;
+    }
+
+    public function createUrl() {
+        return "/ad/index/id/" . $this->id;
+    }
+
+    public function checkFavorites($user, $template="", &$url=null) {
+        if (is_null($user)) {
+            $url = '/auth';
+            return false;
+        } else {
+            $favoritesAdsList = "";
+            if (isset($user->favorites_ads))
+                $favoritesAdsList = $user->favorites_ads;
+            if (!in_array($this->id, explode(",",$favoritesAdsList))) {
+                $url = $template . 'add';
+                return false;
+            } else {
+                $url = $template . 'remove';
+                return true;
+            }
+        }
+    }
+
+    public function getFavoritesUrl($user=null, $operation=null) {
+        $template = '/user/favorites?ad_id=' . $this->id . '&act=';
+        if (!is_null($operation))
+            return $template . $operation;
+
+        $this->checkFavorites($user, $template, $resultUrl);
+        return $resultUrl;
+    }
 }
 
