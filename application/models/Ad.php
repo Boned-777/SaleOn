@@ -160,7 +160,7 @@ class Application_Model_Ad
     public function getList($params) {
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
-            ->where("end_dt > NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->where("end_dt >= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("order_index DESC");
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
@@ -271,7 +271,7 @@ class Application_Model_Ad
     public function getNeighborhood() {
         $item = new Application_Model_DbTable_Ad();
         $select = $item->select()
-            ->where("order_index IN (?,?)", array($this->order_index-1, $this->order_index+1))
+            ->where("order_index IN (?,?) AND end_dt >= NOW()", array($this->order_index-1, $this->order_index+1))
             ->order("order_index");
         $data = $item->fetchAll($select);
         $data = $data->toArray();
