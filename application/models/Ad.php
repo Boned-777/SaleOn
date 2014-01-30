@@ -103,7 +103,6 @@ class Application_Model_Ad
 
                 default:
                     if (empty($this->$key)) {
-                        echo $key;
                         return false;
                     }
                     break;
@@ -142,7 +141,7 @@ class Application_Model_Ad
 
         }
         $dbItem = new Application_Model_DbTable_Ad();
-        echo $res = $dbItem->save($data, $this->id); die();
+        $res = $dbItem->save($data, $this->id);
         if ($res !== false)
             $this->id = $res;
         return $res;

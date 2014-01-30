@@ -18,7 +18,6 @@ class Application_Model_DbTable_Ad extends Zend_Db_Table_Abstract
                 if (isset($data["id"]))
                     unset($data["id"]);
                 $res = $this->insert($data);
-                print_r($res);
             }
             return $res;
         } catch (Exception $e) {
