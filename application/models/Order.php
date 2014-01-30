@@ -81,7 +81,7 @@ class Application_Model_Order
 
 
     public function isValid() {
-        if ($this->amount < 1)
+        if ($this->amount < 0)
             return false;
         return true;
     }

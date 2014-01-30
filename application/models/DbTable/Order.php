@@ -1,5 +1,4 @@
 <?php
-
 class Application_Model_DbTable_Order extends Zend_Db_Table_Abstract
 {
     protected $_name = 'orders';
@@ -36,7 +35,12 @@ class Application_Model_DbTable_Order extends Zend_Db_Table_Abstract
     {
         try {
             $select = $this->select()
-                ->where("ad = ? AND status NOT IN ('" . implode("','", array(Application_Model_Order::STATUS_CANCELED, Application_Model_Order::STATUS_READY)) . "')", $id)
+                ->where("ad = ? AND status NOT IN ('" . implode("','", array(
+                    Application_Model_Order::STATUS_CANCELED,
+                    Application_Model_Order::STATUS_FAILED,
+                    Application_Model_Order::STATUS_PAID,
+                    Application_Model_Order::STATUS_WAIT_SECURE
+                )) . "')", $id)
                 ->order("created_dt DESC");
             $data = $this->fetchAll($select);
             if (!$data->count())
