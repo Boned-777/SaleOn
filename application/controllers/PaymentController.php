@@ -66,7 +66,11 @@ class PaymentController extends Zend_Controller_Action
     }
 
     public function resultAction() {
-
+        $vars = $this->getAllParams();
+        $xml = base64_decode($vars["operation_xml"]);
+        $order = new Application_Model_Order();
+        $order->processResponse($xml);
+        $this->_helper->json(array());
     }
 
 }
