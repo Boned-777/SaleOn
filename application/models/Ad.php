@@ -103,6 +103,7 @@ class Application_Model_Ad
 
                 default:
                     if (empty($this->$key)) {
+                        echo $key;
                         return false;
                     }
                     break;

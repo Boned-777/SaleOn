@@ -173,6 +173,7 @@ class AdController extends Zend_Controller_Action
                 $this->view->gotoTab = strtolower($tabs[1]);
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
+            $item->isValid();
         }
 
         $data = $item->toArray();

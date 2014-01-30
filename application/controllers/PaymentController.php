@@ -57,8 +57,6 @@ class PaymentController extends Zend_Controller_Action
             }
         }
 
-
-
         $payment = new Application_Model_LiqPay();
         $payment->prepareRequest($item);
         $this->view->xml = $payment->encoded_xml;
