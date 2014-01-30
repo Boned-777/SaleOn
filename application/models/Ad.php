@@ -142,7 +142,7 @@ class Application_Model_Ad
 
         }
         $dbItem = new Application_Model_DbTable_Ad();
-        $res = $dbItem->save($data, $this->id);
+        echo $res = $dbItem->save($data, $this->id); die();
         if ($res !== false)
             $this->id = $res;
         return $res;
