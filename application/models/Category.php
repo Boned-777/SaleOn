@@ -39,7 +39,8 @@ class Application_Model_Category
             } else {
                 $tmp = array(
                     "id" => $item["id"],
-                    "name" => $translate->getAdapter()->translate($item["name"])
+                    "name" => $translate->getAdapter()->translate($item["name"]),
+                    "count" => 999
                 );
                 $resArray[$item["parent"]]["sub"][] = $tmp;
             }
