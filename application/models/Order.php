@@ -10,10 +10,13 @@ class Application_Model_Order
     public $created_dt;
     public $paid_dt;
     public $modified_dt;
+    public $response;
 
     const STATUS_READY = "READY";
     const STATUS_PAID = "PAID";
     const STATUS_CANCELED = "CANCELED";
+    const STATUS_FAILED = "FAILED";
+    const STATUS_WAIT_SECURE = "WAIT_SECURE";
 
     const TYPE_LIQPAY = "LIQPAY";
     const TYPE_CASH = "CASH";
@@ -29,6 +32,31 @@ class Application_Model_Order
             return true;
         } else
             return false;
+    }
+
+    public function processResponse($responseXML) {
+        $xmlDoc = new SimpleXMLElement($responseXML);
+        $orderId = explode("_", $xmlDoc->order_id);
+        $this->get($orderId[1]);
+
+        switch ($xmlDoc->status) {
+            case "success":
+                $this->status = Application_Model_Order::STATUS_PAID;
+                $this->ad->status = Application_Model_DbTable_Ad::STATUS_ACTIVE;
+                $this->ad->save();
+                break;
+
+            case "failure":
+                $this->status = Application_Model_Order::STATUS_FAILED;
+                break;
+
+            case "wait_secure":
+                $this->status = Application_Model_Order::STATUS_WAIT_SECURE;
+                break;
+        }
+        $this->paid_dt = date('Y-m-d H:i:s');
+        $this->response = $responseXML;
+        $this->save();
     }
 
     public function load($data) {
@@ -53,7 +81,7 @@ class Application_Model_Order
 
 
     public function isValid() {
-        if ($this->amount < 1)
+        if ($this->amount < 0)
             return false;
         return true;
     }

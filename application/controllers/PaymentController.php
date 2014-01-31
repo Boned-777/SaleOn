@@ -57,8 +57,6 @@ class PaymentController extends Zend_Controller_Action
             }
         }
 
-
-
         $payment = new Application_Model_LiqPay();
         $payment->prepareRequest($item);
         $this->view->xml = $payment->encoded_xml;
@@ -66,7 +64,11 @@ class PaymentController extends Zend_Controller_Action
     }
 
     public function resultAction() {
-
+        $vars = $this->getAllParams();
+        $xml = base64_decode($vars["operation_xml"]);
+        $order = new Application_Model_Order();
+        $order->processResponse($xml);
+        $this->_helper->json(array());
     }
 
 }
