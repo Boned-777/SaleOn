@@ -3,7 +3,6 @@
 		/**
 		** helpers
 		**/
-		
 		var duplicateResponce = function (source, count) {
 			var result = {};
 			result.list = source.list;
@@ -21,7 +20,7 @@
 			$.cookie('brands', '111', 	cookieOptions);
 			$.cookie('products', '3', 	cookieOptions);	
 			//$.removeCookie("geo");
-		}
+		};
 
 		var isBrowserCompatible = function () {
 		    if (navigator.sayswho == "MSIE 7.0") {
@@ -30,13 +29,30 @@
 				return false;
 		    }	
 		    return true;
-		}
+		};
+
+		var initCategories = function () {
+			$("#myCarousel").hide();
+			$(".lock-loading").show();
+			$.ajax({
+				url: "/categories/list",
+		        dataType: "json",
+				cache: false
+			}).done(function( data ) {
+				new wawCategories(data);
+				$(".lock-loading").hide();
+			}).fail(function( data ) {
+				$("#myCarousel").show();
+				$(".lock-loading").hide();
+			});		
+		};
 
 		var wawSlyder = window.wawSlyder,
 			originalData, slider;
 
 		$("#btn1").on("click", function(e){
-			$("#filters-modal").modal({show: true});
+			initCategories();
+			// $("#filters-modal").modal({show: true});
 		});
 		$("#btn2").on("click", function(e){
 			slider = null;
@@ -52,7 +68,7 @@
 		** run waw slider
 		*/
 		if (isBrowserCompatible()){
-			setCookies();
+			//setCookies();
 			$(".lock-loading").show();
 			$.ajax({
 				url: "/ad/list",

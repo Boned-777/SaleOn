@@ -902,11 +902,15 @@ textarea {
 }
 
 
+
+/*categories filters*/
 #filters-modal {
-	width: 1000px;
+	width: 1002px;
 	margin-left: -500px;
 }
-
+.top-offset {
+	margin-top: 10px;  
+}
 
 .shopping-icon {
       background: url("/img/shopping_cart.png") -5px -4px;
@@ -915,50 +919,73 @@ textarea {
       width: 55px;
       float: left;
 }
-
-.top-offset {
-	margin-top: 10px;  
+.services-icon {
+      background: url("/img/preferences-system.png") 0px -1px;
+      background-repeat: no-repeat;
+      height: 48px;
+      width: 63px;
+      float: left;
 }
+
 
 .counter {
 	display: none;
 }    
-.flagi-wrapper-big {
-	height: 50px;
-	margin-left: 40px;
-	text-align: center;
+.category-group {
+	height: 45px;
+}
+.category-group-inactive {
+	padding: 9px 36px 9px 15px;
 }  
-.flagi-wrapper-big .counter {
+
+.category-group-inactive:hover {
+  	padding: 8px 35px 8px 14px;
+  	color: #468847;
+	background-color: #DFF0D8;
+	border: 1px solid #D6E9C6;
+  	border-radius: 4px;
+  	-webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+
+}
+.category-group .counter {
 	font-size: 21px;
 } 
-.flagi-right-big {
+.category-group.alert .counter {
+	display: inline-block;
+} 
+.category-group-text {
 	float: left;
 	font-size: 25px;
 	font-weight: bold;
 	margin: 12px 0;
-	text-rendering: optimizelegibility;
+	/*text-rendering: optimizelegibility;*/
 }     
 
-.flagi-wrapper {
-	/*margin-left: 40px;*/
+.category-wrapper {
 	width: 200px; 
 	height: 40px; 
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 5px 5px 10px;
+	-webkit-border-radius: 6px;
+	   -moz-border-radius: 6px;
+	        border-radius: 6px;
 }
 
-.flagi-wrapper:hover {
+.category-wrapper:hover {
 	background-color: #eee;   
-	/*text-decoration: underline;*/     
 }
 
       
-.flagi-wrapper:hover span.counter,
-.flagi-wrapper-big:hover span.counter {
+.category-wrapper:hover span.counter,
+.category-group:hover span.counter {
 	text-decoration: none;
 	display: inline-block;
 	clear: both;
 }
 
-.flagi-text {
+/*.flagi-text {
 	font-weight: bold;
 	cursor: pointer;
 	padding: 5px 5px 5px 10px;
@@ -966,7 +993,7 @@ textarea {
 	   -moz-border-radius: 6px;
 	        border-radius: 6px;
 
-}
+}*/
 
 
 
