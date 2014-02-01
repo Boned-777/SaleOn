@@ -73,7 +73,7 @@
 			showNoData : function () {
 				$(".no-data").html(window.messages.noData).show();	
 				$("#myCarousel").hide();
-				$(".lock-loading").hide();
+				// $(".lock-loading").hide();
 			},
 
 			renderMainTemplate : function () {

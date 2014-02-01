@@ -916,7 +916,7 @@ textarea {
       background: url("/img/shopping_cart.png") -5px -4px;
       background-repeat: no-repeat;
       height: 45px;
-      width: 55px;
+      width: 52px;
       float: left;
 }
 .services-icon {
@@ -963,7 +963,7 @@ textarea {
 }     
 
 .category-wrapper {
-	width: 200px; 
+	width: 270px;
 	height: 40px; 
 	font-weight: bold;
 	cursor: pointer;
@@ -984,16 +984,6 @@ textarea {
 	display: inline-block;
 	clear: both;
 }
-
-/*.flagi-text {
-	font-weight: bold;
-	cursor: pointer;
-	padding: 5px 5px 5px 10px;
-	-webkit-border-radius: 6px;
-	   -moz-border-radius: 6px;
-	        border-radius: 6px;
-
-}*/
 
 
 
