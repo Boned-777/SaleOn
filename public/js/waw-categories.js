@@ -28,8 +28,8 @@
 				this.data = categoriesData;				
 				this.registerDOMElements();
 				this.renderMainTemplate();
-				this.addDOMElements();
-				this.bindEvents();
+				//this.addDOMElements();
+				// this.bindEvents();
 				this.showModal();
 
 				$("#test").on("click", _.bind(function(e){
@@ -79,10 +79,6 @@
 			showModal : function () {
 				this.dom.filterModal.modal({show: true});
 			},
-
-
-
-
 
 			bindEvents : function () {
 				var	that = this;
