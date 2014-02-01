@@ -368,6 +368,7 @@ body {
 	left: 5px;
 	right: 5px;
 	padding: 10px 20px 5px 10px;
+	cursor: pointer;
 	color: #fff;
 	background: none repeat scroll 0 0 transparent;
 	background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAAaSURBVBhXY2RgYGgAYgwAEkTHGAJgncSpBADIYQqCpd00mAAAAABJRU5ErkJggg==");
@@ -396,9 +397,9 @@ body {
 .post-link:hover {
 	color: #fff;
 }
-.post-link:hover p{
+/*.post-link:hover p{
 	text-decoration: underline;
-}
+}*/
 
 .favorites-icon {
 	display: block;
@@ -435,7 +436,7 @@ body {
     font-family: NumberFont;
 }
 .page-number span {
-	margin-left: -25px;
+	margin-left: -20px;
 }
 
 @media (max-width: 1199px)  {
@@ -584,7 +585,7 @@ body {
     	margin: 2px 0 10px 0;
 	}
 	.page-number span {
-		margin-left: -45px;
+		margin-left: -43px;
 	}
 }
 
@@ -766,7 +767,7 @@ body {
     right: 0;
     top: 0;
     z-index: 2040;
-    opacity: 0.1;
+    opacity: 0;
     background-color: gray;
 }
 
@@ -926,7 +927,6 @@ textarea {
       width: 63px;
       float: left;
 }
-
 
 .counter {
 	display: none;
