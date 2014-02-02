@@ -409,7 +409,10 @@ class AdController extends Zend_Controller_Action
                 $item->save();
                 if ($item->id) {
                     if ($isReady) {
-                        $this->_helper->redirector('ready', 'ad');
+                        if ($this->user->role == Application_Model_User::ADMIN)
+                            $this->_helper->redirector('ready', 'admin');
+                        else
+                            $this->_helper->redirector('ready', 'ad');
                     }
                     $url = $this->_helper->url->url(array(
                         'controller' => 'ad',
