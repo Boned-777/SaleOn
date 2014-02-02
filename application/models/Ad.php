@@ -163,8 +163,9 @@ class Application_Model_Ad
         $stmt = $item->select()
             ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("order_index DESC");
-        foreach ($params as $key => $val)
-            $stmt->where("$key = ?", $val);
+        if (!is_null($params))
+            foreach ($params as $key => $val)
+                $stmt->where("$key = ?", $val);
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
             $res = array();
