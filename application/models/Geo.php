@@ -10,7 +10,7 @@ class Application_Model_Geo
 
     public $name;
 
-    public function getAll($pattern = "", $lang="uk") {
+    public function getAll($pattern = "") {
         global $translate;
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
@@ -24,13 +24,13 @@ class Application_Model_Geo
         if ($originalPattern !== "")
             $resArr[$originalPattern . ".0"] = $translate->getAdapter()->translate("any");
         foreach ($itemsArr as $value) {
-            $resArr[$value["code"]] = $value["name_" . $lang];
+            $resArr[$value["code"]] = $translate->getAdapter()->translate($value["name"]);
         }
 
         return $resArr;
     }
 
-    public function getAllChild($pattern = "", $lang="uk") {
+    public function getAllChild($pattern = "") {
         global $translate;
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
@@ -47,7 +47,7 @@ class Application_Model_Geo
         foreach ($itemsArr as $value) {
             $resArr[] = array(
                 "value" => $value["code"],
-                "option" => $value["name_" . $lang]
+                "option" => $translate->getAdapter()->translate($value["name"])
             );
         }
 
