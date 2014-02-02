@@ -68,10 +68,6 @@ class Application_Model_Category
         array_multisort($name2, SORT_ASC, $resArray[2]["sub"]);
         $resArray[2]["sub"][] = $tmpItem;
 
-        print_r($resArray); die();
-
-
-
         return $resArray;
     }
 }
