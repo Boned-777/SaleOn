@@ -45,6 +45,33 @@ class Application_Model_Category
                 $resArray[$item["parent"]]["sub"][] = $tmp;
             }
         }
+        //sorting
+        $name1 = array();
+        $name2 = array();
+        foreach ($resArray[1]["sub"] as $key => $row) {
+            if ($row["id"] == 15) {
+                $tmpItem = $resArray[1]["sub"][$key];
+                unset($resArray[1]["sub"][$key]);
+            } else
+                $name1[$key]  = $row['name'];
+        }
+        array_multisort($name1, SORT_ASC, $resArray[1]["sub"]);
+        $resArray[1]["sub"][] = $tmpItem;
+
+        foreach ($resArray[2]["sub"] as $key => $row) {
+            if ($row["id"] == 28) {
+                $tmpItem = $resArray[2]["sub"][$key];
+                unset($resArray[2]["sub"][$key]);
+            } else
+                $name2[$key]  = $row['name'];
+        }
+        array_multisort($name2, SORT_ASC, $resArray[2]["sub"]);
+        $resArray[2]["sub"][] = $tmpItem;
+
+        print_r($resArray); die();
+
+
+
         return $resArray;
     }
 }
