@@ -452,7 +452,7 @@ class AdController extends Zend_Controller_Action
 
     public function _daysLeft($end_dt, $public_dt)
     {
-        if (strtotime($public_dt) > time())
+        if (strtotime($public_dt) < time())
             return ceil((strtotime($end_dt) - time()) / 86400) + 1;
         else
             return ceil((strtotime($end_dt) - strtotime($public_dt)) / 86400) + 1;
