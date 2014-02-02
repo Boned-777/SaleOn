@@ -35,7 +35,7 @@ class Application_Model_Category
         $resArray = array();
 
         $db = $dbItem->getAdapter();
-        $query = $db->query("SELECT category, COUNT(*) count FROM ads GROUP BY category");
+        $query = $db->query("SELECT category, COUNT(*) count FROM ads WHERE end_dt >= NOW() AND public_dt <= NOW() AND status = 'ACTIVE' GROUP BY category");
         $data = $query->execute();
 
         $countsList = array();

@@ -158,11 +158,13 @@ class Application_Model_Ad
         }
     }
 
-    public function getList($params) {
+    public function getList($params=null) {
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
             ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("order_index DESC");
+        foreach ($params as $key => $val)
+            $stmt->where("$key = ?", $val);
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
             $res = array();

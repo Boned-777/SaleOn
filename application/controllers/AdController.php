@@ -214,8 +214,13 @@ class AdController extends Zend_Controller_Action
 
     public function listAction () {
         global $translate;
+
+        $params = array();
+        $request = new Zend_Controller_Request_Http();
+        $params["category"] = $request->getCookie('category');
+
         $ad = new Application_Model_Ad();
-        $res = $ad->getList("");
+        $res = $ad->getList($params);
         $data = array();
         foreach ($res AS $val) {
             $data[] = $val->toListArray($this->user);
