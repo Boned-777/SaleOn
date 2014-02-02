@@ -241,7 +241,10 @@ class Application_Model_Ad
     }
 
     public function getDaysLeft() {
-        return ceil((strtotime($this->end_dt) - time()) / 86400) + 1;
+        if (strtotime($this->public_dt) < time())
+            return ceil((strtotime($this->end_dt) - time()) / 86400) + 1;
+        else
+            $this->getDaysCount();
     }
 
     public function getDaysCount() {
