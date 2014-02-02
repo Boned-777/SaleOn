@@ -33,6 +33,15 @@ class Application_Model_Category
         $res = $dbItem->fetchAll();
         $itemsArr = $res->toArray();
         $resArray = array();
+
+        $db = $dbItem->getAdapter();
+        $query = $db->query("SELECT category, COUNT(*) count FROM ads GROUP BY category");
+        $data = $query->execute();
+
+        $countsList = array();
+        foreach ($query->fetchAll() as $countVal) {
+            $countsList[$countVal["category"]] = $countVal["count"];
+        }
         foreach($itemsArr as $item) {
             if ($item["parent"] == 0) {
                 $resArray[$item["id"]]["name"] = $translate->getAdapter()->translate($item["name"]);
@@ -40,7 +49,7 @@ class Application_Model_Category
                 $tmp = array(
                     "id" => $item["id"],
                     "name" => $translate->getAdapter()->translate($item["name"]),
-                    "count" => 999
+                    "count" => isset($countsList[$item["id"]])?$countsList[$item["id"]]:0
                 );
                 $resArray[$item["parent"]]["sub"][] = $tmp;
             }
