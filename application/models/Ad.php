@@ -161,7 +161,7 @@ class Application_Model_Ad
     public function getList($params) {
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
-            ->where("end_dt >= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("order_index DESC");
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
