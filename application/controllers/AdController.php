@@ -450,9 +450,12 @@ class AdController extends Zend_Controller_Action
         return $text;
     }
 
-    public function _daysLeft($val)
+    public function _daysLeft($end_dt, $public_dt)
     {
-        return ceil((strtotime($val) - time()) / 86400) + 1;
+        if (strtotime($public_dt) < time())
+            return ceil((strtotime($end_dt) - time()) / 86400) + 1;
+        else
+            return ceil((strtotime($end_dt) - strtotime($public_dt)) / 86400) + 1;
     }
 
     public function _createPreviewLink($id, $name)
@@ -507,7 +510,7 @@ class AdController extends Zend_Controller_Action
             "title" =>  $translate->getAdapter()->translate("days_left"),
             'callback'=>array(
                 'function'=>array($this, '_daysLeft'),
-                'params'=>array('{{end_dt}}')
+                'params'=>array('{{end_dt}}', '{{public_dt}}')
             ))
         );
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
