@@ -50,20 +50,18 @@ class Application_Model_Geo
                 "option" => $translate->getAdapter()->translate($value["name"])
             );
         }
-
         return $resArr;
     }
 
     public function getAllChildList($pattern = "", $lang="uk") {
         global $translate;
+        $countsList = $this->_getCounts($pattern);
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
         if ($pattern !== "")
             $pattern .= ".";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
-
         $itemsArr = $res->toArray();
-
         $resArr = array(array(
             "name" => $originalPattern,
             "value" => $translate->getAdapter()->translate("any"),
@@ -75,12 +73,36 @@ class Application_Model_Geo
         foreach ($itemsArr as $value) {
             $resArr[] = array(
                 "name" => $value["code"],
-                "value" => $value["name_" . $lang],
+                "value" => $translate->getAdapter()->translate($value["name"]),
+                "count" => isset($countsList[$value["code"]])?$countsList[$value["code"]]:0,
                 "is_path" => $is_path
             );
         }
 
         return $resArr;
+    }
+
+    protected function _getCounts($temp = "") {
+        $temp = $temp?$temp:"";
+        $symCount = 2*strlen($temp) + 2;
+        $ad = new Application_Model_DbTable_Ad();
+        $select = $ad->select();
+        $select->from("ads", array(
+            new Zend_Db_Expr("geo"),
+            new Zend_Db_Expr("COUNT(*) count"),
+            new Zend_Db_Expr('SUBSTRING(REPLACE(LEFT(geo, '.$symCount .'),".",""), '.(strlen($temp)+1).') et')
+        ));
+        if ($temp !== "")
+            $select->where('geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'.%"');
+        else
+            $select->where('geo LIKE "%"');
+        $select->group("et");
+        $data = $ad->fetchAll($select)->toArray();
+        $resData = array();
+        foreach($data as $val) {
+            $resData[$temp.".".$val["et"]] = $val["count"];
+        }
+        return $resData;
     }
 
     public function getFullGeoName ($geoCode = "") {
@@ -99,7 +121,7 @@ class Application_Model_Geo
 
         $result = array();
         foreach ($res as $value) {
-            $result[] = $value["name_uk"];
+            $result[] = $translate->getAdapter()->translate($value["name"]);
         }
         return implode(", ", $result);
 

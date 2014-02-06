@@ -26,7 +26,5 @@ class GeoController extends Zend_Controller_Action
         $results = $item->getAllChildList($this->_getParam('term'));
         $this->_helper->json(array("list" => $results));
     }
-
-
 }
 
