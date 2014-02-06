@@ -5,7 +5,8 @@ $(function () {
         fullDescriptionModal = $('#full-description-modal'),
         actionAddress        = $('#action-address'),
         actionAddressModal   = $('#action-address-modal'),
-        imageWrapper         = $('.img-wrapper');
+        imageWrapper         = $('.img-wrapper'),
+        logoLink             = $('#link');
 
     /* Hide video player*/    
     function hideVideo(modal) {
@@ -43,7 +44,12 @@ $(function () {
             location        : address,
             markerOptions   : {title: address}
         });
-        
+    });
+
+    logoLink.click(function(e){
+        $.removeCookie("category");
+        $.removeCookie("brands");
+        $.removeCookie("geo");
     });
 
     /* Add browser depended classes */

@@ -393,13 +393,14 @@ body {
 
 .post-link {
 	color: #fff;
+	text-decoration: none;
 }
 .post-link:hover {
 	color: #fff;
 }
-/*.post-link:hover p{
-	text-decoration: underline;
-}*/
+.post-link:hover p{
+	text-decoration: none;
+}
 
 .favorites-icon {
 	display: block;
