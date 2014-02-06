@@ -5,12 +5,12 @@
 			this.mainTemplate = '<div class="row">\
         							<div data-id="1" class="span3 category-group alert alert-success">\
         								<i class="shopping-icon"></i>\
-        								<div class="category-group-text">$goods <span class="counter">4 589</span></div>\
+        								<div class="category-group-text">$goods <span id="first-group-count" class="counter"></span></div>\
         							</div>\
         							<div class="span3">&nbsp;</div>\
 						        	<div data-id="2" class="span3 category-group category-group-inactive">\
 						        		<i class="services-icon"></i>\
-						        		<div class="category-group-text">$services <span class="counter"> 24 587</span></div>\
+						        		<div class="category-group-text">$services <span id="second-group-count" class="counter"></span></div>\
 						        	</div>\
 						      	</div>\
 						      	<div id="category-group-list"></div>';
@@ -20,7 +20,7 @@
 									<div class="flagi-right">$catName <br><span class="counter">$catCount</span></div>\
 								</div>';	
 			this.eventObject = $({});
-			this.filterName = "Категории"; // move to lng file!
+			// this.filterName = "Категории"; 
 			this.currentCategoryGroup = 1;
 			this.init(categoriesData);	 
 		};
@@ -33,6 +33,7 @@
 				this.renderMainTemplate();
 				this.updateDOMElements();
 				this.renderCategoryGroupItems(this.currentCategoryGroup);
+				this.countGroups();
 				this.bindEvents();
 				this.showModal();
 			},
@@ -41,7 +42,6 @@
 				this.dom = {
 					lockLayer		  : $(".lock-gray"),
 					filterModal	      : $("#filters-modal"),
-					filterName 		  : $("#filter-name"),
 					filterContent	  : $("#filters-content")
 				}
 			},
@@ -50,14 +50,15 @@
 				this.dom.filterContent && this.dom.filterContent.empty();
 				var header = this.mainTemplate.replace("$goods",    this.data[1].name)
 											  .replace("$services", this.data[2].name);
-				this.dom.filterName.text(this.filterName);
 				this.dom.filterContent.html(header);
 			},
 
 			updateDOMElements : function () {
 				this.dom = _.extend(this.dom, {
 					categoryGroup 		: $(".category-group"),
-					categoryGroupList 	: $("#category-group-list")
+					categoryGroupList 	: $("#category-group-list"),
+					firstGroupCount 	: $("#first-group-count"),
+					secondGroupCount 	: $("#second-group-count")
 				})
 			},
 
@@ -87,6 +88,18 @@
 				}
 				return result;
 			},	
+
+			countGroups : function () {
+				var firstGroupCount = secondGroupCount = 0;
+				_.each(this.data[1].sub, function(el) {
+					firstGroupCount += el.count;
+				});
+				_.each(this.data[2].sub, function(el) {
+					secondGroupCount += el.count;
+				});
+				this.dom.firstGroupCount.html(firstGroupCount);
+				this.dom.secondGroupCount.html(secondGroupCount);
+			},
 
 			bindEvents : function () {
 				var	that = this;

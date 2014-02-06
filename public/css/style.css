@@ -931,7 +931,13 @@ textarea {
 
 .counter {
 	display: none;
-}    
+}   
+
+#category-group-list {
+	border-top: 1px solid #DDD;
+	padding-top: 20px;
+}
+
 .category-group {
 	height: 45px;
 }
