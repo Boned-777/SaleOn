@@ -53,7 +53,7 @@ class Application_Model_Geo
         return $resArr;
     }
 
-    public function getAllChildList($pattern = "", $lang="uk") {
+    public function getAllChildList($pattern = "") {
         global $translate;
         $countsList = $this->_getCounts($pattern);
         $dbItem = new Application_Model_DbTable_Geo();
@@ -79,6 +79,16 @@ class Application_Model_Geo
             );
         }
 
+        //sorting
+        $name = array();
+        foreach ($resArr as $key => $row) {
+//            if ($row["id"] == 15) {
+//                $tmpItem = $resArray[1]["sub"][$key];
+//                unset($resArray[1]["sub"][$key]);
+//            } else
+                $name[$key]  = $row['name'];
+        }
+        array_multisort($name, SORT_ASC, $resArr);
         return $resArr;
     }
 
@@ -95,12 +105,15 @@ class Application_Model_Geo
         if ($temp !== "")
             $select->where('geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'.%"');
         else
-            $select->where('geo LIKE "%"');
+            $select->where('geo LIKE "" OR geo LIKE "%"');
         $select->group("et");
         $data = $ad->fetchAll($select)->toArray();
         $resData = array();
         foreach($data as $val) {
-            $resData[$temp.".".$val["et"]] = $val["count"];
+            if ($temp !== "")
+                $resData[$temp.".".$val["et"]] = $val["count"];
+            else
+                $resData[$val["et"]] = $val["count"];
         }
         return $resData;
     }
@@ -108,17 +121,14 @@ class Application_Model_Geo
     public function getFullGeoName ($geoCode = "") {
         global $translate;
         $indexes = explode(".", $geoCode);
-
         $condList = array();
         $tmp = "";
         foreach ($indexes as $val) {
             $condList[] = $tmp . $val;
             $tmp .= $val . ".";
         }
-
         $dbItem = new Application_Model_DbTable_Geo();
         $res = $dbItem->fetchAll('code IN ("' . implode ('","', $condList) . '")')->toArray();
-
         $result = array();
         foreach ($res as $value) {
             $result[] = $translate->getAdapter()->translate($value["name"]);
