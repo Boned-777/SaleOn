@@ -74,6 +74,19 @@ class PaymentController extends Zend_Controller_Action
     public function finishAction() {
 
     }
+
+    public function cancelAction() {
+        $vars = $this->getAllParams();
+        $id = isset($vars["id"])?$vars["id"]:null;
+        if ($id) {
+            $order = new Application_Model_Order();
+            if ($order->get($id)) {
+                $order->status = Application_Model_Order::STATUS_CANCELED;
+                $order->save();
+            }
+        }
+        $this->_helper->redirector("ready", "ad");
+    }
 }
 
 

@@ -4,7 +4,7 @@
         <a href="#">
             <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
-                <img width="550" height="auto" src="/ads/<?php echo $this->ad->image; ?>" class="img-polaroid">
+                <img width="550" height="auto" src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
             <?php } else { ?>
                 <?php echo $this->ad->video; ?>
             <?php } ?>
@@ -78,8 +78,8 @@
 
 <div>
     <?= $translate->getAdapter()->translate("days_left") . ": " . $this->ad->getDaysLeft() ?>
-    <? if ($this->prevAdUrl) : ?><a href="<?= $this->prevAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("prev_ad") ?></button></a><? endif ?>
-    <? if ($this->nextAdUrl) : ?><a href="<?= $this->nextAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("next_ad") ?></button></a><? endif ?>
+    <?php if ($this->prevAdUrl) : ?><a href="<?= $this->prevAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("prev_ad") ?></button></a><?php endif ?>
+    <?php if ($this->nextAdUrl) : ?><a href="<?= $this->nextAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("next_ad") ?></button></a><?php endif ?>
 
     <a href="<?= $this->notFavoritesUrl ?>" <?= !$this->isFavorite?"":"hidden" ?>><button class="btn"> <?= $translate->getAdapter()->translate("add_to_favorites") ?></button></a>
     <a href="<?= $this->isFavoritesUrl  ?>" <?= $this->isFavorite?"":"hidden" ?>><button class="btn"> <?= $translate->getAdapter()->translate("remove_from_favorites") ?></button></a>

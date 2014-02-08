@@ -32,7 +32,7 @@
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
 			this.itemTemplate = '<div class="span3 bottom-offset">\
 									<div class="img-wrapper">\
-										<img  src="/ads/$imageLink" class="img-polaroid">\
+										<img  src="/media/$imageLink" class="img-polaroid">\
 										<div class="img-info">\
 											<a href="$favoriteLink" title="$favoritesTooltip" data-id=$link class="favorites-icon $isFavorite"></a>\
 											<a href="/ad/index/id/$link" class="post-link"><p class="ellipsis">$name</p></a>\

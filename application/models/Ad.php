@@ -141,10 +141,21 @@ class Application_Model_Ad
 
         }
         $dbItem = new Application_Model_DbTable_Ad();
+        if ($this->id) {
+            $this->finishAllOrders();
+        }
         $res = $dbItem->save($data, $this->id);
         if ($res !== false)
             $this->id = $res;
         return $res;
+    }
+
+    public function finishAllOrders() {
+        $order = new Application_Model_Order();
+        if ($order->getByAd($this->id)) {
+            $order->status = Application_Model_Order::STATUS_CANCELED;
+            $order->save();
+        }
     }
 
     public function get($id) {
@@ -165,7 +176,16 @@ class Application_Model_Ad
             ->order("order_index DESC");
         if (!is_null($params))
             foreach ($params as $key => $val)
-                $stmt->where("$key = ?", $val);
+                switch ($key) {
+                    case "geo" :
+                        $stmt->where("$key LIKE ?", $val);
+                        break;
+
+                    default :
+                        $stmt->where("$key = ?", $val);
+                        break;
+                }
+
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
             $res = array();

@@ -1,10 +1,10 @@
-<? global $translate; ?>
-<? if ($this->error) : ?>
+<?php global $translate; ?>
+<?php if ($this->error) : ?>
     <div>
         <h2>Error</h2>
         <div><?= $this->errorMsg ?></div>
     </div>
-<? endif ?>
+<?php endif ?>
 
 <div class="orderDetails">
     <div class="row"><label><?= $translate->getAdapter()->translate("name") ?></label><div><?= $this->order->ad->name ?></div></div>
@@ -18,5 +18,5 @@
     <input type="hidden" name="operation_xml" value="<?= $this->xml ?>" />
     <input type="hidden" name="signature" value="<?= $this->signature ?>" />
     <input type="submit" value="<?= $translate->getAdapter()->translate("continue_payment")?>">
-    <input type="button" value="<?= $translate->getAdapter()->translate("cancel")?>">
+    <a href="/payment/cancel/id/<?= $this->order->id ?>"><input type="button" value="<?= $translate->getAdapter()->translate("cancel")?>"></a>
 </form>

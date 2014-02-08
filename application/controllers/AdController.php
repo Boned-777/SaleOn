@@ -142,13 +142,13 @@ class AdController extends Zend_Controller_Action
                         switch ($imgKey) {
                             case "image_file" :
                                 if (!isset($images["banner_file"])) {
-                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
+                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
                                 }
                                 $itemData["image"] = $imgVal;
                                 break;
 
                             case "banner_file" :
-                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
+                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
                                 break;
                         }
                     }
@@ -219,6 +219,8 @@ class AdController extends Zend_Controller_Action
         $request = new Zend_Controller_Request_Http();
         if ($request->getCookie('category'))
             $params["category"] = $request->getCookie('category');
+        if ($request->getCookie('geo'))
+            $params["geo"] = $request->getCookie('category');
         $ad = new Application_Model_Ad();
         $res = $ad->getList($params);
         $data = array();
@@ -358,13 +360,13 @@ class AdController extends Zend_Controller_Action
                             switch ($imgKey) {
                                 case "image_file" :
                                     if (!isset($images["banner_file"])) {
-                                        $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
+                                        $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
                                     }
                                     $mediaItemData["image"] = $imgVal;
                                     break;
 
                                 case "banner_file" :
-                                    $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/ads/" . $imgVal, 240, 153);
+                                    $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
                                     break;
                             }
                         }
@@ -405,7 +407,6 @@ class AdController extends Zend_Controller_Action
 
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
-
                 $item->save();
                 if ($item->id) {
                     if ($isReady) {
@@ -482,7 +483,7 @@ class AdController extends Zend_Controller_Action
         $image->load($src);
         $image->smartResize($target_width, $target_height);
         $newName = uniqid() . ".jpg";
-        $image->save(APPLICATION_PATH . "/../public/ads/" . $newName);
+        $image->save(APPLICATION_PATH . "/../public/media/" . $newName);
         return $newName;
     }
 

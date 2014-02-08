@@ -26,7 +26,7 @@ $translate = new Zend_Translate(
     APPLICATION_PATH . '/locale/lang_' . $locale . ".php",
     "ru"
 );
-$translate->setlocale ($locale);
+$translate->setlocale($locale);
 
 /** Zend_Application */
 require_once 'Zend/Application.php';
