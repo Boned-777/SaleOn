@@ -5,6 +5,7 @@
 			this.sliderUrl 		= "/ad/list";
 			this.wawSlyder 		= window.wawSlyder;
 			this.wawCategories 	= window.wawCategories;
+			this.wawRegions 	= window.wawRegions;
 			this.originalData 	= null;
 			this.slider 		= null;
 			this.categories 	= null; 
@@ -21,11 +22,12 @@
 
 			registerDOMElements : function () {
 				this.dom = {
-					categoryBtn : $("#btn2"),
-					filterModal : $("#filters-modal"),
-					lockLoading	: $(".lock-loading"),
-					carousel 	: $("#myCarousel"),
-					noData 		: $(".no-data")
+					categoryBtn  : $("#btn2"),
+					filterModal  : $("#filters-modal"),
+					regionsModal : $("#regions-modal"),
+					lockLoading	 : $(".lock-loading"),
+					carousel 	 : $("#myCarousel"),
+					noData 		 : $(".no-data")
 				}
 			},
 			bindEvents : function () {
@@ -34,8 +36,9 @@
 					that.initCategories();
 				});
 				$("#btn1").on("click", function(e){
-					that.slider = null;
-					that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 6));	
+					that.initRegions();
+					// that.slider = null;
+					// that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 6));	
 				});
 				$("#btn3").on("click", function(e){
 					that.slider = null;
@@ -64,7 +67,7 @@
 				this.dom.lockLoading.hide();
 			},
 			
-			/* category */
+			/* Categories popup */
 			initCategories : function () {
 				if (_.isEmpty(this.categories)){
 					this.dom.lockLoading.show();
@@ -72,7 +75,7 @@
 						url: "/categories/list",
 				        dataType: "json",
 						cache: false
-					}).done(_.bind(this.renderCategories, this)).fail(_.bind(this.initCategoriesError, this));
+					}).done(_.bind(this.renderCategories, this)).fail(_.bind(this.fetchingDataError, this));
 				} else {
 					this.showModal();
 				}
@@ -80,14 +83,14 @@
 
 			renderCategories : function (data) {
 				if (_.isEmpty(data)) {
-					this.initCategoriesError();
+					this.fetchingDataError();
 					return;
 				}
 				this.categories = new this.wawCategories(data);
 				this.dom.lockLoading.hide();
 				this.categories && this.bindCategorySelectedEvent();
 			},
-			initCategoriesError : function () {
+			fetchingDataError : function () {
 				this.dom.lockLoading.hide();
 			},
 
@@ -98,6 +101,48 @@
 					this.initWawSlider();
 				}, this));
 			},
+
+			/* Regions popup */
+			initRegions : function () {
+				if (_.isEmpty(this.regions)){
+					this.dom.lockLoading.show();
+					$.ajax({
+						url 	: "/geo/list?term=1",
+				        dataType: "json",
+						cache	: false
+					}).done(_.bind(this.renderRegions, this)).fail(_.bind(this.fetchingDataError, this));
+				} else {
+					this.showRegionsModal();
+				}
+			},
+
+			renderRegions : function (data) {
+				if (_.isEmpty(data)) {
+					this.fetchingDataError();
+					return;
+				}
+				this.regions = new this.wawRegions(data);
+				this.dom.lockLoading.hide();
+				this.regions && this.bindRegionSelectedEvent();
+			},
+
+			bindRegionSelectedEvent : function () {
+				this.regions.eventObject.on("regionSelected", _.bind(function(e, data){
+					this.setRegionCookie(data);
+					this.hideRegionsModal();
+					this.initWawSlider();
+				}, this));
+			},
+			
+			setCategoryCookie : function (data) {
+				$.removeCookie("category");
+				$.cookie('category', parseInt(data.categoryId), this.cookieOptions);
+			},
+			setRegionCookie : function (data) {
+				$.removeCookie("geo");
+				$.cookie('geo', data.regionId, this.cookieOptions);
+			},
+
 
 
 			duplicateResponce : function (source, count) {
@@ -110,23 +155,16 @@
 				return result;
 			},
 
-			setCategoryCookie : function (data) {
-				$.removeCookie("category");
-				$.cookie('category', parseInt(data.categoryId), this.cookieOptions);
-			},
-
 			setCookies : function () {
 				$.cookie('geo', '1.2', 		cookieOptions);
 				$.cookie('category', '3', 	cookieOptions);
 				$.cookie('brands', '111', 	cookieOptions);
 				$.cookie('products', '3', 	cookieOptions);	
-				//$.removeCookie("geo");
 			},
 
 			isBrowserCompatible : function () {
 			    if (navigator.sayswho == "MSIE 7.0") {
 			    	this.dom.noData.html(window.messages.notSupported).show();
-					// this.dom.carousel.hide();
 					return false;
 			    } else {
 					return true;
@@ -137,6 +175,12 @@
 			},
 			showModal : function () {
 				this.dom.filterModal.modal({show: true});
+			},
+			hideRegionsModal : function () {
+				this.dom.regionsModal.modal("hide");
+			},
+			showRegionsModal : function () {
+				this.dom.regionsModal.modal({show: true});
 			}
 
 		}

@@ -13,7 +13,7 @@
 						        		<div class="category-group-text">$services <span id="second-group-count" class="counter"></span></div>\
 						        	</div>\
 						      	</div>\
-						      	<div id="category-group-list"></div>';
+						      	<div id="category-group-list" class="filter-list"></div>';
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
 			this.itemTemplate = '<div data-id="$catId" class="span3 category-wrapper">\
@@ -40,7 +40,6 @@
 
 			registerDOMElements : function () {
 				this.dom = {
-					lockLayer		  : $(".lock-gray"),
 					filterModal	      : $("#filters-modal"),
 					filterContent	  : $("#filters-content")
 				}

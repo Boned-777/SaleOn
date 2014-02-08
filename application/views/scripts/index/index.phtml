@@ -7,12 +7,15 @@
 <div class="lock-loading"></div>
 
 <div id="filters-modal" class="modal hide" tabindex="-1">
-    <div class="modal-header" style="display:none;">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3 id="filter-name"></h3>
-    </div>
     <div id="filters-content" class="modal-body">
     </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+    </div>
+</div>
+
+<div id="regions-modal" class="modal hide" tabindex="-1">
+    <div id="regions-content" class="modal-body"></div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
     </div>
@@ -26,6 +29,8 @@
     	echo "window.messages.notSupported 	 = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
     	echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
     	echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
+		echo "window.messages.ukraine 		 = \"" . $translate->getAdapter()->translate("ukraine") . "\";"; 
+    	
     ?>
 </script>
 
@@ -34,5 +39,5 @@
 <script src="/js/underscore-min.js"></script>
 <script src="/js/waw-slider.js"></script>
 <script src="/js/waw-categories.js"></script>
-
+<script src="/js/waw-regions.js"></script>
 <script src="/js/index-loader.js"></script>
