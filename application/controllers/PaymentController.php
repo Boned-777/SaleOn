@@ -71,6 +71,9 @@ class PaymentController extends Zend_Controller_Action
         $this->_helper->json(array());
     }
 
+    public function finishAction() {
+
+    }
 }
 
 
