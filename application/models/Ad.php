@@ -343,8 +343,8 @@ class Application_Model_Ad
     }
 
     public function getPrice() {
-        $basePrice = 0.05;
-        $daysCount = $this->getDaysCount();
+        $basePrice = 1;
+        $daysCount = $this->getDaysLeft();
         return $basePrice * $daysCount;
     }
 }
