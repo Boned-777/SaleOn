@@ -890,6 +890,13 @@ textarea {
     width: 820px;
 }
 
+#regions-modal.modal {
+    margin-left: -485px;
+    width: 970px;
+}
+#regions-modal .modal-body {
+	max-height: 560px;
+}
 #action-address-modal img {
 	max-width: none;
 }
@@ -931,7 +938,13 @@ textarea {
 
 .counter {
 	display: none;
-}    
+}   
+
+.filter-list {
+	border-top: 1px solid #DDD;
+	padding-top: 20px;
+}
+
 .category-group {
 	height: 45px;
 }

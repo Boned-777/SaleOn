@@ -6,6 +6,21 @@
 <div class="text-center lead no-data"></div>
 <div class="lock-loading"></div>
 
+<div id="filters-modal" class="modal hide" tabindex="-1">
+    <div id="filters-content" class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+    </div>
+</div>
+
+<div id="regions-modal" class="modal hide" tabindex="-1">
+    <div id="regions-content" class="modal-body"></div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+    </div>
+</div>
+
 <script type="text/javascript">
 	window.messages = {};
     <?php 
@@ -14,12 +29,14 @@
     	echo "window.messages.notSupported 	 = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
     	echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
     	echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
+    	echo "window.messages.ukraine 		 = \"" . $translate->getAdapter()->translate("ukraine") . "\";"; 
     ?>
 </script>
 
 <script src="/js/bootstrap/bootstrap-transition.js"></script>
 <script src="/js/bootstrap/bootstrap-carousel.js"></script>
-<script src="/js/jquery/jquery.cookie.js"></script>
 <script src="/js/underscore-min.js"></script>
 <script src="/js/waw-slider.js"></script>
+<script src="/js/waw-categories.js"></script>
+<script src="/js/waw-regions.js"></script>
 <script src="/js/favorites-loader.js"></script>
