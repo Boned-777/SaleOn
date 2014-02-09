@@ -74,11 +74,11 @@ $(function () {
 
         countrySelect.change(function() {
             getGeo(countrySelect.val(), "region");
-            geoInput.val(countrySelect.val() + ".0.0");
+            geoInput.val(countrySelect.val() + "-0-0");
         });
         regionSelect.change(function() {
             getGeo(regionSelect.val(), "district");
-            geoInput.val(regionSelect.val()  + ".0");
+            geoInput.val(regionSelect.val()  + "-0");
         });
         districtSelect.change(function() {
             geoInput.val(districtSelect.val());

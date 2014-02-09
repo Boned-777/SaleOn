@@ -86,7 +86,6 @@ class AdController extends Zend_Controller_Action
 
         $item = new Application_Model_Ad();
         $request = $this->getRequest();
-        $geoItem = new Application_Model_Geo();
 
         $partner = new Application_Model_Partner();
         $partner->getByUserId($this->user->id);
@@ -94,66 +93,36 @@ class AdController extends Zend_Controller_Action
         unset($partnerData["id"]);
         $item->loadIfEmpty($partnerData);
 
+        $geoVal = "1-0-0";
         if ($this->_getParam('geo'))
             $geoVal = $this->_getParam('geo');
-        if (empty($geoVal)) {
-            $geoVal = "1.0.0";
-        }
-        $geoVals = explode(".", $geoVal);
-        if (!isset($geoVals[1])) {
-            $geoVals[1] = 0;
-        }
-        if (!isset($geoVals[2])) {
-            $geoVals[2] = 0;
-        }
-
-        $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
-        $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
-
-        $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
-        $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
+        $this->view->settingsForm->prepareGeo($geoVal);
+        $this->view->settingsForm->populate(array("geo" => $geoVal));
 
         if ($request->isPost()) {
             $formData = $request->getPost();
             if ($formData["id"])
                 $item->get($formData["id"]);
             $form = $forms[$formData["form"]];
+            // Geo value fix
+            if ($formData["form"] == "AdSettings") {
+                $geoArr = explode("-", $formData["geo"]);
+                $formData["country"] = $geoArr[0]?$geoArr[0]:"1";
+                $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
+                $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
+            }
             if ($form->isValid($formData)) {
+                $mediaItemData = array();
                 if ($formData["form"] == "AdMedia") {
-                    $upload = new Zend_File_Transfer_Adapter_Http();
-                    $images = $this->_processImage($upload);
+                    $mediaItemData = $form->processData();
                 }
-
-                if ($formData["form"] == "AdSettings") {
-                    if ((!empty($formData["brand_name"]))&(!$formData["brand"])) {
-                        $brand = new Application_Model_DbTable_Brand();
-                        $brand_res = $brand->save(array(
-                            "name" => $formData["brand_name"]
-                        ));
-                    }
-                    if ($brand_res) {
-                        $formData["brand"] = $brand_res;
-                    }
-                }
-
                 $itemData = $form->getValues();
-                if (sizeof($images)) {
-                    foreach ($images as $imgKey => $imgVal) {
-                        switch ($imgKey) {
-                            case "image_file" :
-                                if (!isset($images["banner_file"])) {
-                                    $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
-                                }
-                                $itemData["image"] = $imgVal;
-                                break;
-
-                            case "banner_file" :
-                                $itemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
-                                break;
-                        }
-                    }
+                $itemData = array_merge($mediaItemData, $itemData);
+                if ($formData["form"] == "AdSettings") {
+                    $settingsData = $form->processData($formData);
+                    $itemData = array_merge($settingsData, $itemData);
                 }
-                $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
+
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
                 $id = $item->save();
@@ -183,35 +152,6 @@ class AdController extends Zend_Controller_Action
             $forms[$formData["form"]]->populate($formData);
     }
 
-    private function _processImage($upload)
-    {
-        $upload->addValidator('Size', false, array('max' => "5MB"));
-        $upload->addValidator('MimeType', false, array('image/gif', 'image/jpeg', 'image/png'));
-
-        $resArray = array();
-        $files = $upload->getFileInfo();
-        foreach ($files as $file => $info) {
-            if (!$upload->isValid($file)) {
-                continue;
-            }
-
-            $newName = uniqid() . "_" . $info['name'];
-            $upload->setDestination(APPLICATION_PATH . "/../public/ads");
-            $upload->addFilter('Rename', APPLICATION_PATH . "/../public/ads" . DIRECTORY_SEPARATOR . $newName);
-
-            try {
-                $upload->receive($file);
-            } catch (Zend_File_Transfer_Exception $e) {
-                $e->getMessage();
-                return false;
-            }
-
-            $resArray[$file] = $newName;
-        }
-
-        return $resArray;
-    }
-
     public function listAction () {
         global $translate;
 
@@ -220,7 +160,7 @@ class AdController extends Zend_Controller_Action
         if ($request->getCookie('category'))
             $params["category"] = $request->getCookie('category');
         if ($request->getCookie('geo'))
-            $params["geo"] = $request->getCookie('category');
+            $params["geo"] = $request->getCookie('geo');
         $ad = new Application_Model_Ad();
         $res = $ad->getList($params);
         $data = array();
@@ -284,8 +224,10 @@ class AdController extends Zend_Controller_Action
 
         $item = new Application_Model_Ad();
         $formData = $this->getAllParams();
-        if ($formData["id"])
+        if (isset($formData["id"]))
             $item->get($formData["id"]);
+        else
+            return false;
 
         $isReady = $item->isValid();
 
@@ -320,26 +262,13 @@ class AdController extends Zend_Controller_Action
         $this->view->image = $item->image;
         $this->view->banner = $item->banner;
         $request = $this->getRequest();
-        $geoItem = new Application_Model_Geo();
         $geoVal = $item->geo;
         if ($this->_getParam('geo'))
             $geoVal = $this->_getParam('geo');
         if (empty($geoVal)) {
-            $geoVal = "1.0.0";
+            $geoVal = "1-0-0";
         }
-        $geoVals = explode(".", $geoVal);
-        if (!isset($geoVals[1])) {
-            $geoVals[1] = 0;
-        }
-        if (!isset($geoVals[2])) {
-            $geoVals[2] = 0;
-        }
-
-        $this->view->settingsForm->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
-        $this->view->settingsForm->getElement("region")->setValue($geoVals[0].'.'.$geoVals[1]);
-
-        $this->view->settingsForm->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'.'.$geoVals[1]));
-        $this->view->settingsForm->getElement("district")->setValue($geoVals[0].'.'.$geoVals[1].'.'.$geoVals[2]);
+        $this->view->settingsForm->prepareGeo($geoVal);
 
         $this->view->ad = $item;
         if ($request->isPost()) {
@@ -349,56 +278,24 @@ class AdController extends Zend_Controller_Action
                     $formData["district"] .= ".0";
             }
             $form = $forms[$formData["form"]];
-            $mediaItemData = array();
+            // Geo value fix
+            if ($formData["form"] == "AdSettings") {
+                $geoArr = explode("-", $formData["geo"]);
+                $formData["country"] = $geoArr[0]?$geoArr[0]:"1";
+                $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
+                $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
+            }
             if ($form->isValid($formData)) {
+                $mediaItemData = array();
                 if ($formData["form"] == "AdMedia") {
-                    $upload = new Zend_File_Transfer_Adapter_Http();
-                    $images = $this->_processImage($upload);
-
-                    if (sizeof($images)) {
-                        foreach ($images as $imgKey => $imgVal) {
-                            switch ($imgKey) {
-                                case "image_file" :
-                                    if (!isset($images["banner_file"])) {
-                                        $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
-                                    }
-                                    $mediaItemData["image"] = $imgVal;
-                                    break;
-
-                                case "banner_file" :
-                                    $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
-                                    break;
-                            }
-                        }
-                    }
+                    $mediaItemData = $form->processData();
                 }
-
                 $itemData = $form->getValues();
                 $itemData = array_merge($mediaItemData, $itemData);
+
                 if ($formData["form"] == "AdSettings") {
-                    if ((!empty($formData["brand_name"])) && (!$formData["brand"])) {
-                        $brand = new Application_Model_DbTable_Brand();
-                        $brand_res = $brand->save(array(
-                            "name" => $formData["brand_name"]
-                        ));
-                        if ($brand_res) {
-                            $itemData["brand_name"] = $formData["brand_name"];
-                            $itemData["brand"] = $brand_res;
-                        }
-                    }
-
-                    if ((!empty($formData["product_name"])) && (!$formData["product"])) {
-                        $product = new Application_Model_DbTable_Product();
-                        $product_res = $product->save(array(
-                            "name" => $formData["product_name"]
-                        ));
-                        if ($product_res) {
-                            $itemData["product_name"] = $formData["product_name"];
-                            $itemData["product"] = $product_res;
-                        }
-                    }
-
-                    $itemData["geo_name"] = $geoItem->getFullGeoName($geoVal);
+                    $settingsData = $form->processData($formData);
+                    $itemData = array_merge($settingsData, $itemData);
                 }
 
                 if ($isReady) {
@@ -473,18 +370,6 @@ class AdController extends Zend_Controller_Action
         if (empty($name))
             $name = $translate->getAdapter()->translate("empty_name");
         return '<a href="/ad/index/id/' . $id . '">' . $name . '</a>';
-    }
-
-    private function _resizeImage($src, $target_width, $target_height)
-    {
-        if (!file_exists($src))
-            return false;
-        $image = new Application_Model_Image();
-        $image->load($src);
-        $image->smartResize($target_width, $target_height);
-        $newName = uniqid() . ".jpg";
-        $image->save(APPLICATION_PATH . "/../public/media/" . $newName);
-        return $newName;
     }
 
     public function activeAction()

@@ -129,9 +129,10 @@ class Application_Model_Ad
                     break;
 
                 case "geo":
-                    if (!empty($this->geo)) {
+                    if (empty($this->geo)) {
                         $data[$key] = "1";
                     }
+                    $data[$key] = $this->$key;
                     break;
 
                 default:
@@ -178,7 +179,7 @@ class Application_Model_Ad
             foreach ($params as $key => $val)
                 switch ($key) {
                     case "geo" :
-                        $stmt->where("$key LIKE ?", $val);
+                        $stmt->where("(geo LIKE '$val' OR geo LIKE '$val-%')");
                         break;
 
                     default :

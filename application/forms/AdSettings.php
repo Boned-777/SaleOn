@@ -87,5 +87,48 @@ class Application_Form_AdSettings extends Zend_Form
             'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")
         ));
     }
+
+    public function prepareGeo($geo="1-0-0") {
+        $geoItem = new Application_Model_Geo();
+        $geo = $geo?$geo:"1-0-0";
+        $geoVals = explode("-", $geo);
+
+        $this->getElement("country")->setValue($geoVals[0]);
+
+        $this->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
+        $this->getElement("region")->setValue($geoVals[0].'-'.$geoVals[1]);
+
+        $this->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'-'.$geoVals[1]));
+        $this->getElement("district")->setValue($geoVals[0].'-'.$geoVals[1].'-'.$geoVals[2]);
+    }
+
+    public function processData($formData) {
+        $geoItem = new Application_Model_Geo();
+        $itemData = array();
+        if ((!empty($formData["brand_name"])) && (!$formData["brand"])) {
+            $brand = new Application_Model_DbTable_Brand();
+            $brand_res = $brand->save(array(
+                "name" => $formData["brand_name"]
+            ));
+            if ($brand_res) {
+                $itemData["brand_name"] = $formData["brand_name"];
+                $itemData["brand"] = $brand_res;
+            }
+        }
+
+        if ((!empty($formData["product_name"])) && (!$formData["product"])) {
+            $product = new Application_Model_DbTable_Product();
+            $product_res = $product->save(array(
+                "name" => $formData["product_name"]
+            ));
+            if ($product_res) {
+                $itemData["product_name"] = $formData["product_name"];
+                $itemData["product"] = $product_res;
+            }
+        }
+        $itemData["geo"] = $formData["geo"];
+        $itemData["geo_name"] = $geoItem->getFullGeoName($formData["geo"]);
+        return $itemData;
+    }
 }
 

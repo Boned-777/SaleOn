@@ -46,5 +46,72 @@ class Application_Form_AdMedia extends Zend_Form
             'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")
         ));
     }
+
+    public function processData() {
+        $upload = new Zend_File_Transfer_Adapter_Http();
+        $images = $this->_processImage($upload);
+        $mediaItemData = array();
+        if (sizeof($images)) {
+            foreach ($images as $imgKey => $imgVal) {
+                switch ($imgKey) {
+                    case "image_file" :
+                        if (!isset($images["banner_file"])) {
+                            $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
+                        }
+                        $mediaItemData["image"] = $imgVal;
+                        break;
+
+                    case "banner_file" :
+                        $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
+                        break;
+                }
+            }
+        }
+        if (sizeof($mediaItemData))
+            return $mediaItemData;
+        else
+            return false;
+    }
+
+    private function _processImage($upload)
+    {
+        $upload->addValidator('Size', false, array('max' => "5MB"));
+        $upload->addValidator('MimeType', false, array('image/gif', 'image/jpeg', 'image/png'));
+
+        $resArray = array();
+        $files = $upload->getFileInfo();
+        foreach ($files as $file => $info) {
+            if (!$upload->isValid($file)) {
+                continue;
+            }
+
+            $newName = uniqid() . "_" . $info['name'];
+            $upload->setDestination(APPLICATION_PATH . "/../public/media");
+            $upload->addFilter('Rename', APPLICATION_PATH . "/../public/media" . DIRECTORY_SEPARATOR . $newName);
+
+            try {
+                $upload->receive($file);
+            } catch (Zend_File_Transfer_Exception $e) {
+                $e->getMessage();
+                return false;
+            }
+
+            $resArray[$file] = $newName;
+        }
+
+        return $resArray;
+    }
+
+    private function _resizeImage($src, $target_width, $target_height)
+    {
+        if (!file_exists($src))
+            return false;
+        $image = new Application_Model_Image();
+        $image->load($src);
+        $image->smartResize($target_width, $target_height);
+        $newName = uniqid() . ".jpg";
+        $image->save(APPLICATION_PATH . "/../public/media/" . $newName);
+        return $newName;
+    }
 }
 

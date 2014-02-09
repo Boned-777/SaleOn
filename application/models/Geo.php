@@ -4,10 +4,6 @@ class Application_Model_Geo
 {
     public $id;
     public $code;
-    public $name_uk;
-    public $name_ru;
-    public $name_en;
-
     public $name;
 
     public function getAll($pattern = "") {
@@ -15,14 +11,14 @@ class Application_Model_Geo
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
         if ($pattern !== "")
-            $pattern .= ".";
+            $pattern .= "-";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
 
         $itemsArr = $res->toArray();
 
         $resArr = array();
         if ($originalPattern !== "")
-            $resArr[$originalPattern . ".0"] = $translate->getAdapter()->translate("any");
+            $resArr[$originalPattern . "-0"] = $translate->getAdapter()->translate("any");
         foreach ($itemsArr as $value) {
             $resArr[$value["code"]] = $translate->getAdapter()->translate($value["name"]);
         }
@@ -35,7 +31,7 @@ class Application_Model_Geo
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
         if ($pattern !== "")
-            $pattern .= ".";
+            $pattern .= "-";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
 
         $itemsArr = $res->toArray();
@@ -59,16 +55,17 @@ class Application_Model_Geo
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
         if ($pattern !== "")
-            $pattern .= ".";
+            $pattern .= "-";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
         $itemsArr = $res->toArray();
         $resArr = array(array(
             "name" => $originalPattern,
             "value" => $translate->getAdapter()->translate("any"),
+            "count" => isset($countsList[$originalPattern])?$countsList[$originalPattern]:0,
             "is_path" => 0
         ));
         $is_path = 0;
-        if (sizeof(explode(".", $pattern)) == 2)
+        if (sizeof(explode("-", $pattern)) == 2)
             $is_path = 1;
         foreach ($itemsArr as $value) {
             $resArr[] = array(
@@ -100,32 +97,37 @@ class Application_Model_Geo
         $select->from("ads", array(
             new Zend_Db_Expr("geo"),
             new Zend_Db_Expr("COUNT(*) count"),
-            new Zend_Db_Expr('SUBSTRING(REPLACE(LEFT(geo, '.$symCount .'),".",""), '.(strlen($temp)+1).') et')
+            new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", geo), ">'.$temp.'", ""), 2), "-","") et')
         ));
         if ($temp !== "")
-            $select->where('geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'.%"');
+            $select->where('geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'-%"');
         else
             $select->where('geo LIKE "" OR geo LIKE "%"');
+        $select->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $select->group("et");
         $data = $ad->fetchAll($select)->toArray();
         $resData = array();
         foreach($data as $val) {
-            if ($temp !== "")
-                $resData[$temp.".".$val["et"]] = $val["count"];
+            if (!empty($temp))
+                if ($val["et"])
+                    $resData[$temp."-".$val["et"]] = $val["count"];
+                else
+                    $resData[$temp] = $val["count"];
             else
                 $resData[$val["et"]] = $val["count"];
         }
+        //Zend_Debug::dump($resData); die();
         return $resData;
     }
 
     public function getFullGeoName ($geoCode = "") {
         global $translate;
-        $indexes = explode(".", $geoCode);
+        $indexes = explode("-", $geoCode);
         $condList = array();
         $tmp = "";
         foreach ($indexes as $val) {
             $condList[] = $tmp . $val;
-            $tmp .= $val . ".";
+            $tmp .= $val . "-";
         }
         $dbItem = new Application_Model_DbTable_Geo();
         $res = $dbItem->fetchAll('code IN ("' . implode ('","', $condList) . '")')->toArray();
