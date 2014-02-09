@@ -67,7 +67,7 @@ class UserController extends Zend_Controller_Action
         "Email: " . $data["username"] . "\n".
         "Password: " . $data["real_password"];
 
-        $mail = new Zend_Mail();
+        $mail = new Zend_Mail('UTF-8');
 		$mail->setBodyText($text);
 		$mail->setFrom('no-reply@wantlook.info', 'WantLook.info');
 		$mail->addTo($data["username"], '');
@@ -118,7 +118,7 @@ class UserController extends Zend_Controller_Action
         $text = "На сайте WantLook.info был создан запрос на восстановление пароля. Перейдите по ссылке ниже для окончания процедуры смены пароля.\n\n".
             "http://wantlook.info/user/passrecovery?code=" . $code;
 
-        $mail = new Zend_Mail();
+        $mail = new Zend_Mail('UTF-8');
         $mail->setBodyText($text);
         $mail->setFrom('no-reply@wantlook.info', 'WantLook.info');
         $mail->addTo($user->username, '');
