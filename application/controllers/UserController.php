@@ -51,28 +51,28 @@ class UserController extends Zend_Controller_Action
 		if ($data === false) {
 			return false;
 		}
-		
-		
-//		$mailhost= '127.0.0.1';
-//		$mailconfig = array(
-//			'port'    =>  '25',
-//		);
-//
-//		$transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
-//		Zend_Mail::setDefaultTransport($transport);
-//
-//		$text = "We have created an account for you in the.\nLog in using the details below:\n\n".
-//		"Email: " . $data["username"] . "\n".
-//		"Password: " . $data["real_password"];
-//
-//		//echo "<h1>This is temporary solution!</h1> Message is: <br/>" . $text; exit;
-//
-//		$mail = new Zend_Mail();
-//		$mail->setBodyText($text);
-//		$mail->setFrom('admin@test.com', 'test');
-//		$mail->addTo($data["username"], '');
-//		$mail->setSubject('New account for you');
-//		$mail->send();
+
+		$mailhost= '127.0.0.1';
+		$mailconfig = array(
+			'port'    =>  '25',
+		);
+
+		$transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
+		Zend_Mail::setDefaultTransport($transport);
+
+		$text = "Рады приветствовать Вас на сайте WantLook.info\nДанные для входа:\n\n".
+		"Email: " . $data["username"] . "\n".
+		"Пароль: " . $data["real_password"].
+        "\n\n\n\nWelcome on WantLook.info\n Credentials:\n\n".
+        "Email: " . $data["username"] . "\n".
+        "Password: " . $data["real_password"];
+
+        $mail = new Zend_Mail();
+		$mail->setBodyText($text);
+		$mail->setFrom('no-reply@wantlook.info', 'WantLook.info');
+		$mail->addTo($data["username"], '');
+		$mail->setSubject('Регистрация на WantLook.info');
+		$mail->send();
 		
 		return true;
     }
@@ -96,13 +96,34 @@ class UserController extends Zend_Controller_Action
             if ($data !== false) {
                 $item->recovery = uniqid().uniqid().uniqid();
                 $item->save();
-                $this->view->successMsg = $translate->getAdapter()->translate("recovery_success") . $item->recovery;
+                $this->_sendRecoveryMsg($item->recovery, $item);
+                $this->view->successMsg = $translate->getAdapter()->translate("recovery_success");
             } else {
                 $form->populate($request->getPost());
                 $this->view->errorMsg = $translate->getAdapter()->translate("recovery_error_email_not_found");
             }
         }
         $this->view->form = $form;
+    }
+
+    protected function _sendRecoveryMsg($code, $user) {
+        $mailhost= '127.0.0.1';
+        $mailconfig = array(
+            'port'    =>  '25',
+        );
+
+        $transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
+        Zend_Mail::setDefaultTransport($transport);
+
+        $text = "На сайте WantLook.info был создан запрос на восстановление пароля. Перейдите по ссылке ниже для окончания процедуры смены пароля.\n\n".
+            "http://wantlook.info/user/passrecovery?code=" . $code;
+
+        $mail = new Zend_Mail();
+        $mail->setBodyText($text);
+        $mail->setFrom('no-reply@wantlook.info', 'WantLook.info');
+        $mail->addTo($user->username, '');
+        $mail->setSubject('Восстановление пароля');
+        $mail->send();
     }
 
     public function passrecoveryAction()
