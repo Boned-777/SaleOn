@@ -176,7 +176,42 @@ class AdController extends Zend_Controller_Action
         $this->_helper->json($res);
     }
 
+    public function newsListAction () {
+        global $translate;
+
+        $ad = new Application_Model_Ad();
+        $res = $ad->getNewsList();
+        $data = array();
+        foreach ($res AS $val) {
+            $data[] = $val->toListArray($this->user);
+        }
+        $res = array(
+            "list" => $data,
+            "options" => array(
+                "days_left_text" => $translate->getAdapter()->translate("days_left")
+            )
+        );
+        $this->_helper->json($res);
+    }
+
     public function favoritesAction () {
+        global $translate;
+        $ad = new Application_Model_Ad();
+        $res = $ad->getFavorites($this->user->favorites_ads);
+        $data = array();
+        foreach ($res AS $val) {
+            $data[] = $val->toListArray($this->user);
+        }
+        $res = array(
+            "list" => $data,
+            "options" => array(
+                "days_left_text" => $translate->getAdapter()->translate("days_left")
+            )
+        );
+        $this->_helper->json($res);
+    }
+
+    public function newsAction () {
         global $translate;
         $ad = new Application_Model_Ad();
         $res = $ad->getFavorites($this->user->favorites_ads);

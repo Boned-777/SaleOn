@@ -202,6 +202,26 @@ class Application_Model_Ad
         }
     }
 
+    public function getNewsList() {
+        $item = new Application_Model_DbTable_Ad();
+        $stmt = $item->select()
+            ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->order("public_dt ASC");
+        $data = $item->fetchAll($stmt);
+        if ($data !== false) {
+            $res = array();
+            $data = $data->toArray();
+            foreach ($data AS $val) {
+                $tmp = new Application_Model_Ad();
+                $tmp->load($val);
+                $res[] = $tmp;
+            }
+            return $res;
+        } else {
+            return false;
+        }
+    }
+
     public function getFavorites($favorites_ads) {
         if (!empty($favorites_ads)) {
             $item = new Application_Model_DbTable_Ad();
