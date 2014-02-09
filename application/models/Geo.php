@@ -97,7 +97,7 @@ class Application_Model_Geo
         $select->from("ads", array(
             new Zend_Db_Expr("geo"),
             new Zend_Db_Expr("COUNT(*) count"),
-            new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", geo), ">'.$temp.'", ""), 2), "-","") et')
+            new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", geo), ">'.$temp.'-", ""), 2), "-","") et')
         ));
         if ($temp !== "")
             $select->where('geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'-%"');
