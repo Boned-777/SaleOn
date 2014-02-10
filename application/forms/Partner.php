@@ -73,10 +73,12 @@ class Application_Form_Partner extends Zend_Form
         ));
 
         $this->addElement('text', 'web', array(
+            'filters' => array('StringTrim', 'StringToLower'),
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("url"),
             'validators' => array(
-                array('StringLength', false, array(0, 100))
+                array('StringLength', false, array(0, 100)),
+                new Custom_Form_Validator_Url()
             ),
 //            'required' => true,
         ));

@@ -67,12 +67,14 @@ class Application_Form_AdContacts extends Zend_Form
             'required' => true,
         ));
 
+
         $this->addElement('text', 'url', array(
             'filters' => array('StringTrim', 'StringToLower'),
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("url"),
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
+                new Custom_Form_Validator_Url()
             ),
             //'required' => true,
         ));

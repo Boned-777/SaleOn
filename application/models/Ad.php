@@ -71,6 +71,10 @@ class Application_Model_Ad
                     $this->product_name = $item->getNameById($this->product);
                     break;
 
+                case "url":
+                    $this->url = $data["web"];
+                    break;
+
                 default:
                     if (!empty($this->$key))
                         break;
