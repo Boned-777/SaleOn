@@ -23,16 +23,27 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
     }
 
     public function search($condition) {
+        $dbItem = new Application_Model_DbTable_Category();
         $select = $this->select(array("name", "id"))
             ->where('name LIKE ? ', $condition . '%');
 
         $res = $this->fetchAll($select)->toArray();
         $result = array();
 
+        $db = $dbItem->getAdapter();
+        $query = $db->query("SELECT brand, COUNT(*) count FROM ads WHERE end_dt >= NOW() AND public_dt <= NOW() AND status = 'ACTIVE' GROUP BY brand");
+        $data = $query->execute();
+
+        $countsList = array();
+        foreach ($query->fetchAll() as $countVal) {
+            $countsList[$countVal["brand"]] = $countVal["count"];
+        }
+
         foreach ($res as $value) {
             $result[] = array(
                 "name" => $value["name"],
-                "value" => $value["id"]
+                "value" => $value["id"],
+                "count" => isset($countsList[$value["id"]])?$countsList[$value["id"]]:0
             );
         }
         return $result;
