@@ -661,4 +661,13 @@ return array (
     "chernigivskij" => "Чернігівський",
     "schorskij" => "Щорській",
     "ukraine" => "Україна",
+
+    "mm_regions" => "Регіони",
+    "mm_categories" => "Категорії",
+    "mm_brands" => "Бренди",
+    "mm_news" => "Нове",
+    "mm_partners" => "Партнерам",
+    "mm_exit" => "Вийти",
+    "mm_favorites" => "Вибране",
+    "mm_user" => "Користувач",
 );

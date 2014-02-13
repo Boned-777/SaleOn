@@ -26,34 +26,33 @@
 </head>
 <body>
     <div class="topbg"></div>
-
     <div id="wrap">
         <div class="container fix-content-position">
                 <div class="row">
                     <div class="top-menu">
                     <div class="span4">
-                        <button id="btn1" title="Регионы" class="btn btn-large" type="button"><i class="myicon-region"></i></button>
-                        <button id="btn2" title="Категории" class="btn btn-large" type="button"><i class="myicon-category"></i></button>
-                        <button id="btn3" title="Бренды" class="btn btn-large" type="button"><i class="myicon-brands"></i></button>
+                        <button id="btn1" title="<?= $translate->getAdapter()->translate("mm_regions")?>" class="btn btn-large" type="button"><i class="myicon-region"></i></button>
+                        <button id="btn2" title="<?= $translate->getAdapter()->translate("mm_categories")?>" class="btn btn-large" type="button"><i class="myicon-category"></i></button>
+                        <button id="btn3" title="<?= $translate->getAdapter()->translate("mm_brands")?>" class="btn btn-large" type="button"><i class="myicon-brands"></i></button>
                     </div>
                     <div class="span3 jumbotron">
                         <a id="link" href="/"><div class="logo"></div></a>
                     </div>
                     <div class="span4">
-                        <a href="/index/news" id="btn4" title="Новое" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
+                        <a href="/index/news" id="btn4" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" type="button"><i class="myicon-new"></i></a>
                         <?php
                             $auth = Zend_Auth::getInstance();
                             if ($auth->hasIdentity()) { ?>
                                 <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
-                                    <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
-                                    <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                                    <a href="/partner/profile" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+                                    <a href="/auth/logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
                                 <?php } else { ?>
-                                    <a href="/index/favorites" title="Избранное" class="btn btn-large" type="button"><i class="myicon-favorites"></i></a>
-                                    <a href="/auth/logout" title="Выйти" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
+                                    <a href="/index/favorites" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large" type="button"><i class="myicon-favorites"></i></a>
+                                    <a href="/auth/logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" type="button"><i class="myicon-logout"></i></a>
                                 <?php } ?>
                             <?php } else { ?>
-                                <a href="/user/new" id="btn4" title="Пользователь" class="btn btn-large" type="button"><i class="myicon-user"></i></a>
-                                <a href="/partner/profile" title="Партнерам" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
+                                <a href="/user/new" id="btn4" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" type="button"><i class="myicon-user"></i></a>
+                                <a href="/partner/profile" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" type="button"><i class="myicon-partners"></i></a>
                             <?php }
                         ?>
                     </div>
