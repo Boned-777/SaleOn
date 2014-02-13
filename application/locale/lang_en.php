@@ -670,4 +670,6 @@ return array (
     "mm_exit" => "Вийти",
     "mm_favorites" => "Вибране",
     "mm_user" => "Користувач",
+
+    "main_title" => "Всі акції України"
 );

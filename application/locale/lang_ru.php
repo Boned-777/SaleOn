@@ -672,4 +672,6 @@ return array(
     "mm_exit"=>"Выйти",
     "mm_favorites"=>"Избранное",
     "mm_user"=>"Пользователь",
+
+    "main_title" => "Все акции Украины"
 );

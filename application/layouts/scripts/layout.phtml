@@ -2,9 +2,11 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Waw site</title>
     <?php
-    global $translate;
+        global $translate;
+    ?>
+    <title><?= $translate->getAdapter()->translate("main_title")?></title>
+    <?php
     echo $this->jQuery()
         ->setVersion('1.9.1')
         ->setUiVersion('1.10.3')
