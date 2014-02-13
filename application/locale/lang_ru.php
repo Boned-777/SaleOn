@@ -76,6 +76,7 @@ return array(
     "password_recovery_btn_caption" => "Восстановление пароля",
 
     "page_number" => "Страница:",
+    "back" => "Назад",
 
     //ERRORS AND MESSAGES
     'wrong_email_or_password' => "Электронная почта или пароль не верны",

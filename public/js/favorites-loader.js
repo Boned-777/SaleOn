@@ -52,8 +52,6 @@
 				});
 				$("#btn1").on("click", function(e){
 					that.initRegions();
-					// that.slider = null;
-					// that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 6));	
 				});
 				$("#btn3").on("click", function(e){
 					that.slider = null;
@@ -113,7 +111,8 @@
 				this.categories.eventObject.on("categorySelected", _.bind(function(e, data){
 					this.setCategoryCookie(data);
 					this.hideModal();
-					this.initWawSlider();
+					location.href = "/";
+					//this.initWawSlider();
 				}, this));
 			},
 
@@ -145,7 +144,8 @@
 				this.regions.eventObject.on("regionSelected", _.bind(function(e, data){
 					this.setRegionCookie(data);
 					this.hideRegionsModal();
-					this.initWawSlider();
+					location.href = "/";
+					//this.initWawSlider();
 				}, this));
 			},
 			

@@ -37,8 +37,6 @@
 				});
 				$("#btn1").on("click", function(e){
 					that.initRegions();
-					// that.slider = null;
-					// that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 6));	
 				});
 				$("#btn3").on("click", function(e){
 					that.slider = null;
