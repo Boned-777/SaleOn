@@ -9,7 +9,7 @@
         							</div>\
         							<div class="span3">&nbsp;</div>\
 						      	</div>\
-						      	<div id="regions-list" class="filter-list"></div>\
+						      	<div id="regions-list" class="filter-list top-offset"></div>\
 						      	<div id="areas-list" class="filter-list top-offset"></div>';
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
@@ -39,7 +39,8 @@
 				this.dom = {
 					lockLayer		  : $(".lock-loading"),
 					regionsModal      : $("#regions-modal"),
-					regionsContent	  : $("#regions-content")
+					regionsContent	  : $("#regions-content"),
+					backBtn 		  : $("#region-back")
 				}
 			},
 
@@ -95,10 +96,11 @@
 
 			bindEvents : function () {
 				var	that = this;
-				this.dom.headerGroup.on("click", _.bind(function(e){
+				this.dom.backBtn.on("click", _.bind(function(e){
 					this.dom.headerName.text(window.messages.ukraine);
 					this.dom.regionsList.show();
 					this.dom.areasList.hide();
+					this.dom.backBtn.addClass("hide");
 				},this));
 				this.dom.regionsList.on("click", _.bind(function(e){
 					var row = $(e.target).closest(".category-wrapper"),
@@ -132,7 +134,6 @@
 						return (el.name == regionId);
 					})
 					this.dom.headerName.text(regionElement.value);
-					
 					this.data.area[regionId] = data;
 					this.countGroup(this.data.area[regionId].list);
 					this.renderAreas(regionId);
@@ -146,6 +147,7 @@
 				this.dom.regionsList.hide();
 				var itemList = this.renderItemList(this.data.area[regionId].list);
 				this.dom.areasList.html(itemList).show();
+				this.dom.backBtn.removeClass("hide");
 			},
 
 			showError : function () {

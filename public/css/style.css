@@ -893,6 +893,7 @@ textarea {
 #regions-modal.modal {
     margin-left: -485px;
     width: 970px;
+    top: 5%;
 }
 #regions-modal .modal-body {
 	max-height: 560px;
@@ -913,9 +914,10 @@ textarea {
 
 
 /*categories filters*/
-#filters-modal {
+#filters-modal.modal {
 	width: 1002px;
 	margin-left: -500px;
+	top: 5%;
 }
 .top-offset {
 	margin-top: 10px;  
