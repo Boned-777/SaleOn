@@ -6,6 +6,7 @@
 			this.wawSlyder 		= window.wawSlyder;
 			this.wawCategories 	= window.wawCategories;
 			this.wawRegions 	= window.wawRegions;
+			this.wawBrands	 	= window.wawBrands;
 			this.originalData 	= null;
 			this.slider 		= null;
 			this.categories 	= null; 
@@ -22,9 +23,12 @@
 
 			registerDOMElements : function () {
 				this.dom = {
+					regionsBtn 	 : $("#btn1"),
 					categoryBtn  : $("#btn2"),
+					brandsBtn    : $("#btn3"),
 					filterModal  : $("#filters-modal"),
 					regionsModal : $("#regions-modal"),
+					brandsModal  : $("#brands-modal"),
 					lockLoading	 : $(".lock-loading"),
 					carousel 	 : $("#myCarousel"),
 					noData 		 : $(".no-data")
@@ -32,15 +36,16 @@
 			},
 			bindEvents : function () {
 				var	that = this;
+				this.dom.regionsBtn.on("click", function(e){
+					that.initRegions();
+				});
 				this.dom.categoryBtn.on("click", function(e){
 					that.initCategories();
 				});
-				$("#btn1").on("click", function(e){
-					that.initRegions();
-					// that.slider = null;
-					// that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 6));	
+				this.dom.brandsBtn.on("click", function(e){
+					that.initBrands();
 				});
-				$("#btn3").on("click", function(e){
+				$("#footer").on("click", function(e){
 					that.slider = null;
 					that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 83));	
 				});
@@ -77,7 +82,7 @@
 						cache: false
 					}).done(_.bind(this.renderCategories, this)).fail(_.bind(this.fetchingDataError, this));
 				} else {
-					this.showModal();
+					this.showCategoryModal();
 				}
 			},
 
@@ -97,8 +102,9 @@
 			bindCategorySelectedEvent : function () {
 				this.categories.eventObject.on("categorySelected", _.bind(function(e, data){
 					this.setCategoryCookie(data);
-					this.hideModal();
-					this.initWawSlider();
+					this.hideCategoryModal();
+					location.href = "/";
+					// this.initWawSlider();
 				}, this));
 			},
 
@@ -130,6 +136,39 @@
 				this.regions.eventObject.on("regionSelected", _.bind(function(e, data){
 					this.setRegionCookie(data);
 					this.hideRegionsModal();
+					location.href = "/";
+					// this.initWawSlider();
+				}, this));
+			},
+
+			/* Brands popup */
+			initBrands : function () {
+				if (_.isEmpty(this.brands)){
+					this.dom.lockLoading.show();
+					$.ajax({
+						url 	: "/brands/list-all",
+				        dataType: "json",
+						cache	: false
+					}).done(_.bind(this.renderBrands, this)).fail(_.bind(this.fetchingDataError, this));
+				} else {
+					this.showBrandsModal();
+				}
+			},
+
+			renderBrands : function (data) {
+				if (_.isEmpty(data)) {
+					this.fetchingDataError();
+					return;
+				}
+				this.brands = new this.wawBrands(data);
+				this.dom.lockLoading.hide();
+				this.brands && this.bindBrandsSelectedEvent();
+			},
+
+			bindBrandsSelectedEvent : function () {
+				this.brands.eventObject.on("brandsSelected", _.bind(function(e, data){
+					this.setBrandsCookie(data);
+					this.hideBrandsModal();
 					this.initWawSlider();
 				}, this));
 			},
@@ -142,8 +181,17 @@
 				$.removeCookie("geo");
 				$.cookie('geo', data.regionId, this.cookieOptions);
 			},
+			setBrandsCookie : function (data) {
+				$.removeCookie("brands");
+				$.removeCookie("products");
 
-
+				if (data.brandsId) {
+					$.cookie('brands',   data.brandsId, this.cookieOptions);	
+				}
+				if (data.productsId) {
+					$.cookie('products', data.productsId, this.cookieOptions);
+				}
+			},
 
 			duplicateResponce : function (source, count) {
 				var result = {};
@@ -155,13 +203,6 @@
 				return result;
 			},
 
-			setCookies : function () {
-				$.cookie('geo', '1.2', 		cookieOptions);
-				$.cookie('category', '3', 	cookieOptions);
-				$.cookie('brands', '111', 	cookieOptions);
-				$.cookie('products', '3', 	cookieOptions);	
-			},
-
 			isBrowserCompatible : function () {
 			    if (navigator.sayswho == "MSIE 7.0") {
 			    	this.dom.noData.html(window.messages.notSupported).show();
@@ -170,10 +211,10 @@
 					return true;
 			    }
 			},
-			hideModal : function () {
+			hideCategoryModal : function () {
 				this.dom.filterModal.modal("hide");
 			},
-			showModal : function () {
+			showCategoryModal : function () {
 				this.dom.filterModal.modal({show: true});
 			},
 			hideRegionsModal : function () {
@@ -181,6 +222,12 @@
 			},
 			showRegionsModal : function () {
 				this.dom.regionsModal.modal({show: true});
+			},
+			hideBrandsModal : function () {
+				this.dom.brandsModal.modal("hide");
+			},
+			showBrandsModal : function () {
+				this.dom.brandsModal.modal({show: true});
 			}
 
 		}

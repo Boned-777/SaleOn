@@ -22,6 +22,14 @@
     </div>
 </div>
 
+<div id="brands-modal" class="modal hide" tabindex="-1">
+    <div id="brands-content" class="modal-body"></div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+    </div>
+</div>
+
+
 <script type="text/javascript">
 	window.messages = {};
     <?php 
@@ -41,4 +49,5 @@
 <script src="/js/waw-slider.js"></script>
 <script src="/js/waw-categories.js"></script>
 <script src="/js/waw-regions.js"></script>
+<script src="/js/waw-brands.js"></script>
 <script src="/js/index-loader.js"></script>

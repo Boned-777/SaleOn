@@ -49,6 +49,7 @@ $(function () {
     logoLink.click(function(e){
         $.removeCookie("category");
         $.removeCookie("brands");
+        $.removeCookie("products");
         $.removeCookie("geo");
     });
 

@@ -914,7 +914,8 @@ textarea {
 
 
 /*categories filters*/
-#filters-modal.modal {
+#filters-modal.modal, 
+#brands-modal.modal {
 	width: 1002px;
 	margin-left: -500px;
 	top: 5%;
