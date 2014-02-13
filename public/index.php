@@ -20,13 +20,15 @@ $autoloader->registerNamespace('Bvb');
 $autoloader->registerNamespace('Zendx');
 $autoloader->registerNamespace('SAuth');
 
-$locale = 'ru';
+$session = new Zend_Session_Namespace();
+$session->locale = isset($session->locale)?$session->locale:"ru";
+
 $translate = new Zend_Translate(
     'array',
-    APPLICATION_PATH . '/locale/lang_' . $locale . ".php",
-    "ru"
+    APPLICATION_PATH . '/locale/lang_' . $session->locale . ".php",
+    $session->locale
 );
-$translate->setlocale($locale);
+$translate->setlocale($session->locale);
 
 /** Zend_Application */
 require_once 'Zend/Application.php';

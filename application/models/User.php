@@ -11,6 +11,7 @@ class Application_Model_User
     public $recovery;
     public $role;
     public $favorites_ads;
+    public $locale;
 
     public function load($data) {
         $vars = get_class_vars(get_class());
@@ -44,7 +45,6 @@ class Application_Model_User
         $data = $dbItem->get($id);
         if ($data !== false)
             $this->load($data);
-            print_r($data); die();
 
         return $data;
     }
@@ -124,6 +124,17 @@ class Application_Model_User
         }
         $this->load($data);
         return true;
+    }
+
+    function setGlobalLocale($lang) {
+        $langList = array("ru", "ua", "en");
+        $session = new Zend_Session_Namespace();
+        if (in_array($lang, $langList)) {
+            $session->locale = $lang;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

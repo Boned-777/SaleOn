@@ -186,6 +186,23 @@ class UserController extends Zend_Controller_Action
         $this->_helper->json(array("success" => $res));
     }
 
+    public function langAction() {
+        $lang = $this->getParam("lang");
+        $user = new Application_Model_User();
+        if ($user->setGlobalLocale($lang)) {
+            $auth = Zend_Auth::getInstance();
+    		if ($auth->hasIdentity()) {
+                if ($user->getByUsername($auth->getIdentity()->username)) {
+                    $user->locale = $lang;
+                    $this->_helper->json(array("success"=>(bool)$user->save()));
+                };
+    		}
+            $this->_helper->json(array("success"=>true));
+        } else {
+            $this->_helper->json(array("success"=>false));
+        }
+    }
+
     public function newAction() {
         global $translate;
         $registrationForm = new Application_Form_User();

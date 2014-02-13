@@ -114,6 +114,9 @@ class AuthController extends Zend_Controller_Action
 		if ($result->isValid()) {
 			$user = $adapter->getResultRowObject();
 			$auth->getStorage()->write($user);
+            $userObj = new Application_Model_User();
+            $userObj->setGlobalLocale($user->locale);
+
 			return $user;
 		}
 		return false;
