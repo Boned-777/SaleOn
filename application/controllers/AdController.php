@@ -157,12 +157,13 @@ class AdController extends Zend_Controller_Action
 
         $params = null;
         $request = new Zend_Controller_Request_Http();
+
         if ($request->getCookie('category'))
             $params["category"] = $request->getCookie('category');
-        if ($request->getCookie('brand'))
-            $params["brand"] = $request->getCookie('brand');
-        if ($request->getCookie('product'))
-            $params["product"] = $request->getCookie('product');
+        if ($request->getCookie('brands'))
+            $params["brand"] = $request->getCookie('brands');
+        if ($request->getCookie('products'))
+            $params["product"] = $request->getCookie('products');
         if ($request->getCookie('geo'))
             $params["geo"] = $request->getCookie('geo');
         $ad = new Application_Model_Ad();
