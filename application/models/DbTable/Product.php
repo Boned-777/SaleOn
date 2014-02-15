@@ -36,7 +36,7 @@ class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
 
         $countsList = array();
         foreach ($query->fetchAll() as $countVal) {
-            $countsList[$countVal["product"]] = $countVal["product"];
+            $countsList[$countVal["product"]] = $countVal["count"];
         }
 
         foreach ($res as $value) {
