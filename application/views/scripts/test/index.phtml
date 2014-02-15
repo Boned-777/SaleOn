@@ -5,13 +5,17 @@
         po.src = 'https://apis.google.com/js/client:plusone.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
     })();
+
+    function GLogin($e) {
+        console.log($e);
+    }
 </script>
 
 <span id="signinButton">
   <span
       class="g-signin"
-      data-callback="signinCallback"
-      data-clientid="4596664800521-fh28srs1l1e4gp89suj1ilgbsdkmjlde.apps.googleusercontent.com"
+      data-callback="GLogin"
+      data-clientid="897869651508-gfk2vv17r495ructelva10aav8qoblh7.apps.googleusercontent.com"
       data-cookiepolicy="single_host_origin"
       data-requestvisibleactions="http://schemas.google.com/AddActivity"
       data-scope="https://www.googleapis.com/auth/plus.login">
