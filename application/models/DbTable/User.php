@@ -150,10 +150,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
         $text = "Рады приветствовать Вас на сайте WantLook.info\nДанные для входа:\n\n".
             "Email: " . $data["username"] . "\n".
-            "Пароль: " . $data["real_password"].
-            "\n\n\n\nWelcome on WantLook.info\n Credentials:\n\n".
+            "Пароль: " . $data["password"].
+            "\n\n\nWelcome on WantLook.info\nCredentials:\n\n".
             "Email: " . $data["username"] . "\n".
-            "Password: " . $data["real_password"];
+            "Password: " . $data["password"];
 
         $mail = new Zend_Mail('UTF-8');
         $mail->setBodyText($text);
