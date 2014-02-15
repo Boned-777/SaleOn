@@ -37,8 +37,6 @@ class AuthController extends Zend_Controller_Action
             $this->_helper->redirector('new', 'user');
         }
         $this->view->form = $form;
-
-
 	}
 
     public function authAction() {
