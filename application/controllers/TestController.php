@@ -1,6 +1,7 @@
 <?php
 require_once APPLICATION_PATH.'/../library/Google/Google_Client.php';
 require_once APPLICATION_PATH.'/../library/Google/contrib/Google_PlusService.php';
+require_once APPLICATION_PATH.'/../library/Google/contrib/Google_Oauth2Service.php';
 
 class TestController extends Zend_Controller_Action
 {
@@ -43,7 +44,18 @@ class TestController extends Zend_Controller_Action
             $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
             echo filter_var($redirect, FILTER_SANITIZE_URL);
         }
-        Zend_Debug::dump($client); die();
+
+        $oauth2 = new Google_Oauth2Service($client);
+
+        if ($client->getAccessToken()) {
+            $user = $oauth2->userinfo->get();
+            $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
+            $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
+            echo "$email<div><img src='$img?sz=50'></div>";
+            $_SESSION['token'] = $client->getAccessToken();
+        }
+
+        Zend_Debug::dump($user); die();
     }
 }
 
