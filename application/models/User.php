@@ -108,7 +108,7 @@ class Application_Model_User
         ));
         if (!$res)
             return false;
-        return true;
+        return $res;
     }
 
     public function getBySocial($socialId, $socialType) {

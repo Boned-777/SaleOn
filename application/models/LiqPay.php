@@ -27,7 +27,7 @@ class Application_Model_LiqPay
         $this->result_url = "http://" . $_SERVER['HTTP_HOST'] . "/payment/finish";
         $this->server_url = "http://" . $_SERVER['HTTP_HOST'] . "/payment/result";
         $this->currency = "UAH";
-        $this->pay_way = "card";
+        $this->pay_way = "CARD";
         $this->goods_id = 1;
         $this->default_phone = "380509999999";
     }

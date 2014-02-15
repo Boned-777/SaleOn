@@ -52,28 +52,6 @@ class UserController extends Zend_Controller_Action
 			return false;
 		}
 
-		$mailhost= '127.0.0.1';
-		$mailconfig = array(
-			'port'    =>  '25',
-		);
-
-		$transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
-		Zend_Mail::setDefaultTransport($transport);
-
-		$text = "Рады приветствовать Вас на сайте WantLook.info\nДанные для входа:\n\n".
-		"Email: " . $data["username"] . "\n".
-		"Пароль: " . $data["real_password"].
-        "\n\n\n\nWelcome on WantLook.info\n Credentials:\n\n".
-        "Email: " . $data["username"] . "\n".
-        "Password: " . $data["real_password"];
-
-        $mail = new Zend_Mail('UTF-8');
-		$mail->setBodyText($text);
-		$mail->setFrom('no-reply@wantlook.info', 'WantLook.info');
-		$mail->addTo($data["username"], '');
-		$mail->setSubject('Регистрация на WantLook.info');
-		$mail->send();
-		
 		return true;
     }
 

@@ -33,8 +33,11 @@ class PartnerController extends Zend_Controller_Action
             $data = $item->getByUserId($id);
         }
 
-        if ($data === false)
-            die("Invalid ID");
+        if ($data === false) {
+            $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
+            die ($id."Invalid ID");
+            return false;
+        }
 
         $changePasswordForm = new Application_Form_ChangePassword();
         $changePasswordForm->populate(array("id" => $this->user->id));
@@ -125,8 +128,12 @@ class PartnerController extends Zend_Controller_Action
     private function _create($data) {
         $item = new Application_Model_User();
         $data["role"] = Application_Model_User::PARTNER;
-        $a =  $item->create($data);
-        return $a;
+        $newUserId =  $item->create($data);
+        if ($newUserId === false)
+            return false;
+        $partner = new Application_Model_Partner();
+        $partner->user_id = $newUserId;
+        return $partner->save();
     }
 
     public function addAction()
