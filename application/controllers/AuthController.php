@@ -1,4 +1,7 @@
 <?php
+require_once APPLICATION_PATH.'/../library/Google/Google_Client.php';
+require_once APPLICATION_PATH.'/../library/Google/contrib/Google_PlusService.php';
+require_once APPLICATION_PATH.'/../library/Google/contrib/Google_Oauth2Service.php';
 
 class AuthController extends Zend_Controller_Action
 {
@@ -141,6 +144,50 @@ class AuthController extends Zend_Controller_Action
 		Zend_Auth::getInstance()->clearIdentity();
 		$this->_helper->redirector('index', 'index');
 	}
+
+    public function googleAuthAction()
+    {
+        $client = new Google_Client();
+        $client->setApplicationName("WantLook");
+        $client->setUseObjects(true);
+        $oauth2 = new Google_Oauth2Service($client);
+
+        if (isset($_SESSION['token'])) {
+            $client->setAccessToken($_SESSION['token']);
+        }
+
+        if (isset($_GET['code'])) {
+            $client->authenticate($_GET['code']);
+            $_SESSION['token'] = $client->getAccessToken();
+            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+            return;
+        }
+
+        if (isset($_GET['code'])) {
+            $client->authenticate();
+            $_SESSION['token'] = $client->getAccessToken();
+            $this->_helper->redirector('index', 'index');
+        }
+        if ($client->getAccessToken()) {
+            $auth = Zend_Auth::getInstance();
+            if ($auth->hasIdentity()) {
+                $this->getResponse()->setRedirect($this->view->siteDir);
+            }
+            $user = $oauth2->userinfo->get();
+            $systemUser = new Application_Model_User();
+            $socialUserId = $user->id;
+            if (!is_null($socialUserId)) {
+                $systemUser->getBySocial($socialUserId, "google");
+                $auth->getStorage()->write($systemUser->toObject());
+                $this->_helper->redirector('index', 'index');
+            } else {
+                $auth->clearIdentity();
+            }
+
+            $_SESSION['token'] = $client->getAccessToken();
+        }
+    }
 }
 
 

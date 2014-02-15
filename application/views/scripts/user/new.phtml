@@ -5,6 +5,7 @@
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
         <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter_throw"); ?></div>
+        <div><a href="<?= $this->googleLink; ?>">Google+</a></div>
         <div><a href="/auth/auth/by/facebook">Facebook</a></div>
         <div><a href="/auth/auth/by/twitter">Twitter</a></div>
         <div><a href="/auth/auth/by/vkontakte">VKontakte</a></div>

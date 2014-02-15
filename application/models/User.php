@@ -1,4 +1,7 @@
 <?php
+require_once APPLICATION_PATH.'/../library/Google/Google_Client.php';
+require_once APPLICATION_PATH.'/../library/Google/contrib/Google_PlusService.php';
+require_once APPLICATION_PATH.'/../library/Google/contrib/Google_Oauth2Service.php';
 
 class Application_Model_User
 {
@@ -22,6 +25,13 @@ class Application_Model_User
     }
 
     public function save() {
+        $data = $this->toArray();
+        $dbItem = new Application_Model_DbTable_User();
+        $res = $dbItem->save($data, $this->id);
+        return (bool)$res;
+    }
+
+    public function toArray() {
         $vars = get_class_vars(get_class());
         $data = array();
         foreach ($vars as $key => $value) {
@@ -33,11 +43,24 @@ class Application_Model_User
                     $data[$key] = $this->$key;
                     break;
             }
-
         }
-        $dbItem = new Application_Model_DbTable_User();
-        $res = $dbItem->save($data, $this->id);
-        return (bool)$res;
+        return $data;
+    }
+
+    public function toObject() {
+        $vars = get_class_vars(get_class());
+        $data = new stdClass();
+        foreach ($vars as $key => $value) {
+            switch ($key) {
+                case 'brand_name' :
+                    break;
+
+                default:
+                    $data->$key = $this->$key;
+                    break;
+            }
+        }
+        return $data;
     }
 
     public function get($id) {
@@ -117,7 +140,7 @@ class Application_Model_User
         if ($data === false) {
             $createUserRes = $dbItem->createSocial($socialId, $socialType);
             if ($createUserRes) {
-                $data = $dbItem->getBySocial($socialId, $socialType);
+                $data = $dbItem->get($createUserRes["id"]);
             } else {
                 return false;
             }
@@ -134,6 +157,25 @@ class Application_Model_User
             return true;
         } else {
             return false;
+        }
+    }
+
+    static public function prepareGoogleLink()
+    {
+        $client = new Google_Client();
+        $client->setApplicationName("WantLook");
+        $plus = new Google_PlusService($client);
+
+        if ($client->getAccessToken()) {
+            $client->setUseBatch(true);
+            $batch = new Google_BatchRequest();
+            $batch->add($plus->people->get('me'), 'key1');
+            $batch->add($plus->people->get('me'), 'key2');
+            $result = $batch->execute();
+            $_SESSION['token'] = $client->getAccessToken();
+        } else {
+            $authUrl = $client->createAuthUrl();
+            return $authUrl;
         }
     }
 }

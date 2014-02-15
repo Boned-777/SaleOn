@@ -28,28 +28,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $siteUrl = $this->getOption('siteUrl');
         $url = "http://wantlook.info/auth/auth/";
 
-        $sauthConf['google'] = array(
-            'id' => 'https://www.google.com/accounts/o8/id',
-            'callbackUrl' => $url . 'by/google',
-            'exchangeExtension' => array(
-                'openid.ns.ax' => 'https://accounts.google.com/o/oauth2/auth',
-                'openid.ax.mode' => 'fetch_request',
-                'openid.ax.type.email' => '596664800521-fh28srs1l1e4gp89suj1ilgbsdkmjlde@developer.gserviceaccount.com',
-                'openid.ax.required' => 'email',
-            ),
-        );
-
-//        $sauthConf['google'] = array(
-//            'id' => 'https://www.google.com/accounts/o8/id',
-//            'callbackUrl' => $url . 'by/google',
-//            'exchangeExtension' => array(
-//                'openid.ns.ax' => 'http://openid.net/srv/ax/1.0',
-//                'openid.ax.mode' => 'fetch_request',
-//                'openid.ax.type.email' => 'http://axschema.org/contact/email',
-//                'openid.ax.required' => 'email',
-//            ),
-//        );
-
         $sauthConf['twitter'] = array(
             'consumerKey' => 'zTMUlfNyrW8VuStaR6kgjw',
             'consumerSecret' => '2rspzvAhqGDxXjhPtbEdQw8GijcktlPX5hfr7EGI',
@@ -80,7 +58,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 //        );
 
         Zend_Registry::set('sauthConf', $sauthConf);
-
     }
 }
 

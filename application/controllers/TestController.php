@@ -15,6 +15,8 @@ class TestController extends Zend_Controller_Action
     {
         $client = new Google_Client();
         $client->setApplicationName("WantLook");
+        //echo "http://".$_SERVER['HTTP_HOST']."/test/auth";
+        $client->setRedirectUri('http://localhost/test/auth');
         $plus = new Google_PlusService($client);
 
         if ($client->getAccessToken()) {
@@ -32,11 +34,25 @@ class TestController extends Zend_Controller_Action
             print "<a class='login' href='$authUrl'>Connect Me!</a>";
         }
 	}
-	public function authAction()
+    public function authAction()
     {
         $client = new Google_Client();
         $client->setApplicationName("WantLook");
-        $plus = new Google_PlusService($client);
+        $client->setUseObjects(true);
+        $client->setRedirectUri("http://localhost/test/auth");
+        $oauth2 = new Google_Oauth2Service($client);
+
+        if (isset($_SESSION['token'])) {
+            $client->setAccessToken($_SESSION['token']);
+        }
+
+        if (isset($_GET['code'])) {
+            $client->authenticate($_GET['code']);
+            $_SESSION['token'] = $client->getAccessToken();
+            $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+            return;
+        }
 
         if (isset($_GET['code'])) {
             $client->authenticate();
@@ -44,18 +60,30 @@ class TestController extends Zend_Controller_Action
             $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
             echo filter_var($redirect, FILTER_SANITIZE_URL);
         }
-
-        $oauth2 = new Google_Oauth2Service($client);
-
         if ($client->getAccessToken()) {
+            $auth = Zend_Auth::getInstance();
+            if ($auth->hasIdentity()) {
+                $this->getResponse()->setRedirect($this->view->siteDir);
+            }
             $user = $oauth2->userinfo->get();
-            $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-            $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
-            echo "$email<div><img src='$img?sz=50'></div>";
+            $systemUser = new Application_Model_User();
+            $socialUserId = $user->id;
+            if (!is_null($socialUserId)) {
+                $systemUser->getBySocial($socialUserId, "google");
+                $auth->getStorage()->write($systemUser->toObject());
+                $this->_helper->redirector('index', 'index');
+            } else {
+                $auth->clearIdentity();
+            }
+
             $_SESSION['token'] = $client->getAccessToken();
         }
+    }
 
-        Zend_Debug::dump($user); die();
+    public function aAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        Zend_Debug::dump($auth->getIdentity()); die();
     }
 }
 

@@ -205,6 +205,7 @@ class UserController extends Zend_Controller_Action
                 }
             }
         }
+        $this->view->googleLink = Application_Model_User::prepareGoogleLink();
         $this->view->registrationForm = $registrationForm;
         $this->view->loginForm = $loginForm;
     }
