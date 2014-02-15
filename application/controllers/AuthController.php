@@ -49,6 +49,7 @@ class AuthController extends Zend_Controller_Action
         $adapterClass = 'SAuth_Adapter_' . ucfirst($adapterName);
         $adapter = new $adapterClass($this->config[$adapterName]);
         $result  = $auth->authenticate($adapter);
+        Zend_Debug::dump($result->isValid()); die();
         if ($result->isValid()) {
             $authData = $result->getIdentity();
             $socialUserId = null;
