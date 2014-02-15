@@ -22,18 +22,18 @@ $apiConfig = array(
     'use_objects' => false,
   
     // The application_name is included in the User-Agent HTTP header.
-    'application_name' => 'WantLook',
+    'application_name' => 'WantLook Sign-in',
 
     // OAuth2 Settings, you can get these keys at https://code.google.com/apis/console
     'oauth2_client_id' => '897869651508-gfk2vv17r495ructelva10aav8qoblh7.apps.googleusercontent.com',
     'oauth2_client_secret' => 'UuLROj9QJ18AgzO4Pmzh0EzE',
-    'oauth2_redirect_uri' => 'http://wantlook.info/test/auth',
+    'oauth2_redirect_uri' => 'http://wantlook.info/auth/google-auth',
 
     // The developer key, you get this at https://code.google.com/apis/console
     'developer_key' => '',
   
     // Site name to show in the Google's OAuth 1 authentication screen.
-    'site_name' => 'www.example.org',
+    'site_name' => 'http://wantlook.info',
 
     // Which Authentication, Storage and HTTP IO classes to use.
     'authClass'    => 'Google_OAuth2',
