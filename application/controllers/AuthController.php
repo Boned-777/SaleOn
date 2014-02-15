@@ -44,11 +44,10 @@ class AuthController extends Zend_Controller_Action
         if ($auth->hasIdentity()) {
             $this->getResponse()->setRedirect($this->view->siteDir);
         }
-        $adapterName = $this->getRequest()->getParam('by') ? $this->getRequest()->getParam('by') : 'google';
+        $adapterName = $this->getRequest()->getParam('by') ? $this->getRequest()->getParam('by') : 'vkontakte';
         $adapterClass = 'SAuth_Adapter_' . ucfirst($adapterName);
         $adapter = new $adapterClass($this->config[$adapterName]);
         $result  = $auth->authenticate($adapter);
-        die();
         if ($result->isValid()) {
             $authData = $result->getIdentity();
             $socialUserId = null;
