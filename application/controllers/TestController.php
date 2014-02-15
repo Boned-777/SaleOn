@@ -21,7 +21,7 @@ class TestController extends Zend_Controller_Action
 	}
 	public function authAction()
     {
-        Zend_Debug::dump($this->getRequest()); die();
+        Zend_Debug::dump($this->getAllParams()); die();
     }
 }
 

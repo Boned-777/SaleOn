@@ -18,7 +18,7 @@
                 // Отправляет код на сервер
                 $.ajax({
                     type: 'POST',
-                    url: 'plus.php?storeToken',
+                    url: '/test/auth?storeToken',
                     contentType: 'application/octet-stream; charset=utf-8',
                     success: function(result) {
                         // Обрабатывает или проверяет ответ сервера при необходимости.
