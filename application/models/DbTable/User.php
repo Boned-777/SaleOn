@@ -148,12 +148,8 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         $transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
         Zend_Mail::setDefaultTransport($transport);
 
-        $text = "Рады приветствовать Вас на сайте WantLook.info\nДанные для входа:\n\n".
-            "Email: " . $data["username"] . "\n".
-            "Пароль: " . $data["password"].
-            "\n\n\nWelcome on WantLook.info\nCredentials:\n\n".
-            "Email: " . $data["username"] . "\n".
-            "Password: " . $data["password"];
+        $text = "Рады приветствовать Вас на сайте WantLook.info".
+            "\n\n\nWelcome on WantLook.info";
 
         $mail = new Zend_Mail('UTF-8');
         $mail->setBodyText($text);
