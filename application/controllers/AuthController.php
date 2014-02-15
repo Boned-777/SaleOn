@@ -51,11 +51,13 @@ class AuthController extends Zend_Controller_Action
         $result  = $auth->authenticate($adapter);
         if ($result->isValid()) {
             $authData = $result->getIdentity();
-            Zend_Debug::dump($authData); die();
             $socialUserId = null;
             switch ($adapterName) {
                 case "vkontakte":
                     $socialUserId = $authData["uid"];
+                    break;
+                case "twitter" :
+                    $socialUserId = $authData["user_id"];
                     break;
 
                 default:
