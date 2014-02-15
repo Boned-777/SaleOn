@@ -34,7 +34,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'exchangeExtension' => array(
                 'openid.ns.ax' => 'https://accounts.google.com/o/oauth2/auth',
                 'openid.ax.mode' => 'fetch_request',
-                'openid.ax.type.email' => '596664800521@developer.gserviceaccount.com',
+                'openid.ax.type.email' => '596664800521-fh28srs1l1e4gp89suj1ilgbsdkmjlde@developer.gserviceaccount.com',
                 'openid.ax.required' => 'email',
             ),
         );
