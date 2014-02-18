@@ -33,11 +33,11 @@
 			this.itemTemplate = '<div class="span3 bottom-offset">\
 									<div class="img-wrapper">\
 										<img  src="/media/$imageLink" class="img-polaroid">\
-										<div class="img-info">\
-											<a href="$favoriteLink" title="$favoritesTooltip" data-id=$link class="favorites-icon $isFavorite"></a>\
-											<a href="/ad/index/id/$link" class="post-link"><p class="ellipsis">$name</p></a>\
-											<p class="ellipsis">$brand</p>\
-											<p class="ellipsis">$daysMsgText: $daysLeft</p>\
+										<div class="post-link img-info" data-link="/ad/index/id/$link">\
+												<a href="$favoriteLink" title="$favoritesTooltip" data-id=$link class="favorites-icon $isFavorite"></a>\
+												<p class="ellipsis">$name</p>\
+												<p class="ellipsis">$brand</p>\
+												<p class="ellipsis">$daysMsgText: $daysLeft</p>\
 										</div>\
 									</div>\
 								</div>';	
@@ -116,10 +116,8 @@
 						that.favoritesClickHandler(target);
 					
 					} else if (that.isPostLinkClick(target)) {
-						if (!target.parent().hasClass("post-link")){
-							e.preventDefault();
-							window.location.href = target.parent().find(".post-link").attr("href");
-						}
+						e.preventDefault();
+						window.location.href = target.closest(".img-info").data("link");
 					}
 				})
 				$(document).on("keyup", function (e) {

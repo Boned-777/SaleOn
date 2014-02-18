@@ -950,6 +950,7 @@ textarea {
 
 .category-group {
 	height: 45px;
+	cursor: pointer;
 }
 .category-group-inactive {
 	padding: 9px 36px 9px 15px;
