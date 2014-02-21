@@ -17,7 +17,6 @@
 									<div class="flagi-right">$regionName <br><span class="counter">$regionCount</span></div>\
 								</div>';	
 			this.eventObject = $({});
-			// this.currentCategoryGroup = 1;
 			this.init(regionsData);	 
 		};
 		

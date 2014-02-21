@@ -1003,5 +1003,23 @@ textarea {
 	clear: both;
 }
 
+.brands-letters-wrapper {
+	margin-left: 130px;
+}
+
+.brands-letters {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.no-brand-data {
+	margin: 30px 0;
+	font-size: 16px;
+	font-weight: bold;
+}
+
 
 
