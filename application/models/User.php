@@ -166,8 +166,6 @@ class Application_Model_User
         $client->setApplicationName("WantLook");
         $plus = new Google_PlusService($client);
 
-        Zend_Debug::dump($client); die();
-
         if ($client->getAccessToken()) {
             $client->setUseBatch(true);
             $batch = new Google_BatchRequest();
