@@ -165,6 +165,7 @@ class AuthController extends Zend_Controller_Action
             $user = $oauth2->userinfo->get();
             $systemUser = new Application_Model_User();
             $socialUserId = $user->id;
+            Zend_Debug::dump($user); die();
             if (!is_null($socialUserId)) {
                 $systemUser->getBySocial($socialUserId, "google");
                 $auth->getStorage()->write($systemUser->toObject());
