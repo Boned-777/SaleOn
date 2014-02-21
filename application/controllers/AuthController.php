@@ -157,6 +157,8 @@ class AuthController extends Zend_Controller_Action
             $client->setAccessToken($_SESSION['token']);
         }
 
+        Zend_Debug::dump($client->getAccessToken());
+
         if ($client->getAccessToken()) {
             $auth = Zend_Auth::getInstance();
             if ($auth->hasIdentity()) {
