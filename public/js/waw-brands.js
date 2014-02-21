@@ -93,8 +93,20 @@
 		
 		wawBrands.prototype = {
 			
+			duplicateResponce : function (source, count) {
+				var result = [];
+				for (var i = 0; i<= count; i++) {
+					result = result.concat(source[0].sub);
+				}
+				result[0].sub = result;
+				result[0].name = source[0].name;
+				result[1].name = source[1].name;
+				result[1].sub = source[1].sub;
+				return result;
+			},
+
 			init : function (brandsData) {
-				this.data = brandsData;		
+				this.data = this.duplicateResponce(brandsData, 17);
 				this.data.letters = [];
 				this.registerDOMElements();
 				this.renderMainTemplate();
