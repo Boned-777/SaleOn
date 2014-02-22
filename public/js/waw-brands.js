@@ -14,6 +14,7 @@
 						        	</div>\
 						      	</div>\
 						      	<div id="brands-group-list" class="filter-list"></div>\
+						      	<div class="left-arrow"></div><div class="right-arrow"></div>\
 						      	<div id="brands-letters" class="row">\
 						      	    <div class="span8 brands-letters-wrapper text-center">\
 								        <a class="muted brands-letters">0-9</a>\
@@ -94,12 +95,15 @@
 		wawBrands.prototype = {
 			
 			duplicateResponce : function (source, count) {
-				var result = [];
+				var result = [],
+					temp = [];
 				for (var i = 0; i<= count; i++) {
-					result = result.concat(source[0].sub);
+					temp = temp.concat(source[0].sub);
 				}
-				result[0].sub = result;
+				result[0] = [];
+				result[0].sub = temp;
 				result[0].name = source[0].name;
+				result[1] = [];
 				result[1].name = source[1].name;
 				result[1].sub = source[1].sub;
 				return result;
@@ -138,7 +142,9 @@
 					brandsGroupList 	: $("#brands-group-list"),
 					firstGroupCount 	: $("#first-group-count"),
 					secondGroupCount 	: $("#second-group-count"),
-					brandsLetters 	    : $("#brands-letters")
+					brandsLetters 	    : $("#brands-letters"),
+					leftArrow 			: $(".left-arrow"),
+					rightArrow  		: $(".right-arrow")
 				})
 			},
 
@@ -150,9 +156,17 @@
 
 			renderItemList : function (dataList) {
 				var	j 	 	 = 0,
-					result 	 = EMPTY_STRING;
+					result 	 = EMPTY_STRING,
+					count 	 = dataList.length;
 
-				for (var i = 0; i <= dataList.length; i++) {
+				// remove it!!!
+				if (count>24) {
+					this.dom.leftArrow.add(this.dom.rightArrow).show();
+				} else {
+					this.dom.leftArrow.add(this.dom.rightArrow).hide();
+				}
+
+				for (var i = 0; i <= count; i++) {
 					if (j==0) {result += this.rowTemplate[0]}
 						if (dataList[i]) {
 							result += this.itemTemplate

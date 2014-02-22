@@ -58,6 +58,7 @@ body {
 }
 #footer .container {
 	position: relative;
+	width: 950px;
 }
 
 .container .credit {

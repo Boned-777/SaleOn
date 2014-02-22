@@ -673,5 +673,10 @@ return array(
     "mm_favorites"=>"Избранное",
     "mm_user"=>"Пользователь",
 
-    "main_title" => "Все акции Украины"
+    "main_title" => "Все акции Украины",
+    "lng_russian" => "Русский",
+    "lng_ukrainian" => "Українська",
+    "lng_english" => "English"
+
+
 );

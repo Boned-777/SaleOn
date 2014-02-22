@@ -6,6 +6,7 @@ $(function () {
         actionAddress        = $('#action-address'),
         actionAddressModal   = $('#action-address-modal'),
         imageWrapper         = $('.img-wrapper'),
+        lngSwitcher          = $('#lng-switcher'),
         logoLink             = $('#link');
 
     /* Hide video player*/    
@@ -46,11 +47,24 @@ $(function () {
         });
     });
 
+    /* clear all cookies */
     logoLink.click(function(e){
         $.removeCookie("category");
         $.removeCookie("brands");
         $.removeCookie("products");
         $.removeCookie("geo");
+    });
+
+    /*Lng switcher*/
+    lngSwitcher.click(function(e){
+        e.preventDefault();
+        var id = $(e.target).closest(".lng").attr("id");
+        $.ajax({
+            url: "/user/lang?lang=" + id,
+            cache: false
+        }).done(function( html ) {
+            window.location.href = "/";
+        });
     });
 
     /* Add browser depended classes */
