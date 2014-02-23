@@ -58,10 +58,12 @@ body {
 }
 #footer .container {
 	position: relative;
+	width: 950px;
 }
 
 .container .credit {
-	margin: 8px 0 0 0;
+	margin: 8px 0 0 20px;
+	display: inline-block;
 }
 
 .fix-content-position {
@@ -885,6 +887,7 @@ textarea {
     padding: 25px 0;
 } 
 
+/* Modal window */
 .modal {
     margin-left: -410px;
     width: 820px;
@@ -898,6 +901,40 @@ textarea {
 #regions-modal .modal-body {
 	max-height: 560px;
 }
+#brands-modal .modal-body {
+	max-height: 530px;
+}
+
+#brands-group-list {
+	width: 870px;
+	padding-left: 50px;
+}
+#brands-group-list .category-wrapper {
+	width: 255px;
+}
+#brands-letters {
+	margin-top: 20px;
+}
+.left-arrow,
+.right-arrow {
+	background: url("/img/arrows.png");
+	position: absolute;
+	cursor: pointer;
+	/*display: none;*/
+	width: 40px;
+	height: 70px;
+}
+.left-arrow {
+	background-position: 1px 1px;
+	left: 15px;
+	top: 275px;
+}
+.right-arrow {
+	background-position: -43px 1px;
+	right: 15px;
+	top: 275px;
+}
+
 #action-address-modal img {
 	max-width: none;
 }
@@ -916,8 +953,8 @@ textarea {
 /*categories filters*/
 #filters-modal.modal, 
 #brands-modal.modal {
-	width: 1002px;
-	margin-left: -500px;
+	width: 1020px;
+	margin-left: -510px;
 	top: 5%;
 }
 .top-offset {
@@ -994,8 +1031,7 @@ textarea {
 .category-wrapper:hover {
 	background-color: #eee;   
 }
-
-      
+     
 .category-wrapper:hover span.counter,
 .category-group:hover span.counter {
 	text-decoration: none;
