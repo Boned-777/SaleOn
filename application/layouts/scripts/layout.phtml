@@ -27,6 +27,8 @@
     
 </head>
 <body>
+    <?php global $session;?>
+    <input id="lang" type="hidden" value="<?= $session->locale; ?>" />
     <div class="topbg"></div>
     <div id="wrap">
         <div class="container fix-content-position">
@@ -79,6 +81,14 @@
 
     <div id="footer" class="footer footer-gradient">
         <div class="container">
+            <div class="btn-group dropup">
+                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><?= $translate->getAdapter()->translate("lng_russian")?></button>
+                <ul class="dropdown-menu" id="lng-switcher">
+                    <li><a id="ru" class="lng" href="#"><?= $translate->getAdapter()->translate("lng_russian")?></a></li>
+                    <li><a id="ua" class="lng" href="#"><?= $translate->getAdapter()->translate("lng_ukrainian")?></a></li>
+                    <li><a id="en" class="lng" href="#"><?= $translate->getAdapter()->translate("lng_english")?></a></li>
+                </ul>
+            </div>
             <p class="credit">ВАУ - Все акции Украины, 2013-2014 </p>
             <div id="footer-social" class="socials"></div>
         </div>

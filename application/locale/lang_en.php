@@ -671,5 +671,8 @@ return array (
     "mm_favorites" => "Вибране",
     "mm_user" => "Користувач",
 
-    "main_title" => "Всі акції України"
+    "main_title" => "Всі акції України",
+    "lng_russian" => "Русский",
+    "lng_ukrainian" => "Українська",
+    "lng_english" => "English"
 );
