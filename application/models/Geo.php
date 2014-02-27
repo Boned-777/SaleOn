@@ -58,34 +58,46 @@ class Application_Model_Geo
             $pattern .= "-";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
         $itemsArr = $res->toArray();
-        $resArr = array(array(
+        $resArr = array();
+        $cityArray = null;
+        $is_path = 0;
+        if (sizeof(explode("-", $pattern)) == 2)
+            $is_path = 1;
+        foreach ($itemsArr as $value) {
+            if (!preg_match("/^[0-9]{1,2}-[0-9]{1,2}-99/", $value["code"])) {
+                $resArr[] = array(
+                    "name" => $value["code"],
+                    "value" => str_replace("І", "ИИ", $translate->getAdapter()->translate($value["name"])),
+                    "count" => isset($countsList[$value["code"]])?$countsList[$value["code"]]:0,
+                    "is_path" => $is_path
+                );
+
+            } else
+                $cityArray = array(
+                    "name" => $value["code"],
+                    "value" => $translate->getAdapter()->translate($value["name"]),
+                    "count" => isset($countsList[$value["code"]])?$countsList[$value["code"]]:0,
+                    "is_path" => $is_path
+                );
+        }
+        //sorting
+        $name = array();
+        foreach ($resArr as $key => $row) {
+            $name[$key]  = $row['value'];
+        }
+        array_multisort($name, SORT_ASC, $resArr);
+        foreach ($resArr as $key => $value) {
+            $resArr[$key]["value"] = str_replace("ИИ", "І", $resArr[$key]["value"]);
+        }
+        $additional = array(array(
             "name" => $originalPattern,
             "value" => $translate->getAdapter()->translate("any"),
             "count" => isset($countsList[$originalPattern])?$countsList[$originalPattern]:0,
             "is_path" => 0
         ));
-        $is_path = 0;
-        if (sizeof(explode("-", $pattern)) == 2)
-            $is_path = 1;
-        foreach ($itemsArr as $value) {
-            $resArr[] = array(
-                "name" => $value["code"],
-                "value" => $translate->getAdapter()->translate($value["name"]),
-                "count" => isset($countsList[$value["code"]])?$countsList[$value["code"]]:0,
-                "is_path" => $is_path
-            );
-        }
-
-        //sorting
-        $name = array();
-        foreach ($resArr as $key => $row) {
-//            if ($row["id"] == 15) {
-//                $tmpItem = $resArray[1]["sub"][$key];
-//                unset($resArray[1]["sub"][$key]);
-//            } else
-                $name[$key]  = $row['name'];
-        }
-        array_multisort($name, SORT_ASC, $resArr);
+        if ($cityArray)
+            $additional[] = $cityArray;
+        $resArr = array_merge($additional, $resArr);
         return $resArr;
     }
 
