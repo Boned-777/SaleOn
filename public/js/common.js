@@ -7,6 +7,9 @@ $(function () {
         actionAddressModal   = $('#action-address-modal'),
         imageWrapper         = $('.img-wrapper'),
         lngSwitcher          = $('#lng-switcher'),
+        lngButton            = $('#lng-btn'),
+        currentLng           = $('#current-lng'),
+        
         logoLink             = $('#link');
 
     /* Hide video player*/    
@@ -56,6 +59,9 @@ $(function () {
     });
 
     /*Lng switcher*/
+    var lng = currentLng.val(),
+        lngName = lngSwitcher.find("#"+lng).attr("title");
+    lngButton.attr("title", lngName).addClass(lng);
     lngSwitcher.click(function(e){
         e.preventDefault();
         var id = $(e.target).closest(".lng").attr("id");
@@ -63,7 +69,7 @@ $(function () {
             url: "/user/lang?lang=" + id,
             cache: false
         }).done(function( html ) {
-            window.location.href = "/";
+            window.location.reload();
         });
     });
 

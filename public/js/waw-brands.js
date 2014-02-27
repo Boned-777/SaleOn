@@ -17,7 +17,6 @@
 						      	<div class="left-arrow"></div><div class="right-arrow"></div>\
 						      	<div id="brands-letters" class="row">\
 						      	    <div class="span8 brands-letters-wrapper text-center">\
-								        <a class="muted brands-letters">0-9</a>\
 								        <a class="muted brands-letters">А</a>\
 								        <a class="muted brands-letters">Б</a>\
 								        <a class="muted brands-letters">В</a>\
@@ -47,6 +46,7 @@
 								        <a class="muted brands-letters">Ч</a>\
 								        <a class="muted brands-letters">Ш</a>\
 								        <a class="muted brands-letters">Щ</a>\
+								        <a class="muted brands-letters">Э</a>\
 								        <a class="muted brands-letters">Ю</a>\
 								        <a class="muted brands-letters">Я</a>\
 								    </div>\

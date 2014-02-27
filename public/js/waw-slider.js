@@ -31,15 +31,15 @@
 			
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
 			this.itemTemplate = '<div class="span3 bottom-offset">\
-									<div class="img-wrapper">\
-										<img  src="/media/$imageLink" class="img-polaroid">\
-										<div class="post-link img-info" data-link="/ad/index/id/$link">\
-												<a href="$favoriteLink" title="$favoritesTooltip" data-id=$link class="favorites-icon $isFavorite"></a>\
+									<a class="img-wrapper" href="/ad/index/id/$link">\
+										<img src="/media/$imageLink" class="img-polaroid"/>\
+										<div class="post-link img-info">\
+												<div data-link="$favoriteLink" title="$favoritesTooltip" data-id="$link" class="favorites-icon $isFavorite"></div>\
 												<p class="ellipsis">$name</p>\
 												<p class="ellipsis">$brand</p>\
 												<p class="ellipsis">$daysMsgText: $daysLeft</p>\
 										</div>\
-									</div>\
+									</a>\
 								</div>';	
 
 			this.noImgTemplate = '<div class="span3 bottom-offset">\
@@ -103,22 +103,21 @@
 				this.dom.itemWrapper.on("click", function(e){
 					var wrapperContainer = $(e.currentTarget).parent(),
 						target = $(e.target);
-
+					
 					if (that.isRightClick(wrapperContainer)){
+						e.preventDefault();
 						that.showNextPage();	
 					}
 					if (that.isLeftClick(wrapperContainer)){
+						e.preventDefault();
 						that.showPreviousPage();	
 					}
 					
 					if (that.isFavoritesClick(target)) {
 						e.preventDefault();
 						that.favoritesClickHandler(target);
-					
-					} else if (that.isPostLinkClick(target)) {
-						e.preventDefault();
-						window.location.href = target.closest(".img-info").data("link");
-					}
+					} 
+
 				})
 				$(document).on("keyup", function (e) {
 					var keyCode = e.which;
@@ -134,7 +133,7 @@
 
 			/* Bind handlers */
 			favoritesClickHandler : function (target) {
-				var link = target.attr("href");
+				var link = target.data("link");
 				(link == "/auth") ? (window.location.href = link) : (this.updateFavorites(target, link));
 			},
 
@@ -287,9 +286,9 @@
 			isFavoritesClick : function (el) {
 				return el.hasClass("favorites-icon");
 			},
-			isPostLinkClick : function (el) {
-				return el.closest(".img-info").get(0);
-			},
+			// isPostLinkClick : function (el) {
+			// 	return el.closest(".img-info").get(0);
+			// },
 
 			isFavoritesOff : function (target) {
 				var itemId = target.data("id"),

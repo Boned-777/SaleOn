@@ -28,7 +28,7 @@
 </head>
 <body>
     <?php global $session;?>
-    <input id="lang" type="hidden" value="<?= $session->locale; ?>" />
+    <input id="current-lng" type="hidden" value="<?= $session->locale; ?>" />
     <div class="topbg"></div>
     <div id="wrap">
         <div class="container fix-content-position">
@@ -82,11 +82,11 @@
     <div id="footer" class="footer footer-gradient">
         <div class="container">
             <div class="btn-group dropup">
-                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><?= $translate->getAdapter()->translate("lng_russian")?></button>
+                <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
                 <ul class="dropdown-menu" id="lng-switcher">
-                    <li><a id="ru" class="lng" href="#"><?= $translate->getAdapter()->translate("lng_russian")?></a></li>
-                    <li><a id="ua" class="lng" href="#"><?= $translate->getAdapter()->translate("lng_ukrainian")?></a></li>
-                    <li><a id="en" class="lng" href="#"><?= $translate->getAdapter()->translate("lng_english")?></a></li>
+                    <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
+                    <li><a id="ua" class="lng ua" title="<?= $translate->getAdapter()->translate("lng_ukrainian")?>" href="#"></a></li>
+                    <li><a id="en" class="lng en" title="<?= $translate->getAdapter()->translate("lng_english")?>" href="#"></a></li>
                 </ul>
             </div>
             <p class="credit">ВАУ - Все акции Украины, 2013-2014 </p>
