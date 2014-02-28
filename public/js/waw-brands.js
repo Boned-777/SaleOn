@@ -1,16 +1,17 @@
 	$(function () {
-		var EMPTY_STRING = "";
+		var EMPTY_STRING = "",
+			ITEMS_PER_PAGE = 20;
 		
 		var wawBrands = function (brandsData) {
 			this.mainTemplate = '<div class="row">\
         							<div data-id="0" class="span4 category-group alert alert-success">\
         								<i class="shopping-icon"></i>\
-        								<div class="category-group-text">$brands <span id="first-group-count" class="counter"></span></div>\
+        								<div class="category-group-text">$brands <span id="first-brand-group-count" class="counter"></span></div>\
         							</div>\
         							<div class="span1">&nbsp;</div>\
 						        	<div data-id="1" class="span4 category-group category-group-inactive">\
 						        		<i class="services-icon"></i>\
-						        		<div class="category-group-text">$products <span id="second-group-count" class="counter"></span></div>\
+						        		<div class="category-group-text">$products <span id="second-brand-group-count" class="counter"></span></div>\
 						        	</div>\
 						      	</div>\
 						      	<div id="brands-group-list" class="filter-list"></div>\
@@ -89,6 +90,7 @@
 
 			this.eventObject = $({});
 			this.currentBrandsGroup = 0;
+			this.currentPage = 1;
 			this.init(brandsData);	 
 		};
 		
@@ -98,7 +100,14 @@
 				var result = [],
 					temp = [];
 				for (var i = 0; i<= count; i++) {
-					temp = temp.concat(source[0].sub);
+					temp = temp.concat(_.clone(source[0].sub));
+				}
+				for (var j = 0; j< temp.length; j++) {
+					temp[j] = {
+						name  : temp[j].name  + " номер " + (j+1),
+						count : temp[j].count,
+						value : temp[j].value
+					};
 				}
 				result[0] = [];
 				result[0].sub = temp;
@@ -140,8 +149,8 @@
 				this.dom = _.extend(this.dom, {
 					brandsGroup 		: $(".category-group"),
 					brandsGroupList 	: $("#brands-group-list"),
-					firstGroupCount 	: $("#first-group-count"),
-					secondGroupCount 	: $("#second-group-count"),
+					firstGroupCount 	: $("#first-brand-group-count"),
+					secondGroupCount 	: $("#second-brand-group-count"),
 					brandsLetters 	    : $("#brands-letters"),
 					leftArrow 			: $(".left-arrow"),
 					rightArrow  		: $(".right-arrow")
@@ -149,24 +158,17 @@
 			},
 
 			renderBrandsGroupItems : function (groupId) {
+				this.currentPage = 1;
 				this.setCurrentBrandsGroup(groupId);
-				var itemList = this.renderItemList(this.data[groupId].sub);
+				var itemList = this.renderItemList(this.data[groupId].sub, this.getIndexes(1));
 				this.dom.brandsGroupList.html(itemList);
 			},
 
-			renderItemList : function (dataList) {
+			renderItemList : function (dataList, indexes) {
 				var	j 	 	 = 0,
 					result 	 = EMPTY_STRING,
 					count 	 = dataList.length;
-
-				// remove it!!!
-				if (count>24) {
-					this.dom.leftArrow.add(this.dom.rightArrow).show();
-				} else {
-					this.dom.leftArrow.add(this.dom.rightArrow).hide();
-				}
-
-				for (var i = 0; i <= count; i++) {
+				for (var i = indexes.startIndex; i <= indexes.endIndex; i++) {
 					if (j==0) {result += this.rowTemplate[0]}
 						if (dataList[i]) {
 							result += this.itemTemplate
@@ -179,8 +181,31 @@
 						result += this.rowTemplate[1]; 
 					} else {j++;}
 				}
+				this.initPaging(count);
 				return result;
 			},	
+
+			initPaging : function (totalCount) {
+				if (totalCount > ITEMS_PER_PAGE) {
+					if (this.currentPage == 1)								{ this.dom.leftArrow.hide();this.dom.rightArrow.show(); }
+					if (this.currentPage == this.getPageCount(totalCount))	{ this.dom.leftArrow.show();this.dom.rightArrow.hide(); }
+					if (this.currentPage > 1 && this.currentPage < this.getPageCount(totalCount)) {this.dom.leftArrow.add(this.dom.rightArrow).show();}	
+					
+				} else {
+					this.dom.leftArrow.add(this.dom.rightArrow).hide();
+				}
+			},
+			getIndexes : function (page) {
+				return {
+					startIndex 	: (page - 1) * ITEMS_PER_PAGE,
+					endIndex 	: (page * ITEMS_PER_PAGE) - 1
+				}
+			},
+			
+			getPageCount : function (totalCount) {
+				return Math.ceil(totalCount / ITEMS_PER_PAGE);
+			},
+
 
 			countGroups : function () {
 				var firstGroupCount = secondGroupCount = 0;
@@ -205,8 +230,21 @@
 				},this));
 				this.dom.brandsGroupList.on("click", _.bind(function(e){
 					var id = $(e.target).closest(".category-wrapper").data("id");
+					if (!id) {return;}
 					var data = (this.currentBrandsGroup == "0") ? {brandsId: id, productsId: null} : {brandsId: null, productsId: id};
 					this.eventObject.trigger("brandsSelected", data);
+				},this));
+
+				this.dom.leftArrow.on("click", _.bind(function(e){
+					this.currentPage--;
+					var itemList = this.renderItemList(this.data[this.currentBrandsGroup].sub, this.getIndexes(this.currentPage));
+					this.dom.brandsGroupList.html(itemList);
+
+				},this));
+				this.dom.rightArrow.on("click", _.bind(function(e){
+					this.currentPage++;
+					var itemList = this.renderItemList(this.data[this.currentBrandsGroup].sub, this.getIndexes(this.currentPage));
+					this.dom.brandsGroupList.html(itemList);
 				},this));
 
 				this.dom.brandsLetters.on("click", _.bind(function(e){
@@ -243,7 +281,7 @@
 			renderLetter : function (letter) {
 				var data = this.data.letters[letter].list;
 				if (!_.isEmpty(data)) {
-					var itemList = this.renderItemList(data);
+					var itemList = this.renderItemList(data, this.getIndexes(1));
 					this.dom.brandsGroupList.html(itemList);
 				} else {
 					this.dom.brandsGroupList.html(this.noDataTemplate);
