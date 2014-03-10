@@ -3,12 +3,12 @@
 		
 		var wawCategories = function (categoriesData) {
 			this.mainTemplate = '<div class="row">\
-        							<div data-id="1" class="span3 category-group alert alert-success">\
+        							<div data-id="1" class="span4 category-group alert alert-success">\
         								<i class="shopping-icon"></i>\
         								<div class="category-group-text">$goods <span id="first-group-count" class="counter"></span></div>\
         							</div>\
-        							<div class="span3">&nbsp;</div>\
-						        	<div data-id="2" class="span3 category-group category-group-inactive">\
+        							<div class="span1">&nbsp;</div>\
+						        	<div data-id="2" class="span4 category-group category-group-inactive">\
 						        		<i class="services-icon"></i>\
 						        		<div class="category-group-text">$services <span id="second-group-count" class="counter"></span></div>\
 						        	</div>\

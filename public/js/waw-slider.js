@@ -40,11 +40,10 @@
 												<p class="ellipsis">$daysMsgText: $daysLeft</p>\
 										</div>\
 									</a>\
-								</div>';	
-
+								</div>';
 			this.noImgTemplate = '<div class="span3 bottom-offset">\
 									<div class="img-wrapper">\
-										<img src="/img/no-image.jpg" class="img-polaroid">\
+										<img src="/img/no-image-gray.jpg" class="img-polaroid">\
 										<div class="no-image">\
 										</div>\
 									</div>\
@@ -71,12 +70,13 @@
 			},
 
 			showNoData : function () {
-				$(".no-data").html(window.messages.noData).show();	
+				$(".no-data").html(window.messages.noData).show();
 				$("#myCarousel").hide();
 				// $(".lock-loading").hide();
 			},
 
 			renderMainTemplate : function () {
+				$(".no-data").hide();	
 				var mainPageSlider = $("#main-page-slider");
 				mainPageSlider && mainPageSlider.empty();
 				mainPageSlider.html(this.mainTemplate);

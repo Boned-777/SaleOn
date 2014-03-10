@@ -15,72 +15,7 @@
 						        	</div>\
 						      	</div>\
 						      	<div id="brands-group-list" class="filter-list"></div>\
-						      	<div class="left-arrow"></div><div class="right-arrow"></div>\
-						      	<div id="brands-letters" class="row">\
-						      	    <div class="span8 brands-letters-wrapper text-center">\
-								        <a class="muted brands-letters">А</a>\
-								        <a class="muted brands-letters">Б</a>\
-								        <a class="muted brands-letters">В</a>\
-								        <a class="muted brands-letters">Г</a>\
-								        <a class="muted brands-letters">Д</a>\
-								        <a class="muted brands-letters">Е</a>\
-								        <a class="muted brands-letters">Є</a>\
-								        <a class="muted brands-letters">Ж</a>\
-								        <a class="muted brands-letters">З</a>\
-								        <a class="muted brands-letters">И</a>\
-								        <a class="muted brands-letters">І</a>\
-								        <a class="muted brands-letters">Ї</a>\
-								        <a class="muted brands-letters">Й</a>\
-								        <a class="muted brands-letters">К</a>\
-								        <a class="muted brands-letters">Л</a>\
-								        <a class="muted brands-letters">М</a>\
-								        <a class="muted brands-letters">Н</a>\
-								        <a class="muted brands-letters">О</a>\
-								        <a class="muted brands-letters">П</a>\
-								        <a class="muted brands-letters">Р</a>\
-								        <a class="muted brands-letters">С</a>\
-								        <a class="muted brands-letters">Т</a>\
-								        <a class="muted brands-letters">У</a>\
-								        <a class="muted brands-letters">Ф</a>\
-								        <a class="muted brands-letters">Х</a>\
-								        <a class="muted brands-letters">Ц</a>\
-								        <a class="muted brands-letters">Ч</a>\
-								        <a class="muted brands-letters">Ш</a>\
-								        <a class="muted brands-letters">Щ</a>\
-								        <a class="muted brands-letters">Э</a>\
-								        <a class="muted brands-letters">Ю</a>\
-								        <a class="muted brands-letters">Я</a>\
-								    </div>\
-							        <div class="span8 brands-letters-wrapper text-center">\
-								        <a class="muted brands-letters">0-9</a>\
-								        <a class="muted brands-letters">A</a>\
-								        <a class="muted brands-letters">B</a>\
-								        <a class="muted brands-letters">C</a>\
-								        <a class="muted brands-letters">D</a>\
-								        <a class="muted brands-letters">E</a>\
-								        <a class="muted brands-letters">F</a>\
-								        <a class="muted brands-letters">G</a>\
-								        <a class="muted brands-letters">H</a>\
-								        <a class="muted brands-letters">I</a>\
-								        <a class="muted brands-letters">J</a>\
-								        <a class="muted brands-letters">K</a>\
-								        <a class="muted brands-letters">L</a>\
-								        <a class="muted brands-letters">M</a>\
-								        <a class="muted brands-letters">N</a>\
-								        <a class="muted brands-letters">O</a>\
-								        <a class="muted brands-letters">P</a>\
-								        <a class="muted brands-letters">Q</a>\
-								        <a class="muted brands-letters">R</a>\
-								        <a class="muted brands-letters">S</a>\
-								        <a class="muted brands-letters">T</a>\
-								        <a class="muted brands-letters">U</a>\
-								        <a class="muted brands-letters">V</a>\
-								        <a class="muted brands-letters">W</a>\
-								        <a class="muted brands-letters">X</a>\
-								        <a class="muted brands-letters">Y</a>\
-								        <a class="muted brands-letters">Z</a>\
-							        </div>\
-							    </div>';
+						      	<div class="left-arrow"></div><div class="right-arrow"></div>';
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
 			this.itemTemplate = '<div data-id="$brandId" class="span3 category-wrapper">\
@@ -263,7 +198,7 @@
 						cache	: false
 					}).done(_.bind(function(data){this.onLetterLoaded(data, letter)}, this)).fail(_.bind(this.showError, this));
 				} else {
-					this.renderLetter(regionId);
+					this.renderLetter(letter);
 				}
 			},
 
