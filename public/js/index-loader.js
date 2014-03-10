@@ -30,7 +30,6 @@
 					regionsModal : $("#regions-modal"),
 					brandsModal  : $("#brands-modal"),
 					lockLoading	 : $(".lock-loading"),
-					carousel 	 : $("#myCarousel"),
 					noData 		 : $(".no-data")
 				}
 			},
@@ -170,24 +169,28 @@
 					this.initWawSlider();
 				}, this));
 			},
-		
-			setCategoryCookie : function (data) {
-				$.removeCookie("category");
-				$.cookie('category', parseInt(data.categoryId), this.cookieOptions);
-			},
+			
 			setRegionCookie : function (data) {
 				$.removeCookie("geo");
 				$.cookie('geo', data.regionId, this.cookieOptions);
 			},
+			setCategoryCookie : function (data) {
+				this.clearCategoryBrandsCookies();
+				$.cookie('category', parseInt(data.categoryId), this.cookieOptions);
+			},
 			setBrandsCookie : function (data) {
-				$.removeCookie("brands");
-				$.removeCookie("products");
+				this.clearCategoryBrandsCookies();
 				if (data.brandsId) {
 					$.cookie('brands',   data.brandsId, this.cookieOptions);	
 				}
 				if (data.productsId) {
 					$.cookie('products', data.productsId, this.cookieOptions);
 				}
+			},
+			clearCategoryBrandsCookies : function () {
+				$.removeCookie("category");
+				$.removeCookie("brands");
+				$.removeCookie("products");
 			},
 
 			duplicateResponce : function (source, count) {
@@ -229,6 +232,4 @@
 
 		}
 		new indexLoader();
-
-	
 	})

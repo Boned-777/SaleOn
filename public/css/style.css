@@ -936,7 +936,7 @@ textarea {
 	width: 255px;
 }
 #brands-letters {
-	margin-top: 20px;
+	margin: 0px;
 }
 .left-arrow,
 .right-arrow {
@@ -1071,6 +1071,8 @@ textarea {
 .brands-letters-wrapper {
 	width: 1020px;
 	margin: 0 auto;
+	height: 25px;
+	line-height: 25px;
 }
 
 .brands-letters {
@@ -1079,6 +1081,12 @@ textarea {
     line-height: 30px;
     margin-left: 4px;
     cursor: pointer;
+}
+
+.brands-button {
+	position: absolute;
+	bottom: 25px;
+	right: 20px;
 }
 
 .no-brand-data {
