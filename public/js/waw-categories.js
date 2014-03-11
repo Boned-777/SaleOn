@@ -17,7 +17,7 @@
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
 			this.itemTemplate = '<div data-id="$catId" class="span3 category-wrapper">\
-									<div class="flagi-right">$catName <br><span class="counter">$catCount</span></div>\
+									<div class="flagi-right"><div title="$catName" class="ellipsis">$catName</div><span class="counter">$catCount</span></div>\
 								</div>';	
 			this.eventObject = $({});
 			// this.filterName = "Категории"; 
@@ -78,7 +78,7 @@
 							result += this.itemTemplate
 								.replace("$catId", 			dataList[i].id)
 								.replace("$catCount",	 	dataList[i].count)
-								.replace("$catName", 		dataList[i].name)
+								.replace(/\$catName/gi, 	dataList[i].name)
 						} 
 					if (j==2) {
 						j = 0;

@@ -19,7 +19,7 @@
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
 			this.itemTemplate = '<div data-id="$brandId" class="span3 category-wrapper">\
-									<div class="flagi-right">$brandName <br><span class="counter">$brandCount</span></div>\
+									<div class="flagi-right"><div title="$brandName" class="ellipsis">$brandName</div><span class="counter">$brandCount</span></div>\
 								</div>';	
 			this.noDataTemplate = '<div class="muted text-center no-brand-data">'+window.messages.noData+'</div>';
 
@@ -39,7 +39,7 @@
 				}
 				for (var j = 0; j< temp.length; j++) {
 					temp[j] = {
-						name  : temp[j].name  + " номер " + (j+1),
+						name  : temp[j].name  + " название " + (j+1),
 						count : temp[j].count,
 						value : temp[j].value
 					};
@@ -109,7 +109,7 @@
 							result += this.itemTemplate
 								.replace("$brandId", 		dataList[i].value)
 								.replace("$brandCount",	 	dataList[i].count)
-								.replace("$brandName", 		dataList[i].name)
+								.replace(/\$brandName/gi, 		dataList[i].name)
 						} 
 					if (j==2) {
 						j = 0;

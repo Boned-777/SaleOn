@@ -199,6 +199,7 @@
 			
 			setRegionCookie : function (data) {
 				$.removeCookie("geo");
+				this.clearCategoryBrandsCookies();
 				$.cookie('geo', data.regionId, this.cookieOptions);
 			},
 			setCategoryCookie : function (data) {

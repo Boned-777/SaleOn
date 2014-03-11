@@ -14,7 +14,7 @@
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
 			this.itemTemplate = '<div data-id="$regionId" data-path="$isPath" class="span3 category-wrapper">\
-									<div class="flagi-right">$regionName <br><span class="counter">$regionCount</span></div>\
+									<div class="flagi-right"><div title="$regionName" class="ellipsis">$regionName</div><span class="counter">$regionCount</span></div>\
 								</div>';	
 			this.eventObject = $({});
 			this.init(regionsData);	 
@@ -75,7 +75,7 @@
 								.replace("$regionId", 		dataList[i].name)
 								.replace("$isPath", 		dataList[i].is_path)
 								.replace("$regionCount",	dataList[i].count)
-								.replace("$regionName", 	dataList[i].value)
+								.replace(/\$regionName/gi, 	dataList[i].value)
 						} 
 					if (j==2) {
 						j = 0;
