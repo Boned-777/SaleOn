@@ -2,7 +2,8 @@
 
 		var indexLoader = function () {
 			this.cookieOptions  = { expires: 7, path: '/' };
-			this.sliderUrl 		= "/ad/list";
+			this.sliderUrl 		= window.requestUrl;
+			this.pageName 		= window.pageName;
 			this.wawSlyder 		= window.wawSlyder;
 			this.wawCategories 	= window.wawCategories;
 			this.wawRegions 	= window.wawRegions;
@@ -18,7 +19,33 @@
 			init : function () {
 				this.registerDOMElements();
 				this.bindEvents();
-				this.isBrowserCompatible() && this.initWawSlider();	
+				this.isFavoritesPage() && this.extendSliderForFavorites();
+				this.isBrowserCompatible() && this.isSliderPage() && this.initWawSlider();	
+			},
+
+			extendSliderForFavorites : function () {
+				window.messages.noFavoritesData && (window.messages.noData = window.messages.noFavoritesData);
+				_.extend(wawSlyder.prototype, {
+					onFavoritesUpdated : function (target) {
+						if (!this.isFavoritesOff(target)) {
+							var list = _.reject(this.data.list, function(item){ 
+								return (item.post_id == target.data("id"));
+							});
+							this.data.list = list;
+							this.init(this.data);
+						}  
+					}
+				});
+			},
+
+			isMainPage : function () {
+				return (this.pageName == "mainPage");
+			},
+			isSliderPage :  function () {
+				return ((this.pageName == "mainPage")||(this.pageName == "newsPage")||(this.pageName == "favoritesPage"));
+			},
+			isFavoritesPage : function () {
+				return (this.pageName == "favoritesPage");
 			},
 
 			registerDOMElements : function () {
@@ -102,7 +129,7 @@
 				this.categories.eventObject.on("categorySelected", _.bind(function(e, data){
 					this.setCategoryCookie(data);
 					this.hideCategoryModal();
-					this.initWawSlider();
+					this.isMainPage() ? this.initWawSlider() : location.href = "/";
 				}, this));
 			},
 
@@ -134,7 +161,7 @@
 				this.regions.eventObject.on("regionSelected", _.bind(function(e, data){
 					this.setRegionCookie(data);
 					this.hideRegionsModal();
-					this.initWawSlider();
+					this.isMainPage() ? this.initWawSlider() : location.href = "/";
 				}, this));
 			},
 
@@ -166,7 +193,7 @@
 				this.brands.eventObject.on("brandsSelected", _.bind(function(e, data){
 					this.setBrandsCookie(data);
 					this.hideBrandsModal();
-					this.initWawSlider();
+					this.isMainPage() ? this.initWawSlider() : location.href = "/";
 				}, this));
 			},
 			

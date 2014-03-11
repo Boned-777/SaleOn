@@ -66,6 +66,120 @@
             <?php echo $this->adminNavigationBar(); ?>
             <div class="layout-content">
                 <?php echo $this->layout()->content; ?>
+
+
+
+                <div class="text-center lead no-data"></div>
+                    <div class="lock-loading"></div>
+
+                    <div id="filters-modal" class="modal hide fade" tabindex="-1">
+                        <div id="filters-content" class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                        </div>
+                    </div>
+                    <div id="regions-modal" class="modal hide fade" tabindex="-1">
+                        <div id="regions-content" class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button id="region-back" class="btn pull-left hide"><?php echo $translate->getAdapter()->translate("back"); ?></button>
+                            <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                        </div>
+                    </div>
+                    <div id="brands-modal" class="modal hide fade" tabindex="-1">
+                        <div id="brands-content" class="modal-body"></div>
+                        <div class="modal-footer">
+                            <div id="brands-letters" class="row">
+                                <div class="span8 brands-letters-wrapper text-center">
+                                    <a class="muted brands-letters">А</a>
+                                    <a class="muted brands-letters">Б</a>
+                                    <a class="muted brands-letters">В</a>
+                                    <a class="muted brands-letters">Г</a>
+                                    <a class="muted brands-letters">Д</a>
+                                    <a class="muted brands-letters">Е</a>
+                                    <a class="muted brands-letters">Є</a>
+                                    <a class="muted brands-letters">Ж</a>
+                                    <a class="muted brands-letters">З</a>
+                                    <a class="muted brands-letters">И</a>
+                                    <a class="muted brands-letters">І</a>
+                                    <a class="muted brands-letters">Ї</a>
+                                    <a class="muted brands-letters">Й</a>
+                                    <a class="muted brands-letters">К</a>
+                                    <a class="muted brands-letters">Л</a>
+                                    <a class="muted brands-letters">М</a>
+                                    <a class="muted brands-letters">Н</a>
+                                    <a class="muted brands-letters">О</a>
+                                    <a class="muted brands-letters">П</a>
+                                    <a class="muted brands-letters">Р</a>
+                                    <a class="muted brands-letters">С</a>
+                                    <a class="muted brands-letters">Т</a>
+                                    <a class="muted brands-letters">У</a>
+                                    <a class="muted brands-letters">Ф</a>
+                                    <a class="muted brands-letters">Х</a>
+                                    <a class="muted brands-letters">Ц</a>
+                                    <a class="muted brands-letters">Ч</a>
+                                    <a class="muted brands-letters">Ш</a>
+                                    <a class="muted brands-letters">Щ</a>
+                                    <a class="muted brands-letters">Э</a>
+                                    <a class="muted brands-letters">Ю</a>
+                                    <a class="muted brands-letters">Я</a>
+                                </div>
+                                <div class="span8 brands-letters-wrapper text-center">
+                                    <a class="muted brands-letters">0-9</a>
+                                    <a class="muted brands-letters">A</a>
+                                    <a class="muted brands-letters">B</a>
+                                    <a class="muted brands-letters">C</a>
+                                    <a class="muted brands-letters">D</a>
+                                    <a class="muted brands-letters">E</a>
+                                    <a class="muted brands-letters">F</a>
+                                    <a class="muted brands-letters">G</a>
+                                    <a class="muted brands-letters">H</a>
+                                    <a class="muted brands-letters">I</a>
+                                    <a class="muted brands-letters">J</a>
+                                    <a class="muted brands-letters">K</a>
+                                    <a class="muted brands-letters">L</a>
+                                    <a class="muted brands-letters">M</a>
+                                    <a class="muted brands-letters">N</a>
+                                    <a class="muted brands-letters">O</a>
+                                    <a class="muted brands-letters">P</a>
+                                    <a class="muted brands-letters">Q</a>
+                                    <a class="muted brands-letters">R</a>
+                                    <a class="muted brands-letters">S</a>
+                                    <a class="muted brands-letters">T</a>
+                                    <a class="muted brands-letters">U</a>
+                                    <a class="muted brands-letters">V</a>
+                                    <a class="muted brands-letters">W</a>
+                                    <a class="muted brands-letters">X</a>
+                                    <a class="muted brands-letters">Y</a>
+                                    <a class="muted brands-letters">Z</a>
+                                </div>
+                            </div>
+                            <div class="brands-button">
+                                <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        window.messages = {};
+                        <?php 
+                            echo "window.messages.noData         = \"" . $translate->getAdapter()->translate("no_data_available") . "\";";
+                            echo "window.messages.serverError    = \"" . $translate->getAdapter()->translate("server_error") . "\";";
+                            echo "window.messages.notSupported   = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
+                            echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
+                            echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
+                            echo "window.messages.ukraine        = \"" . $translate->getAdapter()->translate("ukraine") . "\";"; 
+                        ?>
+                    </script>
+                    <script src="/js/bootstrap/bootstrap-transition.js"></script>
+                    <script src="/js/bootstrap/bootstrap-carousel.js"></script>
+                    <script src="/js/underscore-min.js"></script>
+                    <script src="/js/waw-slider.js"></script>
+                    <script src="/js/waw-categories.js"></script>
+                    <script src="/js/waw-regions.js"></script>
+                    <script src="/js/waw-brands.js"></script>
+                    <script src="/js/index-loader.js"></script>
+
+
             </div>
         </div>
         <div id="push"></div>

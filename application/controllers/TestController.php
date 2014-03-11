@@ -85,5 +85,15 @@ class TestController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         Zend_Debug::dump($auth->getIdentity()); die();
     }
+
+    public function favoritesAction()
+    {
+        // action body
+    }
+
+    public function newsAction()
+    {
+        // action body
+    }
 }
 

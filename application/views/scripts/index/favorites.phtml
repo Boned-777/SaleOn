@@ -1,49 +1,11 @@
 <?php global $translate; ?>
-
-<div id="main-page-slider" class="row-fluid">
-</div>
-
-<div class="text-center lead no-data"></div>
-<div class="lock-loading"></div>
-
-<div id="filters-modal" class="modal hide fade" tabindex="-1">
-    <div id="filters-content" class="modal-body">
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
-    </div>
-</div>
-
-<div id="regions-modal" class="modal hide fade" tabindex="-1">
-    <div id="regions-content" class="modal-body"></div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
-    </div>
-</div>
-<div id="brands-modal" class="modal hide fade" tabindex="-1">
-    <div id="brands-content" class="modal-body"></div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
-    </div>
-</div>
+<div id="main-page-slider" class="row-fluid"></div>
 
 <script type="text/javascript">
 	window.messages = {};
     <?php 
-    	echo "window.messages.noData 		 = \"" . $translate->getAdapter()->translate("no_favorites_data_available") . "\";";
-    	echo "window.messages.serverError 	 = \"" . $translate->getAdapter()->translate("server_error") . "\";";
-    	echo "window.messages.notSupported 	 = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
-    	echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
-    	echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
-    	echo "window.messages.ukraine 		 = \"" . $translate->getAdapter()->translate("ukraine") . "\";"; 
+    	echo "window.messages.noFavoritesData  = \"" . $translate->getAdapter()->translate("no_favorites_data_available") . "\";";
+        echo "window.requestUrl  = \"/ad/favorites\";";
+        echo "window.pageName    = \"favoritesPage\";";
     ?>
 </script>
-
-<script src="/js/bootstrap/bootstrap-transition.js"></script>
-<script src="/js/bootstrap/bootstrap-carousel.js"></script>
-<script src="/js/underscore-min.js"></script>
-<script src="/js/waw-slider.js"></script>
-<script src="/js/waw-categories.js"></script>
-<script src="/js/waw-regions.js"></script>
-<script src="/js/waw-brands.js"></script>
-<script src="/js/favorites-loader.js"></script>
