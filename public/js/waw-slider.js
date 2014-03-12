@@ -194,7 +194,7 @@
 											
 				this.buildPage(this.dom.activeWrapper, this.getIndexes(1));
 				
-				this.isTwoPages() || this.isCycleAvailable() && this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(2));
+				(this.isTwoPages() || this.isCycleAvailable()) && this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(2));
 				this.isCycleAvailable() && this.buildPage(this.dom.rightHiddenWrapper, this.getIndexes(3));
 			},
 
