@@ -1143,5 +1143,8 @@ textarea {
 #lng-btn.btn:active {
 	background-image: url("/img/lang.png");
 }
+.gray {
+	color: #999;
+}
 
 

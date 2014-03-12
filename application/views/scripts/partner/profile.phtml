@@ -6,9 +6,33 @@
             <div class="legend"><?php echo $translate->getAdapter()->translate("set_new_password"); ?></div>
             <?php echo $this->changePasswordForm->setAction($this->url()); ?>
             <div class="legend"><?php echo $translate->getAdapter()->translate("info"); ?></div>
-            <p><?php echo $this->email; ?></p>
+            <div class="gray">Логин: </div>
+            <span><?php echo $this->email; ?></span>
+            <br><br>
+            <div class="gray">Тарифные планы: </div>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Регион</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Вся украина</td>
+                  <td>100$</td>
+                </tr>
+                <tr>
+                  <td>Вся область</td>
+                  <td>50$</td>
+                </tr>
+                <tr>
+                  <td>Район</td>
+                  <td>20$</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
-
         <div class="span6">
             <div class="legend"><?php echo $translate->getAdapter()->translate("profile"); ?></div>
             <?php echo $this->form->setAction($this->url()); ?>
