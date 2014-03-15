@@ -1146,5 +1146,10 @@ textarea {
 .gray {
 	color: #999;
 }
+.leftMargin {
+	margin-top: 20px;
+	margin-left: 5px;
+}
+
 
 

@@ -115,6 +115,7 @@ return array (
     "continue_payment" => "Продовжити оплату",
     "cancel" => "Скасувати",
     "make_payment" => "Сплатити",
+    "payment_details" => "Деталі оплати",
 
     "cat_goods" => "Товари",
     "cat_services" => "Послуги",

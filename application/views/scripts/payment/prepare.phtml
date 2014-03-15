@@ -5,13 +5,33 @@
         <div><?= $this->errorMsg ?></div>
     </div>
 <?php endif ?>
-
-<div class="orderDetails">
-    <div class="row"><label><?= $translate->getAdapter()->translate("name") ?></label><div><?= $this->order->ad->name ?></div></div>
-    <div class="row"><label><?= $translate->getAdapter()->translate("price") ?></label><div><?= $this->order->amount ?></div></div>
-    <div class="row"><label><?= $translate->getAdapter()->translate("days_count") ?></label><div><?= $this->order->ad->getDaysCount() ?></div></div>
-    <div class="row"><label><?= $translate->getAdapter()->translate("public_date") ?></label><div><?= $this->order->ad->public_dt ?></div></div>
-    <div class="row"><label><?= $translate->getAdapter()->translate("end_date") ?></label><div><?= $this->order->ad->end_dt ?></div></div>
+    
+<div class="orderDetails">    
+    <h5><?= $translate->getAdapter()->translate("payment_details") ?></h5>
+    <table class="table table-bordered table-striped">
+      <tbody>
+        <tr>
+          <td><?= $translate->getAdapter()->translate("name") ?></td>
+          <td><?= $this->order->ad->name ?></td>
+        </tr>
+        <tr>
+          <td><?= $translate->getAdapter()->translate("price") ?></td>
+          <td><?= $this->order->amount ?></td>
+        </tr>
+        <tr>
+          <td><?= $translate->getAdapter()->translate("days_count") ?></td>
+          <td><?= $this->order->ad->getDaysCount() ?></td>
+        </tr>
+        <tr>
+          <td><?= $translate->getAdapter()->translate("public_date") ?></td>
+          <td><?= $this->order->ad->public_dt ?></td>
+        </tr>
+        <tr>
+          <td><?= $translate->getAdapter()->translate("end_date") ?></td>
+          <td><?= $this->order->ad->end_dt ?></td>
+        </tr>
+      </tbody>
+    </table>
 </div>
 
 <form action="https://www.liqpay.com/?do=clickNbuy" method="POST" />
