@@ -49,9 +49,9 @@ class Application_Model_Geo
         return $resArr;
     }
 
-    public function getAllChildList($pattern = "") {
+    public function getAllChildList($pattern = "", $params = null) {
         global $translate;
-        $countsList = $this->_getCounts($pattern);
+        $countsList = $this->_getCounts($pattern, $params);
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
         if ($pattern !== "")
@@ -101,7 +101,7 @@ class Application_Model_Geo
         return $resArr;
     }
 
-    protected function _getCounts($temp = "") {
+    protected function _getCounts($temp = "", $params = null) {
         $temp = $temp?$temp:"";
         $symCount = 2*strlen($temp) + 2;
         $ad = new Application_Model_DbTable_Ad();
@@ -117,6 +117,21 @@ class Application_Model_Geo
             $select->where('geo LIKE "" OR geo LIKE "%"');
         $select->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $select->group("et");
+
+        if (!is_null($params)) {
+            foreach ($params as $key => $val) {
+                switch ($key) {
+                    case "geo" :
+                        $select->where("(geo LIKE '$val' OR geo LIKE '$val-%')");
+                        break;
+
+                    default :
+                        $select->where("$key = ?", $val);
+                        break;
+                }
+            }
+        }
+
         $data = $ad->fetchAll($select)->toArray();
         $resData = array();
         foreach($data as $val) {
@@ -128,7 +143,6 @@ class Application_Model_Geo
             else
                 $resData[$val["et"]] = $val["count"];
         }
-        //Zend_Debug::dump($resData); die();
         return $resData;
     }
 

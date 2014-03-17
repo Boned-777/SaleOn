@@ -9,7 +9,7 @@ class AdController extends Zend_Controller_Action
     {
         $auth = Zend_Auth::getInstance();
         if (!$auth->hasIdentity()) {
-            //$this->_helper->redirector('index', 'auth');
+            $this->_helper->redirector('index', 'auth');
         }
 
         $this->user = $auth->getIdentity();

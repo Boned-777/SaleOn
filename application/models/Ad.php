@@ -179,8 +179,8 @@ class Application_Model_Ad
         $stmt = $item->select()
             ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("order_index DESC");
-        if (!is_null($params))
-            foreach ($params as $key => $val)
+        if (!is_null($params)) {
+            foreach ($params as $key => $val) {
                 switch ($key) {
                     case "geo" :
                         $stmt->where("(geo LIKE '$val' OR geo LIKE '$val-%')");
@@ -190,6 +190,8 @@ class Application_Model_Ad
                         $stmt->where("$key = ?", $val);
                         break;
                 }
+            }
+        }
 
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
@@ -388,9 +390,24 @@ class Application_Model_Ad
     }
 
     public function getPrice() {
-        $basePrice = 1;
+        $basePrice = array(
+            1 => 10,
+            2 => 5,
+            3 => 1
+        );
         $daysCount = $this->getDaysLeft();
-        return $basePrice * $daysCount;
+
+        $geo = explode("-",$this->geo);
+        $geoCount = 0;
+        foreach ($geo as $val) {
+            if ($val !== 0) {
+                $geoCount++;
+            } else {
+                break;
+            }
+        }
+
+        return $basePrice[$geoCount] * $daysCount;
     }
 }
 

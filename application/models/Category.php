@@ -26,8 +26,38 @@ class Application_Model_Category
         );
         return $result;
     }
+
+    protected function getCounts($db, $colName, $params=null) {
+        $items = $db->select();
+        $items->from("ads", array(
+            new Zend_Db_Expr($colName),
+            new Zend_Db_Expr("COUNT(*) count")
+        ));
+        $items->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        if (!is_null($params)) {
+            foreach ($params as $key => $val) {
+                switch ($key) {
+                    case "geo" :
+                        $items->where("(geo LIKE '$val' OR geo LIKE '$val-%')");
+                        break;
+
+                    default :
+                        $items->where("$key = ?", $val);
+                        break;
+                }
+            }
+        }
+        $items->group($colName);
+        $stmt = $items->query();
+        $data = $stmt->fetchAll();
+        $countsList = array();
+        foreach ($data as $countVal) {
+            $countsList[$countVal[$colName]] = $countVal["count"];
+        }
+        return $countsList;
+    }
     
-    public function listAll() {
+    public function listAll($params=null) {
         global $translate;
         $dbItem = new Application_Model_DbTable_Category();
         $res = $dbItem->fetchAll();
@@ -35,11 +65,8 @@ class Application_Model_Category
         $resArray = array();
 
         $db = $dbItem->getAdapter();
-        $query = $db->query("SELECT category, COUNT(*) count FROM ads WHERE end_dt >= NOW() AND public_dt <= NOW() AND status = 'ACTIVE' GROUP BY category");
-        $data = $query->execute();
-
-        $countsList = array();
-        foreach ($query->fetchAll() as $countVal) {
+        $countsList = $this->getCounts($db, "category", $params);
+        foreach ($countsList as $countVal) {
             $countsList[$countVal["category"]] = $countVal["count"];
         }
         foreach($itemsArr as $item) {

@@ -22,23 +22,15 @@ class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
         return $result;
     }
 
-    public function search($condition) {
+    public function search($condition, $params=null) {
         $dbItem = new Application_Model_DbTable_Category();
         $select = $this->select(array("name", "id"))
             ->where('name LIKE ? ', $condition . '%');
 
         $res = $this->fetchAll($select)->toArray();
-        $result = array();
 
         $db = $dbItem->getAdapter();
-        $query = $db->query("SELECT product, COUNT(*) count FROM ads WHERE end_dt >= NOW() AND public_dt <= NOW() AND status = 'ACTIVE' GROUP BY product");
-        $data = $query->execute();
-
-        $countsList = array();
-        foreach ($query->fetchAll() as $countVal) {
-            $countsList[$countVal["product"]] = $countVal["count"];
-        }
-
+        $countsList = $this->getCounts($db, "product", $params);
         foreach ($res as $value) {
             $result[] = array(
                 "name" => $value["name"],
@@ -47,6 +39,36 @@ class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
             );
         }
         return $result;
+    }
+
+    protected function getCounts($db, $colName, $params=null) {
+        $items = $db->select();
+        $items->from("ads", array(
+            new Zend_Db_Expr($colName),
+            new Zend_Db_Expr("COUNT(*) count")
+        ));
+        $items->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        if (!is_null($params)) {
+            foreach ($params as $key => $val) {
+                switch ($key) {
+                    case "geo" :
+                        $items->where("(geo LIKE '$val' OR geo LIKE '$val-%')");
+                        break;
+
+                    default :
+                        $items->where("$key = ?", $val);
+                        break;
+                }
+            }
+        }
+        $items->group($colName);
+        $stmt = $items->query();
+        $data = $stmt->fetchAll();
+        $countsList = array();
+        foreach ($data as $countVal) {
+            $countsList[$countVal[$colName]] = $countVal["count"];
+        }
+        return $countsList;
     }
 
     public function save($data, $id=null) {
