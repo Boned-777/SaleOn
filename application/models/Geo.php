@@ -17,10 +17,19 @@ class Application_Model_Geo
         $itemsArr = $res->toArray();
 
         $resArr = array();
-        if ($originalPattern !== "")
+        if ($originalPattern !== "") {
             $resArr[$originalPattern . "-0"] = $translate->getAdapter()->translate("any");
+        }
         foreach ($itemsArr as $value) {
-            $resArr[$value["code"]] = $translate->getAdapter()->translate($value["name"]);
+            if ($value["code"] == $originalPattern . "-99") {
+                $resArr[$value["code"]] = $translate->getAdapter()->translate($value["name"]);
+            }
+        }
+
+        foreach ($itemsArr as $value) {
+            if ($value["code"] != $originalPattern . "-99") {
+                $resArr[$value["code"]] = $translate->getAdapter()->translate($value["name"]);
+            }
         }
 
         return $resArr;
@@ -40,11 +49,23 @@ class Application_Model_Geo
             "value" => $originalPattern,
             "option" => $translate->getAdapter()->translate("any")
         ));
+
         foreach ($itemsArr as $value) {
-            $resArr[] = array(
-                "value" => $value["code"],
-                "option" => $translate->getAdapter()->translate($value["name"])
-            );
+            if ($value["code"] == $originalPattern . "-99") {
+                $resArr[] = array(
+                    "value" => $value["code"],
+                    "option" => $translate->getAdapter()->translate($value["name"])
+                );
+            }
+        }
+
+        foreach ($itemsArr as $value) {
+            if ($value["code"] != $originalPattern . "-99") {
+                $resArr[] = array(
+                    "value" => $value["code"],
+                    "option" => $translate->getAdapter()->translate($value["name"])
+                );
+            }
         }
         return $resArr;
     }
