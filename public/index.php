@@ -21,7 +21,7 @@ $autoloader->registerNamespace('Zendx');
 $autoloader->registerNamespace('SAuth');
 
 $session = new Zend_Session_Namespace();
-$session->locale = isset($session->locale)?$session->locale:"ru";
+$session->locale = isset($session->locale)?$session->locale:"ua";
 
 $translate = new Zend_Translate(
     'array',

@@ -62,7 +62,7 @@ return array(
     "archive" => "Архив",
     "noactive" => "Черновики",
     "add_new" => "Добавить акцию",
-    "rules" => "Правила",
+    "rules" => "Информация",
     "ready" => "Готовые",
     "exit" => "Выход",
 
@@ -148,7 +148,7 @@ return array(
     "serv_advertising" =>"Рекламные",
     "serv_other_services" =>"Другие услуги",
 
-    "avtonomna-respublika-krim" => "Автономна Республіка Крим",
+    "avtonomna-respublika-krim" => "Крымская АР",
     "bahchisarajskij" => "Бахчисарайський",
     "bilogirskij" => "Білогірський",
     "dzhankojskij" => "Джанкойський",

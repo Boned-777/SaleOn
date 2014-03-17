@@ -61,7 +61,7 @@ return array (
     "archive" => "Архів",
     "noactive" => "Чернетки",
     "add_new" => "Додати акцію",
-    "rules" => "Правила",
+    "rules" => "Інформація",
     "ready" => "Готові",
     "exit" => "Вихід",
 
@@ -591,7 +591,7 @@ return array (
     "gorodockij" => "Городоцький",
     "derazhnyanskij" => "Деражнянський",
     "duna-veckij" => "ДУНАЄВЕЦЬКИЙ",
-    "izyaslavskij" => "Ізяславський",
+    "izyaslavskij" => "Празяславський",
     "kamyanec-podilskij" => "Кам'янець-Подільський",
     "krasilivskij" => "Красилівський",
     "letichivskij" => "Летичівський",

@@ -19,7 +19,8 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
             "ready" => array("link" => array("/ad/ready"), "caption" => $translate->getAdapter()->translate("ready")),
             "active" => array("link" => array("/ad/active"), "caption" => $translate->getAdapter()->translate("active")),
             "archive" => array("link" => array("/ad/archive"), "caption" => $translate->getAdapter()->translate("archive")),
-            "rules" => array("link" => array("#"), "caption" => $translate->getAdapter()->translate("rules")),
+            "favorites" => array("link" => array("/index/favorites"), "caption" => $translate->getAdapter()->translate("mm_favorites")),
+            "rules" => array("link" => array("/partner/rules"), "caption" => $translate->getAdapter()->translate("rules")),
             //"exit" => array("link" => array("/auth/logout"), "caption" => $translate->getAdapter()->translate("exit"))
         );
 
@@ -31,10 +32,14 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
                 <ul class="nav nav-pills">
                     <?php
                     foreach ($menuItems as $value) {
-                        if (in_array($uri, $value["link"]))
+                        if (
+                            in_array($uri, $value["link"]) ||
+                            (($uri == "/ad/new") && ($value["link"][0]=="/ad/new#main"))
+                        ) {
                             echo '<li class="active"><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
-                        else
+                        } else {
                             echo '<li><a href="' . $value["link"][0] . '">' . $value["caption"] . '</a></li>';
+                        }
                     }
                     ?>
                 </ul>

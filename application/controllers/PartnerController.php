@@ -141,7 +141,10 @@ class PartnerController extends Zend_Controller_Action
         // action body
     }
 
-
+    public function rulesAction()
+    {
+        // action body
+    }
 }
 
 
