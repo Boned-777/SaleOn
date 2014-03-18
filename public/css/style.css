@@ -58,12 +58,15 @@ body {
 }
 #footer .container {
 	position: relative;
-	width: 950px;
+	width: 97%;
 }
 
 .container .credit {
 	margin: 8px 0 0 20px;
 	display: inline-block;
+}
+#footer .btn-group {
+	margin: 6px 0 0 10px;
 }
 
 .fix-content-position {
