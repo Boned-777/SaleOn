@@ -55,7 +55,7 @@
 			
 			init : function (sliderData) {
 				this.data = sliderData;
-				if (_.isEmpty(this.data.list)) {
+				if (_.isEmpty(this.data) || _.isEmpty(this.data.list)) {
 					this.showNoData();
 					return;
 				}
