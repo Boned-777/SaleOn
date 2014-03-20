@@ -868,6 +868,10 @@ textarea {
 	width: 450px;	
 }
 
+.details-left a {
+	text-decoration: none;
+}
+
 @media (min-width: 1200px) {
 	.details-left img,
 	.details-left iframe {
@@ -932,7 +936,6 @@ textarea {
 }
 
 #brands-group-list {
-	/*width: 870px;*/
 	padding-left: 50px;
 }
 #brands-group-list .category-wrapper {
@@ -946,7 +949,6 @@ textarea {
 	background: url("/img/arrows.png");
 	position: absolute;
 	cursor: pointer;
-	/*display: none;*/
 	width: 40px;
 	height: 70px;
 }
@@ -974,14 +976,17 @@ textarea {
     width: 790px;
 }
 
-
+#full-description-modal.modal,
+#action-address-modal.modal	{
+	top: 90px;
+}
 
 /*categories filters*/
 #filters-modal.modal, 
 #brands-modal.modal {
 	width: 1020px;
 	margin-left: -510px;
-	top: 5%;
+	top: 90px;
 }
 .top-offset {
 	margin-top: 10px;  
@@ -1039,7 +1044,6 @@ textarea {
 	display: inline-block;
 } 
 .category-group-text {
-	/* float: left; */
 	font-size: 25px;
 	font-weight: bold;
 	text-overflow: ellipsis;
