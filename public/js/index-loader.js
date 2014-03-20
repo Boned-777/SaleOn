@@ -11,6 +11,7 @@
 			this.originalData 	= null;
 			this.slider 		= null;
 			this.categories 	= null; 
+			this.prevGeo 		= null;
 			this.init();
 		};
 
@@ -100,7 +101,7 @@
 			
 			/* Categories popup */
 			initCategories : function () {
-				if (_.isEmpty(this.categories)){
+				if (_.isEmpty(this.categories) || this.isRegionForCategoryChanged()){
 					this.dom.lockLoading.show();
 					$.ajax({
 						url: "/categories/list",
@@ -119,6 +120,7 @@
 				}
 				this.categories = new this.wawCategories(data);
 				this.dom.lockLoading.hide();
+				this.setPrevGeoForCategory();
 				this.categories && this.bindCategorySelectedEvent();
 			},
 			fetchingDataError : function () {
@@ -167,7 +169,7 @@
 
 			/* Brands popup */
 			initBrands : function () {
-				if (_.isEmpty(this.brands)){
+				if (_.isEmpty(this.brands) || this.isRegionForBrandsChanged()){
 					this.dom.lockLoading.show();
 					$.ajax({
 						url 	: "/brands/list-all",
@@ -186,6 +188,7 @@
 				}
 				this.brands = new this.wawBrands(data);
 				this.dom.lockLoading.hide();
+				this.setPrevGeoForBrands();
 				this.brands && this.bindBrandsSelectedEvent();
 			},
 
@@ -229,6 +232,20 @@
 				}
 				result.options = source.options;
 				return result;
+			},
+
+			isRegionForCategoryChanged : function () {
+				return ($.cookie('geo') !== this.prevGeoCategory);
+			},
+			isRegionForBrandsChanged : function () {
+				return ($.cookie('geo') !== this.prevGeoBrands);
+			},
+
+			setPrevGeoForCategory : function() {
+				this.prevGeoCategory  = $.cookie('geo');
+			},
+			setPrevGeoForBrands : function() {
+				this.prevGeoBrands  = $.cookie('geo');
 			},
 
 			isBrowserCompatible : function () {

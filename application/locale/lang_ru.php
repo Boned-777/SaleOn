@@ -699,10 +699,18 @@ return array(
     "mm_favorites"=>"Избранное",
     "mm_user"=>"Пользователь",
 
-    "main_title" => "Все акции Украины",
+    "main_title" => "Все Акции Украины",
+    "copyright" => "© ВАУ - Все Акции Украины, 2014",
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
-    "lng_english" => "English"
+    "lng_english" => "English",
+
+    "login" => "Логин: ",
+    "tarifs" => "Тарифные планы: ",
+    "price" => "Цена",
+    "all_ukraine" => "Вся Украина",
+    "all_region" => "Вся область",
+    "district" => "Район"
 
 
 );

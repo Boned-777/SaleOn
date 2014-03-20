@@ -697,8 +697,16 @@ return array (
     "mm_favorites" => "Вибране",
     "mm_user" => "Користувач",
 
-    "main_title" => "Всі акції України",
+    "main_title" => "Всі Акції України",
+    "copyright" => "© ВАУ - Всі Акції України, 2014",
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
-    "lng_english" => "English"
+    "lng_english" => "English",
+
+    "login" => "Логин: ",
+    "tarifs" => "Тарифные планы: ",
+    "price" => "Цена",
+    "all_ukraine" => "Вся Украина",
+    "all_region" =>"Вся область",
+    "district" => "Район"
 );

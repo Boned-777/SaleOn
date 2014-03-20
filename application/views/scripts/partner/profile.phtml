@@ -6,28 +6,28 @@
             <div class="legend"><?php echo $translate->getAdapter()->translate("set_new_password"); ?></div>
             <?php echo $this->changePasswordForm->setAction($this->url()); ?>
             <div class="legend"><?php echo $translate->getAdapter()->translate("info"); ?></div>
-            <div class="gray">Логин: </div>
+            <div class="gray"><?php echo $translate->getAdapter()->translate("login"); ?> </div>
             <span><?php echo $this->email; ?></span>
             <br><br>
-            <div class="gray">Тарифные планы: </div>
+            <div class="gray"><?php echo $translate->getAdapter()->translate("tarifs"); ?></div>
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>Регион</th>
-                  <th>Цена</th>
+                  <th><?php echo $translate->getAdapter()->translate("geo_name"); ?></th>
+                  <th><?php echo $translate->getAdapter()->translate("price"); ?></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Вся украина</td>
+                  <td><?php echo $translate->getAdapter()->translate("all_ukraine"); ?></td>
                   <td>100$</td>
                 </tr>
                 <tr>
-                  <td>Вся область</td>
+                  <td><?php echo $translate->getAdapter()->translate("all_region"); ?></td>
                   <td>50$</td>
                 </tr>
                 <tr>
-                  <td>Район</td>
+                  <td><?php echo $translate->getAdapter()->translate("district"); ?></td>
                   <td>20$</td>
                 </tr>
               </tbody>

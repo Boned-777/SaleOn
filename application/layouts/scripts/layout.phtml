@@ -194,7 +194,7 @@
 
     <div id="footer" class="footer footer-gradient">
         <div class="container">
-            <div class="btn-group dropup">
+            <div class="btn-group dropup pull-left">
                 <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
                 <ul class="dropdown-menu" id="lng-switcher">
                     <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
@@ -202,7 +202,7 @@
                     <li><a id="en" class="lng en" title="<?= $translate->getAdapter()->translate("lng_english")?>" href="#"></a></li>
                 </ul>
             </div>
-            <p class="credit">ВАУ - Все акции Украины, 2013-2014 </p>
+            <p class="credit pull-right"><?= $translate->getAdapter()->translate("copyright")?></p>
             <div id="footer-social" class="socials"></div>
         </div>
     </div>
