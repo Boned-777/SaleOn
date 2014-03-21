@@ -18,15 +18,15 @@ class CategoriesController extends Zend_Controller_Action
         $params = null;
         $request = new Zend_Controller_Request_Http();
 
-        if ($request->getCookie('category'))
-            $params["category"] = $request->getCookie('category');
+        if ($request->getCookie('geo'))
+            $params["geo"] = $request->getCookie('geo');
         if ($request->getCookie('brands'))
             $params["brand"] = $request->getCookie('brands');
         if ($request->getCookie('products'))
             $params["product"] = $request->getCookie('products');
 
         $item = new Application_Model_Category();
-        $results = $item->listAll();
+        $results = $item->listAll($params);
         $this->_helper->json($results);
     }
 }
