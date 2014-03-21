@@ -11,7 +11,8 @@
 			this.originalData 	= null;
 			this.slider 		= null;
 			this.categories 	= null; 
-			this.prevGeo 		= null;
+			this.prevGeoCategory= null;
+			this.prevGeoBrands  = null;
 			this.init();
 		};
 

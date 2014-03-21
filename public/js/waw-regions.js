@@ -2,14 +2,11 @@
 		var EMPTY_STRING = "";
 		
 		var wawRegions = function (regionsData) {
-			this.mainTemplate = '<div class="row">\
-        							<div data-id="1" class="span6 category-group">\
+			this.headerTemplate = '<div data-id="1" class="span6 category-group">\
         								<i class="shopping-icon"></i>\
         								<div id="header-name" class="category-group-text">$header <span class="counter"></span></div>\
-        							</div>\
-        							<div class="span3">&nbsp;</div>\
-						      	</div>\
-						      	<div id="regions-list" class="filter-list top-offset"></div>\
+        							</div>';
+			this.mainTemplate = '<div id="regions-list" class="filter-list top-offset"></div>\
 						      	<div id="areas-list" class="filter-list top-offset"></div>';
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
@@ -38,6 +35,7 @@
 				this.dom = {
 					lockLayer		  : $(".lock-loading"),
 					regionsModal      : $("#regions-modal"),
+					regionsHeader 	  : $("#regions-header"),
 					regionsContent	  : $("#regions-content"),
 					backBtn 		  : $("#region-back")
 				}
@@ -45,8 +43,10 @@
 
 			renderMainTemplate : function () {
 				this.dom.regionsContent && this.dom.regionsContent.empty();
-				var header = this.mainTemplate.replace("$header", window.messages.ukraine);
-				this.dom.regionsContent.html(header);
+				this.dom.regionsHeader && this.dom.regionsHeader.empty();
+				var header = this.headerTemplate.replace("$header", window.messages.ukraine);
+				this.dom.regionsContent.html(this.mainTemplate);
+				this.dom.regionsHeader.html(header);
 			},
 
 			updateDOMElements : function () {
@@ -123,16 +123,14 @@
 						cache	: false
 					}).done(_.bind(function(data){this.onAreasLoaded(data, regionId)}, this)).fail(_.bind(this.showError, this));
 				} else {
+					this.setHeader(regionId);
 					this.renderAreas(regionId);
 				}
 			},
 
 			onAreasLoaded : function (data, regionId) {
 				if (data) {
-					var regionElement = _.find(this.data.list, function(el) {
-						return (el.name == regionId);
-					})
-					this.dom.headerName.text(regionElement.value);
+					this.setHeader(regionId);
 					this.data.area[regionId] = data;
 					this.countGroup(this.data.area[regionId].list);
 					this.renderAreas(regionId);
@@ -147,6 +145,13 @@
 				var itemList = this.renderItemList(this.data.area[regionId].list);
 				this.dom.areasList.html(itemList).show();
 				this.dom.backBtn.removeClass("hide");
+			},
+
+			setHeader : function (regionId) {
+				var regionElement = _.find(this.data.list, function(el) {
+					return (el.name == regionId);
+				})
+				this.dom.headerName.text(regionElement.value);
 			},
 
 			showError : function () {

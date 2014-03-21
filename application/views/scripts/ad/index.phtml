@@ -47,18 +47,23 @@
                     <?php echo $translate->getAdapter()->translate("full_description"); ?>
                 </a>
             <?php } ?>
-            <div class="leftMargin"><?= $translate->getAdapter()->translate("days_left") . ": <strong>" . $this->ad->getDaysLeft() . "</strong>"?></div>
+            <div class="leftMargin muted"><?= $translate->getAdapter()->translate("days_left") . ": <strong>" . $this->ad->getDaysLeft() . "</strong>"?></div>
         </div>
         <div class="span5">
-            <?php if ($this->prevAdUrl) : ?><a href=""></a><?php endif ?>
-            <?php if ($this->nextAdUrl) : ?><a href=""></a><?php endif ?>
 
             <ul class="pager">
               <li class="previous">
-                <a href="<?= $this->prevAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
+                <?php if ($this->prevAdUrl) : ?>
+                    <a href="<?= $this->prevAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
+                <?php endif ?>
+              </li>
+              <li>
+                  <div data-link="/user/favorites?ad_id=63&amp;act=remove" title="Видалити з обраного" data-id="63" class="favorites-icon favorites-icon-on"></div>
               </li>
               <li class="next">
-                <a href="<?= $this->nextAdUrl ?>"><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
+                <?php if ($this->nextAdUrl) : ?>
+                    <a href="<?= $this->nextAdUrl ?>"><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
+                <?php endif ?>
               </li>
             </ul>
         </div>
@@ -103,4 +108,5 @@
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
+<script type="text/javascript" src="/js/full-action.js"></script>
 
