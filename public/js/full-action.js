@@ -66,7 +66,7 @@ $(function () {
                 url     : link,
                 cache   : false
             }).done(_.bind(function(data) {
-                if (!data.success) {
+                if (data.success) {
                     if (status=="on") {
                         target.data("link", link.replace("add", "remove"));
                         target.data("status", "off");
