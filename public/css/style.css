@@ -899,6 +899,16 @@ textarea {
 .details-right h4 {
     margin: 0 0 10px 0;
 }
+
+.details-right .favorites-icon {
+	display: inline-block;
+	height: 22px;
+	width: 22px;
+	cursor: pointer;
+	position: relative;
+	right: 0px;
+	top: 5px;
+}
 /* Item details end */
 
 
