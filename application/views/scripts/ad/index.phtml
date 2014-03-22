@@ -47,18 +47,28 @@
                     <?php echo $translate->getAdapter()->translate("full_description"); ?>
                 </a>
             <?php } ?>
-            <div class="leftMargin"><?= $translate->getAdapter()->translate("days_left") . ": <strong>" . $this->ad->getDaysLeft() . "</strong>"?></div>
+            <div class="leftMargin muted"><?= $translate->getAdapter()->translate("days_left") . ": <strong>" . $this->ad->getDaysLeft() . "</strong>"?></div>
         </div>
         <div class="span5">
-            <?php if ($this->prevAdUrl) : ?><a href=""></a><?php endif ?>
-            <?php if ($this->nextAdUrl) : ?><a href=""></a><?php endif ?>
 
             <ul class="pager">
               <li class="previous">
-                <a href="<?= $this->prevAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
+                <?php if ($this->prevAdUrl) : ?>
+                    <a href="<?= $this->prevAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
+                <?php endif ?>
+              </li>
+              <li>
+                  <div id="favorites-link" 
+                  data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>" 
+                  title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>" 
+                  data-id="<?= $this->ad->id ?>" 
+                  data-status="<?= $this->isFavorite ? "on" : "off" ?>"
+                  class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
               </li>
               <li class="next">
-                <a href="<?= $this->nextAdUrl ?>"><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
+                <?php if ($this->nextAdUrl) : ?>
+                    <a href="<?= $this->nextAdUrl ?>"><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
+                <?php endif ?>
               </li>
             </ul>
         </div>
@@ -72,7 +82,7 @@
         <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("full_description"); ?></h3>
     </div>
     <div class="modal-body">
-        <p>One fine body…</p>
+        <p></p>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
@@ -94,13 +104,19 @@
 </div>
 
 <div>
+<!--     
     <?php if ($this->prevAdUrl) : ?><a href="<?= $this->prevAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("prev_ad") ?></button></a><?php endif ?>
     <?php if ($this->nextAdUrl) : ?><a href="<?= $this->nextAdUrl ?>"><button class="btn"> <?= $translate->getAdapter()->translate("next_ad") ?></button></a><?php endif ?>
 
     <a href="<?= $this->notFavoritesUrl ?>" <?= !$this->isFavorite?"":"hidden" ?>><button class="btn"> <?= $translate->getAdapter()->translate("add_to_favorites") ?></button></a>
-    <a href="<?= $this->isFavoritesUrl  ?>" <?= $this->isFavorite?"":"hidden" ?>><button class="btn"> <?= $translate->getAdapter()->translate("remove_from_favorites") ?></button></a>
+    <a href="<?= $this->isFavoritesUrl  ?>" <?= $this->isFavorite?"":"hidden" ?>><button class="btn"> <?= $translate->getAdapter()->translate("remove_from_favorites") ?></button>
+ -->
+
+
+</a>
 </div>
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
+<script type="text/javascript" src="/js/full-action.js"></script>
 

@@ -846,7 +846,7 @@ textarea {
 
 /*partner menu start*/
 .nav-pills {
-	width: 800px;
+	width: 820px;
 	margin: 0 auto 20px;
 }
 .nav-pills > li {
@@ -899,6 +899,16 @@ textarea {
 .details-right h4 {
     margin: 0 0 10px 0;
 }
+
+.details-right .favorites-icon {
+	display: inline-block;
+	height: 22px;
+	width: 22px;
+	cursor: pointer;
+	position: relative;
+	right: 0px;
+	top: 5px;
+}
 /* Item details end */
 
 
@@ -928,8 +938,14 @@ textarea {
     width: 970px;
     top: 5%;
 }
+#regions-modal .modal-header {
+	height: 47px;
+	border: 0; 
+	padding-bottom: 0;
+}
 #regions-modal .modal-body {
-	max-height: 560px;
+	max-height: 485px;
+	padding-top: 0;
 }
 #brands-modal .modal-body {
 	max-height: 530px;
