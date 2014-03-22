@@ -184,8 +184,13 @@ class AdController extends Zend_Controller_Action
     public function newsListAction () {
         global $translate;
 
+        $params = null;
+        $request = new Zend_Controller_Request_Http();
+        if ($request->getCookie('geo'))
+            $params["geo"] = $request->getCookie('geo');
+
         $ad = new Application_Model_Ad();
-        $res = $ad->getNewsList();
+        $res = $ad->getNewsList($params);
         $data = array();
         foreach ($res AS $val) {
             $data[] = $val->toListArray($this->user);
@@ -219,7 +224,10 @@ class AdController extends Zend_Controller_Action
     public function newsAction () {
         global $translate;
         $ad = new Application_Model_Ad();
-        $res = $ad->getFavorites($this->user->favorites_ads);
+        $favorites = null;
+        if (isset($this->user->favorites_ads))
+            $favorites = $this->user->favorites_ads;
+        $res = $ad->getFavorites($favorites);
         $data = array();
         foreach ($res AS $val) {
             $data[] = $val->toListArray($this->user);
@@ -230,6 +238,7 @@ class AdController extends Zend_Controller_Action
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             )
         );
+
         $this->_helper->json($res);
     }
 
