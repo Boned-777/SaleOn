@@ -54,7 +54,8 @@
 			},
 
 			init : function (brandsData) {
-				this.data = this.duplicateResponce(brandsData, 17);
+				//this.data = this.duplicateResponce(brandsData, 17);
+				this.data = brandsData;
 				this.data.letters = [];
 				this.registerDOMElements();
 				this.renderMainTemplate();
