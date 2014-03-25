@@ -27,8 +27,8 @@ class BrandsController extends Zend_Controller_Action
 
         if ($request->getCookie('category'))
             $params["category"] = $request->getCookie('category');
-        if ($request->getCookie('brands'))
-            $params["brand"] = $request->getCookie('brands');
+        if ($request->getCookie('geo'))
+            $params["geo"] = $request->getCookie('geo');
         if ($request->getCookie('products'))
             $params["product"] = $request->getCookie('products');
 

@@ -208,11 +208,19 @@ class Application_Model_Ad
         }
     }
 
-    public function getNewsList() {
+    public function getNewsList($params=null) {
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
             ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("public_dt ASC");
+        if (!is_null($params)) {
+            $geo = explode("-", $params["geo"]);
+            if (isset($geo[2])) {
+                unset($geo[2]);
+            }
+            $geoStr = implode("-", $geo);
+            $stmt->where('geo LIKE "' . $geoStr . '" OR geo LIKE "' . $geoStr . '-%"');
+        }
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
             $res = array();

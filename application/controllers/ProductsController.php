@@ -29,8 +29,8 @@ class ProductsController extends Zend_Controller_Action
             $params["category"] = $request->getCookie('category');
         if ($request->getCookie('brands'))
             $params["brand"] = $request->getCookie('brands');
-        if ($request->getCookie('products'))
-            $params["product"] = $request->getCookie('products');
+        if ($request->getCookie('geo'))
+            $params["geo"] = $request->getCookie('geo');
 
         $item = new Application_Model_DbTable_Product();
         $results = $item->search($this->_getParam('term'), $params);

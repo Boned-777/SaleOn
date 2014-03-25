@@ -54,10 +54,11 @@ class Application_Model_Category
         foreach ($data as $countVal) {
             $countsList[$countVal[$colName]] = $countVal["count"];
         }
+
         return $countsList;
     }
     
-    public function listAll($params=null) {
+    public function  listAll($params=null) {
         global $translate;
         $dbItem = new Application_Model_DbTable_Category();
         $res = $dbItem->fetchAll();
