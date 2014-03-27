@@ -6,7 +6,8 @@ $(function () {
         actionAddress        = $('#action-address'),
         actionAddressModal   = $('#action-address-modal'),
         imageWrapper         = $('.img-wrapper'),
-        favoritesLink        = $('#favorites-link');
+        favoritesLink        = $('#favorites-link'),
+        lockLayer            = $(".lock-gray");
 
     /* Hide video player*/    
     function hideVideo(modal) {
@@ -46,21 +47,23 @@ $(function () {
         });
     });
 
+    /* Add remove farorites */
     function showError() {
         var errorModal = $("#error-modal-block");
             errorModal.find(".block-label").html(window.messages.serverError);
             errorModal.fadeIn( "slow" ).delay( 5000 ).fadeOut( "slow" ); 
     }
 
+    /* Add remove farorites */
     favoritesLink.click(function(e){
         e.preventDefault();
         var target = $(e.target),
-            link = target.data("link"),
-            status = target.data("status");
+            link   = target.attr("data-link"),
+            status = target.attr("data-status");
         if (link == "/auth") {
             window.location.href = link;
         } else {
-            //this.dom.lockLayer.show();
+            lockLayer.show();
             $.ajax({
                 dataType: "json",
                 url     : link,
@@ -68,23 +71,23 @@ $(function () {
             }).done(_.bind(function(data) {
                 if (data.success) {
                     if (status=="on") {
-                        target.data("link", link.replace("add", "remove"));
-                        target.data("status", "off");
-                        target.attr("title", window.messages.removeFromFavorites);
-                        target.toggleClass("favorites-icon-off favorites-icon-on")
-                    } else {
-                        target.data("link", link.replace("remove", "add"));
-                        target.data("status", "on");
+                        target.attr("data-link", link.replace("remove", "add"));
+                        target.attr("data-status", "off");
                         target.attr("title", window.messages.addToFavorites);
                         target.toggleClass("favorites-icon-on favorites-icon-off")
+                    } else {
+                        target.attr("data-link", link.replace("add", "remove"));
+                        target.attr("data-status", "on");
+                        target.attr("title", window.messages.removeFromFavorites);
+                        target.toggleClass("favorites-icon-off favorites-icon-on")
                     }  
                 } else {
                     showError();
                 }
-                //this.dom.lockLayer.hide();
+                lockLayer.hide();
             }, this)).fail(_.bind(function(data) {
                 showError();
-                //that.dom.lockLayer.hide();
+                lockLayer.hide();
             }, this));      
         }
 

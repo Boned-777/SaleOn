@@ -133,7 +133,7 @@
 
 			/* Bind handlers */
 			favoritesClickHandler : function (target) {
-				var link = target.data("link");
+				var link = target.attr("data-link");
 				(link == "/auth") ? (window.location.href = link) : (this.updateFavorites(target, link));
 			},
 
@@ -155,18 +155,17 @@
 			onFavoritesUpdated : function (target) {
 				_.each(this.data.list, function(item) {
 					if (item.post_id == target.data("id")) {
-
 						if (this.isFavoritesOff(target)) {
 							item.is_favorite = 1;
 							item.favorites_link = item.favorites_link.replace("add", "remove");
-							target.attr("href", item.favorites_link);
+							target.attr("data-link", item.favorites_link);
 							target.attr("title", window.messages.removeFromFavorites);
 							target.toggleClass("favorites-icon-off favorites-icon-on")
 						} else {
 							item.is_favorite = 0;
 							item.favorites_link = item.favorites_link.replace("remove", "add");
+							target.attr("data-link", item.favorites_link);
 							target.attr("title", window.messages.addToFavorites);
-							target.attr("href", item.favorites_link);
 							target.toggleClass("favorites-icon-on favorites-icon-off")
 						}  
 					}

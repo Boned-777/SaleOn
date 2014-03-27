@@ -52,29 +52,25 @@
         <div class="span5">
 
             <ul class="pager">
-              <li class="previous">
-                <?php if ($this->prevAdUrl) : ?>
+                <li class="previous <?= $this->prevAdUrl ? "" : "disabled" ?>">
                     <a href="<?= $this->prevAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
-                <?php endif ?>
-              </li>
-              <li>
-                  <div id="favorites-link" 
-                  data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>" 
-                  title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>" 
-                  data-id="<?= $this->ad->id ?>" 
-                  data-status="<?= $this->isFavorite ? "on" : "off" ?>"
-                  class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
-              </li>
-              <li class="next">
-                <?php if ($this->nextAdUrl) : ?>
+                </li>
+                <li>
+                    <div id="favorites-link" 
+                    data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>" 
+                    title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>" 
+                    data-id="<?= $this->ad->id ?>" 
+                    data-status="<?= $this->isFavorite ? "on" : "off" ?>"
+                    class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
+                </li>
+                <li class="next  <?= $this->nextAdUrl ? "" : "disabled" ?>">
                     <a href="<?= $this->nextAdUrl ?>"><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
-                <?php endif ?>
               </li>
             </ul>
         </div>
 
-
     </div>
+    <div class="lock-gray"></div>
 </div>
 
 <div id="full-description-modal" class="modal hide" tabindex="-1">
@@ -96,8 +92,7 @@
     <div class="modal-body">
         <input type="hidden" id="full-address" value="<?php echo $this->ad->address; ?>">
         <div class="map_canvas"></div>
-
-           </div>
+    </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
     </div>
