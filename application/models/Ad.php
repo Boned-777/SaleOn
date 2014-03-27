@@ -334,11 +334,26 @@ class Application_Model_Ad
         die("Randomize finished");
     }
 
-    public function getNeighborhood() {
+    public function getNeighborhood($params=null) {
         $item = new Application_Model_DbTable_Ad();
         $select = $item->select()
             ->where("order_index IN (?,?) AND end_dt >= NOW()", array($this->order_index-1, $this->order_index+1))
             ->order("order_index");
+
+        if (!is_null($params)) {
+            foreach ($params as $key => $val) {
+                switch ($key) {
+                    case "geo" :
+                        $select->where("(geo LIKE '$val' OR geo LIKE '$val-%')");
+                        break;
+
+                    default :
+                        $select->where("$key = ?", $val);
+                        break;
+                }
+            }
+        }
+
         $data = $item->fetchAll($select);
         $data = $data->toArray();
 
@@ -401,7 +416,7 @@ class Application_Model_Ad
         $basePrice = array(
             1 => 10,
             2 => 5,
-            3 => 1
+            3 => 2
         );
         $daysCount = $this->getDaysLeft();
 
