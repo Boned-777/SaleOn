@@ -4,7 +4,8 @@ $(function () {
     var lngSwitcher          = $('#lng-switcher'),
         lngButton            = $('#lng-btn'),
         currentLng           = $('#current-lng'),
-        logoLink             = $('#link');
+        logoLink             = $('#link'),
+        contactBtn           = $('#contact-btn');
 
     /* clear all cookies */
     logoLink.click(function(e){
@@ -28,6 +29,9 @@ $(function () {
         }).done(function( html ) {
             window.location.reload();
         });
+    });
+    contactBtn.click(function(e){
+        window.location.href = "/index/contacts";
     });
 
     /* Add browser depended classes */

@@ -95,5 +95,9 @@ class TestController extends Zend_Controller_Action
     {
         // action body
     }
+    public function contactsAction()
+    {
+        // action body
+    }
 }
 

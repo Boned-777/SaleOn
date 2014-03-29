@@ -3,7 +3,7 @@
 		
 		var wawRegions = function (regionsData) {
 			this.headerTemplate = '<div data-id="1" class="span6 category-group">\
-        								<i class="shopping-icon"></i>\
+        								<i class="ukraine-icon"></i>\
         								<div id="header-name" class="category-group-text">$header <span class="counter"></span></div>\
         							</div>';
 			this.mainTemplate = '<div id="regions-list" class="filter-list top-offset"></div>\

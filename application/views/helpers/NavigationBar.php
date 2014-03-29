@@ -3,7 +3,7 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
 {
 	public function NavigationBar ()
 	{
-        global $translate;
+        global $translate, $session;
 
 		$auth = Zend_Auth::getInstance();
         $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
@@ -29,8 +29,8 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
 			    if ($auth->getIdentity()->role == "PARTNER") {
             ?>
             <div class="row">
-                <ul class="nav nav-pills">
-                    <?php
+                <ul class="nav nav-pills <?= ($session->locale=="ru") ? "nav-wide" : "" ?>">
+                    <?php 
                     foreach ($menuItems as $value) {
                         if (
                             in_array($uri, $value["link"]) ||

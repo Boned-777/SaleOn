@@ -68,6 +68,15 @@ body {
 #footer .btn-group {
 	margin: 6px 0 0 10px;
 }
+#footer .contacts {
+	background: url("/img/contacts6.png") center 2px no-repeat;
+	margin: 6px 0 0 10px;
+	width: 36px;
+	height:24px;
+}
+#footer .contacts:hover, .contacts:focus {
+	border: 1px solid #999;
+}
 
 .fix-content-position {
 	padding-left: 15px;
@@ -849,6 +858,10 @@ textarea {
 	width: 820px;
 	margin: 0 auto 20px;
 }
+.nav-wide {
+	width: 915px;
+}
+
 .nav-pills > li {
     margin-left: 15px;
 }
@@ -908,6 +921,11 @@ textarea {
 	position: relative;
 	right: 0px;
 	top: 5px;
+}
+
+.leftMargin {
+	margin-top: 20px;
+	margin-left: 5px;
 }
 /* Item details end */
 
@@ -1008,6 +1026,13 @@ textarea {
 	margin-top: 10px;  
 }
 
+.ukraine-icon {
+      background: url("/img/ukraine-flag-light.png") 0px -2px;
+      background-repeat: no-repeat;
+      height: 45px;
+      width: 52px;
+      float: left;
+}
 .shopping-icon {
       background: url("/img/shopping_cart.png") -5px -4px;
       background-repeat: no-repeat;
@@ -1169,10 +1194,41 @@ textarea {
 .gray {
 	color: #999;
 }
-.leftMargin {
-	margin-top: 20px;
-	margin-left: 5px;
+
+/* Contacts */
+.contacts {
+	margin-top: 80px;
 }
+
+.contacts address {
+	width: 250px;
+	margin-left: 30px;
+}
+
+[class^="cicon-"], [class*=" cicon-"] {
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 12px;
+    line-height: 12px;
+    margin-right: 8px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 16px;
+}
+.cicon-phone {
+    background-image: url("/img/phone.png");
+}
+.cicon-mail {
+    background-image: url("/img/mail.png");
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	background-image: url("/img/glyphicons-halflings.png");
+}
+.icon-globe {
+    background-position: -336px -144px;
+}
+
 
 
 
