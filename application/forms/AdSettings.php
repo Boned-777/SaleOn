@@ -72,7 +72,6 @@ class Application_Form_AdSettings extends Zend_Form
         $this->addElement('select', 'region', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("region"),
-            //'multiOptions' => $geo->getAll("1")
         ));
 
         $this->addElement('select', 'district', array(
@@ -100,6 +99,20 @@ class Application_Form_AdSettings extends Zend_Form
 
         $this->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'-'.$geoVals[1]));
         $this->getElement("district")->setValue($geoVals[0].'-'.$geoVals[1].'-'.$geoVals[2]);
+    }
+
+    public function isValid($data) {
+        global $translate;
+
+        $parentRes = parent::isValid($data);
+
+        $customRes = true;
+        if (empty($data["brand"])||empty($data["brand_name"])||($data["brand"]===0)) {
+            $this->getElement("brand_name")->addError($translate->getAdapter()->translate("empty_name"));
+            $customRes = false;
+        }
+
+        return $parentRes&&$customRes;
     }
 
     public function processData($formData) {

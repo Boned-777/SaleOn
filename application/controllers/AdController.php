@@ -33,7 +33,19 @@ class AdController extends Zend_Controller_Action
             $this->view->ad = $item;
             $this->view->user = $owner;
 
-            $neighborArr = $item->getNeighborhood();
+            $params = null;
+            $request = new Zend_Controller_Request_Http();
+
+            if ($request->getCookie('category'))
+                $params["category"] = $request->getCookie('category');
+            if ($request->getCookie('brands'))
+                $params["brand"] = $request->getCookie('brands');
+            if ($request->getCookie('products'))
+                $params["product"] = $request->getCookie('products');
+            if ($request->getCookie('geo'))
+                $params["geo"] = $request->getCookie('geo');
+
+            $neighborArr = $item->getNeighborhood($params);
             $this->view->nextAdUrl = !is_null($neighborArr["previous"])?$neighborArr["previous"]->createUrl():null;
             $this->view->prevAdUrl = !is_null($neighborArr["next"])?$neighborArr["next"]->createUrl():null;
 
