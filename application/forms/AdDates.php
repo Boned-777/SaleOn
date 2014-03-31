@@ -46,11 +46,11 @@ class Application_Form_AdDates extends Zend_Form
         $public_dt = $this->getElement("public_dt");
         $public_dt->addValidator($publicDTValidatorFalse);
 
-        $this->addElement('text', 'start_dt', array(
-            'class' => "input-block-level-date",
-            'label' => $translate->getAdapter()->translate("start_date") . ' *',
-            'required' => true,
-        ));
+//        $this->addElement('text', 'start_dt', array(
+//            'class' => "input-block-level-date",
+//            'label' => $translate->getAdapter()->translate("start_date") . ' *',
+//            'required' => true,
+//        ));
 
         //$start_dt = $this->getElement("start_dt");
         //$start_dt->addValidator($publicDTValidatorFalse);

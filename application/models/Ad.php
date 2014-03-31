@@ -7,7 +7,7 @@ class Application_Model_Ad
 	public $description;
     public $full_description;
 	public $public_dt;
-	public $start_dt;
+//	public $start_dt;
 	public $end_dt;
 	public $region;
 	public $category;
@@ -135,8 +135,9 @@ class Application_Model_Ad
                 case "geo":
                     if (empty($this->geo)) {
                         $data[$key] = "1";
+                    } else {
+                        $data[$key] = $this->$key;
                     }
-                    $data[$key] = $this->$key;
                     break;
 
                 default:
@@ -145,6 +146,7 @@ class Application_Model_Ad
             }
 
         }
+
         $dbItem = new Application_Model_DbTable_Ad();
         if ($this->id) {
             $this->finishAllOrders();
@@ -419,18 +421,12 @@ class Application_Model_Ad
             3 => 2
         );
         $daysCount = $this->getDaysLeft();
-
-        $geo = explode("-",$this->geo);
-        $geoCount = 0;
-        foreach ($geo as $val) {
-            if ($val !== 0) {
-                $geoCount++;
-            } else {
-                break;
+        $geo = explode("-", $this->geo);
+        foreach ($geo as $key=>$val) {
+            if ($val == 0) {
+                unset($geo[$key]);
             }
         }
-
-        return $basePrice[$geoCount] * $daysCount;
+        return $basePrice[count($geo)] * $daysCount;
     }
 }
-
