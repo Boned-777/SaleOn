@@ -8,15 +8,21 @@ class AdController extends Zend_Controller_Action
     public function init()
     {
         $auth = Zend_Auth::getInstance();
-        if (!$auth->hasIdentity()) {
-            //$this->_helper->redirector('index', 'auth');
-        }
-
-        $this->user = $auth->getIdentity();
         $vars = $this->getAllParams();
 
-        if (($vars["action"] == "set-status") && ($this->user->role !== Application_Model_User::ADMIN)) {
-            $this->_helper->redirector('index', 'index');
+        if (!$auth->hasIdentity()) {
+            if (in_array($vars["action"], array("new", "edit"))){
+                $this->_helper->redirector('index', 'auth');
+            }
+        } else {
+            $this->user = $auth->getIdentity();
+            if ($vars["action"] == "new" && $this->user->role != Application_Model_User::PARTNER){
+                $this->_helper->redirector('index', 'index');
+            }
+
+            if (($vars["action"] == "set-status") && ($this->user->role !== Application_Model_User::ADMIN)) {
+                $this->_helper->redirector('index', 'index');
+            }
         }
     }
 
