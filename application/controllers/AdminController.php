@@ -79,7 +79,7 @@ class AdminController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ? AND end_dt > NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        $grid->setGridColumns(array("name", "days_left", "public_dt", "start_dt", "end_dt", "set_status"));
+        $grid->setGridColumns(array("name", "days_left", "public_dt", "end_dt", "set_status"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -89,9 +89,6 @@ class AdminController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
@@ -131,7 +128,7 @@ class AdminController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?)", array(Application_Model_DbTable_Ad::STATUS_DRAFT));
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt", "set_status"));
+        $grid->setGridColumns(array("name", "public_dt", "end_dt", "set_status"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -141,9 +138,6 @@ class AdminController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
@@ -172,7 +166,7 @@ class AdminController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?)", array(Application_Model_DbTable_Ad::STATUS_READY));
-        $grid->setGridColumns(array("name", 'paid', "public_dt", "start_dt", "end_dt", "set_status"));
+        $grid->setGridColumns(array("name", 'paid', "public_dt", "end_dt", "set_status"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -182,9 +176,6 @@ class AdminController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
@@ -221,7 +212,7 @@ class AdminController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("(status = ? OR end_dt < NOW())", Application_Model_DbTable_Ad::STATUS_ARCHIVE);
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", "public_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -231,9 +222,6 @@ class AdminController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
@@ -253,7 +241,7 @@ class AdminController extends Zend_Controller_Action
             $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
             $grid->setSource($source);
             $grid->getSelect()->where("status = ? AND id IN (" . $this->user->favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-            $grid->setGridColumns(array("name", "geo_name", "public_dt", "start_dt", "end_dt"));
+            $grid->setGridColumns(array("name", "geo_name", "public_dt", "end_dt"));
             $grid->updateColumn('name',array(
                 "title" =>  $translate->getAdapter()->translate("name"),
                 'callback'=>array(
@@ -263,9 +251,6 @@ class AdminController extends Zend_Controller_Action
             ));
             $grid->updateColumn('public_dt',array(
                 "title" =>  $translate->getAdapter()->translate("public_date"),
-            ));
-            $grid->updateColumn('start_dt',array(
-                "title" =>  $translate->getAdapter()->translate("start_date"),
             ));
             $grid->updateColumn('end_dt',array(
                 "title" =>  $translate->getAdapter()->translate("end_date"),
