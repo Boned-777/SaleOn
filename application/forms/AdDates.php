@@ -21,13 +21,7 @@ class Application_Form_AdDates extends Zend_Form
         );
 
         $publicDTValidatorFalse = new Custom_Form_Validator_DateCompare("public_dt", false);
-        $publicDTValidatorFalse->setMessages($dateCompareValidatorsMessages);
-        $startDTValidatorFalse = new Custom_Form_Validator_DateCompare("start_dt", false);
-        $startDTValidatorFalse->setMessages($dateCompareValidatorsMessages);
         $publicDTValidatorTrue = new Custom_Form_Validator_DateCompare("public_dt", true);
-        $publicDTValidatorTrue->setMessages($dateCompareValidatorsMessages);
-        $startDTValidatorTrue = new Custom_Form_Validator_DateCompare("start_dt", true);
-        $startDTValidatorTrue->setMessages($dateCompareValidatorsMessages);
 
         //Elements
         $this->addElement('hidden', 'id');
@@ -46,15 +40,6 @@ class Application_Form_AdDates extends Zend_Form
         $public_dt = $this->getElement("public_dt");
         $public_dt->addValidator($publicDTValidatorFalse);
 
-//        $this->addElement('text', 'start_dt', array(
-//            'class' => "input-block-level-date",
-//            'label' => $translate->getAdapter()->translate("start_date") . ' *',
-//            'required' => true,
-//        ));
-
-        //$start_dt = $this->getElement("start_dt");
-        //$start_dt->addValidator($publicDTValidatorFalse);
-
         $this->addElement('text', 'end_dt', array(
             'class' => "input-block-level-date",
             'label' => $translate->getAdapter()->translate("end_date") . ' *',
@@ -62,7 +47,6 @@ class Application_Form_AdDates extends Zend_Form
         ));
 
         $end_dt = $this->getElement("end_dt");
-        $end_dt->addValidator($startDTValidatorTrue);
         $end_dt->addValidator($publicDTValidatorTrue);
 
         $this->addElement('submit', 'login', array(

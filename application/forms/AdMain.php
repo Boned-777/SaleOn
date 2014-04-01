@@ -13,6 +13,7 @@ class Application_Form_AdMain extends Zend_Form
     public function init()
     {
         global $translate;
+        $this->setTranslator($translate);
 
         $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));

@@ -29,6 +29,7 @@ $translate = new Zend_Translate(
     $session->locale
 );
 $translate->setlocale($session->locale);
+Zend_Form::setDefaultTranslator($translate);
 
 /** Zend_Application */
 require_once 'Zend/Application.php';

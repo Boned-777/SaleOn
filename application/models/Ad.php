@@ -72,6 +72,8 @@ class Application_Model_Ad
                     break;
 
                 case "url":
+                    if (!empty($this->$key))
+                        break;
                     $this->url = $data["web"];
                     break;
 
@@ -151,6 +153,7 @@ class Application_Model_Ad
         if ($this->id) {
             $this->finishAllOrders();
         }
+        // Zend_Debug::dump($data); die();
         $res = $dbItem->save($data, $this->id);
         if ($res !== false)
             $this->id = $res;
