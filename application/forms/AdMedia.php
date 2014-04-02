@@ -47,7 +47,7 @@ class Application_Form_AdMedia extends Zend_Form
         ));
     }
 
-    public function processData() {
+    public function processData($formData) {
         $upload = new Zend_File_Transfer_Adapter_Http();
         $images = $this->_processImage($upload);
         $mediaItemData = array();
@@ -67,6 +67,8 @@ class Application_Form_AdMedia extends Zend_Form
                 }
             }
         }
+
+        $mediaItemData["video"] = $formData["video"];
         if (sizeof($mediaItemData))
             return $mediaItemData;
         else
@@ -112,6 +114,22 @@ class Application_Form_AdMedia extends Zend_Form
         $newName = uniqid() . ".jpg";
         $image->save(APPLICATION_PATH . "/../public/media/" . $newName);
         return $newName;
+    }
+
+    public function isValid($data) {
+        global $translate;
+
+        $parentRes = parent::isValid($data);
+
+        $customRes = true;
+        if (isset($data["invalidFormElements"])) {
+            foreach ($data["invalidFormElements"] as $invalidElement) {
+                $this->getElement($invalidElement["element"])->addError($translate->getAdapter()->translate($invalidElement["error"]));
+            }
+            $customRes = false;
+        }
+
+        return $parentRes&&$customRes;
     }
 }
 

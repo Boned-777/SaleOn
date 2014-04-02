@@ -109,7 +109,7 @@ class Application_Form_AdSettings extends Zend_Form
 
         $customRes = true;
         if (empty($data["brand_name"])) {
-            $this->getElement("brand_name")->addError($translate->getAdapter()->translate("empty_name"));
+            $this->getElement("brand_name")->addError($translate->getAdapter()->translate("isEmpty"));
             $customRes = false;
         }
 

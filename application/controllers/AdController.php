@@ -129,6 +129,16 @@ class AdController extends Zend_Controller_Action
                 $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
                 $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
             }
+
+            if ($formData["form"] == "AdMedia") {
+                if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
+                    $formData["invalidFormElements"] = array(array(
+                        "element" => "image_file",
+                        "error" => Zend_Validate_NotEmpty::IS_EMPTY
+                    ));
+                }
+            }
+
             if ($form->isValid($formData)) {
                 $mediaItemData = array();
                 if ($formData["form"] == "AdMedia") {
@@ -241,10 +251,20 @@ class AdController extends Zend_Controller_Action
                 $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
                 $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
             }
+
+            if ($formData["form"] == "AdMedia") {
+                if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
+                    $formData["invalidFormElements"] = array(array(
+                        "element" => "image_file",
+                        "error" => Zend_Validate_NotEmpty::IS_EMPTY
+                    ));
+                }
+            }
+
             if ($form->isValid($formData)) {
                 $mediaItemData = array();
                 if ($formData["form"] == "AdMedia") {
-                    $mediaItemData = $form->processData();
+                    $mediaItemData = $form->processData($formData);
                 }
                 $itemData = $form->getValues();
                 $itemData = array_merge($itemData, $mediaItemData);
