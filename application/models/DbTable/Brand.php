@@ -32,11 +32,13 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
         $db = $dbItem->getAdapter();
         $countsList = $this->getCounts($db, "brand", $params);
         foreach ($res as $value) {
-            $result[] = array(
-                "name" => $value["name"],
-                "value" => $value["id"],
-                "count" => isset($countsList[$value["id"]])?$countsList[$value["id"]]:0
-            );
+            if (isset($countsList[$value["id"]])) {
+                $result[] = array(
+                    "name" => $value["name"],
+                    "value" => $value["id"],
+                    "count" => isset($countsList[$value["id"]])?$countsList[$value["id"]]:0
+                );
+            }
         }
         return $result;
     }

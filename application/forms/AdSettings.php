@@ -91,6 +91,7 @@ class Application_Form_AdSettings extends Zend_Form
         $geoItem = new Application_Model_Geo();
         $geo = $geo?$geo:"1-0-0";
         $geoVals = explode("-", $geo);
+        $geoVals = array_merge($geoVals, array(0,0,0));
 
         $this->getElement("country")->setValue($geoVals[0]);
 
@@ -107,8 +108,8 @@ class Application_Form_AdSettings extends Zend_Form
         $parentRes = parent::isValid($data);
 
         $customRes = true;
-        if (empty($data["brand"])||empty($data["brand_name"])||($data["brand"]===0)) {
-            $this->getElement("brand_name")->addError($translate->getAdapter()->translate("empty_name"));
+        if (empty($data["brand_name"])) {
+            $this->getElement("brand_name")->addError($translate->getAdapter()->translate("isEmpty"));
             $customRes = false;
         }
 

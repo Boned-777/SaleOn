@@ -82,8 +82,18 @@ class TestController extends Zend_Controller_Action
 
     public function aAction()
     {
-        $auth = Zend_Auth::getInstance();
-        Zend_Debug::dump($auth->getIdentity()); die();
+        $geo = "2-0-0";
+
+        $geo = explode("-",$geo);
+        foreach ($geo as $key=>$val) {
+            if ($val == 0) {
+                unset($geo[$key]);
+            }
+        }
+
+
+        echo count($geo);
+        die();
     }
 
     public function favoritesAction()

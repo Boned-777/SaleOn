@@ -56,7 +56,7 @@ $(function () {
     function initDatapickers () {
         if(datesTabLoaded) return;
         var lng = $('#current-lng').val();
-        $('#start_dt').datepicker({format: 'yyyy-mm-dd', weekStart: 1, lng: lng});
+//        $('#start_dt').datepicker({format: 'yyyy-mm-dd', weekStart: 1, lng: lng});
         $('#end_dt').datepicker({format: 'yyyy-mm-dd', weekStart: 1, lng: lng});
         $('#public_dt').datepicker({format: 'yyyy-mm-dd', weekStart: 1, lng: lng});   
         datesTabLoaded = true; 

@@ -8,15 +8,21 @@ class AdController extends Zend_Controller_Action
     public function init()
     {
         $auth = Zend_Auth::getInstance();
-        if (!$auth->hasIdentity()) {
-            //$this->_helper->redirector('index', 'auth');
-        }
-
-        $this->user = $auth->getIdentity();
         $vars = $this->getAllParams();
 
-        if (($vars["action"] == "set-status") && ($this->user->role !== Application_Model_User::ADMIN)) {
-            $this->_helper->redirector('index', 'index');
+        if (!$auth->hasIdentity()) {
+            if (in_array($vars["action"], array("new", "edit"))){
+                $this->_helper->redirector('index', 'auth');
+            }
+        } else {
+            $this->user = $auth->getIdentity();
+            if ($vars["action"] == "new" && $this->user->role != Application_Model_User::PARTNER){
+                $this->_helper->redirector('index', 'index');
+            }
+
+            if (($vars["action"] == "set-status") && ($this->user->role !== Application_Model_User::ADMIN)) {
+                $this->_helper->redirector('index', 'index');
+            }
         }
     }
 
@@ -123,6 +129,16 @@ class AdController extends Zend_Controller_Action
                 $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
                 $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
             }
+
+            if ($formData["form"] == "AdMedia") {
+                if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
+                    $formData["invalidFormElements"] = array(array(
+                        "element" => "image_file",
+                        "error" => Zend_Validate_NotEmpty::IS_EMPTY
+                    ));
+                }
+            }
+
             if ($form->isValid($formData)) {
                 $mediaItemData = array();
                 if ($formData["form"] == "AdMedia") {
@@ -132,7 +148,7 @@ class AdController extends Zend_Controller_Action
                 $itemData = array_merge($mediaItemData, $itemData);
                 if ($formData["form"] == "AdSettings") {
                     $settingsData = $form->processData($formData);
-                    $itemData = array_merge($settingsData, $itemData);
+                    $itemData = array_merge($itemData, $settingsData);
                 }
 
                 $itemData["owner"] = $this->user->id;
@@ -160,6 +176,140 @@ class AdController extends Zend_Controller_Action
         foreach ($forms as $form) {
             $form->populate($data);
         }
+        if (isset($formData["form"]))
+            $forms[$formData["form"]]->populate($formData);
+    }
+
+    public function editAction()
+    {
+        global $translate;
+        $layout = Zend_Layout::getMvcInstance();
+        $view = $layout->getView();
+
+        $vars = $this->getAllParams();
+
+        $item = new Application_Model_Ad();
+        $formData = $this->getAllParams();
+        if (isset($formData["id"]))
+            $item->get($formData["id"]);
+        else
+            return false;
+
+        $isReady = $item->isValid();
+
+        $partner = new Application_Model_Partner();
+        $partner->getByUserId($this->user->id);
+        $partnerData = $partner->toArray();
+        unset($partnerData["id"]);
+        $item->loadIfEmpty($partnerData);
+
+        $this->view->mainForm = new Application_Form_AdMain(array("isReady" => $isReady));
+        $this->view->contactsForm = new Application_Form_AdContacts(array("isReady" => $isReady));
+        $this->view->datesForm = new Application_Form_AdDates(array("isReady" => $isReady));
+        $this->view->settingsForm = new Application_Form_AdSettings(array("isReady" => $isReady));
+        $this->view->mediaForm = new Application_Form_AdMedia(array("isReady" => $isReady));
+
+        $forms = array(
+            "AdMain" => $this->view->mainForm,
+            "AdContacts" => $this->view->contactsForm,
+            "AdDates" => $this->view->datesForm,
+            "AdSettings" => $this->view->settingsForm,
+            "AdMedia" => $this->view->mediaForm
+        );
+
+        $formsOrder = array(
+            'AdMain' => "dates",
+            'AdDates' => "settings",
+            'AdSettings' => "contacts",
+            'AdContacts' => "media",
+            'AdMedia' => "main"
+        );
+
+        $this->view->image = $item->image;
+        $this->view->banner = $item->banner;
+        $request = $this->getRequest();
+        $geoVal = $item->geo;
+        if ($this->_getParam('geo'))
+            $geoVal = $this->_getParam('geo');
+        if (empty($geoVal)) {
+            $geoVal = "1-0-0";
+        }
+        $this->view->settingsForm->prepareGeo($geoVal);
+
+        $this->view->ad = $item;
+        if ($request->isPost()) {
+            $formData = $this->getAllParams();
+            if (isset($formData["district"])) {
+                if (sizeof(explode(".", $formData["district"])) == 2)
+                    $formData["district"] .= ".0";
+            }
+            $form = $forms[$formData["form"]];
+            // Geo value fix
+            if ($formData["form"] == "AdSettings") {
+                $geoArr = explode("-", $formData["geo"]);
+                $formData["country"] = $geoArr[0]?$geoArr[0]:"1";
+                $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
+                $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
+            }
+
+            if ($formData["form"] == "AdMedia") {
+                if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
+                    $formData["invalidFormElements"] = array(array(
+                        "element" => "image_file",
+                        "error" => Zend_Validate_NotEmpty::IS_EMPTY
+                    ));
+                }
+            }
+
+            if ($form->isValid($formData)) {
+                $mediaItemData = array();
+                if ($formData["form"] == "AdMedia") {
+                    $mediaItemData = $form->processData($formData);
+                }
+                $itemData = $form->getValues();
+                $itemData = array_merge($itemData, $mediaItemData);
+
+                if ($formData["form"] == "AdSettings") {
+                    $settingsData = $form->processData($formData);
+                    $itemData = array_merge($itemData, $settingsData);
+                }
+
+                if ($isReady) {
+                    $item->status = Application_Model_DbTable_Ad::STATUS_READY;
+                }
+
+                $itemData["owner"] = $this->user->id;
+                $item->load($itemData);
+                $item->save();
+                if ($item->id) {
+                    if ($isReady) {
+                        if ($this->user->role == Application_Model_User::ADMIN)
+                            $this->_helper->redirector('ready', 'admin');
+                        else
+                            $this->_helper->redirector('ready', 'ad');
+                    }
+                    $url = $this->_helper->url->url(array(
+                        'controller' => 'ad',
+                        'action' => 'edit'
+                    ));
+                    $url .= '#' . $formsOrder[$vars["form"]];
+                    $this->_helper->redirector->gotoUrl($url);
+                    $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
+                } else {
+                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
+                }
+            } else {
+                $tabs = explode("Ad", $formData["form"]);
+                $this->view->gotoTab = strtolower($tabs[1]);
+                $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
+            }
+        }
+
+        $data = $item->toArray();
+        foreach ($forms as $key => $form) {
+            $form->populate($data);
+        }
+
         if (isset($formData["form"]))
             $forms[$formData["form"]]->populate($formData);
     }
@@ -275,130 +425,6 @@ class AdController extends Zend_Controller_Action
         $this->_helper->redirector($dest, 'admin');
     }
 
-    public function editAction()
-    {
-        global $translate;
-        $layout = Zend_Layout::getMvcInstance();
-        $view = $layout->getView();
-
-        $vars = $this->getAllParams();
-
-        $item = new Application_Model_Ad();
-        $formData = $this->getAllParams();
-        if (isset($formData["id"]))
-            $item->get($formData["id"]);
-        else
-            return false;
-
-        $isReady = $item->isValid();
-
-        $partner = new Application_Model_Partner();
-        $partner->getByUserId($this->user->id);
-        $partnerData = $partner->toArray();
-        unset($partnerData["id"]);
-        $item->loadIfEmpty($partnerData);
-
-        $this->view->mainForm = new Application_Form_AdMain(array("isReady" => $isReady));
-        $this->view->contactsForm = new Application_Form_AdContacts(array("isReady" => $isReady));
-        $this->view->datesForm = new Application_Form_AdDates(array("isReady" => $isReady));
-        $this->view->settingsForm = new Application_Form_AdSettings(array("isReady" => $isReady));
-        $this->view->mediaForm = new Application_Form_AdMedia(array("isReady" => $isReady));
-
-        $forms = array(
-            "AdMain" => $this->view->mainForm,
-            "AdContacts" => $this->view->contactsForm,
-            "AdDates" => $this->view->datesForm,
-            "AdSettings" => $this->view->settingsForm,
-            "AdMedia" => $this->view->mediaForm
-        );
-
-        $formsOrder = array(
-            'AdMain' => "dates",
-            'AdDates' => "settings",
-            'AdSettings' => "contacts",
-            'AdContacts' => "media",
-            'AdMedia' => "main"
-        );
-
-        $this->view->image = $item->image;
-        $this->view->banner = $item->banner;
-        $request = $this->getRequest();
-        $geoVal = $item->geo;
-        if ($this->_getParam('geo'))
-            $geoVal = $this->_getParam('geo');
-        if (empty($geoVal)) {
-            $geoVal = "1-0-0";
-        }
-        $this->view->settingsForm->prepareGeo($geoVal);
-
-        $this->view->ad = $item;
-        if ($request->isPost()) {
-            $formData = $this->getAllParams();
-            if (isset($formData["district"])) {
-                if (sizeof(explode(".", $formData["district"])) == 2)
-                    $formData["district"] .= ".0";
-            }
-            $form = $forms[$formData["form"]];
-            // Geo value fix
-            if ($formData["form"] == "AdSettings") {
-                $geoArr = explode("-", $formData["geo"]);
-                $formData["country"] = $geoArr[0]?$geoArr[0]:"1";
-                $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
-                $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
-            }
-            if ($form->isValid($formData)) {
-                $mediaItemData = array();
-                if ($formData["form"] == "AdMedia") {
-                    $mediaItemData = $form->processData();
-                }
-                $itemData = $form->getValues();
-                $itemData = array_merge($mediaItemData, $itemData);
-
-                if ($formData["form"] == "AdSettings") {
-                    $settingsData = $form->processData($formData);
-                    $itemData = array_merge($settingsData, $itemData);
-                }
-
-                if ($isReady) {
-                    $item->status = Application_Model_DbTable_Ad::STATUS_READY;
-                }
-
-                $itemData["owner"] = $this->user->id;
-                $item->load($itemData);
-                $item->save();
-                if ($item->id) {
-                    if ($isReady) {
-                        if ($this->user->role == Application_Model_User::ADMIN)
-                            $this->_helper->redirector('ready', 'admin');
-                        else
-                            $this->_helper->redirector('ready', 'ad');
-                    }
-                    $url = $this->_helper->url->url(array(
-                        'controller' => 'ad',
-                        'action' => 'edit'
-                    ));
-                    $url .= '#' . $formsOrder[$vars["form"]];
-                    $this->_helper->redirector->gotoUrl($url);
-                    $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
-                } else {
-                    $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
-                }
-            } else {
-                $tabs = explode("Ad", $formData["form"]);
-                $this->view->gotoTab = strtolower($tabs[1]);
-                $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
-            }
-        }
-
-        $data = $item->toArray();
-        foreach ($forms as $key => $form) {
-            $form->populate($data);
-        }
-
-        if (isset($formData["form"]))
-            $forms[$formData["form"]]->populate($formData);
-    }
-
     public function _createEditLink($id, $name)
     {
         global $translate;
@@ -441,7 +467,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status = ? AND end_dt > NOW() AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        $grid->setGridColumns(array("name", "days_left", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", "days_left", "public_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -451,9 +477,6 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
@@ -483,7 +506,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?) AND owner = " . $this->user->id, array(Application_Model_DbTable_Ad::STATUS_DRAFT));
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", "public_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -493,9 +516,6 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
@@ -515,7 +535,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?) AND owner = " . $this->user->id, array(Application_Model_DbTable_Ad::STATUS_READY));
-        $grid->setGridColumns(array("name", 'paid', "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", 'paid', "public_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -525,9 +545,6 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
@@ -554,7 +571,7 @@ class AdController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("(status = ? OR end_dt < NOW()) AND owner = " . $this->user->id, Application_Model_DbTable_Ad::STATUS_ARCHIVE);
-        $grid->setGridColumns(array("name", "public_dt", "start_dt", "end_dt"));
+        $grid->setGridColumns(array("name", "public_dt", "end_dt"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -564,9 +581,6 @@ class AdController extends Zend_Controller_Action
         ));
         $grid->updateColumn('public_dt',array(
             "title" =>  $translate->getAdapter()->translate("public_date"),
-        ));
-        $grid->updateColumn('start_dt',array(
-            "title" =>  $translate->getAdapter()->translate("start_date"),
         ));
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
