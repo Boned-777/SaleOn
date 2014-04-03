@@ -53,9 +53,15 @@
 				return result;
 			},
 
+			sortData : function (brandsData) {
+				brandsData[0].sub = _.sortBy(brandsData[0].sub, "name");
+				brandsData[1].sub = _.sortBy(brandsData[1].sub, "name");
+				return brandsData;
+			},
+
 			init : function (brandsData) {
 				//this.data = this.duplicateResponce(brandsData, 17);
-				this.data = brandsData;
+				this.data = this.sortData(brandsData);
 				this.data.letters = [];
 				this.registerDOMElements();
 				this.renderMainTemplate();

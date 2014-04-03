@@ -10,35 +10,11 @@
             <?php } ?>
             
         </a>
-        <br><br><br>
-        <address>
-            <strong><?php echo $this->user->enterprise; ?></strong>
-            <a id="action-address" href="#">
-                <?php echo $this->ad->address; ?>
-            </a>
-            
-            <br>
-            <div><?php echo $this->ad->phone; ?></div>
-        <?php if ($this->ad->phone1) { ?>
-            <div><?php echo $this->ad->phone1; ?></div>
-        <?php } ?>
-        <?php if ($this->ad->phone2) { ?>
-            <div><?php echo $this->ad->phone2; ?></div>
-        <?php } ?>
-        </address>
-
-        <address>
-            <?php if ($this->ad->url) { ?>
-                <div><a href="<?php echo $this->ad->url; ?>" target="_blank"><?php echo $this->ad->url; ?></a></div>
-            <?php } ?>
-            <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
-        </address>
 
     </div>
     <div class="span6 details-right">
         <h4><?php echo $this->ad->name; ?></h4>
         <div><?php echo nl2br($this->ad->description); ?></div>
-
         <br><br>
         
         <div class="span5">
@@ -68,6 +44,28 @@
               </li>
             </ul>
         </div>
+        <br><br><br>
+        <div class="span5 top-offset">
+            <address>
+                <strong><?php echo $this->user->enterprise; ?>какой то текст</strong><br>
+                <a id="action-address" href="#">
+                    <?php echo $this->ad->address; ?>
+                </a>
+                <br>
+                <div><?php echo $this->ad->phone; ?></div>
+                <?php if ($this->ad->phone1) { ?>
+                    <div><?php echo $this->ad->phone1; ?></div>
+                <?php } ?>
+                <?php if ($this->ad->phone2) { ?>
+                    <div><?php echo $this->ad->phone2; ?></div>
+                <?php } ?>        
+                <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
+                <?php if ($this->ad->url) { ?>
+                    <div><a href="<?php echo $this->ad->url; ?>" target="_blank"><?php echo $this->ad->url; ?></a></div>
+                <?php } ?>
+            </address>
+        </div>
+
 
     </div>
     <div class="lock-gray"></div>

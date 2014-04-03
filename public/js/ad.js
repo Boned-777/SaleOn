@@ -40,15 +40,21 @@ $(function () {
         // use it to clear line breaks and double spaces
         //var clearText = $(obj).html().replace(/(\r\n|\n|\r)/gm, spaceString).replace(/\s+/g, spaceString);
         //$(obj).html(clearText);
-        var counter = $($(obj).parent().find(".symb_counter"));
-        if (!counter.html()) {
-            counter = $('<div class="symb_counter" style="text-align: right"></div>');
-            $(obj).after(counter);
-        }
-        var textAreaVal = $(obj).val(),
-            maxLength = $(obj).attr("max_length");
-        (textAreaVal.length > maxLength) ? counter.css("color", "red") : counter.css("color", "grey");
-        counter.html(textAreaVal.length + "/" + maxLength);
+
+        if (obj) {
+            var counter = $($(obj).parent().find(".symb_counter"));
+            if (!counter.html()) {
+                counter = $('<div class="symb_counter" style="text-align: right"></div>');
+                $(obj).after(counter);
+            }
+            var textAreaVal = $(obj).val(),
+                maxLength = $(obj).attr("max_length"),
+                allCounters = $("#main").find(".symb_counter"),
+                login = $("#login");
+            (textAreaVal.length > maxLength) ? counter.addClass("text-error") : counter.removeClass("text-error");
+            counter.html(textAreaVal.length + "/" + maxLength);
+            (allCounters.hasClass("text-error")) ? login.attr("disabled", "disabled") : login.removeAttr("disabled");
+        }    
     }
     /* Helper functions */
 
@@ -92,7 +98,14 @@ $(function () {
         brandName.click(function() {
             clearAutocompleter(brandName, $("#brand"));
         });
+        brandName.focus(function() {
+            clearAutocompleter(brandName, $("#brand"));
+        });
+
         productName.click(function() {
+            clearAutocompleter(productName, $("#product"));
+        });
+        productName.focus(function() {
             clearAutocompleter(productName, $("#product"));
         });
         
@@ -155,7 +168,7 @@ $(function () {
 
 
     function initScreen (tabName) {
-        (tabName == "#main")     && initTextCounter();
+        ((tabName == "") || (tabName == "#main")) && initTextCounter();
         (tabName == "#dates")    && initDatapickers();    
         (tabName == "#settings") && initDynamicSelectboxes();
         (tabName == "#contacts") && initInputMask();

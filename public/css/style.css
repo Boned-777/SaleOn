@@ -859,7 +859,12 @@ textarea {
 	margin: 0 auto 20px;
 }
 .nav-wide {
-	width: 915px;
+	width: 940px;
+}
+@media (min-width: 1500px) {
+	.nav-wide {
+		width: 915px;
+	}
 }
 
 .nav-pills > li {
