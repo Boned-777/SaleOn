@@ -217,7 +217,7 @@ class Application_Model_Ad
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
             ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order("public_dt ASC");
+            ->order("public_dt DESC");
         if (!is_null($params)) {
             $geo = explode("-", $params["geo"]);
             if (isset($geo[2])) {
