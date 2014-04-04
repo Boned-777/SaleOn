@@ -332,8 +332,9 @@ class Application_Model_Ad
             ->order("RAND()");
         $data = $item->fetchAll($select);
         $index = 1;
-        foreach ($data->toArray() as $value) {
-            $item->save(array("order_index" => $index), $value["id"]);
+        foreach ($data as $value) {
+            $value->order_index = $index;
+            $value->save();
             $index++;
         }
         die("Randomize finished");
