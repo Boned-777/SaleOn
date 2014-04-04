@@ -141,7 +141,7 @@ return array (
     "serv_advertising" => "Рекламні",
     "serv_other_services" => "Інші послуги",
 
-    "avtonomna-respublika-krim" => "Кримська АР",
+    "krim" => "Кримська АР",
     "bahchisarajskij" => "Бахчисарайський",
     "bilogirskij" => "Білогірській",
     "dzhankojskij" => "Джанкойський",

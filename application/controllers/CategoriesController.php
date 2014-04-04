@@ -20,10 +20,10 @@ class CategoriesController extends Zend_Controller_Action
 
         if ($request->getCookie('geo'))
             $params["geo"] = $request->getCookie('geo');
-        if ($request->getCookie('brands'))
-            $params["brand"] = $request->getCookie('brands');
-        if ($request->getCookie('products'))
-            $params["product"] = $request->getCookie('products');
+//        if ($request->getCookie('brands'))
+//            $params["brand"] = $request->getCookie('brands');
+//        if ($request->getCookie('products'))
+//            $params["product"] = $request->getCookie('products');
 
         $item = new Application_Model_Category();
         $results = $item->listAll($params);
