@@ -332,6 +332,9 @@ class Application_Model_Ad
             ->order("RAND()");
         $data = $item->fetchAll($select);
         $index = 1;
+
+        Zend_Debug::dump($data); die();
+
         foreach ($data as $value) {
             $value->order_index = $index;
             $value->save();
