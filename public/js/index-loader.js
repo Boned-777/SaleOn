@@ -21,6 +21,7 @@
 			init : function () {
 				this.registerDOMElements();
 				this.bindEvents();
+				this.isNewsPage() && this.clearCategoryBrandsCookies();
 				this.isFavoritesPage() && this.extendSliderForFavorites();
 				this.isBrowserCompatible() && this.isSliderPage() && this.initWawSlider();	
 			},
@@ -48,6 +49,9 @@
 			},
 			isFavoritesPage : function () {
 				return (this.pageName == "favoritesPage");
+			},
+			isNewsPage : function () {
+				return (this.pageName == "newsPage");
 			},
 
 			registerDOMElements : function () {

@@ -33,16 +33,6 @@ body {
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 10px rgba(0, 0, 0, 0.1);
 }
 
-/*.socials {
-	display: none;
-	background: url("/img/social.png") right center no-repeat;
-	position: absolute;
-	top: 7px;
-	right: 0;
-	width: 160px;
-	height: 35px;
-}*/
-
 .footer-gradient {
 	font-size: 14px;
 	color: #333333;
@@ -104,24 +94,25 @@ body {
 
 .logo {
 	background: url("/img/logo7.png") center center no-repeat;
-	width: 135px;
+	width: 145px;
 	height: 70px;
 }
 
 .logo:hover {
-	opacity: 0.8;
+	background: url("/img/logo8.png") center center no-repeat;
+	/*opacity: 0.8;*/
 }
 
 .jumbotron {
-	margin-left: 0px !important;
+	margin-left: -2px !important;
     margin-top: -20px;
     text-align: center;
-    width: 135px !important;
+    width: 145px !important;
 }
 
 @media (max-width: 1199px) {
 	.jumbotron {
-		margin-left: -15px !important;
+		margin-left: -20px !important;
 	}
 }
 
@@ -132,18 +123,18 @@ body {
 /*Top menu start*/
 .top-menu {
 	height: 50px;
-    margin: 35px 0 15px 138px;
+    margin: 35px 0 15px 135px;
     width: 970px;
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
 	.top-menu {
-		margin: 35px 0 15px 126px;
+		margin: 35px 0 15px 125px;
 	}
 }
 @media (max-width: 1199px) {
 	.top-menu {
-		margin: 35px 0 15px 121px;
+		margin: 35px 0 15px 117px;
 		width: 770px;
 	}
 }
