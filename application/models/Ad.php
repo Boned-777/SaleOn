@@ -188,7 +188,15 @@ class Application_Model_Ad
             foreach ($params as $key => $val) {
                 switch ($key) {
                     case "geo" :
-                        $stmt->where("(geo LIKE '$val' OR geo LIKE '$val-%')");
+                        $geoWhere = "geo LIKE '$val' OR geo LIKE '$val-%'";
+                        $mainId = explode("-", $val);
+                        if (count($mainId) > 1) {
+                            $geoWhere .= " OR geo LIKE '$mainId[0]'";
+                            if (isset($mainId[1])) {
+                                $geoWhere .= " OR geo LIKE '$mainId[0]-$mainId[1]-0'";
+                            }
+                        }
+                        $stmt->where("(" . $geoWhere . ")");
                         break;
 
                     default :
