@@ -34,7 +34,7 @@ class Application_Form_AdMain extends Zend_Form
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("description") . ' *',
-            'max_length' => 550,
+            'max_length' => 500,
             'validators'    => array(
                 array(
                     'validator' =>  'StringLength',
@@ -53,7 +53,7 @@ class Application_Form_AdMain extends Zend_Form
         $this->addElement('textarea', 'full_description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("full_description"),
-            'max_length' => 2550,
+            'max_length' => 2500,
             'validators'    => array(
                 array(
                     'validator' =>  'StringLength',

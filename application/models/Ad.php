@@ -217,7 +217,7 @@ class Application_Model_Ad
         $item = new Application_Model_DbTable_Ad();
         $stmt = $item->select()
             ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order("public_dt ASC");
+            ->order("public_dt DESC");
         if (!is_null($params)) {
             $geo = explode("-", $params["geo"]);
             if (isset($geo[2])) {
@@ -328,12 +328,14 @@ class Application_Model_Ad
         $item->clearOrderIndexes();
         $item->archiveAllFinished();
         $select = $item->select()
-            ->where("status = ? AND end_dt > NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->where("status = ? AND end_dt > NOW() AND public_dt <= NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("RAND()");
         $data = $item->fetchAll($select);
         $index = 1;
-        foreach ($data->toArray() as $value) {
-            $item->save(array("order_index" => $index), $value["id"]);
+
+        foreach ($data as $value) {
+            $value->order_index = $index;
+            $value->save();
             $index++;
         }
         die("Randomize finished");
@@ -342,7 +344,7 @@ class Application_Model_Ad
     public function getNeighborhood($params=null) {
         $item = new Application_Model_DbTable_Ad();
         $select = $item->select()
-            ->where("order_index IN (?,?) AND end_dt >= NOW()", array($this->order_index-1, $this->order_index+1))
+            ->where("order_index IN (?,?) AND end_dt >= NOW() AND public_dt <= NOW()", array($this->order_index-1, $this->order_index+1))
             ->order("order_index");
 
         if (!is_null($params)) {
