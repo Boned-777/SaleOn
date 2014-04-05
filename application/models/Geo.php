@@ -130,7 +130,7 @@ class Application_Model_Geo
 
     protected function _getCounts($temp = "", $params = null) {
         $temp = $temp?$temp:"";
-        $symCount = 2*strlen($temp) + 2;
+        $mainId = explode("-", $temp)[0];
         $ad = new Application_Model_DbTable_Ad();
         $select = $ad->select();
         $select->from("ads", array(
@@ -138,10 +138,16 @@ class Application_Model_Geo
             new Zend_Db_Expr("COUNT(*) count"),
             new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", geo), ">'.$temp.'-", ""), 2), "-","") et')
         ));
-        if ($temp !== "")
-            $select->where('geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'-%"');
-        else
-            $select->where('geo LIKE "" OR geo LIKE "%"');
+        $geoStmt = "";
+        if ($temp !== "") {
+            $geoStmt .= 'geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'-%"';
+        } else {
+            $geoStmt .= 'geo LIKE "" OR geo LIKE "%"';
+        }
+        if ($temp != $mainId) {
+            $geoStmt .= " OR geo LIKE '$mainId'";
+        }
+        $select->where($geoStmt);
         $select->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $select->group("et");
 
@@ -161,11 +167,12 @@ class Application_Model_Geo
 
         $data = $ad->fetchAll($select)->toArray();
         $resData = array();
+        $resData[$temp] = 0;
         foreach($data as $val) {
             if (!empty($temp))
                 if ($val["et"]){
                     if (strstr($val["et"], ">")) {
-                        $resData[$temp.""] = $val["count"];
+                        $resData[$temp] += $val["count"];
                     } else {
                         $resData[$temp."-".$val["et"]] = $val["count"];
                     }

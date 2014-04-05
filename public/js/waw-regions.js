@@ -25,7 +25,7 @@
 				this.registerDOMElements();
 				this.renderMainTemplate();
 				this.updateDOMElements();
-				this.countGroup(this.data.list);
+				//this.countGroup(this.data.list);
 				this.renderRegions();
 				this.bindEvents();
 				this.showModal();
@@ -132,7 +132,7 @@
 				if (data) {
 					this.setHeader(regionId);
 					this.data.area[regionId] = data;
-					this.countGroup(this.data.area[regionId].list);
+					//this.countGroup(this.data.area[regionId].list);
 					this.renderAreas(regionId);
 					this.dom.lockLayer.hide();
 				} else {
