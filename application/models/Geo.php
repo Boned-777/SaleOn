@@ -130,7 +130,8 @@ class Application_Model_Geo
 
     protected function _getCounts($temp = "", $params = null) {
         $temp = $temp?$temp:"";
-        $mainId = explode("-", $temp)[0];
+        $mainId = explode("-", $temp);
+        $mainId = $mainId[0];
         $ad = new Application_Model_DbTable_Ad();
         $select = $ad->select();
         $select->from("ads", array(
