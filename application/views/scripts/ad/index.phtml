@@ -47,18 +47,19 @@
         <br><br><br>
         <div class="span5 top-offset">
             <address>
-                <strong><?php echo $this->user->enterprise; ?>какой то текст</strong><br>
+                <strong><?php echo $this->user->enterprise; ?></strong><br>
                 <a id="action-address" href="#">
                     <?php echo $this->ad->address; ?>
                 </a>
                 <br>
-                <div><?php echo $this->ad->phone; ?></div>
+                <div><span><?php echo $this->ad->phone; ?></span>
                 <?php if ($this->ad->phone1) { ?>
-                    <div><?php echo $this->ad->phone1; ?></div>
+                    ,&nbsp;<span><?php echo $this->ad->phone1; ?></span>
                 <?php } ?>
                 <?php if ($this->ad->phone2) { ?>
-                    <div><?php echo $this->ad->phone2; ?></div>
-                <?php } ?>        
+                    ,&nbsp;<span><?php echo $this->ad->phone2; ?></span>
+                <?php } ?>
+                </div>
                 <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
                 <?php if ($this->ad->url) { ?>
                     <div><a href="<?php echo $this->ad->url; ?>" target="_blank"><?php echo $this->ad->url; ?></a></div>
