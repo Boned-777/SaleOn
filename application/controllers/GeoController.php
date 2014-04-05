@@ -23,8 +23,7 @@ class GeoController extends Zend_Controller_Action
     public function listAction()
     {
         $params = null;
-        $request = new Zend_Controller_Request_Http();
-
+//        $request = new Zend_Controller_Request_Http();
 //        if ($request->getCookie('category'))
 //            $params["category"] = $request->getCookie('category');
 //        if ($request->getCookie('brands'))

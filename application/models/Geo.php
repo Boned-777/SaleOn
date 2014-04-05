@@ -75,6 +75,7 @@ class Application_Model_Geo
         $countsList = $this->_getCounts($pattern, $params);
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
+        $allCount = isset($countsList[$originalPattern]) ? $countsList[$originalPattern] : 0;
         if ($pattern !== "")
             $pattern .= "-";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
@@ -84,22 +85,25 @@ class Application_Model_Geo
         $is_path = 0;
         if (sizeof(explode("-", $pattern)) == 2)
             $is_path = 1;
+        $allSumCount = $allCount;
         foreach ($itemsArr as $value) {
+            $currentCount = isset($countsList[$value["code"]])?$countsList[$value["code"]]:0;
             if (!preg_match("/^[0-9]{1,2}-[0-9]{1,2}-99/", $value["code"])) {
                 $resArr[] = array(
                     "name" => $value["code"],
                     "value" => str_replace("І", "ИИ", $translate->getAdapter()->translate($value["name"])),
-                    "count" => isset($countsList[$value["code"]])?$countsList[$value["code"]]:0,
+                    "count" => $allCount + $currentCount,
                     "is_path" => $is_path
                 );
-
-            } else
+            } else {
                 $cityArray = array(
                     "name" => $value["code"],
                     "value" => $translate->getAdapter()->translate($value["name"]),
-                    "count" => isset($countsList[$value["code"]])?$countsList[$value["code"]]:0,
+                    "count" => $allCount + $currentCount,
                     "is_path" => $is_path
                 );
+            }
+            $allSumCount += $currentCount;
         }
         //sorting
         $name = array();
@@ -110,15 +114,17 @@ class Application_Model_Geo
         foreach ($resArr as $key => $value) {
             $resArr[$key]["value"] = str_replace("ИИ", "І", $resArr[$key]["value"]);
         }
+
         $additional = array(array(
             "name" => $originalPattern,
             "value" => $translate->getAdapter()->translate("any"),
-            "count" => isset($countsList[$originalPattern])?$countsList[$originalPattern]:0,
+            "count" => $allSumCount,
             "is_path" => 0
         ));
         if ($cityArray)
             $additional[] = $cityArray;
         $resArr = array_merge($additional, $resArr);
+
         return $resArr;
     }
 
@@ -157,10 +163,15 @@ class Application_Model_Geo
         $resData = array();
         foreach($data as $val) {
             if (!empty($temp))
-                if ($val["et"])
-                    $resData[$temp."-".$val["et"]] = $val["count"];
-                else
+                if ($val["et"]){
+                    if (strstr($val["et"], ">")) {
+                        $resData[$temp.""] = $val["count"];
+                    } else {
+                        $resData[$temp."-".$val["et"]] = $val["count"];
+                    }
+                } else {
                     $resData[$temp] = $val["count"];
+                }
             else
                 $resData[$val["et"]] = $val["count"];
         }
