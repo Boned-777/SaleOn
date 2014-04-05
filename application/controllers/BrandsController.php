@@ -40,16 +40,21 @@ class BrandsController extends Zend_Controller_Action
     public function listAllAction()
     {
         global $translate;
+        $params = null;
+        $request = new Zend_Controller_Request_Http();
+        if ($request->getCookie('geo'))
+            $params["geo"] = $request->getCookie('geo');
+
         $item = new Application_Model_DbTable_Brand();
         $results[] = array(
             "name" => $translate->getAdapter()->translate('list_brand'),
-            "sub" => $item->search("")
+            "sub" => $item->search("", $params)
         );
 
         $item = new Application_Model_DbTable_Product();
         $results[] = array(
             "name" => $translate->getAdapter()->translate('list_product'),
-            "sub" => $item->search("")
+            "sub" => $item->search("", $params)
         );
 
         $this->_helper->json($results);
