@@ -352,7 +352,7 @@ class Application_Model_Ad
     public function getNeighborhood($params=null) {
         $item = new Application_Model_DbTable_Ad();
         $select = $item->select()
-            ->where("order_index IN (?,?) AND end_dt >= NOW() AND public_dt <= NOW()", array($this->order_index-1, $this->order_index+1))
+            ->where("status = ? AND end_dt >= NOW() AND public_dt <= NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("order_index");
 
         if (!is_null($params)) {
@@ -379,27 +379,30 @@ class Application_Model_Ad
 
         $data = $item->fetchAll($select);
         $data = $data->toArray();
-
-        if (isset($data[0]) && $this->order_index > $data[0]["order_index"]) {
-            $previousItem = new Application_Model_Ad();
-            $previousItem->load($data[0]);
-        } else {
-            $previousItem = null;
+        $previousItem = null;
+        $nextItem = null;
+        foreach ($data as $key => $adItem) {
+            if ($adItem["order_index"] == $this->order_index) {
+                $nextItem = isset($data[$key+1]) ? $data[$key+1] : null;
+                break;
+            }
+            $previousItem = $adItem;
+        }
+        $previousItemObj = null;
+        $nextItemObj = null;
+        if (!is_null($previousItem)) {
+            $previousItemObj = new Application_Model_Ad();
+            $previousItemObj->load($previousItem);
         }
 
-        if (isset($data[1]) || $this->order_index < $data[0]["order_index"]) {
-            $i = 1;
-            if ($this->order_index < $data[0]["order_index"])
-                $i = 0;
-            $nextItem = new Application_Model_Ad();
-            $nextItem->load($data[$i]);
-        } else {
-            $nextItem = null;
+        if (!is_null($nextItem)) {
+            $nextItemObj = new Application_Model_Ad();
+            $nextItemObj->load($nextItem);
         }
 
         $res = array(
-            "previous" => $previousItem,
-            "next" => $nextItem
+            "previous" => $previousItemObj,
+            "next" => $nextItemObj
         );
         return $res;
     }
