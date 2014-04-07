@@ -232,7 +232,7 @@ class Application_Model_Ad
                 unset($geo[2]);
             }
             $geoStr = implode("-", $geo);
-            $stmt->where('geo LIKE "' . $geoStr . '" OR geo LIKE "' . $geoStr . '-%"');
+            $stmt->where('geo LIKE "' . $geoStr . '" OR geo LIKE "' . $geoStr . '-%" OR geo LIKE "' . $geo[0] . '"');
         }
         $data = $item->fetchAll($stmt);
         if ($data !== false) {
