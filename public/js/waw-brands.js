@@ -60,9 +60,9 @@
 			},
 
 			init : function (brandsData) {
-				//this.data = this.duplicateResponce(brandsData, 17);
+				//this.data = this.duplicateResponce(brandsData, 16);
 				this.data = this.sortData(brandsData);
-				this.data.letters = [];
+				this.data.letters = [[],[]];
 				this.registerDOMElements();
 				this.renderMainTemplate();
 				this.updateDOMElements();
@@ -196,7 +196,7 @@
 			},
 			/* Letter filtering */
 			loadLetter : function (letter) {
-				if (_.isEmpty(this.data.letters[letter])){
+				if (_.isEmpty(this.data.letters[this.currentBrandsGroup][letter])){
 					this.dom.lockLayer.show();
 					var link = (this.currentBrandsGroup == "0") ? "brands/list?term="+letter : "products/list?term="+letter;
 					$.ajax({
@@ -211,8 +211,8 @@
 
 			onLetterLoaded : function (data, letter) {
 				if (data) {
-					this.data.letters[letter] = data;
-					this.countGroups(this.data.letters[letter].list);
+					this.data.letters[this.currentBrandsGroup][letter] = data;
+					this.countGroups(this.data.letters[this.currentBrandsGroup][letter].list);
 					this.renderLetter(letter);
 					this.dom.lockLayer.hide();
 				} else {
@@ -221,7 +221,7 @@
 			},
 
 			renderLetter : function (letter) {
-				var data = this.data.letters[letter].list;
+				var data = this.data.letters[this.currentBrandsGroup][letter].list;
 				if (!_.isEmpty(data)) {
 					var itemList = this.renderItemList(data, this.getIndexes(1));
 					this.dom.brandsGroupList.html(itemList);
