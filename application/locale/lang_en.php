@@ -6,6 +6,7 @@ return array (
     "contacts" => "Contacts",
     "media" => "Pictures and video",
 
+    'main_page' => 'Main',
     "name" => "Name",
     "description" => "Description",
     "full_description" => "Full description",
@@ -721,6 +722,15 @@ return array (
     "image_info_text" => "You can download a large banner page for a complete description of the action",
     "banner_info_text" => "You can download a small banner for the main page",
     "video_info_text" => "You can download the video page for a complete description of the action",
+
+    'contact_org_name' => 'Wantlook Ukraine',
+    'contact_org_phone_name' => 'Phone:',
+    'contact_org_phone_val' => '(050) 123-77-88',
+    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_skype_name' => 'Skype:',
+    'contact_org_skype_val' => 'bonedde',
+    'contact_org_share_link' => 'Share our link',
+
 
     "invoice" => "Invoice"
 );

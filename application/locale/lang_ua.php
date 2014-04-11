@@ -6,6 +6,7 @@ return array (
     "contacts" => "Контакти",
     "media" => "Зображення та відео",
 
+    'main_page' => 'Головна',
     "name" => "Назва",
     "description" => "Опис",
     "full_description" => "Повний опис",
@@ -721,6 +722,14 @@ return array (
     "image_info_text" => "Тут можна завантажити великий банер для сторінки повного опису акції",
     "banner_info_text" => "Тут можна завантажити маленький банер для головної сторінки",
     "video_info_text" => "Тут можна завантажити відео для сторінки повного опису акції",
+
+    'contact_org_name' => 'ООО Вантлук Україна',
+    'contact_org_phone_name' => 'Тел:',
+    'contact_org_phone_val' => '(050) 123-77-88',
+    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_skype_name' => 'Skype:',
+    'contact_org_skype_val' => 'bonedde',
+    'contact_org_share_link' => 'Поділитися посиланням в соцмережах',
 
     "invoice" => "Рахунок"
 );
