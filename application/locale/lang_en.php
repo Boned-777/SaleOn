@@ -716,5 +716,9 @@ return array (
     "notActual" => "Specify the currect date",
     "notLater" => "Date is invalid",
     "incorrectUrl" => "Incorrect URL",
-    "fileUploadErrorIniSize" => "File too large"
+    "fileUploadErrorIniSize" => "File too large",
+
+    "image_info_text" => "You can download a large banner page for a complete description of the action",
+    "banner_info_text" => "You can download a small banner for the main page",
+    "video_info_text" => "You can download the video page for a complete description of the action"
 );

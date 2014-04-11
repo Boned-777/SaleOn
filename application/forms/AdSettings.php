@@ -120,6 +120,8 @@ class Application_Form_AdSettings extends Zend_Form
         $geoItem = new Application_Model_Geo();
         $itemData = array();
         if ((!empty($formData["brand_name"])) && (!$formData["brand"])) {
+            $formData["brand_name"] = str_replace("\"", "", $formData["brand_name"]);
+            $formData["brand_name"] = ucfirst($formData["brand_name"]);
             $brand = new Application_Model_DbTable_Brand();
             $brand_res = $brand->save(array(
                 "name" => $formData["brand_name"]
@@ -131,6 +133,8 @@ class Application_Form_AdSettings extends Zend_Form
         }
 
         if ((!empty($formData["product_name"])) && (!$formData["product"])) {
+            $formData["product_name"] = str_replace("\"", "", $formData["product_name"]);
+            $formData["product_name"] = ucfirst($formData["product_name"]);
             $product = new Application_Model_DbTable_Product();
             $product_res = $product->save(array(
                 "name" => $formData["product_name"]

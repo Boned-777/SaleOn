@@ -144,13 +144,6 @@ $(function () {
     function initPopover () {
         if(mediaTabLoaded) return;
 
-        var bigBannerHelp = '&nbsp;<i class="icon-info-sign" id="big-banner-help" data-content="Здесь можно загрузить большой баннер для страницы полного описания акции"\
-        data-placement="top" data-toggle="popover" data-trigger="hover"></i>',
-        smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="Здесь можно загрузить маленький баннер для главной страницы"\
-        data-placement="top" data-toggle="popover" data-trigger="hover"></i>',
-        videoHelp = '&nbsp;<i class="icon-info-sign" id="video-help" data-content="Здесь можно загрузить видео для страницы полного описания акции"\
-        data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
-
         $('#image_file-label').find("label").append(bigBannerHelp);
         $('#banner_file-label').find("label").append(smallBannerHelp);
         $('#video-label').find("label").append(videoHelp);
