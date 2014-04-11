@@ -40,3 +40,10 @@
     <input type="submit" value="<?= $translate->getAdapter()->translate("continue_payment")?>">
     <a href="/payment/cancel/id/<?= $this->order->id ?>"><input type="button" value="<?= $translate->getAdapter()->translate("cancel")?>"></a>
 </form>
+
+<form action="/payment/invoice" method="post">
+    <?php foreach($this->orderData as $key => $val) { ?>
+        <input type="hidden" value="<?= $val ?>" name="<?= $key ?>"/>
+    <?php } ?>
+    <input type="submit" value="<?= $translate->getAdapter()->translate("invoice") ?>"/>
+</form>

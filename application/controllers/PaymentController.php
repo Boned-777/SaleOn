@@ -42,6 +42,7 @@ class PaymentController extends Zend_Controller_Action
         $payment->prepareRequest($order);
         $this->view->xml = $payment->encoded_xml;
         $this->view->signature = $payment->encoded_signature;
+        $this->view->orderData = $payment->getOrderData();
     }
 
     public function confirmAction()
@@ -73,6 +74,12 @@ class PaymentController extends Zend_Controller_Action
 
     public function finishAction() {
 
+    }
+
+    public function invoiceAction() {
+        $vars = $this->getAllParams();
+        $this->view->amount = $vars["amount"];
+        $this->view->description = $vars["description"];
     }
 
     public function cancelAction() {

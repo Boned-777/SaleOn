@@ -63,5 +63,13 @@ class Application_Model_LiqPay
         $this->_createSignature();
     }
 
+    function getOrderData() {
+        return array(
+            "order_id" => $this->order_id,
+            "amount" => $this->amount,
+            "description" => $this->description
+        );
+    }
+
 }
 
