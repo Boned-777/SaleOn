@@ -731,5 +731,6 @@ return array (
     'contact_org_skype_val' => 'bonedde',
     'contact_org_share_link' => 'Поділитися посиланням в соцмережах',
 
-    "invoice" => "Рахунок"
+    "invoice" => "Рахунок",
+    "uah" => "грн."
 );
