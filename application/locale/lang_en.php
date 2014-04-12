@@ -709,6 +709,7 @@ return array (
     "all_ukraine" => "All regions",
     "all_region" =>"All districts",
     "district" => "City/district",
+    "day_price" => "Day/Price",
 
     "back" => "Back",
     "isEmpty" => "Field is required",
@@ -722,5 +723,6 @@ return array (
     "banner_info_text" => "You can download a small banner for the main page",
     "video_info_text" => "You can download the video page for a complete description of the action",
 
-    "invoice" => "Invoice"
+    "invoice" => "Invoice",
+    "uah" => "UAH"
 );
