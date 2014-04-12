@@ -77,10 +77,10 @@
 				this.dom.brandsBtn.on("click", function(e){
 					that.initBrands();
 				});
-				$(".credit").on("click", function(e){
-					that.slider = null;
-					that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 83));	
-				});
+				// $(".credit").on("click", function(e){
+				// 	that.slider = null;
+				// 	that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 83));	
+				// });
 			},
 
 			/* slider */

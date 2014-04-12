@@ -7,6 +7,7 @@ return array(
     'contacts' => "Контакты",
     'media' => "Изображения и видео",
 
+    'main_page' => 'Главная',
     'name' => 'Название',
     'description' => 'Описание',
     'full_description' => 'Полное описание',
@@ -725,6 +726,14 @@ return array(
     "image_info_text" => "Здесь можно загрузить большой баннер для страницы полного описания акции",
     "banner_info_text" => "Здесь можно загрузить маленький баннер для главной страницы",
     "video_info_text" => "Здесь можно загрузить видео для страницы полного описания акции",
+
+    'contact_org_name' => 'ООО Вантлук Украина',
+    'contact_org_phone_name' => 'Тел:',
+    'contact_org_phone_val' => '(050) 123-77-88',
+    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_skype_name' => 'Skype:',
+    'contact_org_skype_val' => 'bonedde',
+    'contact_org_share_link' => 'Поделись, ссылкой в соцсетях',
 
     "invoice" => "Счет для оплаты в банке",
     "uah" => "грн."

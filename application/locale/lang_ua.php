@@ -6,6 +6,7 @@ return array (
     "contacts" => "Контакти",
     "media" => "Зображення та відео",
 
+    'main_page' => 'Головна',
     "name" => "Назва",
     "description" => "Опис",
     "full_description" => "Повний опис",
@@ -703,7 +704,7 @@ return array (
     "price" => "Ціна",
     "all_ukraine" => "Всі області",
     "all_region" => "Всі райони",
-    "district" => "Населений пункт/район",
+    "district" => "Населенний пункт/район",
     "amount" => "Сума",
     "day_price" => "Ціна за день",
 
@@ -722,6 +723,13 @@ return array (
     "banner_info_text" => "Тут можна завантажити маленький банер для головної сторінки",
     "video_info_text" => "Тут можна завантажити відео для сторінки повного опису акції",
 
-    "invoice" => "Рахунок",
-    "uah" => "грн."
+    'contact_org_name' => 'ООО Вантлук Україна',
+    'contact_org_phone_name' => 'Тел:',
+    'contact_org_phone_val' => '(050) 123-77-88',
+    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_skype_name' => 'Skype:',
+    'contact_org_skype_val' => 'bonedde',
+    'contact_org_share_link' => 'Поділитися посиланням в соцмережах',
+
+    "invoice" => "Рахунок"
 );

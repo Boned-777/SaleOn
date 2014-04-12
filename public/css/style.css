@@ -963,6 +963,7 @@ textarea {
 }
 #brands-modal .modal-body {
 	max-height: 530px;
+	height: 454px;
 }
 
 #brands-group-list {

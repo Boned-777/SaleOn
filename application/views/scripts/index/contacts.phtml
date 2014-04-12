@@ -3,15 +3,18 @@
     <div class="span5 offset2">
 
         <address>
-            <strong>ООО Вантлук Украина</strong><br>
-            <i class="cicon-phone"></i>Тел:(050) 123-77-88 <br>
-            <i class="cicon-mail"></i><a href="mailto:#">support@wantlook.info</a><br>
-            <i class="icon-globe"></i>&nbsp;&nbsp;Skype: bonedde
+            <strong><?= $translate->getAdapter()->translate("contact_org_name")?></strong><br>
+            <i class="cicon-phone"></i><?= $translate->getAdapter()->translate("contact_org_phone_name")?><?= $translate->getAdapter()->translate("contact_org_phone_val")?> <br>
+            <i class="cicon-mail"></i><a href="mailto:<?= $translate->getAdapter()->translate("contact_org_email")?>">
+                    <?= $translate->getAdapter()->translate("contact_org_email")?>
+                </a><br>
+            <i class="icon-globe"></i>
+                &nbsp;&nbsp;<?= $translate->getAdapter()->translate("contact_org_skype_name")?><?= $translate->getAdapter()->translate("contact_org_skype_val")?>
         </address>
 
     </div>
     <div class="span5">
-        <strong>Поделись, ссылкой в соцсетях</strong>
+        <strong><?= $translate->getAdapter()->translate("contact_org_share_link")?></strong>
         <br>
 
         <script type="text/javascript">(function() {
