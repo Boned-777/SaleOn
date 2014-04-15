@@ -212,10 +212,11 @@ class AdController extends Zend_Controller_Action
 
         $order = new Application_Model_Order();
         if ($order->getByAd($item->id)) {
-            if (in_array($order->status, array(
-                Application_Model_Order::STATUS_PAID,
-                Application_Model_Order::STATUS_WAIT_SECURE
-            ))
+            if (
+                ($item->status == Application_Model_DbTable_Ad::STATUS_ACTIVE) ||
+                ($order->status == Application_Model_Order::STATUS_PAID) ||
+                ($order->status == Application_Model_Order::STATUS_WAIT_SECURE) ||
+                ($order->status == Application_Model_Order::STATUS_READY)
             ) {
                 $elList = $this->view->datesForm->getElements();
                 foreach ($elList as $el) {
