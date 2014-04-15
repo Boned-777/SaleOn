@@ -210,6 +210,20 @@ class AdController extends Zend_Controller_Action
         $this->view->settingsForm = new Application_Form_AdSettings(array("isReady" => $isReady));
         $this->view->mediaForm = new Application_Form_AdMedia(array("isReady" => $isReady));
 
+        $order = new Application_Model_Order();
+        if ($order->getByAd($item->id)) {
+            if (in_array($order->status, array(
+                Application_Model_Order::STATUS_PAID,
+                Application_Model_Order::STATUS_WAIT_SECURE
+            ))
+            ) {
+                $elList = $this->view->datesForm->getElements();
+                foreach ($elList as $el) {
+                    $el->setAttrib('disabled', 'disabled');
+                }
+            }
+        };
+
         $forms = array(
             "AdMain" => $this->view->mainForm,
             "AdContacts" => $this->view->contactsForm,
@@ -431,7 +445,7 @@ class AdController extends Zend_Controller_Action
         global $translate;
         if (empty($name))
             $name = $translate->getAdapter()->translate("empty_name");
-        return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
+        return '<a href="/ad/edit/id/' . $id . '" target="_blank">' . $name . '</a>';
     }
 
     public function _paidText($val, $id)
