@@ -210,21 +210,27 @@ class AdController extends Zend_Controller_Action
         $this->view->mediaForm = new Application_Form_AdMedia(array("isReady" => $isReady));
 
         $order = new Application_Model_Order();
+        if ($item->status == Application_Model_DbTable_Ad::STATUS_ACTIVE) {
+            $elList = $this->view->datesForm->getElements();
+            foreach ($elList as $el) {
+                $el->setAttrib('disabled', 'disabled');
+            }
+        }
+
         if ($order->getByAd($item->id)) {
             if (
-                ($item->status == Application_Model_DbTable_Ad::STATUS_ACTIVE) ||
-                (in_array($order->status, array(
-                    Application_Model_Order::STATUS_PAID,
-                    Application_Model_Order::STATUS_WAIT_SECURE,
-                    Application_Model_Order::STATUS_READY
-                )))
+            in_array($order->status, array(
+                Application_Model_Order::STATUS_PAID,
+                Application_Model_Order::STATUS_WAIT_SECURE,
+                Application_Model_Order::STATUS_READY
+            ))
             ) {
                 $elList = $this->view->datesForm->getElements();
                 foreach ($elList as $el) {
                     $el->setAttrib('disabled', 'disabled');
                 }
             }
-        };
+        }
 
         $forms = array(
             "AdMain" => $this->view->mainForm,
