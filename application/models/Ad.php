@@ -153,7 +153,6 @@ class Application_Model_Ad
         if ($this->id) {
             $this->finishAllOrders();
         }
-        // Zend_Debug::dump($data); die();
         $res = $dbItem->save($data, $this->id);
         if ($res !== false)
             $this->id = $res;
