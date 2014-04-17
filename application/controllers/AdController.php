@@ -52,7 +52,6 @@ class AdController extends Zend_Controller_Action
                 $params["geo"] = $request->getCookie('geo');
 
             $neighborArr = $item->getNeighborhood($params);
-//            Zend_Debug::dump($neighborArr); die();
             $this->view->nextAdUrl = !is_null($neighborArr["previous"])?$neighborArr["previous"]->createUrl():null;
             $this->view->prevAdUrl = !is_null($neighborArr["next"])?$neighborArr["next"]->createUrl():null;
 

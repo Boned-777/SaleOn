@@ -109,5 +109,44 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
         else
             return false;
     }
+
+    public function getOrCreate($id=null, $name = null) {
+        $preparedName = str_replace("\"", "", $name);
+        $preparedName = ucfirst($preparedName);
+
+        $select = $this->select();
+        if (!empty($id)) {
+            $select->orWhere('id = ?', $id);
+        }
+
+        if (!empty($preparedName)) {
+            $select->orWhere('name = ?', $preparedName);
+        }
+
+        $rows = $this->fetchAll($select);
+
+        switch (count($rows)) {
+            case 0 :
+                $item = $this->createRow();
+                $item->name = $preparedName;
+                $item->save();
+                echo "created";
+                return $item;
+                break;
+
+            case 1 :
+                return $rows->current();
+                break;
+
+            case 2 :
+                foreach ($rows as $dbItem) {
+                    if ($dbItem->name == $preparedName) {
+                        return $dbItem;
+                    }
+                }
+                break;
+        }
+        return false;
+    }
 }
 

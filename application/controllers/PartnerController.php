@@ -52,7 +52,7 @@ class PartnerController extends Zend_Controller_Action
         if ($request->isPost()) {
             if ($form->isValid($request->getPost())) {
 
-                if ($vars["form"] == "change_password") {
+                if (isset($vars["form"]) ? $vars["form"] : false == "change_password") {
                     if ($changePasswordForm->isValid($request->getPost())) {
                         $this->_changePassword($changePasswordForm->getValues());
                         $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");

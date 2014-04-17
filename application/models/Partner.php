@@ -34,10 +34,16 @@ class Application_Model_Partner
         foreach ($vars as $key => $value) {
             switch ($key) {
                 case "brand_name":
-                    if ($data['brand']) {
-                        $item = new Application_Model_DbTable_Brand();
-                        $this->brand_name = $item->getNameById($data['brand']);
+                    $item = new Application_Model_DbTable_Brand();
+                    $res = $item->getOrCreate($data['brand'], !empty($data['brand_name']) ? $data['brand_name'] : null);
+
+                    if ($res !== false) {
+                        $this->brand = $res->id;
+                        $this->brand_name = $res->name;
                     }
+                    break;
+
+                case "brand":
                     break;
 
                 default:

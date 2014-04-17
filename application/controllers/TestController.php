@@ -82,18 +82,10 @@ class TestController extends Zend_Controller_Action
 
     public function aAction()
     {
-        $geo = "2-0-0";
+        $item = new Application_Model_DbTable_Brand();
+        $res = $item->getOrCreate(0, "Samsung 1");
 
-        $geo = explode("-",$geo);
-        foreach ($geo as $key=>$val) {
-            if ($val == 0) {
-                unset($geo[$key]);
-            }
-        }
-
-
-        echo count($geo);
-        die();
+        Zend_Debug::dump($res->toArray()); die();
     }
 
     public function favoritesAction()
