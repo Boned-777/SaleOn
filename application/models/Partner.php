@@ -34,6 +34,9 @@ class Application_Model_Partner
         foreach ($vars as $key => $value) {
             switch ($key) {
                 case "brand_name":
+                    $this->brand = null;
+                    $this->brand_name = null;
+
                     $item = new Application_Model_DbTable_Brand();
                     $res = $item->getOrCreate($data['brand'], !empty($data['brand_name']) ? $data['brand_name'] : null);
 
