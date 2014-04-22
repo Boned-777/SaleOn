@@ -20,6 +20,7 @@ class Application_Model_Order
 
     const TYPE_LIQPAY = "LIQPAY";
     const TYPE_CASH = "CASH";
+    const TYPE_FREE = "FREE";
 
     public function create($adItem, $type) {
         $this->ad = $adItem;
@@ -42,7 +43,8 @@ class Application_Model_Order
         switch ($xmlDoc->status) {
             case "success":
                 $this->status = Application_Model_Order::STATUS_PAID;
-                $this->ad->status = Application_Model_DbTable_Ad::STATUS_ACTIVE;
+                $this->ad->status = Application_Model_DbTable_Ad::STATUS_READY;
+                $this->ad->paid = 1;
                 $this->ad->save();
                 break;
 

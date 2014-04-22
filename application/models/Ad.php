@@ -17,6 +17,7 @@ class Application_Model_Ad
     public $product_name;
 	public $address;
 	public $phone;
+    public $paid;
     public $phone1;
     public $phone2;
 	public $fax;
@@ -95,6 +96,7 @@ class Application_Model_Ad
                 case "full_description":
                 case "product":
                 case "product_name":
+                case "paid":
                 case "phone1":
                 case "phone2":
                 case "fax":

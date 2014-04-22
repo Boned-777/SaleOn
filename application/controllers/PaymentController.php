@@ -73,7 +73,15 @@ class PaymentController extends Zend_Controller_Action
     }
 
     public function finishAction() {
-
+        $vars = $this->getAllParams();
+        $order = new Application_Model_Order();
+        $order->get($vars["order_id"]);
+        $order->ad->paid = 1;
+        $order->ad->save();
+        $order->status = Application_Model_Order::STATUS_PAID;
+        $order->type = Application_Model_Order::TYPE_FREE;
+        $order->save();
+        $this->_helper->redirector("ready", "ad");
     }
 
     public function invoiceAction() {
