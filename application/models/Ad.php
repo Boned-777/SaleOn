@@ -440,10 +440,16 @@ class Application_Model_Ad
     }
 
     public function getPrice() {
+//        $basePrice = array(
+//            1 => 10,
+//            2 => 5,
+//            3 => 2
+//        );
+
         $basePrice = array(
-            1 => 10,
-            2 => 5,
-            3 => 2
+            1 => 0,
+            2 => 0,
+            3 => 0
         );
         $daysCount = $this->getDaysLeft();
         $geo = explode("-", $this->geo);
