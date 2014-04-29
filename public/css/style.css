@@ -884,7 +884,8 @@ textarea {
 @media (min-width: 1200px) {
 	.details-left img,
 	.details-left iframe {
-		width: 560px;	
+		max-width: 560px;	
+	    max-height:560px;
 	}
 }
 
