@@ -110,7 +110,7 @@ class Application_Form_AdMedia extends Zend_Form
             return false;
         $image = new Application_Model_Image();
         $image->load($src);
-        $image->smartResize($target_width, $target_height);
+        $image->resize($target_width, $target_height);
         $newName = uniqid() . ".jpg";
         $image->save(APPLICATION_PATH . "/../public/media/" . $newName);
         return $newName;
