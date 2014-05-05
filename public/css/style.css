@@ -1039,7 +1039,7 @@ textarea {
       float: left;
 }
 .services-icon {
-      background: url("/img/preferences-system.png") 0px -1px;
+      background: url("/img/preferences-system.png") 5px -1px;
       background-repeat: no-repeat;
       height: 48px;
       width: 63px;
