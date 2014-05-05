@@ -1032,10 +1032,10 @@ textarea {
       float: left;
 }
 .shopping-icon {
-      background: url("/img/shopping_cart.png") -5px -4px;
+      background: url("/img/shopping_cart.png") -3px -1px;
       background-repeat: no-repeat;
-      height: 45px;
-      width: 52px;
+      height: 48px;
+      width: 48px;
       float: left;
 }
 .services-icon {
