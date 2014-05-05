@@ -1045,7 +1045,20 @@ textarea {
       width: 63px;
       float: left;
 }
-
+.shopping-icon2 {
+      background: url("/img/shopping_cart2.png") -3px -1px;
+      background-repeat: no-repeat;
+      height: 48px;
+      width: 48px;
+      float: left;
+}
+.services-icon3 {
+      background: url("/img/preferences-system2.png") 5px -1px;
+      background-repeat: no-repeat;
+      height: 48px;
+      width: 63px;
+      float: left;
+}
 .counter {
 	display: none;
 }   
