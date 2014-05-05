@@ -1196,13 +1196,37 @@ textarea {
 /* Contacts */
 .contacts {
 	margin-top: 80px;
+	margin-left: -100px;
+
 }
 
 .contacts address {
 	width: 250px;
 	margin-left: 30px;
 }
-
+.fb {
+    background-image: url("/img/fb.png");
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    margin-top: 20px;
+}
+.vk {
+    background-image: url("/img/vk.png");
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 55px;
+    width: 42px;
+    height: 42px;
+}
+.twitter {
+    background-image: url("/img/twitter.png");
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 110px;
+    width: 42px;
+    height: 42px;
+}
 [class^="cicon-"], [class*=" cicon-"] {
     background-repeat: no-repeat;
     display: inline-block;
@@ -1216,6 +1240,7 @@ textarea {
 .cicon-phone {
     background-image: url("/img/phone.png");
 }
+
 .cicon-mail {
     background-image: url("/img/mail.png");
 }

@@ -4,32 +4,42 @@
 
         <address>
             <strong><?= $translate->getAdapter()->translate("contact_org_name")?></strong><br>
-            <i class="cicon-phone"></i><?= $translate->getAdapter()->translate("contact_org_phone_name")?><?= $translate->getAdapter()->translate("contact_org_phone_val")?> <br>
-            <i class="cicon-mail"></i><a href="mailto:<?= $translate->getAdapter()->translate("contact_org_email")?>">
+            <i><?= $translate->getAdapter()->translate("contact_country_name")?></i><br>
+            <i class="icon-globe"></i>
+                &nbsp;&nbsp;<?= $translate->getAdapter()->translate("contact_org_skype_name")?><?= $translate->getAdapter()->translate("contact_org_skype_val")?><br>
+                <i class="cicon-mail"></i><a href="mailto:<?= $translate->getAdapter()->translate("contact_org_email")?>">
                     <?= $translate->getAdapter()->translate("contact_org_email")?>
                 </a><br>
-            <i class="icon-globe"></i>
-                &nbsp;&nbsp;<?= $translate->getAdapter()->translate("contact_org_skype_name")?><?= $translate->getAdapter()->translate("contact_org_skype_val")?>
+            <i class="cicon-phone"></i><?= $translate->getAdapter()->translate("contact_org_phone_name")?><?= $translate->getAdapter()->translate("contact_org_phone_val")?> <br>
+            <i class="cicon-phone"></i><?= $translate->getAdapter()->translate("contact_org_phone_name")?><?= $translate->getAdapter()->translate("contact_org_phone_val2")?> <br>
+             <a href='http://vk.com/wantlookinfo' target="_blank"><div class="vk" hre></div></a> <a href='https://www.facebook.com/wantlook.info' target="_blank"><div class="fb"></div></a><a href="https://twitter.com/bonedde7" target="_blank"><div class="twitter"></div></a>
         </address>
 
     </div>
     <div class="span5">
-        <strong><?= $translate->getAdapter()->translate("contact_org_share_link")?></strong>
-        <br>
+    <form>
+     <strong><?= $translate->getAdapter()->translate("feedback_form_name")?></strong><br><br>
+                        <fieldset>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_name")?>" >
+                                </div>
+                                <div class="controls">
+                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_email")?> ">
+                                </div>          
+                                <div class="controls">
+                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_topic")?>" >
 
-        <script type="text/javascript">(function() {
-          if (window.pluso)if (typeof window.pluso.start == "function") return;
-          if (window.ifpluso==undefined) { window.ifpluso = 1;
-            var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-            s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
-            s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
-            var h=d[g]('body')[0];
-            h.appendChild(s);
-          }})();
-        </script>
-        <div class="pluso" data-background="transparent" 
-        data-options="big,square,line,horizontal,nocounter,theme=08" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email"></div>
+                                </div>
+                                <div class="controls">
+                                    <textarea class="span4" id="textarea" rows="6" placeholder="<?= $translate->getAdapter()->translate("contact_text")?>"></textarea>
+                                </div>
+                                <button class="btn btn-default"><?= $translate->getAdapter()->translate("contact_send")?> </button>
+                            </div>
+                        </fieldset>
+                    </form>
 
+       
     </div>
     
 </div>
