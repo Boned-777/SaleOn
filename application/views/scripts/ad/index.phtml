@@ -8,11 +8,11 @@
 
             
         </a>
-
+        <?php } else { ?>
+            <?php echo $this->ad->video; ?>
+        <?php } ?>
     </div>
-    <?php } else { ?>
-        <?php echo $this->ad->video; ?>
-    <?php } ?>
+
     <div class="span6 details-right">
         <h4><?php echo $this->ad->name; ?></h4>
         <div><?php echo nl2br($this->ad->description); ?></div>
