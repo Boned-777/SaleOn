@@ -5,12 +5,12 @@
             <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
                 <img width="auto" height="auto" src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
-
+            <?php } else { ?>
+                <?php echo $this->ad->video; ?>
+            <?php } ?>
             
         </a>
-        <?php } else { ?>
-            <?php echo $this->ad->video; ?>
-        <?php } ?>
+
     </div>
 
     <div class="span6 details-right">
