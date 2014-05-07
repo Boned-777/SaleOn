@@ -583,7 +583,7 @@ body {
 		left: 89%;
 	}
 	.items-wrapper {
-		margin-left: 90px;
+		margin-left: 96px;
     	width: 960px;
 	}
 	.bottom-offset {
@@ -591,7 +591,7 @@ body {
 	}
 
 	.img-wrapper {
-    	width: 210px;
+    	width: 230px;
 	}
 	.item.hover-left .img-wrapper,
 	.item.hover-right .img-wrapper {
@@ -599,7 +599,7 @@ body {
 	}
 
 	.img-polaroid {
-    	width: 210px;
+    	width: 230px;
 	}
 	.page-number {
     	color: #888888;
