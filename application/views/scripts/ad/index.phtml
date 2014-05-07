@@ -5,13 +5,14 @@
             <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
                 <img width="auto" height="auto" src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
-            <?php } else { ?>
-                <?php echo $this->ad->video; ?>
-            <?php } ?>
+
             
         </a>
 
     </div>
+    <?php } else { ?>
+        <?php echo $this->ad->video; ?>
+    <?php } ?>
     <div class="span6 details-right">
         <h4><?php echo $this->ad->name; ?></h4>
         <div><?php echo nl2br($this->ad->description); ?></div>
@@ -61,7 +62,7 @@
                 </div>
                 <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
                 <?php if ($this->ad->url) { ?>
-                    <div><a href="<?php echo $this->ad->url; ?>" target="_blank"><?php echo $this->ad->url; ?></a></div>
+                    <div><noindex><a href="<?php echo $this->ad->url; ?>" rel="nofollow" target="_blank"><?php echo $this->ad->url; ?></a></noindex></div>
                 <?php } ?>
             </address>
         </div>
