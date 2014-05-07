@@ -607,11 +607,11 @@ body {
     	font-size: 15px;
     	font-weight: bold;
     	line-height: 20px;
-    	margin: 25px 0 10px 0;
+    	margin: 45px 0 10px 0;
 	}
 	.page-number span {
 		margin-left: -43px;
-        -moz-margin-start:-90% !important;
+
 	}
 }
 
