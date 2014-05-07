@@ -341,7 +341,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
 	.no-image {
-		width: 200px;
+		width: 220px;
 	}
 	.item.hover-left .no-image, .item.hover-right .no-image {
     	width: 150px;
@@ -607,7 +607,7 @@ body {
     	font-size: 15px;
     	font-weight: bold;
     	line-height: 20px;
-    	margin: 2px 0 10px 0;
+    	margin: 15px 0 10px 0;
 	}
 	.page-number span {
 		margin-left: -43px;
