@@ -583,7 +583,7 @@ body {
 		left: 89%;
 	}
 	.items-wrapper {
-		margin-left: 96px;
+		margin-left: 94px;
     	width: 960px;
 	}
 	.bottom-offset {
@@ -607,7 +607,7 @@ body {
     	font-size: 15px;
     	font-weight: bold;
     	line-height: 20px;
-    	margin: 15px 0 10px 0;
+    	margin: 25px 0 10px 0;
 	}
 	.page-number span {
 		margin-left: -43px;
