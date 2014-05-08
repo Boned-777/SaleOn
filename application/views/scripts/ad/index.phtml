@@ -4,7 +4,7 @@
         <a href="#">
             <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
-                <img width="auto" height="auto" src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
+                <img width="550" height="auto" src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
             <?php } else { ?>
                 <?php echo $this->ad->video; ?>
             <?php } ?>
@@ -12,7 +12,6 @@
         </a>
 
     </div>
-
     <div class="span6 details-right">
         <h4><?php echo $this->ad->name; ?></h4>
         <div><?php echo nl2br($this->ad->description); ?></div>
@@ -63,7 +62,7 @@
                 <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
                 <?php if ($this->ad->url) { ?>
                     <div><noindex><a href="<?php echo $this->ad->url; ?>" rel="nofollow" target="_blank"><?php echo $this->ad->url; ?></a></noindex></div>
-                <?php } ?>
+                    <?php } ?>
             </address>
         </div>
 
