@@ -377,9 +377,9 @@ body {
 		    transition: 0.4s ease-in-out opacity;
 	position: absolute;
 	top: 2px;
-	bottom: 5px;
+	bottom: 2px;
 	left: 2px;
-	right: 5px;
+	right: 2px;
 	padding: 10px 20px 5px 10px;
 	cursor: pointer;
 	color: #fff;
