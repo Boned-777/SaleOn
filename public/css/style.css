@@ -1160,6 +1160,35 @@ textarea {
 	white-space: nowrap;
 }
 
+button#btn1.btn.btn-large{
+    width: 120px;
+    margin-left: -53px;
+    margin-top: 8px;
+}
+button#btn2.btn.btn-large{
+    width: 120px;
+    margin-left:-18px;
+    margin-top: 8px;
+}
+button#btn3.btn.btn-large{
+width: 120px;
+    margin-left: 200px;
+    margin-top: -36px;
+}
+
+a#btn4.btn.btn-large{
+    width: 55px;
+    margin-left:24px;
+    margin-right: -22px;
+    margin-top: 8px;
+}
+a.btn.btn-large{
+    width:55px;
+    margin-left:269px;
+    margin-top: -36px;
+
+
+}
 
 /* Language switcher */
 #lng-switcher.dropdown-menu {
@@ -1265,7 +1294,6 @@ textarea {
 .icon-globe {
     background-position: -336px -144px;
 }
-
 
 
 
