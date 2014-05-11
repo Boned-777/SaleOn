@@ -1161,30 +1161,31 @@ textarea {
 }
 
 button#btn1.btn.btn-large{
-    width: 120px;
-    margin-left: -50px;
+    width: 118px;
+    margin-left: -43px;
+    margin-right: 21px;
     margin-top: 8px;
 }
 button#btn2.btn.btn-large{
-    width: 120px;
+    width: 118px;
     margin-left:-19px;
     margin-top: 8px;
 }
 button#btn3.btn.btn-large{
-width: 120px;
-    margin-left: 200px;
+width: 118px;
+    margin-left: 205px;
     margin-top: -36px;
 }
 
 a#btn4.btn.btn-large{
     width: 55px;
-    margin-left:24px;
-    margin-right: -22px;
+    margin-left:10px;
+    margin-right: -8px;
     margin-top: 8px;
 }
 a.btn.btn-large{
     width:55px;
-    margin-left:269px;
+    margin-left:255px;
     margin-top: -36px;
 
 
