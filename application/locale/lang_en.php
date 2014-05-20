@@ -160,7 +160,7 @@ return array (
     "rozdolnenskij" => "Rozdolnenskij",
     "sakskij" => "Sakskij",
     "simferopolskij" => "Simferopolskij",
-    "sov-tskij" => "Sovetskij",
+    "sovetskij" => "Sovetskij",
     "chornomorskij" => "Chornomorskij",
     "vinnicka-oblast" => "Vinnicka oblast",
     "barskij" => "Barskij",
