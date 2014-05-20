@@ -591,7 +591,7 @@ return array (
     "volochiskij" => "Volochiskij",
     "gorodockij" => "Gorodockij",
     "derazhnyanskij" => "Derazhnyanskij",
-    "dunaevekij" = "Dunaeveckij",
+    "dunaevekij" => "Dunaeveckij",
     "izyaslavskij" => "Izyaslavskij",
     "kamyanec-podilskij" => "Kamyanec-Podilskij",
     "krasilivskij" => "Krasilivskij",
