@@ -532,7 +532,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     font-family: NumberFont;
 }
 .page-number span {
-    margin-left: -34px;
+    margin-left: -40px;
 }
 .pluso{margin-bottom: 10px;}
 
@@ -693,7 +693,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin: 45px 0 10px 0;
     }
     .page-number span {
-        margin-left: -134px;
+        margin-left: -34px;
 
     }
 }
