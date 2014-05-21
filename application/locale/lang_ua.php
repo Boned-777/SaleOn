@@ -694,7 +694,7 @@ return array (
     "mm_user" => "Користувачам",
 
     "main_title" => "Всі Акції України",
-    "copyright" => "© ВАУ - Всі Акції України, 2014",
+    "copyright" => "© Всі Акції України, 2014",
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
     "lng_english" => "English",
@@ -725,7 +725,7 @@ return array (
 
     'feedback_form_name' => 'Форма зворотнього звязку',
     'contact_country_name'=>'Україна',
-    'contact_org_name' => 'ВАУ-Всі Акції України',
+    'contact_org_name' => 'Всі Акції України',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
@@ -738,6 +738,7 @@ return array (
     'contact_name' => 'Ваше імя',
     'contact_text' => 'Текст повідомлення',
     'contact_send' => 'Надіслати',
+    'social_share'=>'Поділитись акцією',
 
     "invoice" => "Рахунок",
     "uah" => "грн.",
