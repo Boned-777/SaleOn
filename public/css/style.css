@@ -822,7 +822,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .firefox-slider .item.hover-right .items-wrapper {
     margin: 0;
     width: inherit;
-    -moz-transition: 0.8s linear margin, 0.8s linear width, 0.8s linear padding;
+    -moz-transition: 0.5s linear margin, 0.5s linear width, 0.5s linear padding;
 }
 /*.firefox-slider .item.hover-left img,
 .firefox-slider .item.hover-right img {
@@ -835,7 +835,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .firefox-slider .item.hover-left {
-        left: -88%;
+        left: -83%;
 
     }
     .firefox-slider .item.hover-right {
