@@ -660,7 +660,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         width: 230px;
     }
     .carousel-inner > .active.left {
-        left: -92%;
+        left: -91%;
     }
     .carousel-inner > .active.right {
         left: 93%;
