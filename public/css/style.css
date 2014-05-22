@@ -978,6 +978,7 @@ textarea {
 .details-left img,
 .details-left iframe {
     width: 450px;
+    
 }
 
 .details-left a {
@@ -989,7 +990,7 @@ textarea {
     .details-left iframe {
 
         margin-left: 9px;
-        max-height:560px;
+        max-height:100%;
     }
 }
 
