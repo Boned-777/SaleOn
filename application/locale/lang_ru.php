@@ -733,7 +733,7 @@ return array(
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
-    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_email' => 'wantlookinfo@ukr.net',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'wantlook.info',
     'contact_topic' => 'Тема сообщения',
