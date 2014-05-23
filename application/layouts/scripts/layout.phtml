@@ -1,6 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <?php
         global $translate;
@@ -22,8 +21,8 @@
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/redmond/jquery-ui-1.10.3.custom.min.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap-responsive.css')); ?>
     <?php echo $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap.css')); ?>
-    <script src="/js/browser.js"></script>
-    <script src="/js/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/browser.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery.cookie.js"></script>
     
 </head>
 <body>
@@ -75,10 +74,10 @@
                     <div id="filters-modal" class="modal hide fade" tabindex="-1">
                         <div id="filters-content" class="modal-body"></div>
                         <div class="modal-footer">
-                            <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                            <button class="btn"><?php echo $translate->getAdapter()->translate("close"); ?></button>
                         </div>
                     </div>
-                    <div id="regions-modal" class="modal hide fade" tabindex="-1">
+                    <div id="regions-modal" class="modal hide fade">
                         <div id="regions-header" class="modal-header row"></div>
                         <div id="regions-content" class="modal-body"></div>
                         <div class="modal-footer">
@@ -170,14 +169,14 @@
                             echo "window.messages.ukraine        = \"" . $translate->getAdapter()->translate("ukraine") . "\";"; 
                         ?>
                     </script>
-                    <script src="/js/bootstrap/bootstrap-transition.js"></script>
-                    <script src="/js/bootstrap/bootstrap-carousel.js"></script>
-                    <script src="/js/underscore-min.js"></script>
-                    <script src="/js/waw-slider.js"></script>
-                    <script src="/js/waw-categories.js"></script>
-                    <script src="/js/waw-regions.js"></script>
-                    <script src="/js/waw-brands.js"></script>
-                    <script src="/js/index-loader.js"></script>
+                    <script type="text/javascript" src="/js/bootstrap/bootstrap-transition.js"></script>
+                    <script type="text/javascript" src="/js/bootstrap/bootstrap-carousel.js"></script>
+                    <script type="text/javascript" src="/js/underscore-min.js"></script>
+                    <script type="text/javascript" src="/js/waw-slider.js"></script>
+                    <script type="text/javascript" src="/js/waw-categories.js"></script>
+                    <script type="text/javascript" src="/js/waw-regions.js"></script>
+                    <script type="text/javascript" src="/js/waw-brands.js"></script>
+                    <script type="text/javascript" src="/js/index-loader.js"></script>
 
 
             </div>
@@ -209,14 +208,14 @@
         </div>
     </div>
 
-    <script src="/js/bootstrap/bootstrap-modal.js"></script>
-    <script src="/js/bootstrap/bootstrap-dropdown.js"></script>
-    <script src="/js/bootstrap/bootstrap-tab.js"></script>
-    <script src="/js/bootstrap/bootstrap-tooltip.js"></script>
-    <script src="/js/bootstrap/bootstrap-button.js"></script>
-    <script src="/js/bootstrap/bootstrap-popover.js"></script>
-    <script src="/js/bootstrap/bootstrap-datepicker.js"></script>
-    <script src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-tab.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-button.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
 
 </body>
 </html>
