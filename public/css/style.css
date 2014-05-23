@@ -151,6 +151,7 @@ body {
         margin-left:15px;
         margin-top:8px;
     }
+
     button#btn3.btn.btn-large{
         width: 118px;
         margin-left: -19px;
@@ -836,10 +837,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 @media (min-width: 1200px) and (max-width: 1500px) {
     .firefox-slider .item.hover-left {
         left: -83%;
+        margin-top: 45px;
 
     }
     .firefox-slider .item.hover-right {
         left: 93%;
+        margin-top: 45px;
     }
     .firefox-slider .item.hover-left .no-image,
     .firefox-slider .item.hover-right .no-image {
@@ -859,9 +862,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 @media (max-width: 1199px) {
     .firefox-slider .item.hover-left {
         left: -96%;
+        margin-top: 45px;
     }
     .firefox-slider .item.hover-right {
         left: 99%;
+        margin-top: 45px;
     }
     .firefox-slider .item.hover-left .no-image,
     .firefox-slider .item.hover-right .no-image {
