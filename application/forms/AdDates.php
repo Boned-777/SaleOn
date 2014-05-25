@@ -38,7 +38,7 @@ class Application_Form_AdDates extends Zend_Form
         ));
 
         $public_dt = $this->getElement("public_dt");
-        $public_dt->addValidator($publicDTValidatorFalse);
+        //$public_dt->addValidator($publicDTValidatorFalse);
 
         $this->addElement('text', 'end_dt', array(
             'class' => "input-block-level-date",
