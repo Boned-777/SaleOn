@@ -414,7 +414,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-        width: 230px;
+        width: 220px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 150px;
@@ -675,7 +675,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
 
     .img-wrapper {
-        width: 230px;
+        width: 220px;
     }
     .item.hover-left .img-wrapper,
     .item.hover-right .img-wrapper {
@@ -683,7 +683,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
 
     .img-polaroid {
-        width: 230px;
+        width: 220px;
     }
     .page-number {
         color: #888888;
