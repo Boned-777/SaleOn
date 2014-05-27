@@ -675,7 +675,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
 
     .img-wrapper {
-        width: 220px;
+        width: 230px;
     }
     .item.hover-left .img-wrapper,
     .item.hover-right .img-wrapper {
@@ -683,7 +683,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
 
     .img-polaroid {
-        width: 220px;
+        width: 230px;
     }
     .page-number {
         color: #888888;
