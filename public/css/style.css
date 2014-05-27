@@ -409,7 +409,7 @@ body {
     top: 5px;
 }
 .item.hover-left .no-image, .item.hover-right .no-image {
-    width: 150px;
+    width: 160px;
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
@@ -417,7 +417,7 @@ body {
         width: 220px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
-        width: 180px;
+        width: 160px;
     }
 }
 @media (max-width: 1199px) {
