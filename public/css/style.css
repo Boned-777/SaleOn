@@ -402,6 +402,7 @@ body {
 }
 .no-image {
     background: url("/img/no-image-gray.jpg") center center no-repeat;
+    width:220px;
     bottom: 5px;
     left: 5px;
     position: absolute;
@@ -414,7 +415,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-        width: 220px;
+        width: 180px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 150px;
@@ -428,6 +429,7 @@ body {
 
 .no-image:hover {
     background: url("/img/no-image-hover-gray.jpg") center center no-repeat;
+
 }
 
 .active .img-wrapper:hover .img-info {
