@@ -426,6 +426,7 @@ body {
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 110px;
         position: absolute;
+        left:50px;
 
     }
 }
