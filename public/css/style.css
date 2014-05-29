@@ -649,8 +649,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         height: 450px;
     }
     .item.hover-left .items-wrapper {
-        width: 750px;
-        margin-left: 370px;
+        width: 960px;
+        margin-left: 160px;
     }
     .item.hover-right .items-wrapper {
         width: 960px;
