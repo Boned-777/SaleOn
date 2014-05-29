@@ -94,18 +94,21 @@ body {
 
 .logo {
     background: url("/img/logo7.png") center center no-repeat;
-    width: 145px;
+    width: 299px;
     height: 70px;
+    margin-left: -80px;
 }
 
 .logo:hover {
-    background: url("/img/logo8.png") center center no-repeat;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
     /*opacity: 0.8;*/
 }
 
 .jumbotron {
     margin-left: -2px !important;
-    margin-top: -20px;
+    margin-top: -10px;
     text-align: center;
     width: 145px !important;
 }
@@ -140,37 +143,41 @@ body {
         margin: 35px 0 15px 125px;
     }
     button#btn1.btn.btn-large{
-        width: 118px;
-        margin-left: -38px;
-        margin-right: -14px;
+        width: 108px;
+        margin-left: -45px;
+        margin-right: -13px;
         margin-top: 8px;
     }
 
     button#btn2.btn.btn-large{
-        width: 118px;
-        margin-left:15px;
+        width: 108px;
+        margin-left:13px;
         margin-top:8px;
     }
 
     button#btn3.btn.btn-large{
-        width: 118px;
-        margin-left: -19px;
+        width: 108px;
+        margin-left: -20px;
         margin-top: 8px;
     }
 
+
     a#btn4.btn.btn-large{
-        width: 55px;
-        margin-left:10px;
+        width: 45px;
+        margin-left:50px;
         margin-right: -8px;
         margin-top: 8px;
     }
     a.btn.btn-large{
-        width:55px;
-        margin-left:10px;
-        margin-right:-8px;
+        width:45px;
+        margin-left:50px;
+        margin-right:-50px;
         margin-top: 8px;
 
 
+    }
+    a#btn5.btn-large{
+        margin-left: 8px;
     }
 }
 @media (max-width: 1199px) {
@@ -401,7 +408,7 @@ body {
     box-sizing: border-box;
 }
 .no-image {
-    background: url("/img/no-image-gray.jpg") center center no-repeat;
+    background: url("/img/no_ad.png") center center no-repeat;
     width:150px;
     bottom: 5px;
     left: 5px;
@@ -410,7 +417,7 @@ body {
     top: 5px;
 }
 .item.hover-left .no-image, .item.hover-right .no-image {
-    width: 150px;
+    width: 210px;
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
@@ -418,7 +425,7 @@ body {
         width: 220px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
-        width: 150px;
+        width: 210px;
         bottom: 5px;
         left: 5px;
         position: absolute;
@@ -433,7 +440,7 @@ body {
 }
 
 .no-image:hover {
-    background: url("/img/no-image-hover-gray.jpg") center center no-repeat;
+    background: url("/img/no_ad-hover.png") center center no-repeat;
 }
 
 .active .img-wrapper:hover .img-info {
@@ -660,11 +667,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
     .item.hover-left img,
     .item.hover-right img {
-        width: 160px;
+        width: 220px;
     }
     .carousel-inner > .prev.right img,
     .carousel-inner > .next.left img {
-        width: 230px;
+        width: 220px;
     }
     .carousel-inner > .active.left {
         left: -92%;
@@ -685,7 +692,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
     .item.hover-left .img-wrapper,
     .item.hover-right .img-wrapper {
-        width: 160px;
+        width: 230px;
     }
 
     .img-polaroid {
