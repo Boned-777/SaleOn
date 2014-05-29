@@ -409,7 +409,7 @@ body {
 }
 .no-image {
     background: url("/img/no_ad.png") center center no-repeat;
-    width:150px;
+    width:190px;
     bottom: 5px;
     left: 5px;
     position: absolute;
@@ -417,15 +417,15 @@ body {
     top: 5px;
 }
 .item.hover-left .no-image, .item.hover-right .no-image {
-    width: 210px;
+    width: 190px;
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-        width: 220px;
+        width: 190px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
-        width: 220px;
+        width: 190px;
         bottom: 5px;
         left: 5px;
         position: absolute;
