@@ -418,6 +418,10 @@ body {
     position: absolute;
 
 }
+.no-image:hover {
+    background: url("/img/no_ad-hover.png") center center no-repeat;
+}
+
 .item.hover-left .no-image, .item.hover-right .no-image {
     width: 150px;
 }
@@ -439,11 +443,13 @@ body {
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 130px;
     }
+    .no-image:hover {
+        width: 130px;
+        background: url("/img/no_ad-hover.png") center center no-repeat !important;
+    }
 }
 
-.no-image:hover {
-    background: url("/img/no_ad-hover.png") center center no-repeat;
-}
+
 
 .active .img-wrapper:hover .img-info {
     visibility: visible;
@@ -621,6 +627,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
     .page-number span {
         margin-left: -5px;
+    }
+    .no-image:hover {
+        background: url("/img/no_ad-hover.png") center center no-repeat !important;
     }
 }
 
