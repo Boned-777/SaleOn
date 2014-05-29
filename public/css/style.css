@@ -410,7 +410,8 @@ body {
 .no-image {
 
     width:150px;
-
+    bottom: 5px;
+    position: absolute;
 
 }
 .item.hover-left .no-image, .item.hover-right .no-image {
@@ -420,6 +421,7 @@ body {
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
         width: 150px;
+        top:5px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 150px;
