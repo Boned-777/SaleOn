@@ -626,7 +626,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
 
     .page-number span {
-        margin-left: -5px;
+        margin-left: -13px;
     }
     .no-image:hover {
         background: url("/img/no_ad-hover.png") center center no-repeat !important;
@@ -718,7 +718,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin: 45px 0 10px 0;
     }
     .page-number span {
-        margin-left: -34px;
+        margin-left: -40px;
 
     }
 }
