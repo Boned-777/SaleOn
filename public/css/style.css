@@ -408,29 +408,27 @@ body {
     box-sizing: border-box;
 }
 .no-image {
-    background: url("/img/no_ad.png") center center no-repeat;
-    width:150px;
+
+    width:100px;
     bottom: 5px;
-    left: 5px;
+    left: 40px;
     position: absolute;
-    right: 5px;
     top: 5px;
 }
 .item.hover-left .no-image, .item.hover-right .no-image {
-    width: 190px;
+    width: 150px;
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-        width: 230px;
+        width: 150px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 150px;
-        bottom: 5px;
-        left: 45px;
+
+        left: 40px;
         position: absolute;
-        right: 5px;
-        top: 5px;
+
     }
 }
 @media (max-width: 1199px) {
