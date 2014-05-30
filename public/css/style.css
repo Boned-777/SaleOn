@@ -438,10 +438,11 @@ left:40px;
         bottom: 5px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
-        width: 150px;
-        height:90px;
-        left:1px;
-
+        width: 95px;
+        height:95px;
+        left:57px;
+        bottom: 11px;
+        top:11px;
 
     }
 }
