@@ -110,7 +110,7 @@
 
 @media (min-width: 1200px) {
   .row {
-    margin-left: -25px;
+    margin-left: 25px;
     *zoom: 1;
   }
   .row:before,
