@@ -140,7 +140,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .top-menu {
-        margin: 35px 0 15px 125px;
+        margin: 35px 0 15px 135px;
     }
     button#btn1.btn.btn-large{
         width: 108px;
