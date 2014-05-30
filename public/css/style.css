@@ -74,7 +74,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .fix-content-position {
-        padding-left: 149px;
+        padding-left: 83px;
     }
 }
 @media (max-width: 1199px) {
@@ -725,7 +725,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin: 45px 0 10px 0;
     }
     .page-number span {
-        margin-left: -145px;
+        margin-left: -143px;
 
     }
 }
