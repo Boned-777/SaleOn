@@ -74,7 +74,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .fix-content-position {
-        padding-left: 83px;
+        padding-left: 149px;
     }
 }
 @media (max-width: 1199px) {
