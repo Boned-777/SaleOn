@@ -703,7 +703,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
     .item.hover-left .img-wrapper,
     .item.hover-right .img-wrapper {
-        width: 230px;
+        width: 160px;
     }
 
     .img-polaroid {
