@@ -74,7 +74,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .fix-content-position {
-        padding-left: 39px;
+        padding-left: 49px;
     }
 }
 @media (max-width: 1199px) {
@@ -597,7 +597,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
     }
     .item.hover-right {
-        left: 93%;
+        left: 95%;
     }
     .item.hover-left img,
     .item.hover-right img {
@@ -608,7 +608,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         width: 190px;
     }
     .carousel-inner > .active.right {
-        left: 93%;
+        left: 95%;
     }
     .items-wrapper {
         margin-left: 60px;
@@ -684,7 +684,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         width: 1100px;
     }
     .item.hover-right {
-        left: 93%;
+        left: 95%;
     }
     .item.hover-left img,
     .item.hover-right img {
@@ -698,7 +698,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         left: -92%;
     }
     .carousel-inner > .active.right {
-        left: 93%;
+        left: 95%;
     }
     .items-wrapper {
         margin-left: 95px;
