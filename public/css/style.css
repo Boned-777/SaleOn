@@ -433,12 +433,14 @@ body {
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
         width: 150px;
-        top:0px;
+        top:5px;
+        position: absolute;
+        bottom: 5px;
         left:38px;
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 150px;
-
+        height:100px;
 
 
     }
