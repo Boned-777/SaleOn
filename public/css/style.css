@@ -677,7 +677,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
     .item.hover-left {
         z-index: 10;
-        left: -92%;
+        left: -90%;
         width: 1100px;
     }
     .item.hover-right {
@@ -692,7 +692,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         width: 220px;
     }
     .carousel-inner > .active.left {
-        left: -92%;
+        left: -90%;
     }
     .carousel-inner > .active.right {
         left: 93%;
