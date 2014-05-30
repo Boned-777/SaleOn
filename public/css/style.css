@@ -423,7 +423,7 @@ body {
     background: url("/img/no_ad-hover.png") center center no-repeat;
     position: absolute;
     top: 5px;
-    height:90px;
+
     bottom: 5px;
 }
 
@@ -440,7 +440,7 @@ body {
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 150px;
-        height:100px;
+        height:90px;
 
 
     }
