@@ -1050,7 +1050,7 @@ textarea {
     margin-left: 0px;
 }
 
-div.span6.details-right{margin-left: 85px; width: 55%;  }
+div.span6.details-right{margin-left: -85px; width: 55%;  }
 .details-right h4 {
     margin: 0 0 10px 0;
 
