@@ -335,7 +335,7 @@ body {
 }
 .carousel-inner > .prev.right img,
 .carousel-inner > .next.left img {
-    width: 250px;
+    width: 190px;
     -webkit-transition: 0.6s linear width;
     -moz-transition: 0.5s linear width;
     -o-transition: 0.5s linear width;
