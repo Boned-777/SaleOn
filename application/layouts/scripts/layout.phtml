@@ -3,6 +3,9 @@
     <?php
         global $translate;
     ?>
+
+    <?php echo $this->headMeta();?>
+   <?= //$this->headTitle($title, $setType=null);?>
     <title><?= $translate->getAdapter()->translate("main_title")?></title>
     <?php
     echo $this->jQuery()
@@ -74,7 +77,7 @@
                     <div id="filters-modal" class="modal hide fade" tabindex="-1">
                         <div id="filters-content" class="modal-body"></div>
                         <div class="modal-footer">
-                            <button class="btn" dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                            <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
                         </div>
                     </div>
                     <div id="regions-modal" class="modal hide fade" tabindex="-1">
@@ -82,7 +85,7 @@
                         <div id="regions-content" class="modal-body"></div>
                         <div class="modal-footer">
                             <button id="region-back" class="btn pull-left hide"><?php echo $translate->getAdapter()->translate("back"); ?></button>
-                            <button class="btn" dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                            <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
                         </div>
                     </div>
                     <div id="brands-modal" class="modal hide fade" tabindex="-1">
