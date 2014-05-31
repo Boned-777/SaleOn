@@ -141,16 +141,16 @@ class Custom_Form_Validator_DateCompare extends Zend_Validate_Abstract
                 return false;
             }
         } else {
-            if ($date1->compare($date2) < 0) {
+            if ($date1->compare($date2) > 0) {
                 $this->_error(self::NOT_EARLIER);
                 return false;
             }
         }
 
         $today = new Zend_Date();
-        if ($date1->compare($today) < 0) {
+        if ($date1->compare($today) < 1) {
             $this->_error(self::NOT_ACTUAL);
-            return false;
+            return true;
         }
 
         // Date is valid
