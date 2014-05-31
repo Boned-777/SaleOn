@@ -136,7 +136,7 @@ class Custom_Form_Validator_DateCompare extends Zend_Validate_Abstract
 
         // Not Later
         if ($this->getCompare()) {
-            if ($date1->compare($date2) <= 0 || ($date1==$date2)) {
+            if ($date1->compare($date2) < 0 || ($date1==$date2)) {
                 $this->_error(self::NOT_LATER);
                 return false;
             }
