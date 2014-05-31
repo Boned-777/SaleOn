@@ -33,7 +33,7 @@ return array (
 
     // Partner profile form
     "enterprise" => "Підприємство",
-    "info" => "Інструкція ",
+    "info" => "Інформація",
     "profile" => "Профіль",
 
     "new_partner_reg" => "Реєстрація нового партнера",
@@ -62,7 +62,7 @@ return array (
     "archive" => "Архів",
     "noactive" => "Чернетки",
     "add_new" => "Додати акцію",
-    "rules" => "Інформація",
+    "rules" => "Інструкція",
     "ready" => "Готові",
     "exit" => "Вихід",
 

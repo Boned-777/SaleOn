@@ -26,14 +26,14 @@ return array (
     "address" => "Address",
     "phone" => "Phone number",
     "additional_phone" => "Additional phone number",
-    "url" => "Website (http://your_site_url) ",
+    "url" => "Website (http;//your_site_url)",
     "image" => "Large banner",
     "banner" => "Small banner",
     "video" => "Video HTML code",
 
     // Partner profile form
     "enterprise" => "Enterprise",
-    "info" => "Manual",
+    "info" => "Information",
     "profile" => "Profile",
 
     "new_partner_reg" => "Partner registration",
@@ -62,7 +62,7 @@ return array (
     "archive" => "Archive",
     "noactive" => "Drafts",
     "add_new" => "Add new",
-    "rules" => "Information",
+    "rules" => "Manual",
     "ready" => "Ready",
     "exit" => "Exit",
 
