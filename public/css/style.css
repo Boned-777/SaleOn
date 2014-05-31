@@ -345,7 +345,6 @@ body {
 .item.hover-left,
 .item.hover-right {
     display: block;
-    top: 55px;
     position: absolute;
     width: 100%;
     z-index: 1000;
