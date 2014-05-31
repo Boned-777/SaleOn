@@ -34,7 +34,7 @@ return array(
 
     // Partner profile form
     "enterprise" => "Предприятие",
-    'info' => "Инструкция",
+    'info' => "Инструкция ",
     'profile' => "Профиль",
 
     "new_partner_reg" => "Регистрация нового партнёра",

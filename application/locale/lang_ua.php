@@ -33,7 +33,7 @@ return array (
 
     // Partner profile form
     "enterprise" => "Підприємство",
-    "info" => "Інструкція",
+    "info" => "Інструкція ",
     "profile" => "Профіль",
 
     "new_partner_reg" => "Реєстрація нового партнера",
