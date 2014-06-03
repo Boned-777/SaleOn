@@ -4,9 +4,8 @@
         global $translate;
     ?>
 
-    <?php echo $this->headMeta();?>
-   <? //=$this->headTitle($title, $setType=null);?>
-    <title><?= $translate->getAdapter()->translate("main_title")?></title>
+    <?= $this->headMeta();?>
+    <?= $this->headTitle($translate->getAdapter()->translate("main_title"));?>
     <?php
     echo $this->jQuery()
         ->setVersion('1.9.1')

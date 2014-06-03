@@ -1,4 +1,7 @@
 <?php global $translate; ?>
+<?=$this->headMeta()->appendName('description', $this->ad->description);?>
+<?=$this->headTitle($this->ad->name);?>
+<?=$this->headTitle()->setSeparator(' / ');?>
 <div class="row">
     <div class="span6 details-left">
         <a href="#">
