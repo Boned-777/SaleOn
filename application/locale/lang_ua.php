@@ -26,10 +26,10 @@ return array (
     "address" => "Адреса",
     "phone" => "Телефон",
     "additional_phone" => "Додатковий телефон",
-    "url" => "Сайт",
+    "url" => "Сайт  (http://адррес Вашего сайта)",
     "image" => "Великий банер *",
     "banner" => "Маленький банер",
-    "video" => "Код відео",
+    "video" => "HTML - Код відео",
 
     // Partner profile form
     "enterprise" => "Підприємство",
@@ -62,7 +62,7 @@ return array (
     "archive" => "Архів",
     "noactive" => "Чернетки",
     "add_new" => "Додати акцію",
-    "rules" => "Інформація",
+    "rules" => "Інструкція",
     "ready" => "Готові",
     "exit" => "Вихід",
 
@@ -694,7 +694,7 @@ return array (
     "mm_user" => "Користувачам",
 
     "main_title" => "Всі Акції України",
-    "copyright" => "© ВАУ - Всі Акції України, 2014",
+    "copyright" => "© Всі Акції України, 2014",
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
     "lng_english" => "English",
@@ -720,16 +720,16 @@ return array (
     "fileUploadErrorIniSize" => "Надто великий файл",
 
     "image_info_text" => "Тут можна завантажити великий банер для сторінки повного опису акції",
-    "banner_info_text" => "Тут можна завантажити маленький банер для головної сторінки",
+    "banner_info_text" => "Тут можна завантажити маленький банер для головної сторінки, розміров 250x153px",
     "video_info_text" => "Тут можна завантажити відео для сторінки повного опису акції",
 
     'feedback_form_name' => 'Форма зворотнього звязку',
     'contact_country_name'=>'Україна',
-    'contact_org_name' => 'ВАУ-Всі Акції України',
+    'contact_org_name' => 'Всі Акції України',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
-    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_email' => 'wantlookinfo@ukr.net',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'wantlook.info',
     'contact_org_share_link' => 'Поділитися посиланням в соцмережах',
@@ -738,6 +738,7 @@ return array (
     'contact_name' => 'Ваше імя',
     'contact_text' => 'Текст повідомлення',
     'contact_send' => 'Надіслати',
+    'social_share'=>'Поділитись акцією',
 
     "invoice" => "Рахунок",
     "uah" => "грн.",

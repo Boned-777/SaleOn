@@ -27,10 +27,10 @@ return array(
     'address' => 'Адрес',
     'phone' => 'Телефон',
     'additional_phone' => "Дополнительный телефон",
-    'url' => 'Сайт',
+    'url' => 'Сайт  (http://адррес Вашего сайта)',
     'image' => 'Большой баннер *',
     'banner' => 'Маленький баннер',
-    'video' => 'Код видео',
+    'video' => 'HTML - Код видео',
 
     // Partner profile form
     "enterprise" => "Предприятие",
@@ -63,7 +63,7 @@ return array(
     "archive" => "Архив",
     "noactive" => "Черновики",
     "add_new" => "Добавить акцию",
-    "rules" => "Информация",
+    "rules" => "Инструкция",
     "ready" => "Готовые",
     "exit" => "Выход",
 
@@ -701,7 +701,7 @@ return array(
     "mm_user"=>"Пользователям",
 
     "main_title" => "Все Акции Украины",
-    "copyright" => "© ВАУ - Все Акции Украины, 2014",
+    "copyright" => "© Все Акции Украины, 2014",
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
     "lng_english" => "English",
@@ -724,16 +724,16 @@ return array(
     "fileUploadErrorIniSize" => "Слишком большой файл",
 
     "image_info_text" => "Здесь можно загрузить большой баннер для страницы полного описания акции",
-    "banner_info_text" => "Здесь можно загрузить маленький баннер для главной страницы",
+    "banner_info_text" => "Здесь можно загрузить маленький баннер для главной страници, размером 250х153px",
     "video_info_text" => "Здесь можно загрузить видео для страницы полного описания акции",
 
     'feedback_form_name' => 'Форма обратной связи',
     'contact_country_name'=>'Украина',
-    'contact_org_name' => 'ВАУ-Все Акции Украины',
+    'contact_org_name' => 'Все Акции Украины',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
-    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_email' => 'wantlookinfo@ukr.net',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'wantlook.info',
     'contact_topic' => 'Тема сообщения',
@@ -741,7 +741,7 @@ return array(
     'contact_name' => 'Ваше имя',
     'contact_text' => 'Текст сообщения',
     'contact_send' => 'Отправить',
-
+'social_share'=>'Поделиться акцией',
     "invoice" => "Счет для оплаты в банке",
     "uah" => "грн.",
     "publish" => "Опубликовать"

@@ -152,7 +152,8 @@
     width: 670px;
   }
   .span6 {
-    max-width: 570px;
+    width: 570px;
+      margin-top: 22px;
   }
   .span5 {
     width: 470px;
@@ -272,8 +273,8 @@
     *width: 31.570740134569924%;
   }
   .row-fluid .span3 {
-    width: 22.076923076923077%;
-    *width: 22.023731587561375%;
+    width: 22.276923076923077%;
+    *width: 21.823731587561375%;
   }
   .row-fluid .span2 {
     width: 14.52991452991453%;

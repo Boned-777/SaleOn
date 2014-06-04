@@ -1,10 +1,13 @@
 <?php global $translate; ?>
+<?=$this->headMeta()->appendName('description', $this->ad->description);?>
+<?=$this->headTitle($this->ad->name);?>
+<?=$this->headTitle()->setSeparator(' / ');?>
 <div class="row">
     <div class="span6 details-left">
         <a href="#">
             <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
-                <img width="550" height="auto" src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
+                <img width="auto" height="auto" src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
             <?php } else { ?>
                 <?php echo $this->ad->video; ?>
             <?php } ?>
@@ -46,6 +49,21 @@
         </div>
         <br><br><br>
         <div class="span5 top-offset">
+            <strong><?= $translate->getAdapter()->translate("social_share")?></strong><br/>
+            <script type="text/javascript">(function() {
+                    if (window.pluso)if (typeof window.pluso.start == "function") return;
+                    if (window.ifpluso==undefined) { window.ifpluso = 1;
+                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                        s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+                        s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+                        var h=d[g]('body')[0];
+                        h.appendChild(s);
+                    }})();
+            </script>
+            <div class="pluso" data-background="transparent"
+                 data-options="medium,square,line,horizontal,nocounter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email"></div>
+
+
             <address>
                 <a id="action-address" href="#">
                     <?php echo $this->ad->address; ?>
@@ -64,7 +82,7 @@
                     <div><noindex><a href="<?php echo $this->ad->url; ?>" rel="nofollow" target="_blank"><?php echo $this->ad->url; ?></a></noindex></div>
                     <?php } ?>
             </address>
-        </div>
+        </div></div>
 
 
     </div>
@@ -100,4 +118,5 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
 <script type="text/javascript" src="/js/full-action.js"></script>
+
 

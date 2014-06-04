@@ -26,10 +26,10 @@ return array (
     "address" => "Address",
     "phone" => "Phone number",
     "additional_phone" => "Additional phone number",
-    "url" => "Website",
+    "url" => "Website (http;//your_site_url)",
     "image" => "Large banner",
     "banner" => "Small banner",
-    "video" => "Video code",
+    "video" => "Video HTML code",
 
     // Partner profile form
     "enterprise" => "Enterprise",
@@ -62,7 +62,7 @@ return array (
     "archive" => "Archive",
     "noactive" => "Drafts",
     "add_new" => "Add new",
-    "rules" => "Information",
+    "rules" => "Manual",
     "ready" => "Ready",
     "exit" => "Exit",
 
@@ -698,8 +698,8 @@ return array (
     "mm_favorites" => "Favorites",
     "mm_user" => "User",
 
-    "main_title" => "All Shares of Ukraine",
-    "copyright" => "© ВАУ - All Shares of Ukraine, 2014",
+    "main_title" => "All Specials of Ukraine",
+    "copyright" => "© All Specials of Ukraine, 2014",
     "lng_russian" => "Russian",
     "lng_ukrainian" => "Ukrainian",
     "lng_english" => "English",

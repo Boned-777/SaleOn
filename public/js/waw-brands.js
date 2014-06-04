@@ -198,7 +198,7 @@
 			loadLetter : function (letter) {
 				if (_.isEmpty(this.data.letters[this.currentBrandsGroup][letter])){
 					this.dom.lockLayer.show();
-					var link = (this.currentBrandsGroup == "0") ? "brands/list?term="+letter : "products/list?term="+letter;
+					var link = (this.currentBrandsGroup == "0") ? "/brands/list?term="+letter : "/products/list?term="+letter;
 					$.ajax({
 						url 	: link,
 				        dataType: "json",

@@ -34,13 +34,13 @@ class Application_Form_AdMain extends Zend_Form
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("description") . ' *',
-            'max_length' => 500,
+            'max_length' => 250,
             'validators'    => array(
                 array(
                     'validator' =>  'StringLength',
                     'options'   => array(
                         'encoding' => 'UTF-8',
-                        'max' => 550,
+                        'max' => 300,
                         'messages'  =>  array(
                                Zend_Validate_StringLength::TOO_LONG => $translate->getAdapter()->translate("too_long"),
                         )
@@ -53,13 +53,13 @@ class Application_Form_AdMain extends Zend_Form
         $this->addElement('textarea', 'full_description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("full_description"),
-            'max_length' => 2500,
+            'max_length' => 5500,
             'validators'    => array(
                 array(
                     'validator' =>  'StringLength',
                     'options'   => array(
                         'encoding' => 'UTF-8',
-                        'max' => 2550,
+                        'max' => 5050,
                         'messages'  =>  array(
                             Zend_Validate_StringLength::TOO_LONG => $translate->getAdapter()->translate("too_long"),
                         )
