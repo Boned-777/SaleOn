@@ -1,5 +1,5 @@
 <?php global $translate; ?>
-<?=$this->headMeta()->appendName('description', $this->ad->description);?>
+<?=$this->headMeta()->appendName('description', $translate->getAdapter()->translate("main_title"));?>
 <?=$this->headTitle($this->ad->name);?>
 <?=$this->headTitle()->setSeparator(' / ');?>
 <div class="row">
