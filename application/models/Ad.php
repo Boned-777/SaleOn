@@ -392,24 +392,18 @@ class Application_Model_Ad
         $select = $item->select();
         $select->setIntegrityCheck(false);
         $select
-            ->from(array("a" => "ads"))
-            ->where("a.status = ? AND a.end_dt >= NOW() AND a.public_dt <= NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->distinct()
+            ->from(array("a" => "ads"), array("a.*"))
+            ->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("a.order_index");
-
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
                     case "geo" :
-                        $select->join(array("al"=>"AdLocation"), "a.id = al.ad_id");
-                        $geoWhere = "al.location LIKE '$val' OR al.location LIKE '$val-%'";
-                        $mainId = explode("-", $val);
-                        if (count($mainId) > 1) {
-                            $geoWhere .= " OR al.location LIKE '$mainId[0]'";
-                            if (isset($mainId[1])) {
-                                $geoWhere .= " OR al.location LIKE '$mainId[0]-$mainId[1]-0'";
-                            }
-                        }
-                        $select->where("(" . $geoWhere . ")");
+                        $item->select()->setIntegrityCheck(false);
+                        $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
+                        $geoWhere = Application_Model_DbTable_AdLocation::prepareWhereStatement($val, "al");
+                        $select->where($geoWhere);
                         break;
 
                     default :
@@ -418,6 +412,8 @@ class Application_Model_Ad
                 }
             }
         }
+        $select->reset(Zend_Db_Select::COLUMNS);
+        $select->columns("a.*");
 
         $data = $item->fetchAll($select);
         $data = $data->toArray();
