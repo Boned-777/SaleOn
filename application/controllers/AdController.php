@@ -111,23 +111,14 @@ class AdController extends Zend_Controller_Action
         unset($partnerData["id"]);
         $item->loadIfEmpty($partnerData);
 
-        $geoVal = "1-0-0";
-        if ($this->_getParam('geo'))
-            $geoVal = $this->_getParam('geo');
-        $this->view->settingsForm->prepareGeo($geoVal);
-        $this->view->settingsForm->populate(array("geo" => $geoVal));
-
         if ($request->isPost()) {
             $formData = $request->getPost();
             if ($formData["id"])
                 $item->get($formData["id"]);
             $form = $forms[$formData["form"]];
-            // Geo value fix
+
             if ($formData["form"] == "AdSettings") {
-                $geoArr = explode("-", $formData["geo"]);
-                $formData["country"] = $geoArr[0]?$geoArr[0]:"1";
-                $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
-                $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
+                $item->location->setLocationsList($this->getParam("location", array()));
             }
 
             if ($formData["form"] == "AdMedia") {
@@ -209,6 +200,16 @@ class AdController extends Zend_Controller_Action
         $this->view->settingsForm = new Application_Form_AdSettings(array("isReady" => $isReady));
         $this->view->mediaForm = new Application_Form_AdMedia(array("isReady" => $isReady));
 
+        $elemId = 1;
+        foreach ($item->location->locations as $location) {
+            $elem = $this->view->settingsForm->createElement('hidden', ''.$elemId++, array(
+                "id" => $location->location,
+                "value" => $location->location
+            ));
+            $elem->setBelongsTo('location');
+            $this->view->settingsForm->addElement($elem);
+        }
+
         $order = new Application_Model_Order();
         if ($item->status == Application_Model_DbTable_Ad::STATUS_ACTIVE) {
             $elList = $this->view->datesForm->getElements();
@@ -251,28 +252,14 @@ class AdController extends Zend_Controller_Action
         $this->view->image = $item->image;
         $this->view->banner = $item->banner;
         $request = $this->getRequest();
-        $geoVal = $item->geo;
-        if ($this->_getParam('geo'))
-            $geoVal = $this->_getParam('geo');
-        if (empty($geoVal)) {
-            $geoVal = "1-0-0";
-        }
-        $this->view->settingsForm->prepareGeo($geoVal);
 
         $this->view->ad = $item;
         if ($request->isPost()) {
             $formData = $this->getAllParams();
-            if (isset($formData["district"])) {
-                if (sizeof(explode(".", $formData["district"])) == 2)
-                    $formData["district"] .= ".0";
-            }
             $form = $forms[$formData["form"]];
-            // Geo value fix
+
             if ($formData["form"] == "AdSettings") {
-                $geoArr = explode("-", $formData["geo"]);
-                $formData["country"] = $geoArr[0]?$geoArr[0]:"1";
-                $formData["region"] = $formData["country"] . "-" . (isset($geoArr[1])?$geoArr[1]:"0");
-                $formData["district"] = $formData["region"] . "-" . (isset($geoArr[2])?$geoArr[2]:"0");
+                $item->location->setLocationsList($this->getParam("location", array()));
             }
 
             if ($formData["form"] == "AdMedia") {
@@ -304,6 +291,7 @@ class AdController extends Zend_Controller_Action
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
                 $item->save();
+
                 if ($item->id) {
                     if ($isReady) {
                         if ($this->user->role == Application_Model_User::ADMIN)

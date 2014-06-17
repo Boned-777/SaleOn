@@ -35,6 +35,46 @@ class Application_Model_Geo
         return $resArr;
     }
 
+    public function getAllTree($adId = null) {
+        $db = new Application_Model_DbTable_Geo();
+        $dbItems = $db->fetchAll(null, array("code", "name"));
+
+        $currentLocations = array();
+        if(!is_null($adId)) {
+            $locations = new Application_Model_AdLocationCollection();
+            $locations->getByAdId($adId);
+            $currentLocations = $locations->getLocationsList();
+        }
+
+        $data = array();
+        foreach ($dbItems as $item) {
+            $map = explode("-", $item->code);
+            $isChecked = false;
+            if (in_array($item->code, $currentLocations)) {
+                $isChecked = true;
+            }
+            switch (sizeof($map)) {
+                case 1 :
+                    $data = $item->toArray($isChecked);
+                    break;
+
+                case 2 :
+                    $data["branch"][$map[1]] = $item->toArray($isChecked);
+                    $data["inode"] = true;
+                    break;
+
+                case 3 :
+                    $data["branch"][$map[1]]["branch"][] = $item->toArray($isChecked);
+                    $data["branch"][$map[1]]["inode"] = true;
+                    break;
+            }
+        }
+
+        $data["branch"] = array_values($data["branch"]);
+
+        return $data;
+    }
+
     public function getAllChild($pattern = "") {
         global $translate;
         $dbItem = new Application_Model_DbTable_Geo();
@@ -85,25 +125,23 @@ class Application_Model_Geo
         $is_path = 0;
         if (sizeof(explode("-", $pattern)) == 2)
             $is_path = 1;
-        $allSumCount = $allCount;
         foreach ($itemsArr as $value) {
-            $currentCount = isset($countsList[$value["code"]])?$countsList[$value["code"]]:0;
+            $currentCount = isset($countsList[$value["code"]])?$countsList[$value["code"]]:$allCount;
             if (!preg_match("/^[0-9]{1,2}-[0-9]{1,2}-99/", $value["code"])) {
                 $resArr[] = array(
                     "name" => $value["code"],
                     "value" => str_replace("І", "ИИ", $translate->getAdapter()->translate($value["name"])),
-                    "count" => $allCount + $currentCount,
+                    "count" => $currentCount,
                     "is_path" => $is_path
                 );
             } else {
                 $cityArray = array(
                     "name" => $value["code"],
                     "value" => $translate->getAdapter()->translate($value["name"]),
-                    "count" => $allCount + $currentCount,
+                    "count" => $currentCount,
                     "is_path" => $is_path
                 );
             }
-            $allSumCount += $currentCount;
         }
         //sorting
         $name = array();
@@ -118,7 +156,7 @@ class Application_Model_Geo
         $additional = array(array(
             "name" => $originalPattern,
             "value" => $translate->getAdapter()->translate("any"),
-            "count" => $allSumCount,
+            "count" => $this->_getAllCounts($originalPattern, $params),
             "is_path" => 0
         ));
         if ($cityArray)
@@ -132,66 +170,70 @@ class Application_Model_Geo
         $temp = $temp?$temp:"";
         $mainId = explode("-", $temp);
         $mainId = $mainId[0];
-        $ad = new Application_Model_DbTable_Ad();
+        $ad = new Application_Model_DbTable_AdLocation();
         $select = $ad->select();
-        $select->from("ads", array(
-            new Zend_Db_Expr("geo"),
-            new Zend_Db_Expr("COUNT(*) count"),
-            new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", geo), ">'.$temp.'-", ""), 2), "-","") et')
+        $select->setIntegrityCheck(false);
+        $select->from(array("al" => "AdLocation"), array(
+            new Zend_Db_Expr("al.location"),
+            new Zend_Db_Expr("COUNT(al.location) count"),
+            new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", al.location), ">'.$temp.'-", ""), 2), "-","") et')
         ));
         $geoStmt = "";
         if ($temp !== "") {
-            $geoStmt .= 'geo LIKE "'.$temp.'" OR geo LIKE "'.$temp.'-%"';
+            $geoStmt .= 'al.location LIKE "'.$temp.'" OR al.location LIKE "'.$temp.'-%"';
         } else {
-            $geoStmt .= 'geo LIKE "" OR geo LIKE "%"';
+            $geoStmt .= 'al.location LIKE "" OR al.location LIKE "%"';
         }
         if ($temp != $mainId) {
-            $geoStmt .= " OR geo LIKE '$mainId'";
+            $geoStmt .= " OR al.location LIKE '$mainId'";
         }
+        $select->join(array("a" => "ads"), "a.id = al.ad_id");
         $select->where($geoStmt);
-        $select->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $select->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $select->group("et");
-
-        if (!is_null($params)) {
-            foreach ($params as $key => $val) {
-                switch ($key) {
-                    case "geo" :
-                        $geoWhere = "geo LIKE '$val' OR geo LIKE '$val-%'";
-                        $mainId = explode("-", $val);
-                        if (count($mainId) > 1) {
-                            $geoWhere .= " OR geo LIKE '$mainId[0]'";
-                            if (isset($mainId[1])) {
-                                $geoWhere .= " OR geo LIKE '$mainId[0]-$mainId[1]-0'";
-                            }
-                        }
-                        $select->where("(" . $geoWhere . ")");
-                        break;
-
-                    default :
-                        $select->where("$key = ?", $val);
-                        break;
-                }
-            }
-        }
+        $select->order("et DESC");
 
         $data = $ad->fetchAll($select)->toArray();
         $resData = array();
         $resData[$temp] = 0;
+
         foreach($data as $val) {
             if (!empty($temp))
                 if ($val["et"]){
                     if (strstr($val["et"], ">")) {
                         $resData[$temp] += $val["count"];
                     } else {
-                        $resData[$temp."-".$val["et"]] = $val["count"];
+                        $resData[$temp."-".$val["et"]] = $val["count"] + $resData[$temp];
                     }
                 } else {
-                    $resData[$temp] = $val["count"];
+                    $resData[$temp] = $val["count"] + $resData[$temp];
                 }
             else
-                $resData[$val["et"]] = $val["count"];
+                $resData[$val["et"]] = $val["count"] + $resData[$temp];
         }
         return $resData;
+    }
+
+    protected function _getAllCounts($temp = "", $params = null) {
+        $temp = $temp?$temp:"";
+
+
+        $ad = new Application_Model_DbTable_AdLocation();
+        $select = $ad->select();
+        $select->setIntegrityCheck(false);
+        $select->distinct();
+        $select->from(array("al" => "AdLocation"), array(
+            new Zend_Db_Expr("a.id")
+        ));
+
+        $geoStmt = Application_Model_DbTable_AdLocation::prepareWhereStatement($temp, "al");
+
+        $select->join(array("a" => "ads"), "a.id = al.ad_id");
+        $select->where($geoStmt);
+        $select->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+
+        $res = $ad->fetchAll($select);
+        return $res->count();
     }
 
     public function getFullGeoName ($geoCode = "") {

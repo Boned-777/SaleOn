@@ -13,26 +13,26 @@ class TestController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $client = new Google_Client();
-        $client->setApplicationName("WantLook");
-        //echo "http://".$_SERVER['HTTP_HOST']."/test/auth";
-        $client->setRedirectUri('http://localhost/test/auth');
-        $plus = new Google_PlusService($client);
-
-        if ($client->getAccessToken()) {
-            $client->setUseBatch(true);
-
-            $batch = new Google_BatchRequest();
-            $batch->add($plus->people->get('me'), 'key1');
-            $batch->add($plus->people->get('me'), 'key2');
-            $result = $batch->execute();
-
-            // The access token may have been updated lazily.
-            $_SESSION['token'] = $client->getAccessToken();
-        } else {
-            $authUrl = $client->createAuthUrl();
-            print "<a class='login' href='$authUrl'>Connect Me!</a>";
-        }
+//        $client = new Google_Client();
+//        $client->setApplicationName("WantLook");
+//        //echo "http://".$_SERVER['HTTP_HOST']."/test/auth";
+//        $client->setRedirectUri('http://localhost/test/auth');
+//        $plus = new Google_PlusService($client);
+//
+//        if ($client->getAccessToken()) {
+//            $client->setUseBatch(true);
+//
+//            $batch = new Google_BatchRequest();
+//            $batch->add($plus->people->get('me'), 'key1');
+//            $batch->add($plus->people->get('me'), 'key2');
+//            $result = $batch->execute();
+//
+//            // The access token may have been updated lazily.
+//            $_SESSION['token'] = $client->getAccessToken();
+//        } else {
+//            $authUrl = $client->createAuthUrl();
+//            print "<a class='login' href='$authUrl'>Connect Me!</a>";
+//        }
 	}
     public function authAction()
     {

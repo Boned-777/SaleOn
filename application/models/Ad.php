@@ -7,7 +7,6 @@ class Application_Model_Ad
 	public $description;
     public $full_description;
 	public $public_dt;
-//	public $start_dt;
 	public $end_dt;
 	public $region;
 	public $category;
@@ -31,6 +30,7 @@ class Application_Model_Ad
     public $geo_name;
     public $status;
     public $order_index;
+    public $location;
 
     public function load($data) {
         $vars = get_class_vars(get_class());
@@ -47,6 +47,14 @@ class Application_Model_Ad
                     if ($data['product']) {
                         $item = new Application_Model_DbTable_Product();
                         $this->product_name = $item->getNameById($data['product']);
+                    }
+                    break;
+
+                case "location":
+                    if (!$this->location) {
+                        $collection = new Application_Model_AdLocationCollection();
+                        $collection->getByAdId($this->id);
+                        $this->location = $collection;
                     }
                     break;
 
@@ -107,6 +115,7 @@ class Application_Model_Ad
                 case "geo_name":
                 case "status":
                 case "order_index":
+                case "region":
                     break;
 
                 default:
@@ -120,12 +129,23 @@ class Application_Model_Ad
     }
 
     public function save() {
+        $isNew = false;
+        if (!$this->id) {
+            $isNew = true;
+        }
         $vars = get_class_vars(get_class());
         $data = array();
         foreach ($vars as $key => $value) {
             switch ($key) {
                 case 'brand_name' :
                 case 'product_name':
+                case "geo":
+                    break;
+
+                case 'location':
+                    if (!$isNew) {
+                        $this->location->save();
+                    }
                     break;
 
                 case "status":
@@ -133,14 +153,6 @@ class Application_Model_Ad
                         $data[$key] = $this->status;
                     } else {
                         $data[$key] = Application_Model_DbTable_Ad::STATUS_DRAFT;
-                    }
-                    break;
-
-                case "geo":
-                    if (empty($this->geo)) {
-                        $data[$key] = "1";
-                    } else {
-                        $data[$key] = $this->$key;
                     }
                     break;
 
@@ -155,9 +167,18 @@ class Application_Model_Ad
         if ($this->id) {
             $this->finishAllOrders();
         }
+
         $res = $dbItem->save($data, $this->id);
-        if ($res !== false)
+        if ($res !== false) {
             $this->id = $res;
+        }
+
+        if ($isNew) {
+            $this->location->getByAdId($this->id);
+            $this->location->setLocationsList(array("1"));
+            $this->location->save();
+        }
+
         return $res;
     }
 
@@ -182,32 +203,34 @@ class Application_Model_Ad
 
     public function getList($params=null) {
         $item = new Application_Model_DbTable_Ad();
-        $stmt = $item->select()
-            ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order("order_index DESC");
+        $select = $item->select();
+        $select->setIntegrityCheck(false);
+        $select
+            ->distinct()
+            ->from(array("a" => "ads"), array("a.*"))
+            ->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->order("a.order_index DESC");
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
                     case "geo" :
-                        $geoWhere = "geo LIKE '$val' OR geo LIKE '$val-%'";
-                        $mainId = explode("-", $val);
-                        if (count($mainId) > 1) {
-                            $geoWhere .= " OR geo LIKE '$mainId[0]'";
-                            if (isset($mainId[1])) {
-                                $geoWhere .= " OR geo LIKE '$mainId[0]-$mainId[1]-0'";
-                            }
-                        }
-                        $stmt->where("(" . $geoWhere . ")");
+                        $item->select()->setIntegrityCheck(false);
+                        $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
+                        $geoWhere = Application_Model_DbTable_AdLocation::prepareWhereStatement($val, "al");
+                        $select->where($geoWhere);
                         break;
 
                     default :
-                        $stmt->where("$key = ?", $val);
+                        $select->where("$key = ?", $val);
                         break;
                 }
             }
         }
+        $select->reset(Zend_Db_Select::COLUMNS);
+        $select->columns("a.*");
 
-        $data = $item->fetchAll($stmt);
+        $data = $item->fetchAll($select);
+
         if ($data !== false) {
             $res = array();
             $data = $data->toArray();
@@ -224,18 +247,33 @@ class Application_Model_Ad
 
     public function getNewsList($params=null) {
         $item = new Application_Model_DbTable_Ad();
-        $stmt = $item->select()
-            ->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order("public_dt DESC");
+        $select = $item->select();
+        $select->setIntegrityCheck(false);
+        $select
+            ->distinct()
+            ->from(array("a" => "ads"), array("a.*"))
+            ->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->order(".public_dt DESC");
         if (!is_null($params)) {
-            $geo = explode("-", $params["geo"]);
-            if (isset($geo[2])) {
-                unset($geo[2]);
+            foreach ($params as $key => $val) {
+                switch ($key) {
+                    case "geo" :
+                        $item->select()->setIntegrityCheck(false);
+                        $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
+                        $geoWhere = Application_Model_DbTable_AdLocation::prepareWhereStatement($val, "al");
+                        $select->where($geoWhere);
+                        break;
+
+                    default :
+                        $select->where("$key = ?", $val);
+                        break;
+                }
             }
-            $geoStr = implode("-", $geo);
-            $stmt->where('geo LIKE "' . $geoStr . '" OR geo LIKE "' . $geoStr . '-%" OR geo LIKE "' . $geo[0] . '"');
         }
-        $data = $item->fetchAll($stmt);
+        $select->reset(Zend_Db_Select::COLUMNS);
+        $select->columns("a.*");
+
+        $data = $item->fetchAll($select);
         if ($data !== false) {
             $res = array();
             $data = $data->toArray();
@@ -282,7 +320,6 @@ class Application_Model_Ad
         $vars = array(
             "post_id" => "id",
             "post_full_url" => "url",
-            //"region" => "geo_name",
             "brand_name" => "brand_name",
             "name" => "name",
             "photoimg" => "banner",
@@ -352,20 +389,24 @@ class Application_Model_Ad
 
     public function getNeighborhood($params=null) {
         $item = new Application_Model_DbTable_Ad();
-        $select = $item->select()
-            ->where("status = ? AND end_dt >= NOW() AND public_dt <= NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order("order_index");
+        $select = $item->select();
+        $select->setIntegrityCheck(false);
+        $select
+            ->from(array("a" => "ads"))
+            ->where("a.status = ? AND a.end_dt >= NOW() AND a.public_dt <= NOW()", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->order("a.order_index");
 
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
                     case "geo" :
-                        $geoWhere = "geo LIKE '$val' OR geo LIKE '$val-%'";
+                        $select->join(array("al"=>"AdLocation"), "a.id = al.ad_id");
+                        $geoWhere = "al.location LIKE '$val' OR al.location LIKE '$val-%'";
                         $mainId = explode("-", $val);
                         if (count($mainId) > 1) {
-                            $geoWhere .= " OR geo LIKE '$mainId[0]'";
+                            $geoWhere .= " OR al.location LIKE '$mainId[0]'";
                             if (isset($mainId[1])) {
-                                $geoWhere .= " OR geo LIKE '$mainId[0]-$mainId[1]-0'";
+                                $geoWhere .= " OR al.location LIKE '$mainId[0]-$mainId[1]-0'";
                             }
                         }
                         $select->where("(" . $geoWhere . ")");
@@ -458,6 +499,7 @@ class Application_Model_Ad
                 unset($geo[$key]);
             }
         }
-        return $basePrice[count($geo)] * $daysCount;
+        return 0;
+        //return $basePrice[count($geo)] * $daysCount;
     }
 }

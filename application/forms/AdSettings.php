@@ -7,6 +7,7 @@ class Application_Form_AdSettings extends Zend_Form
     {
         $this->isReady = $options["isReady"]?true:false;
         parent::__construct($options);
+        $this->setAttrib("id", "ad_settings_form");
     }
 
     public function init()
@@ -59,27 +60,7 @@ class Application_Form_AdSettings extends Zend_Form
             }'));
         $this->addElement($product);
 
-        $this->addElement('hidden', 'geo');
-        $this->getElement("geo")->setDecorators(array('ViewHelper'));
-
-        $geo = new Application_Model_Geo();
-        $this->addElement('select', 'country', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("country"),
-            'multiOptions' => $geo->getAll("")
-        ));
-
-        $this->addElement('select', 'region', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("region"),
-        ));
-
-        $this->addElement('select', 'district', array(
-            'class' => "input-block-level",
-            'label' => $translate->getAdapter()->translate("city"),
-        ));
-
-        $this->addElement('submit', 'login', array(
+        $this->addElement('submit', 'settings_submit', array(
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
             'ignore' => true,
@@ -88,18 +69,18 @@ class Application_Form_AdSettings extends Zend_Form
     }
 
     public function prepareGeo($geo="1-0-0") {
-        $geoItem = new Application_Model_Geo();
-        $geo = $geo?$geo:"1-0-0";
-        $geoVals = explode("-", $geo);
-        $geoVals = array_merge($geoVals, array(0,0,0));
-
-        $this->getElement("country")->setValue($geoVals[0]);
-
-        $this->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
-        $this->getElement("region")->setValue($geoVals[0].'-'.$geoVals[1]);
-
-        $this->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'-'.$geoVals[1]));
-        $this->getElement("district")->setValue($geoVals[0].'-'.$geoVals[1].'-'.$geoVals[2]);
+//        $geoItem = new Application_Model_Geo();
+//        $geo = $geo?$geo:"1-0-0";
+//        $geoVals = explode("-", $geo);
+//        $geoVals = array_merge($geoVals, array(0,0,0));
+//
+//        $this->getElement("country")->setValue($geoVals[0]);
+//
+//        $this->getElement("region")->setMultiOptions($geoItem->getAll($geoVals[0]));
+//        $this->getElement("region")->setValue($geoVals[0].'-'.$geoVals[1]);
+//
+//        $this->getElement("district")->setMultiOptions($geoItem->getAll($geoVals[0].'-'.$geoVals[1]));
+//        $this->getElement("district")->setValue($geoVals[0].'-'.$geoVals[1].'-'.$geoVals[2]);
     }
 
     public function isValid($data) {
@@ -144,8 +125,6 @@ class Application_Form_AdSettings extends Zend_Form
                 $itemData["product"] = $product_res;
             }
         }
-        $itemData["geo"] = $formData["geo"];
-        $itemData["geo_name"] = $geoItem->getFullGeoName($formData["geo"]);
         return $itemData;
     }
 }

@@ -11,7 +11,19 @@
     <div class="tab-content">
         <div class="tab-pane active" id="main"><?php echo $this->mainForm->setAction($this->url()); ?></div>
         <div class="tab-pane" id="dates"><?php echo $this->datesForm->setAction($this->url()); ?></div>
-        <div class="tab-pane" id="settings"><?php echo $this->settingsForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="settings">
+            <div class="row">
+                <div class="span5">
+                    <?php echo $this->settingsForm->setAction($this->url()); ?>
+                </div>
+                <div class="span6">
+                    <label for="brand_name" class="optional">Регионы действия акции</label>
+                    <div style="height: 320px; overflow-y: auto; border: 1px solid #cccccc; border-radius: 3px;">
+                        <div id="geo_tree" class="aciTree"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="tab-pane" id="contacts"><?php echo $this->contactsForm->setAction($this->url()); ?></div>
         <div class="tab-pane" id="media">
             <div class="span5"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
@@ -26,6 +38,7 @@
         </div>
     </div>
 </div>
+
 <?php if (!empty($this->gotoTab)) {?>
     <script type="text/javascript">
         <?php echo "window.location.hash = \"" . $this->gotoTab . "\";"; ?>
@@ -38,12 +51,34 @@
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
 <script type="text/javascript" src="/js/jquery/jquery.maskedinput.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="/css/aciTree.css" media="all">
+<script type="text/javascript" src="/js/aciTree/jquery.aciPlugin.min.js"></script>
+<script type="text/javascript" src="/js/aciTree/jquery.aciTree.min.js"></script>
+
 <script>
     var bigBannerHelp = '&nbsp;<i class="icon-info-sign" id="big-banner-help" data-content="<?= $translate->getAdapter()->translate("image_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
     var smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="<?= $translate->getAdapter()->translate("banner_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
     var videoHelp = '&nbsp;<i class="icon-info-sign" id="video-help" data-content="<?= $translate->getAdapter()->translate("video_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
 </script>
 
+<script type="application/javascript">
+    $('#geo').aciTree({
+        ajax: {
+            url: '/geo/get-list'
+        },
+        selectable: true
+    });
+</script>
+
 <script src="/js/ad.js"></script>
+
+<?php $this->headLink()->prependStylesheet($this->baseUrl('css/aciTree.css')); ?>
+<script type="text/javascript" src="/js/aciTree/jquery.aciPlugin.min.js"></script>
+<script type="text/javascript" src="/js/aciTree/jquery.aciTree.min.js"></script>
+<script type="text/javascript" src="/js/aciTree/jquery.aciTree.core.js"></script>
+<script type="text/javascript" src="/js/aciTree/jquery.aciTree.checkbox.js"></script>
+<script type="text/javascript" src="/js/aciTree/jquery.aciTree.utils.js"></script>
+
+<script type="text/javascript" src="/js/geo-tree.js"></script>
 
 

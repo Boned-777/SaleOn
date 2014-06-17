@@ -44,40 +44,42 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
     }
 
     protected function getCounts($db, $colName, $params=null) {
-        $items = $db->select();
-        $items->from("ads", array(
-            new Zend_Db_Expr($colName),
-            new Zend_Db_Expr("COUNT(*) count")
+        $select = $db->select();
+        $select->from(array("a"=>"ads"), array(
+            new Zend_Db_Expr("a.".$colName),
+            new Zend_Db_Expr("COUNT(a.$colName) count")
         ));
-        $items->where("end_dt >= NOW() AND public_dt <= NOW() AND status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $select->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
                     case "geo" :
-                        $geoWhere = "geo LIKE '$val' OR geo LIKE '$val-%'";
+                        $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
+                        $geoWhere = "al.location LIKE '$val' OR al.location LIKE '$val-%'";
                         $mainId = explode("-", $val);
                         if (count($mainId) > 1) {
-                            $geoWhere .= " OR geo LIKE '$mainId[0]'";
+                            $geoWhere .= " OR al.location LIKE '$mainId[0]'";
                             if (isset($mainId[1])) {
-                                $geoWhere .= " OR geo LIKE '$mainId[0]-$mainId[1]-0'";
+                                $geoWhere .= " OR al.location LIKE '$mainId[0]-$mainId[1]-0'";
                             }
                         }
-                        $items->where("(" . $geoWhere . ")");
+                        $select->where("(" . $geoWhere . ")");
                         break;
 
                     default :
-                        $items->where("$key = ?", $val);
+                        $select->where("a.$key = ?", $val);
                         break;
                 }
             }
         }
-        $items->group($colName);
-        $stmt = $items->query();
+        $select->group("a.".$colName);
+        $stmt = $select->query();
         $data = $stmt->fetchAll();
         $countsList = array();
         foreach ($data as $countVal) {
             $countsList[$countVal[$colName]] = $countVal["count"];
         }
+
         return $countsList;
     }
 
