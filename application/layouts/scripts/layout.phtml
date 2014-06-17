@@ -25,7 +25,17 @@
     <?php echo $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap.css')); ?>
     <script type="text/javascript" src="/js/browser.js"></script>
     <script type="text/javascript" src="/js/jquery/jquery.cookie.js"></script>
-    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-51869251-1', 'wantlook.info');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
     <?php global $session;?>
@@ -205,7 +215,9 @@
                 </ul>
             </div>
             <button id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="btn dropdown-toggle contacts"></button>
-            <p class="credit pull-right"><?= $translate->getAdapter()->translate("copyright")?></p>
+            <p class="credit pull-right"><a href="https://plus.google.com/117708080449266987056/?rel=author">
+                    © Все Акции Украины, 2014
+                </a></p>
             <div id="footer-social" class="socials"></div>
         </div>
     </div>

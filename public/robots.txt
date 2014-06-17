@@ -1,0 +1,17 @@
+Sitemap: http://wantlook.info/sitemap.xml
+User-agent: *
+Disallow: /user/
+Disallow: /partner/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /auth/
+
+User-agent: Yandex
+Disallow: /auth/
+Disallow: /js/
+Disallow: /user/
+Disallow: /partner/
+Disallow: /css/
+Disallow: /fonts/
+Host: wantlook.info
