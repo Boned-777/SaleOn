@@ -59,12 +59,12 @@ class Application_Model_Geo
                     break;
 
                 case 2 :
-                    $data["branch"][$map[1]] = $item->toArray($isChecked);
+                    $data["branch"][$map[1]] = $item->toArray($isChecked ? $isChecked : $data["checked"]);
                     $data["inode"] = true;
                     break;
 
                 case 3 :
-                    $data["branch"][$map[1]]["branch"][] = $item->toArray($isChecked);
+                    $data["branch"][$map[1]]["branch"][] = $item->toArray($isChecked ? $isChecked : $data["branch"][$map[1]]["checked"]);
                     $data["branch"][$map[1]]["inode"] = true;
                     break;
             }
