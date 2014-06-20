@@ -4,6 +4,7 @@ class Application_Model_AdLocationCollection
     public $adId;
     public $locations;
     public $newLocations;
+    protected $_makeUpdate = false;
 
     public function getByAdId($id) {
         $this->adId = $id;
@@ -20,6 +21,7 @@ class Application_Model_AdLocationCollection
      * @param array $locations
      */
     public function setLocationsList($locations) {
+        $this->_makeUpdate = true;
         $this->newLocations = $locations;
     }
 
@@ -42,6 +44,10 @@ class Application_Model_AdLocationCollection
     }
 
     public function save() {
+        if (!$this->_makeUpdate)
+            return true;
+
+//        var_dump($this->_makeUpdate); die();
         $this->clearList();
         $this->locations = array();
         if (!is_null($this->newLocations)) {
