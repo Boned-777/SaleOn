@@ -9,6 +9,7 @@ function buildOptimalCheckedList(api, item) {
             buildOptimalCheckedList(api, currentItem);
             currentItem = api.next(currentItem);
         }
+        buildOptimalCheckedList(api, currentItem);
     }
 }
 
