@@ -46,8 +46,6 @@ class Application_Model_AdLocationCollection
     public function save() {
         if (!$this->_makeUpdate)
             return true;
-
-//        var_dump($this->_makeUpdate); die();
         $this->clearList();
         $this->locations = array();
         if (!is_null($this->newLocations)) {
