@@ -189,7 +189,7 @@ class Application_Model_Geo
         }
         $select->join(array("a" => "ads"), "a.id = al.ad_id");
         $select->where($geoStmt);
-        $select->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $select->where("(a.end_dt >= NOW() + INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         $select->group("et");
         $select->order("et DESC");
 
@@ -230,7 +230,7 @@ class Application_Model_Geo
 
         $select->join(array("a" => "ads"), "a.id = al.ad_id");
         $select->where($geoStmt);
-        $select->where("a.end_dt >= NOW() AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $select->where("(a.end_dt >= NOW() + INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
 
         $res = $ad->fetchAll($select);
         return $res->count();
