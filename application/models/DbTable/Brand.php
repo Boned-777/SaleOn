@@ -49,7 +49,7 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
             new Zend_Db_Expr("a.".$colName),
             new Zend_Db_Expr("COUNT(a.$colName) count")
         ));
-        $select->where("(a.end_dt >= NOW() + INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        $select->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {

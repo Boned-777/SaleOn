@@ -208,7 +208,7 @@ class Application_Model_Ad
         $select
             ->distinct()
             ->from(array("a" => "ads"), array("a.*"))
-            ->where("(a.end_dt >= NOW() + INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("a.order_index DESC");
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
@@ -252,7 +252,7 @@ class Application_Model_Ad
         $select
             ->distinct()
             ->from(array("a" => "ads"), array("a.*"))
-            ->where("(a.end_dt >= NOW() + INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order(".public_dt DESC");
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
@@ -394,7 +394,7 @@ class Application_Model_Ad
         $select
             ->distinct()
             ->from(array("a" => "ads"), array("a.*"))
-            ->where("(a.end_dt >= NOW() + INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
             ->order("a.order_index");
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
