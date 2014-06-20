@@ -44,10 +44,16 @@ class Application_Model_AdLocationCollection
     }
 
     public function save() {
-        if (!$this->_makeUpdate)
+        if (!$this->_makeUpdate) {
             return true;
+        }
         $this->clearList();
         $this->locations = array();
+
+        if (!sizeof($this->newLocations)) {
+            $this->newLocations = array("1");
+        }
+
         if (!is_null($this->newLocations)) {
             $db = new Application_Model_DbTable_AdLocation();
             foreach ($this->newLocations as $location) {
