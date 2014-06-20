@@ -17,7 +17,7 @@
                     <?php echo $this->settingsForm->setAction($this->url()); ?>
                 </div>
                 <div class="span6">
-                    <label for="brand_name" class="optional">Регионы действия акции</label>
+                    <label for="brand_name" class="optional"><?= $translate->getAdapter()->translate("ad_region"); ?></label>
                     <div style="height: 320px; overflow-y: auto; border: 1px solid #cccccc; border-radius: 3px;">
                         <div id="geo_tree" class="aciTree"></div>
                     </div>

@@ -741,6 +741,7 @@ return array (
     'contact_text' => 'Текст повідомлення',
     'contact_send' => 'Надіслати',
     'social_share'=>'Поділитись акцією',
+    'ad_region' => 'Регіони дії акції',
 
     "invoice" => "Рахунок",
     "uah" => "грн.",

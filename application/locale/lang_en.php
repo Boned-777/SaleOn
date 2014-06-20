@@ -731,6 +731,7 @@ return array (
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'bonedde',
     'contact_org_share_link' => 'Share our link',
+    'ad_region' => 'Regions of the action',
 
 
     "invoice" => "Invoice",
