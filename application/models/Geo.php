@@ -56,6 +56,7 @@ class Application_Model_Geo
             switch (sizeof($map)) {
                 case 1 :
                     $data = $item->toArray($isChecked);
+                    $data["open"] = true;
                     break;
 
                 case 2 :
