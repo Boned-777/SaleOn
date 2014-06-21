@@ -173,11 +173,22 @@ class Application_Model_Geo
         $ad = new Application_Model_DbTable_AdLocation();
         $select = $ad->select();
         $select->setIntegrityCheck(false);
-        $select->from(array("al" => "AdLocation"), array(
-            new Zend_Db_Expr("al.location"),
-            new Zend_Db_Expr("COUNT(al.location) count"),
+
+        $columns = array(
+            new Zend_Db_Expr("a.id"),
             new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", al.location), ">'.$temp.'-", ""), 2), "-","") et')
-        ));
+        );
+
+        if ($temp == "1") {
+            $columns[] = new Zend_Db_Expr("LEFT(al.location, 4) location");
+        } else {
+            $columns[] = new Zend_Db_Expr("al.location");
+        }
+
+        $select->from(array("al" => "AdLocation"));
+        $select->distinct();
+
+
         $geoStmt = "";
         if ($temp !== "") {
             $geoStmt .= 'al.location LIKE "'.$temp.'" OR al.location LIKE "'.$temp.'-%"';
@@ -190,10 +201,21 @@ class Application_Model_Geo
         $select->join(array("a" => "ads"), "a.id = al.ad_id");
         $select->where($geoStmt);
         $select->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        $select->group("et");
-        $select->order("et DESC");
 
-        $data = $ad->fetchAll($select)->toArray();
+        $select->reset(Zend_Db_Select::COLUMNS);
+        $select->columns($columns);
+        $select2 = $ad->select()->from(
+            array(
+                'd' => new Zend_Db_Expr('(' . (string) $select . ')') //
+            ), array(
+                new Zend_Db_Expr("COUNT(d.location) count"),
+                new Zend_Db_Expr("d.*")
+            )
+        )
+        ->group("d.location");
+        $select2->setIntegrityCheck(false);
+
+        $data = $ad->fetchAll($select2)->toArray();
         $resData = array();
         $resData[$temp] = 0;
 
