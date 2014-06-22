@@ -69,7 +69,12 @@
         selectable: true
     });
 </script>
+<?php
+$this->layout()->ckeditor = true;
+?>
+<?php echo $this->setupEditor( 'description' ); ?>
 
+<?php echo $this->setupEditor( 'full_description' ); ?>
 <script src="/js/ad.js"></script>
 
 <?php $this->headLink()->prependStylesheet($this->baseUrl('css/aciTree.css')); ?>
