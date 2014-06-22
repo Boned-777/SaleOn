@@ -1,3 +1,4 @@
+<?php
 class CK_Form_Element_CKEditor extends Zend_Form_Element_Textarea{
  
 public function __construct($spec, $options = null)
@@ -14,3 +15,4 @@ public function __construct($spec, $options = null)
        $this->setAttrib('class', 'ckeditor');
   }
 }
+?>
