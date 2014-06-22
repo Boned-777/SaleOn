@@ -50,7 +50,7 @@ class Application_Form_AdMain extends Zend_Form
             'required' => true,
         ));
 
-        $this->addElement(new CK_Form_Element_CKEditor('textarea', 'full_description', array(
+        $this->addElement('textarea', 'full_description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("full_description"),
             'max_length' => 10000,
@@ -66,7 +66,7 @@ class Application_Form_AdMain extends Zend_Form
                     )
                 ),
             ),
-        )));
+        ));
 
         $this->addElement('submit', 'login', array(
             //'class' => 'btn btn-large btn-primary',
