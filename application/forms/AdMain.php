@@ -30,8 +30,8 @@ class Application_Form_AdMain extends Zend_Form
             ),
             'required' => true,
         ));
-
-        $this->addElement('textarea', 'description', array(
+        $this->
+        $this->setupEditor('textarea', 'description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("description") . ' *',
             'max_length' => 250,
@@ -50,7 +50,7 @@ class Application_Form_AdMain extends Zend_Form
             'required' => true,
         ));
 
-        $this->addElement('textarea', 'full_description', array(
+        $this->setupEditor('textarea', 'full_description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("full_description"),
             'max_length' => 10000,
