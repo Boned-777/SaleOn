@@ -69,21 +69,20 @@
         selectable: true
     });
 </script>
+
+<script src="/js/ad.js"></script>
+
 <?php
 $this->layout()->ckeditor = true;
 ?>
+<textarea id="description"></textarea>
 <?php echo $this->setupEditor( 'description' ); ?>
-
-<?php echo $this->setupEditor( 'full_description' ); ?>
-<script src="/js/ad.js"></script>
-
 <?php $this->headLink()->prependStylesheet($this->baseUrl('css/aciTree.css')); ?>
 <script type="text/javascript" src="/js/aciTree/jquery.aciPlugin.min.js"></script>
 <script type="text/javascript" src="/js/aciTree/jquery.aciTree.min.js"></script>
 <script type="text/javascript" src="/js/aciTree/jquery.aciTree.core.js"></script>
 <script type="text/javascript" src="/js/aciTree/jquery.aciTree.checkbox.js"></script>
 <script type="text/javascript" src="/js/aciTree/jquery.aciTree.utils.js"></script>
-
 <script type="text/javascript" src="/js/geo-tree.js"></script>
 
 
