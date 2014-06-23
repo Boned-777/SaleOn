@@ -1,4 +1,5 @@
 <?php global $translate; ?>
+
 <div id="view-content">
     <ul class="nav nav-tabs" id="ad">
         <li class="active"><a href="#main"><?php echo $translate->getAdapter()->translate("main"); ?></a></li>
@@ -71,7 +72,11 @@
 </script>
 
 <script src="/js/ad.js"></script>
-
+<script src="/js/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' );
+    CKEDITOR.replace( 'full_description' );
+</script>
 
 <?php $this->headLink()->prependStylesheet($this->baseUrl('css/aciTree.css')); ?>
 <script type="text/javascript" src="/js/aciTree/jquery.aciPlugin.min.js"></script>

@@ -16,11 +16,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<?php
-            if ( $this->layout()->ckeditor ) {
-                echo $this->headScript()->appendFile( $this->baseUrl().'/ckeditor/ckeditor.js');
-            }
-?>
+
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/style.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/select2.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/datepicker.css')); ?>
