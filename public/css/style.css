@@ -424,9 +424,10 @@ body {
 .no-image:hover {
     background: url("/img/no_ad-hover.png") center center no-repeat;
     position: absolute;
-    top: 5px;
-left:40px;
-    bottom: 5px;
+   /* top: 5px;*/
+    left:41px;
+
+   bottom: 7px;
 }
 
 .item.hover-left .no-image, .item.hover-right .no-image {
