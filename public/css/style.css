@@ -170,16 +170,18 @@ body {
     }
     a.btn.btn-large{
         width:45px;
-        margin-left:50px;
-        margin-right:-8px;
-        margin-top: 8px;
+        margin-left: 55px;
+
+       margin-right: -55px;
+       margin-top: 8px;
 
 
     }
     a#btn5.btn-large{
         margin-left: 8px;
-        margin-right: -50px;
+        margin-left: 55px;
     }
+
 }
 @media (max-width: 1199px) {
     .top-menu {
@@ -417,37 +419,39 @@ body {
 
     width:230px;
     height: 137px;
-
+    top: 7px;
+    bottom: 7px;
     position: absolute;
 
 }
 .no-image:hover {
     background: url("/img/no_ad-hover.png") center center no-repeat;
     position: absolute;
-   top: 5px;
-    bottom: 5px;
-
-left:2px;
-   width:227px;
+    top: 7px;
+    bottom: 7px;
+    left:2px;
+    width:227px;
 }
 
 .item.hover-left .no-image, .item.hover-right .no-image {
-    width: 150px;
+    width: 175px;
+    top: 7px;
+    bottom: 7px;
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-        top:5px;
+
         position: absolute;
-        bottom: 5px;
+        top: 7px;
+        bottom: 7px;
+
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
-        width: 95px;
-        height:95px;
-        left:40px;
-        bottom: 11px;
-        top:11px;
-
+        width: 177px;
+        height:105px;
+        top: 7px;
+        bottom: 7px;
     }
 }
 @media (max-width: 1199px) {
@@ -457,6 +461,8 @@ left:2px;
     .no-image:hover {
         width: 130px;
         background: url("/img/no_ad-hover.png") center center no-repeat !important;
+        top: 7px;
+        bottom: 7px;
     }
 }
 
