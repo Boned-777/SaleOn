@@ -424,14 +424,14 @@ body {
     position: absolute;
 
 }
-.no-image:hover {
+/*.no-image:hover {
     background: url("/img/no_ad-hover.png") center center no-repeat;
     position: absolute;
     top: 7px;
     bottom: 7px;
     left:2px;
     width:227px;
-}
+}*/
 
 .item.hover-left .no-image, .item.hover-right .no-image {
     width: 175px;
@@ -458,12 +458,12 @@ body {
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 130px;
     }
-    .no-image:hover {
+    /*.no-image:hover {
         width: 130px;
         background: url("/img/no_ad-hover.png") center center no-repeat !important;
         top: 7px;
         bottom: 7px;
-    }
+    }*/
 }
 
 
@@ -645,9 +645,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     .page-number span {
         margin-left: -13px;
     }
-    .no-image:hover {
+    /*.no-image:hover {
         background: url("/img/no_ad-hover.png") center center no-repeat !important;
-    }
+    }*/
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
