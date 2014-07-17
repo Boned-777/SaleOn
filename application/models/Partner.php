@@ -13,6 +13,7 @@ class Application_Model_Partner
     public $address;
     public $web;
     public $email;
+    public $addresses;
 
 
     public function create($data) {
@@ -44,6 +45,11 @@ class Application_Model_Partner
                         $this->brand = $res->id;
                         $this->brand_name = $res->name;
                     }
+                    break;
+
+                case "addresses":
+                    $this->addresses = new Application_Model_PartnerAddressCollection();
+                    $this->addresses->get();
                     break;
 
                 case "brand":
@@ -106,6 +112,36 @@ class Application_Model_Partner
             $data[$key] = $this->$key;
         }
         return $data;
+    }
+
+    public function addAddress($addressValue) {
+        $item = new Application_Model_DbTable_PartnerAddress();
+        $raw = $item->createRow();
+        $raw->user_id = $this->user_id;
+        $raw->name = $addressValue;
+        return $raw->save();
+    }
+
+    public function removeAddress($addressId) {
+        $raw = $this->checkAddress($addressId);
+        if ($raw) {
+            if ($raw->delete()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function checkAddress($addressId) {
+        $db = new Application_Model_DbTable_PartnerAddress();
+        $select = $db->select()
+            ->where("user_id = ?", $this->user_id)
+            ->where("id = ?", $addressId);
+        $raw = $db->fetchRow($select);
+        if ($raw) {
+            return $raw;
+        }
+        return false;
     }
 
 }

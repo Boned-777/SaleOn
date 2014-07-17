@@ -68,6 +68,17 @@
                 <a id="action-address" href="#">
                     <?php echo $this->ad->address; ?>
                 </a>
+                <p>
+                    <div>
+                        <?php
+                        foreach($this->ad->addresses->list as $addrItem) {
+                            if ($addrItem["checked"]) {
+                                echo "<div>".$addrItem["name"]."</div>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </p>
                 <br>
                 <div><span><?php echo $this->ad->phone; ?></span>
                 <?php if ($this->ad->phone1) { ?>

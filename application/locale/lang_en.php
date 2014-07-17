@@ -736,5 +736,9 @@ return array (
 
     "invoice" => "Invoice",
     "uah" => "UAH",
-    "publish" => "Publish"
+    "publish" => "Publish",
+
+    "additional_addresses" => "Additional addresses",
+    "add" => "Add",
+    "remove" => "remove"
 );

@@ -16,6 +16,33 @@ class PartnerController extends Zend_Controller_Action
         }
     }
 
+    public function addAddressAction() {
+        $addressValue = $this->getParam("val");
+        if (!is_null($addressValue)) {
+            $identity = Zend_Auth::getInstance()->getIdentity();
+            $partner = new Application_Model_Partner();
+            if ($partner->getByUserId($identity->id)) {
+                $id = $partner->addAddress($addressValue);
+                $this->_helper->json(array("success" => true, "id"=>$id));
+            };
+        }
+    }
+
+    public function removeAddressAction() {
+        $res = false;
+        $addressId = $this->getParam("addr");
+        if (!is_null($addressId)) {
+            $identity = Zend_Auth::getInstance()->getIdentity();
+            $partner = new Application_Model_Partner();
+            if ($partner->getByUserId($identity->id)) {
+                if ($partner->removeAddress($addressId)) {
+                    $res = true;
+                }
+            };
+        }
+        return $this->_helper->json(array("success" => $res));
+    }
+
     public function profileAction()
     {
         global $translate;
@@ -74,6 +101,7 @@ class PartnerController extends Zend_Controller_Action
             $form->populate($item->toArray());
         }
 
+        $this->view->item = $item;
         $this->view->form = $form;
         $this->view->email = $this->user->username;
     }

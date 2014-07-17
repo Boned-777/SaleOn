@@ -1414,4 +1414,9 @@ a.pluso-more{display: none !important;}
     background-position: -336px -144px;
 }
 
+.add_address:hover {
+    cursor: pointer;
+    background: #ccc;
+}
+
 

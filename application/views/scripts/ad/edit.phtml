@@ -18,14 +18,30 @@
                     <?php echo $this->settingsForm->setAction($this->url()); ?>
                 </div>
                 <div class="span6">
-                    <label for="brand_name" class="optional"><?= $translate->getAdapter()->translate("ad_region"); ?></label>
+                    <label><?= $translate->getAdapter()->translate("ad_region"); ?></label>
                     <div style="height: 320px; overflow-y: auto; border: 1px solid #cccccc; border-radius: 3px;">
                         <div id="geo_tree" class="aciTree"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="contacts"><?php echo $this->contactsForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="contacts">
+            <div class="row">
+                <div class="span5">
+                    <?php echo $this->contactsForm->setAction($this->url()); ?>
+                </div>
+                <div class="span5">
+                    <dl class="zend_form">
+                        <dt>
+                            <label><?= $translate->getAdapter()->translate("additional_addresses"); ?></label>
+                        </dt>
+                        <dd>
+                            <?php $this->additionalAddressAd($this->ad->addresses); ?>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
         <div class="tab-pane" id="media">
             <div class="span5"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
             <div class="span6">

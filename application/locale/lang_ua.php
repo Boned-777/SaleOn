@@ -745,5 +745,9 @@ return array (
 
     "invoice" => "Рахунок",
     "uah" => "грн.",
-    "publish" => "Опублікувати"
+    "publish" => "Опублікувати",
+
+    "additional_addresses" => "Додаткові адреси",
+    "add" => "Додати",
+    "remove" => "видалити"
 );

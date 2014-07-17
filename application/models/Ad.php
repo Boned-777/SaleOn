@@ -31,6 +31,7 @@ class Application_Model_Ad
     public $status;
     public $order_index;
     public $location;
+    public $addresses;
 
     public function load($data) {
         $vars = get_class_vars(get_class());
@@ -56,6 +57,12 @@ class Application_Model_Ad
                         $collection->getByAdId($this->id);
                         $this->location = $collection;
                     }
+                    break;
+
+                case "addresses":
+                    $addresses = new Application_Model_AdAddressCollection();
+                    $addresses->getByAdId($data["id"]);
+                    $this->addresses = $addresses;
                     break;
 
                 default:
@@ -116,6 +123,7 @@ class Application_Model_Ad
                 case "status":
                 case "order_index":
                 case "region":
+                case "addresses":
                     break;
 
                 default:
@@ -140,6 +148,7 @@ class Application_Model_Ad
                 case 'brand_name' :
                 case 'product_name':
                 case "geo":
+                case "addresses":
                     break;
 
                 case 'location':
@@ -497,5 +506,19 @@ class Application_Model_Ad
         }
         return 0;
         //return $basePrice[count($geo)] * $daysCount;
+    }
+
+    public function addAddress($adAddress) {
+        $identity = Zend_Auth::getInstance()->getIdentity();
+        $partner = new Application_Model_Partner();
+        if ($partner->getByUserId($identity->id)) {
+            $id = $partner->addAddress($adAddress);
+            $this->_helper->json(array("success" => true, "id"=>$id));
+        };
+
+        $db = new Application_Model_DbTable_AdAddress();
+        $raw = $db->createRow();
+        $raw->ad_id = $this->id;
+        $raw->address_id = $adAddress;
     }
 }

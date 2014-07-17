@@ -210,6 +210,17 @@ class AdController extends Zend_Controller_Action
             $this->view->settingsForm->addElement($elem);
         }
 
+        foreach ($item->addresses->list as $adAddress) {
+            if ($adAddress["checked"]) {
+                $elem = $this->view->contactsForm->createElement('hidden', ''.$adAddress["id"], array(
+                    "id" => "additional_addr_".$adAddress["id"],
+                    "value" => $adAddress["id"]
+                ));
+                $elem->setBelongsTo('additional_address');
+                $this->view->contactsForm->addElement($elem);
+            }
+        }
+
         $order = new Application_Model_Order();
         if ($item->status == Application_Model_DbTable_Ad::STATUS_ACTIVE) {
             $elList = $this->view->datesForm->getElements();
@@ -260,6 +271,12 @@ class AdController extends Zend_Controller_Action
 
             if ($formData["form"] == "AdSettings") {
                 $item->location->setLocationsList($this->getParam("location", array()));
+            }
+
+            if ($formData["form"] == "AdContacts") {
+                $item->addresses->update(
+                    $this->getParam("additional_address", array())
+                );
             }
 
             if ($formData["form"] == "AdMedia") {
@@ -610,5 +627,54 @@ class AdController extends Zend_Controller_Action
         $item->get((int)$vars["id"]);
         echo nl2br($item->full_description);
         exit();
+    }
+
+    public function removeAddress() {
+        $adId = $this->getParam("ad", 0);
+        $addressId = $this->getParam("address", 0);
+
+        $res = array("success" => false);
+        if ($addressId) {
+            $addressList = new Application_Model_AdAddressCollection();
+            $addressList->remove($addressId);
+            $res = array("success" => true);
+        }
+
+        $this->_helper->json($res);
+    }
+
+    public function addAddressAction() {
+        $addressValue = $this->getParam("val");
+        $adId = $this->getParam("ad");
+        if (!is_null($addressValue)) {
+            $identity = Zend_Auth::getInstance()->getIdentity();
+            $partner = new Application_Model_Partner();
+            if ($partner->getByUserId($identity->id)) {
+                $adAddress = $partner->checkAddress($addressValue);
+                if ($adAddress) {
+                    $ad = new Application_Model_Ad();
+                    $ad->get($adId);
+
+                }
+
+
+                $this->_helper->json(array("success" => true, "id"=>$id));
+            };
+        }
+    }
+
+    public function removeAddressAction() {
+        $res = false;
+        $addressId = $this->getParam("addr");
+        if (!is_null($addressId)) {
+            $identity = Zend_Auth::getInstance()->getIdentity();
+            $partner = new Application_Model_Partner();
+            if ($partner->getByUserId($identity->id)) {
+                if ($partner->removeAddress($addressId)) {
+                    $res = true;
+                }
+            };
+        }
+        return $this->_helper->json(array("success" => $res));
     }
 }

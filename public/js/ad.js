@@ -172,6 +172,7 @@ $(function () {
     var hash = window.location.hash;
     hash && $('#ad a[href="'+hash+'"]').tab('show');
     $("#address").geocomplete();
+    $("#new_address").geocomplete();
     initScreen(hash);
     
     $('#ad a').click(function (e) {

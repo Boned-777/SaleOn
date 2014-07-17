@@ -7,6 +7,7 @@ class Application_Form_AdContacts extends Zend_Form
     public function __construct($options = null)
     {
         $this->isReady = $options["isReady"]?true:false;
+        $this->setAttrib("id", "ad_contacts_form");
         parent::__construct($options);
     }
 

@@ -5,11 +5,9 @@
         <div class="span6">
             <div class="legend"><?php echo $translate->getAdapter()->translate("set_new_password"); ?></div>
             <?php echo $this->changePasswordForm->setAction($this->url()); ?>
-            <div class="legend"><?php echo $translate->getAdapter()->translate("info"); ?></div>
-            <div class="gray"><?php echo $translate->getAdapter()->translate("login"); ?> </div>
-            <span><?php echo $this->email; ?></span>
+            <div class="legend"><?php echo $translate->getAdapter()->translate("additional_addresses"); ?></div>
+            <?php $this->additionalAddressPartner($this->item->addresses); ?>
             <br><br>
-            <!---<div class="gray"><?php //echo $translate->getAdapter()->translate("tarifs"); ?></div> --->
             <table class="table table-bordered" style="display: none;">
               <thead>
                 <tr>
@@ -62,3 +60,4 @@
 
     });
 </script>
+<script type="text/javascript" src="/js/partner.js"></script>
