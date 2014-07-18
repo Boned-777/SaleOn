@@ -6,14 +6,17 @@ class Application_Model_AdAddressCollection {
 
     protected $_items;
 
+
     /**
      * Load model data
      *
      * @param $id
      * @return bool
      */
-    public function getByAdId($id) {
-        $currentUserId = Zend_Auth::getInstance()->getIdentity()->id;
+    public function getByAdId($id, $currentUserId=null) {
+        if (is_null($currentUserId)) {
+            $currentUserId = Zend_Auth::getInstance()->getIdentity()->id;
+        }
 
         $adDb = new Application_Model_DbTable_AdAddress();
         $adStmt = $adDb->select()

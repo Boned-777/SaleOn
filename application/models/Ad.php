@@ -61,7 +61,7 @@ class Application_Model_Ad
 
                 case "addresses":
                     $addresses = new Application_Model_AdAddressCollection();
-                    $addresses->getByAdId($data["id"]);
+                    $addresses->getByAdId($data["id"], $data["owner"]);
                     $this->addresses = $addresses;
                     break;
 
