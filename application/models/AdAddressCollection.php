@@ -37,7 +37,10 @@ class Application_Model_AdAddressCollection {
 
         $this->adId = $id;
         $this->_items = $partnerDb->fetchAll($partnerStmt);
-        $this->list = $this->_items->toArray();
+        $this->list = array();
+        if ($this->_items->count()) {
+            $this->list = $this->_items->toArray();
+        }
 
         return true;
     }
