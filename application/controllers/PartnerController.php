@@ -23,7 +23,7 @@ class PartnerController extends Zend_Controller_Action
             $partner = new Application_Model_Partner();
             if ($partner->getByUserId($identity->id)) {
                 $id = $partner->addAddress($addressValue);
-                $this->_helper->json(array("success" => true, "id"=>$id));
+                $this->_helper->json(array("success" => true, "id"=>$id, "name"=>$addressValue));
             };
         }
     }

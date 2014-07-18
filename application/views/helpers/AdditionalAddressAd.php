@@ -16,7 +16,29 @@
                 removeAddress($(this).val());
             }
         });
+        $("#new_address").geocomplete();
+        $(".add_address").click(function () {
+            addParnerAddress();
+        })
     });
+
+    function addParnerAddress() {
+        var address = $("#new_address").val();
+        if (address) {
+            $.ajax({
+                url: "/partner/add-address",
+                data: {
+                    val: address
+                },
+                type: "post",
+                success: function (res) {
+                    $(".additional_address ul").append('<li><input type="checkbox" value="' + res.id + '" checked="checked" />&nbsp;' + res.name + '</li>');
+                    addAddress(res.id);
+                },
+                dataType: "json"
+            });
+        }
+    }
 </script>
 
 <?php
@@ -33,10 +55,10 @@ class Zend_View_Helper_AdditionalAddressAd extends Zend_View_Helper_Abstract
         echo '</ul>';
         echo '</div>';
 
-//        echo '<div class="input-append">';
-//        echo '<input id="new_address" class="form-control" type="text" style="width: 450px;"/>';
-//        echo '<span class="add_address add-on">' . $translate->getAdapter()->translate("add") . '</span>';
-//        echo '</div>';
+        echo '<div class="input-append">';
+        echo '<input id="new_address" class="form-control" type="text" style="width: 450px;"/>';
+        echo '<span class="add_address add-on">' . $translate->getAdapter()->translate("add") . '</span>';
+        echo '</div>';
         echo '</div>';
     }
 }
