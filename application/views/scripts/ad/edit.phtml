@@ -31,14 +31,14 @@
                     <?php echo $this->contactsForm->setAction($this->url()); ?>
                 </div>
                 <div class="span5">
-                    <dl class="zend_form">
-                        <dt>
+                    <ul class="zend_form" style="list-style: none;">
+                        <li>
                             <label><?= $translate->getAdapter()->translate("additional_addresses"); ?></label>
-                        </dt>
-                        <dd>
+                        </li>
+                        <li>
                             <?php $this->additionalAddressAd($this->ad->addresses); ?>
-                        </dd>
-                    </dl>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
