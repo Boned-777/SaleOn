@@ -1426,5 +1426,9 @@ a.pluso-more{display: none !important;}
     cursor: pointer;
     background: #ccc;
 }
-
-
+.additional_address{
+    border: 2px solid #eee;
+}
+.form_address{
+    list-style: none;
+}
