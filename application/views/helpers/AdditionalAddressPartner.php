@@ -16,7 +16,7 @@ class Zend_View_Helper_AdditionalAddressPartner extends Zend_View_Helper_Abstrac
             echo '</ul>';
             echo '</div>';
 
-            echo '<div class="input-append" style="margin-left:18px; margin-top: 10px;">';
+            echo '<div class="input-append" style="margin-left:18px;">';
                 echo '<input id="new_address" class="form-control" type="text" style="width: 330px;"/>';
                 echo '<span class="add_address add-on">' . $translate->getAdapter()->translate("add") . '</span>';
             echo '</div>';
