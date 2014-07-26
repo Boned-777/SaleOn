@@ -749,5 +749,6 @@ return array (
 
     "additional_addresses" => "Додаткові адреси",
     "add" => "Додати",
-    "remove" => "видалити"
+    "remove" => "видалити",
+    "new_ad"=>"<img src='/img/no-image-gray-ua.jpg' class='img-polaroid'>"
 );

@@ -751,5 +751,6 @@ return array(
 
     "additional_addresses" => "Дополнительные адреса",
     "add" => "Добавить",
-    "remove" => "удалить"
+    "remove" => "удалить",
+     "new_ad"=>"<img src='/img/no-image-gray-ru.jpg' class='img-polaroid'>"
 );
