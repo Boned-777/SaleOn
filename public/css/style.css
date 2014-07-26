@@ -453,17 +453,24 @@ body {
         top: 7px;
         bottom: 7px;
     }
+    .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
+        position: absolute;
+        display: block;
+        width: 142px;
+        height: 110px;
+
+
+    }
 }
 @media (max-width: 1199px) {
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 130px;
     }
-    /*.no-image:hover {
+    .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
+        position: absolute;
+        display: block;
         width: 130px;
-        background: url("/img/no_ad-hover.png") center center no-repeat !important;
-        top: 7px;
-        bottom: 7px;
-    }*/
+    }
 }
 
 
@@ -1429,6 +1436,14 @@ a.pluso-more{display: none !important;}
 .additional_address{
     border: 2px solid #eee;
 }
-.form_address{
+#form_address{
     list-style: none;
+}
+    a.no-image-href{
+    display: block;
+        width: 240px;
+        height: 153px;
+    position: absolute;
+        text-align: center;
+
 }
