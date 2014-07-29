@@ -65,19 +65,10 @@
 
 
             <address>
-                <a id="action-address" href="#">
-                    <?php echo $this->ad->address; ?>
+                <a id="action-address" class="btn btn-info" href="#action-address-modal" data-id="<?php echo $this->ad->id; ?>">
+                    <?php echo $translate->getAdapter()->translate("full_description"); ?>
                 </a>
-                <p>
-                    <div>
-                        <?php
-                        foreach($this->ad->addresses->list as $addrItem) {
-                            if ($addrItem["checked"]) {
-                                echo "<div>".$addrItem["name"]."</div>";
-                            }
-                        }
-                        ?>
-                    </div>
+
                 </p>
                 <br>
                 <div><span><?php echo $this->ad->phone; ?></span>
@@ -102,7 +93,7 @@
 
 <div id="full-description-modal" class="modal hide" tabindex="-1">
     <div class="modal-header">
-        <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("full_description"); ?></h3>
+        <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("action_address"); ?></h3>
     </div>
     <div class="modal-body">
         <p></p>
@@ -118,6 +109,18 @@
     </div>
     <div class="modal-body">
         <input type="hidden" id="full-address" value="<?php echo $this->ad->address; ?>">
+        <div id="address_modal">
+            <a id="action-address" href="#">
+                <?php echo $this->ad->address; ?>
+            </a>
+            <?php
+            foreach($this->ad->addresses->list as $addrItem) {
+                if ($addrItem["checked"]) {
+                    echo "<div>".$addrItem["name"]."</div>";
+                }
+            }
+            ?>
+</div>
         <div class="map_canvas"></div>
     </div>
     <div class="modal-footer">
