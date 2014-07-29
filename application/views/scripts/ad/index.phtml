@@ -117,7 +117,7 @@
             foreach($this->ad->addresses->list as $addrItem) {
                 if ($addrItem["checked"]) {
 
-                    echo "<a id='action-address' data-id='<?php echo $this->ad->id; ?>'>".$addrItem."</a>";
+                    echo $addrItem;
                 }
             }
             ?>
