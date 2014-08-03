@@ -366,7 +366,8 @@ class AdController extends Zend_Controller_Action
             "list" => $data,
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
-            )
+            ),
+            "translation" => $translate->getAdapter()->translate("new_ad")
         );
         $this->_helper->json($res);
     }
@@ -389,7 +390,8 @@ class AdController extends Zend_Controller_Action
             "list" => $data,
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
-            )
+            ),
+            "translation" => $translate->getAdapter()->translate("new_ad")
         );
         $this->_helper->json($res);
     }
@@ -406,7 +408,8 @@ class AdController extends Zend_Controller_Action
             "list" => $data,
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
-            )
+            ),
+            "translation" => $translate->getAdapter()->translate("new_ad")
         );
         $this->_helper->json($res);
     }
@@ -426,7 +429,8 @@ class AdController extends Zend_Controller_Action
             "list" => $data,
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
-            )
+            ),
+            "translation" => $translate->getAdapter()->translate("new_ad")
         );
 
         $this->_helper->json($res);

@@ -11,7 +11,7 @@
             <?php } else { ?>
                 <?php echo $this->ad->video; ?>
             <?php } ?>
-            
+
         </a>
 
     </div>
@@ -19,7 +19,7 @@
         <h4><?php echo $this->ad->name; ?></h4>
         <div><?php echo nl2br($this->ad->description); ?></div>
         <br><br>
-        
+
         <div class="span5">
             <?php if ($this->ad->full_description) { ?>
                 <a id="full-description" class="btn btn-info" href="#full-description-modal" data-id="<?php echo $this->ad->id; ?>">
@@ -35,16 +35,16 @@
                     <a href="<?= $this->prevAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
                 </li>
                 <li>
-                    <div id="favorites-link" 
-                    data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>" 
-                    title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>" 
-                    data-id="<?= $this->ad->id ?>" 
-                    data-status="<?= $this->isFavorite ? "on" : "off" ?>"
-                    class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
+                    <div id="favorites-link"
+                         data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>"
+                         title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>"
+                         data-id="<?= $this->ad->id ?>"
+                         data-status="<?= $this->isFavorite ? "on" : "off" ?>"
+                         class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
                 </li>
                 <li class="next  <?= $this->nextAdUrl ? "" : "disabled" ?>">
                     <a href="<?= $this->nextAdUrl ?>"><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
-              </li>
+                </li>
             </ul>
         </div>
         <br><br><br>
@@ -69,35 +69,35 @@
                     <?php echo $this->ad->address; ?>
                 </a>
                 <p>
-                    <div>
-                        <?php
-                        foreach($this->ad->addresses->list as $addrItem) {
-                            if ($addrItem["checked"]) {
-                                echo "<div>".$addrItem["name"]."</div>";
-                            }
+                <div>
+                    <?php
+                    foreach($this->ad->addresses->list as $addrItem) {
+                        if ($addrItem["checked"]) {
+                            echo "<div>".$addrItem["name"]."</div>";
                         }
-                        ?>
-                    </div>
+                    }
+                    ?>
+                </div>
                 </p>
                 <br>
                 <div><span><?php echo $this->ad->phone; ?></span>
-                <?php if ($this->ad->phone1) { ?>
-                    ,&nbsp;<span><?php echo $this->ad->phone1; ?></span>
-                <?php } ?>
-                <?php if ($this->ad->phone2) { ?>
-                    ,&nbsp;<span><?php echo $this->ad->phone2; ?></span>
-                <?php } ?>
+                    <?php if ($this->ad->phone1) { ?>
+                        ,&nbsp;<span><?php echo $this->ad->phone1; ?></span>
+                    <?php } ?>
+                    <?php if ($this->ad->phone2) { ?>
+                        ,&nbsp;<span><?php echo $this->ad->phone2; ?></span>
+                    <?php } ?>
                 </div>
                 <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
                 <?php if ($this->ad->url) { ?>
                     <div><noindex><a href="<?php echo $this->ad->url; ?>" rel="nofollow" target="_blank"><?php echo $this->ad->url; ?></a></noindex></div>
-                    <?php } ?>
+                <?php } ?>
             </address>
         </div></div>
 
 
-    </div>
-    <div class="lock-gray"></div>
+</div>
+<div class="lock-gray"></div>
 </div>
 
 <div id="full-description-modal" class="modal hide" tabindex="-1">
@@ -129,5 +129,4 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
 <script type="text/javascript" src="/js/full-action.js"></script>
-
 

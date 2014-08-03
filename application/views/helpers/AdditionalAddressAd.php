@@ -49,15 +49,15 @@ class Zend_View_Helper_AdditionalAddressAd extends Zend_View_Helper_Abstract
         global $translate;
         echo '<div class="additional_address">';
         echo '<div>';
-        echo '<ul>';
+        echo '<ul style="list-style: none;">';
         foreach ($addresesList->list as $item) {
             echo '<li><input type="checkbox" value="' . $item["id"] . '"' . ($item["checked"]?'checked="checked"':''). '/>&nbsp;' . $item["name"] . '</li>';
         }
         echo '</ul>';
         echo '</div>';
 
-        echo '<div class="input-append">';
-        echo '<input id="new_address" class="form-control" type="text" style="width: 450px;"/>';
+        echo '<div class="input-append" style="margin-left: 18px; margin-top: 10px;">';
+        echo '<input id="new_address" class="form-control" type="text" style="width: 330px;"/>';
         echo '<span class="add_address add-on">' . $translate->getAdapter()->translate("add") . '</span>';
         echo '</div>';
         echo '</div>';

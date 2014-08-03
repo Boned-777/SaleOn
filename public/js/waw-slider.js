@@ -3,8 +3,10 @@
 			HIDDEN_PAGE_SHIFT = 2,
 			NEXT_PREVIOUS_PAGE_SHIFT = 1,
 			EMPTY_STRING = "";
-		
-		var wawSlyder = function(sliderData) {
+
+        //var new_add = <?= $this->translate('new_ad') ?>;
+
+        var wawSlyder = function(sliderData) {
 			this.mainTemplate = '<div id="myCarousel" class="carousel slide">\
 									<div class="carousel-inner">\
 										<div class="hover-left hide-left item">\
@@ -41,10 +43,12 @@
 										</div>\
 									</a>\
 								</div>';
+
 			this.noImgTemplate = '<div class="span3 bottom-offset">\
 									<div class="img-wrapper">\
-										<img src="/img/no-image-gray.jpg" class="img-polaroid">\
+										$no-ad_link\
 										<div class="no-image">\
+										<a class="no-image-href" href="/partner/new"></a>\
 										</div>\
 									</div>\
 								</div>';									
@@ -223,9 +227,11 @@
 								.replace("$name", 			data.list[i].name)
 								.replace("$brand", 			data.list[i].brand_name)
 								.replace("$daysLeft", 		data.list[i].days)
-								.replace("$daysMsgText", 	data.options.days_left_text); 
+                                .replace("$daysMsgText", 	data.options.days_left_text)
+                                .replace("$no-ad_link", 	data.translation);
 						} else {
-							result += this.noImgTemplate;
+							result += this.noImgTemplate
+                                .replace("$no-ad_link", 	data.translation);
 						}
 					if (j==3) {
 						j = 0;
