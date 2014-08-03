@@ -20,8 +20,14 @@ class PartnerController extends Zend_Controller_Action
         $addressValue = $this->getParam("val");
         if (!is_null($addressValue)) {
             $identity = Zend_Auth::getInstance()->getIdentity();
+            $userId = $identity->id;
+            if ($identity->role == Application_Model_User::ADMIN) {
+                $userId = $this->getParam("user", null);
+                if (is_null($userId))
+                    $this->_helper->json(array("success" => false));
+            }
             $partner = new Application_Model_Partner();
-            if ($partner->getByUserId($identity->id)) {
+            if ($partner->getByUserId($userId)) {
                 $id = $partner->addAddress($addressValue);
                 $this->_helper->json(array("success" => true, "id"=>$id, "name"=>$addressValue));
             };
