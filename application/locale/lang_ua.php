@@ -750,5 +750,6 @@ return array (
     "additional_addresses" => "Додаткові адреси",
     "add" => "Додати",
     "remove" => "видалити",
-    "new_ad"=>"<img src='/img/no-image-gray-ua.jpg' class='img-polaroid'>"
+    "new_ad"=>"<img src='/img/no-image-gray-ua.jpg' class='img-polaroid'>",
+    'map'=>'Всі адреси'
 );
