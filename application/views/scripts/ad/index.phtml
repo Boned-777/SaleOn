@@ -123,12 +123,11 @@
     <div class="modal-body">
 
 <?php       foreach($this->ad->addresses->list as $addrItem) {
-    if ($addrItem["checked"]) {
+    if ($addrItem["checked"]) { ?>
+        <input type="hidden" id="full-address" value="<?php echo $addrItem["name"]; ?>">
 
-     } ?>
-    <input type="hidden" id="full-address" value="<?php echo $addrItem["name"]; ?>">
-
-<?php } ?>
+    <?php }
+} ?>
         <input type="hidden" id="full-address" value="<?php echo $this->ad->address; ?>">
 
         <div class="map_canvas"></div>
