@@ -126,7 +126,7 @@
         foreach($this->ad->addresses->list as $addrItem) {
             if ($addrItem["checked"]) {
                ?>
-                <input type="hidden" id="full-address" value="<?php echo $addrItem; ?>">
+                <input type="hidden" id="full-address" value="<?php echo $addrItem["name"]; ?>">
 <?php
 //echo "<div>".$addrItem["name"]."</div>";
             }
