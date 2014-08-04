@@ -73,7 +73,11 @@
                     <?php
                     foreach($this->ad->addresses->list as $addrItem) {
                         if ($addrItem["checked"]) {
-                            echo "<div>".$addrItem["name"]."</div>";
+
+                    echo'<a id="action-address" href="#">
+                    '.$addrItem.'</a><br/>';
+
+                            //echo "<div>".$addrItem["name"]."</div>";
                         }
                     }
                     ?>
