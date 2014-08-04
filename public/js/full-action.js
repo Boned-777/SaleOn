@@ -45,6 +45,12 @@ $(function () {
             location        : address,
             markerOptions   : {title: address}
         });
+        var addresses = $("#full-address").val();
+        $("#full-address").geocomplete({
+            map             : ".map_canvas",
+            location        : addresses,
+            markerOptions   : {title: addresses}
+        });
     });
 
     /* Add remove farorites */
