@@ -122,6 +122,17 @@
     </div>
     <div class="modal-body">
         <input type="hidden" id="full-address" value="<?php echo $this->ad->address; ?>">
+        <?php
+        foreach($this->ad->addresses->list as $addrItem) {
+            if ($addrItem["checked"]) {
+               ?>
+                <input type="hidden" id="full-address" value="<?php echo $addrItem; ?>">
+<?php
+//echo "<div>".$addrItem["name"]."</div>";
+            }
+        }
+        ?>
+
         <div class="map_canvas"></div>
     </div>
     <div class="modal-footer">
