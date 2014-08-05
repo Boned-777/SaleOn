@@ -110,6 +110,7 @@
         <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("map_position"); ?></h3>
     </div>
     <div class="modal-body">
+        <input type="hidden" id="full-address" value="<?php echo $this->ad->address; ?>">
         <div style="position:absolute; margin-left: 480px;">
         <a id="action-address" href="#">
             <?php echo $this->ad->address; ?>
@@ -130,9 +131,10 @@
 
         <?php
         foreach($this->ad->addresses->list as $addrItem) {
-       ?>
+        if ($addrItem["checked"]) { ?>
                <input type="hidden" id="full-address" value="<?php echo $addrItem['name'];?>">
            <?php }
+        }
 
         ?>
         <div class="map_canvas"  style="width:60%;"></div>
