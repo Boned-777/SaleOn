@@ -48,7 +48,7 @@ return array (
     "sign_in" => "Sign in",
     "finish" => "Finish",
     "save_and_next" => "Save and next",
-    "update" => "Update",
+    "update" => "Save",
     "set_new_password" => "Change Password",
     "register" => "Registrate",
 

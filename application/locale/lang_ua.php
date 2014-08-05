@@ -48,7 +48,7 @@ return array (
     "sign_in" => "Увійти",
     "finish" => "Завершити",
     "save_and_next" => "Зберегти і далі",
-    "update" => "Оновити",
+    "update" => "Зберегти",
     "set_new_password" => "Змінити пароль",
     "register" => "Зареєструвати",
 

@@ -49,7 +49,7 @@ return array(
     'sign_in' => "Войти",
     'finish' => 'Завершить',
     'save_and_next' => 'Сохранить и далее',
-    'update' => "Обновить",
+    'update' => "Сохранить",
     'set_new_password' => "Сменить пароль",
     'register' => 'Зарегистрировать',
 
