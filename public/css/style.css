@@ -743,7 +743,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin: 45px 0 10px 0;
     }
     .page-number span {
-        margin-left: -35px;
+        margin-left: -37px;
 
     }
 }
@@ -1078,7 +1078,7 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     width: 22px;
     cursor: pointer;
     position: relative;
-    right: 0px;
+    right: 1px;
     top: 5px;
 }
 

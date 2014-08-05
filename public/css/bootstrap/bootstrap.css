@@ -5146,6 +5146,7 @@ input[type="submit"].btn.btn-mini {
 .pager .next > a,
 .pager .next > span {
 margin-left:35px;
+    width: 142px;
 }
 
 .pager .previous > a,
