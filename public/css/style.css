@@ -1078,7 +1078,7 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     width: 22px;
     cursor: pointer;
     position: relative;
-    right: 1px;
+    right: -7px;
     top: 5px;
 }
 
