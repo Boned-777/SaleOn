@@ -727,7 +727,7 @@ return array (
     'contact_org_name' => 'Wantlook Ukraine',
     'contact_org_phone_name' => 'Phone:',
     'contact_org_phone_val' => '(050) 123-77-88',
-    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_email' => 'wantlookinfo@gmail.com',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'bonedde',
     'contact_org_share_link' => 'Share our link',
