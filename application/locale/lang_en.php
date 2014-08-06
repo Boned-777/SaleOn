@@ -48,7 +48,7 @@ return array (
     "sign_in" => "Sign in",
     "finish" => "Finish",
     "save_and_next" => "Save and next",
-    "update" => "Update",
+    "update" => "Save",
     "set_new_password" => "Change Password",
     "register" => "Registrate",
 
@@ -727,7 +727,7 @@ return array (
     'contact_org_name' => 'Wantlook Ukraine',
     'contact_org_phone_name' => 'Phone:',
     'contact_org_phone_val' => '(050) 123-77-88',
-    'contact_org_email' => 'support@wantlook.info',
+    'contact_org_email' => 'wantlookinfo@gmail.com',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'bonedde',
     'contact_org_share_link' => 'Share our link',
@@ -741,5 +741,6 @@ return array (
     "additional_addresses" => "Additional addresses",
     "add" => "Add",
     "remove" => "remove",
-    "new_ad"=>"<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
+    "new_ad"=>"<img src='/img/no-image-gray.jpg' class='img-polaroid'>",
+    'map'=>'All addresses'
 );

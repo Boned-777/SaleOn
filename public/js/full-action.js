@@ -52,6 +52,12 @@ $(function () {
             $("#full-address").val($(this).text());
             $("#full-address").val($(this).text()).trigger("geocode");
         });
+        var addrItem = $("#full-address").val();
+        $("#full-address").geocomplete({
+            map             : ".map_canvas",
+            location        : addrItem,
+            markerOptions   : {title: addrItem}
+        });
     });
 
     /* Add remove farorites */

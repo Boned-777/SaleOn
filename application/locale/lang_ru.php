@@ -49,7 +49,7 @@ return array(
     'sign_in' => "Войти",
     'finish' => 'Завершить',
     'save_and_next' => 'Сохранить и далее',
-    'update' => "Обновить",
+    'update' => "Сохранить",
     'set_new_password' => "Сменить пароль",
     'register' => 'Зарегистрировать',
 
@@ -735,7 +735,7 @@ return array(
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
-    'contact_org_email' => 'wantlookinfo@ukr.net',
+    'contact_org_email' => 'wantlookinfo@gmail.com',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'wantlook.info',
     'contact_topic' => 'Тема сообщения',
@@ -752,5 +752,6 @@ return array(
     "additional_addresses" => "Дополнительные адреса",
     "add" => "Добавить",
     "remove" => "удалить",
-     "new_ad"=>"<img src='/img/no-image-gray-ru.jpg' class='img-polaroid'>"
+     "new_ad"=>"<img src='/img/no-image-gray-ru.jpg' class='img-polaroid'>",
+    'map'=>'Все адреса'
 );
