@@ -34,16 +34,23 @@ $(function () {
 	});
 
     /* Show map*/
-    actionAddress.click(function(e){
+    $(".action-address").click(function(e){
         e.preventDefault();
         actionAddressModal.modal({show: true});
         hideVideo(actionAddressModal);
 
-        var address = $("#full-address").val();
         $("#full-address").geocomplete({
             map             : ".map_canvas",
-            location        : address,
-            markerOptions   : {title: address}
+            location        : $(this).text(),
+            markerOptions   : {title: $(this).text()}
+        });
+
+        $("#full-address").val($(this).text());
+        $("#full-address").val($(this).text()).trigger("geocode");
+
+        $(".location_item").click(function () {
+            $("#full-address").val($(this).text());
+            $("#full-address").val($(this).text()).trigger("geocode");
         });
     });
 

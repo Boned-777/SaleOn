@@ -1169,7 +1169,12 @@ a.pluso-more{display: none !important;}
 
 #action-address-modal .map_canvas {
     height: 400px;
-    width: 790px;
+    margin-right: 20px;
+}
+
+#action-address-modal .location_item {
+    cursor: pointer;
+    margin-bottom: 15px;
 }
 
 #full-description-modal.modal,
