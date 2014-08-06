@@ -1435,6 +1435,7 @@ a.pluso-more{display: none !important;}
 }
 .additional_address{
     border: 2px solid #eee;
+    margin-top: -5px;
 }
 #form_address{
     list-style: none;
