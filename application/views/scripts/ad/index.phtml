@@ -103,11 +103,11 @@
         <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("map_position"); ?></h3>
     </div>
     <div class="modal-body">
-        <div class="span5">
+        <div class="map_sticky" style="position: fixed !important;">
             <input type="hidden" id="full-address" value="<?=$this->ad->address; ?>">
-            <div class="map_canvas"></div>
+            <div class="map_canvas" style="width:110%"></div>
         </div>
-        <div class="span2">
+        <div class="span2" style="margin-left: 55%; padding: 20px;">
             <div class="location_item"><i class="icon-map-marker"></i>&nbsp;<?= $this->ad->address; ?></div>
             <?php foreach($this->ad->addresses->list as $addrItem) : ?>
             <?php if ($addrItem["checked"]) : ?>
@@ -115,13 +115,12 @@
             <?php endif ?>
             <?php endforeach ?>
         </div>
-        <div class="map_canvas"  style="width:60%;"></div>
-    </div>
+
+        <div class="map_canvas"></div></div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
     </div>
 </div>
-
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>

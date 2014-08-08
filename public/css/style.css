@@ -1226,9 +1226,20 @@ a.pluso-more{display: none !important;}
     margin-bottom: 15px;
 }
 
-#full-description-modal.modal,
-#action-address-modal.modal	{
+#full-description-modal.modal{
     top: 90px;
+}
+
+#action-address-modal.modal	{
+    margin-left: -485px;
+    width: 970px;
+    top: 10%;
+
+}
+.map_sticky{
+    padding: 10px;
+    position:fixed;
+    width: 470px;
 }
 
 /*categories filters*/
