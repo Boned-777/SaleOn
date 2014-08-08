@@ -183,6 +183,51 @@ body {
     }
 
 }
+@media (min-width: 1501px) {
+    .top-menu {
+        margin: 35px 0 15px 133px;
+    }
+    button#btn1.btn.btn-large{
+        width: 108px;
+        margin-left: -50px;
+        margin-right: -9px;
+        margin-top: 8px;
+    }
+
+    button#btn2.btn.btn-large{
+        width: 108px;
+        margin-left:10px;
+        margin-top:8px;
+    }
+
+    button#btn3.btn.btn-large{
+        width: 108px;
+        margin-left: -19px;
+        margin-top: 8px;
+    }
+
+
+    a#btn4.btn.btn-large{
+        width: 45px;
+        margin-left:56px;
+        margin-top: 8px;
+    }
+    a.btn.btn-large{
+        width:45px;
+        margin-left: 55px;
+
+        margin-right: -55px;
+        margin-top: 8px;
+
+
+    }
+    a#btn5.btn-large{
+        margin-left: 8px;
+        margin-left: 55px;
+    }
+
+}
+
 @media (max-width: 1199px) {
     .top-menu {
         margin: 35px 0 15px 117px;
@@ -420,12 +465,12 @@ body {
     position: absolute;
 
 }
-.no-image:hover {
+/*.no-image:hover {
     background: url("/img/no-image-hover.png") no-repeat;
-    left: -4.1px;
-    margin-top: -11px;
+   margin-top: -10px;
+    margin-left: -1px;
 
-}
+}*/
 
 .item.hover-left .no-image, .item.hover-right .no-image {
     width: 175px;
@@ -433,27 +478,21 @@ body {
     bottom: 7px;
 }
 
+
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-        position: absolute;
+
         top: 7px;
         bottom: 7px;
 
     }
-
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 177px;
         height:105px;
         top: 7px;
         bottom: 7px;
     }
-    .item.hover-left .no-image:hover, .item.hover-right .no-image:hover {
-        width: 177px;
-        height:105px;
-        top: 7px;
-        bottom: 7px;
 
-    }
     .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
         position: absolute;
         display: block;
@@ -474,6 +513,16 @@ body {
     }
 }
 
+@media (min-width: 1199px) {
+    .item.hover-left .no-image, .item.hover-right .no-image {
+        width: 130px;
+    }
+    .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
+        position: absolute;
+        display: block;
+        width: 130px;
+    }
+}
 
 
 .active .img-wrapper:hover .img-info {
