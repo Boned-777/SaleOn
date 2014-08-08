@@ -417,7 +417,6 @@ body {
 
     width:240px;
     height: 153px;
-
     position: absolute;
 
 }
@@ -449,7 +448,6 @@ body {
         bottom: 7px;
     }
     .item.hover-left .no-image:hover, .item.hover-right .no-image:hover {
-        background: url("/img/no-image-hover.png") no-repeat;
         width: 177px;
         height:105px;
         top: 7px;
