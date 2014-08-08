@@ -367,7 +367,8 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => $translate->getAdapter()->translate("new_ad")
+            "translation" => $translate->getAdapter()->translate("new_ad"),
+             "tr_title" => $translate->getAdapter()->translate("new_ad_title")
         );
         $this->_helper->json($res);
     }

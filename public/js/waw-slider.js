@@ -48,7 +48,7 @@
 									<div class="img-wrapper">\
 										$no-ad_link\
 										<div class="no-image">\
-										<a class="no-image-href" href="/partner/new"></a>\
+										<a class="no-image-href" href="/partner/new" title="$no-ad_link_title"></a>\
 										</div>\
 									</div>\
 								</div>';									
@@ -231,7 +231,9 @@
                                 .replace("$no-ad_link", 	data.translation);
 						} else {
 							result += this.noImgTemplate
-                                .replace("$no-ad_link", 	data.translation);
+                                .replace("$no-ad_link", 	data.translation)
+
+                                .replace("$no-ad_link_title", 	data.tr_title);
 						}
 					if (j==3) {
 						j = 0;

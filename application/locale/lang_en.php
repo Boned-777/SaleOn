@@ -741,6 +741,7 @@ return array (
     "additional_addresses" => "Additional addresses",
     "add" => "Add",
     "remove" => "remove",
-    "new_ad"=>"<img src='/img/no-image-gray.jpg' class='img-polaroid'>",
+    "new_ad"=>"<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
+    "new_ad_title"=>"Add",
     'map'=>'All addresses'
 );
