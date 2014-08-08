@@ -758,14 +758,15 @@ h6 small {
   color: #999999;
 }
 
-h1,
+
 h2,
 h3 {
   line-height: 40px;
 }
 
 h1 {
-  font-size: 38.5px;
+    font-size: 17.5px;
+
 }
 
 h2 {
@@ -777,7 +778,7 @@ h3 {
 }
 
 h4 {
-  font-size: 17.5px;
+  font-size: 14.5px;
 }
 
 h5 {

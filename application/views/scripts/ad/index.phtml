@@ -13,10 +13,9 @@
             <?php } ?>
 
         </a>
-
     </div>
     <div class="span6 details-right">
-        <h4><?php echo $this->ad->name; ?></h4>
+        <h1><?php echo $this->ad->name; ?></h1>
         <div><?php echo nl2br($this->ad->description); ?></div>
         <br><br>
 
@@ -62,7 +61,7 @@
             </script>
             <div class="pluso" data-background="transparent"
                  data-options="medium,square,line,horizontal,nocounter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email"></div>
-            <address>
+            <address><h4>
                 <a id="action-address" class="action-address" href="#action-address-modal" data-id="<?php echo $this->ad->id; ?>">
                     <?php echo $this->ad->address; ?>
                 </a>
@@ -78,7 +77,7 @@
             <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
             <?php if ($this->ad->url) { ?>
                 <div><noindex><a href="<?php echo $this->ad->url; ?>" rel="nofollow" target="_blank"><?php echo $this->ad->url; ?></a></noindex></div>
-            <?php } ?>
+            <?php } ?></h4>
             </address>
         </div></div>
 
