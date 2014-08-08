@@ -415,21 +415,18 @@ body {
 }
 .no-image {
 
-    width:230px;
-    height: 137px;
-    top: 7px;
-    bottom: 7px;
+    width:240px;
+    height: 153px;
+
     position: absolute;
 
 }
-/*.no-image:hover {
-    background: url("/img/no_ad-hover.png") center center no-repeat;
-    position: absolute;
-    top: 7px;
-    bottom: 7px;
-    left:2px;
-    width:227px;
-}*/
+.no-image:hover {
+    background: url("/img/no-image-hover.png") no-repeat;
+    left: -4.1px;
+    margin-top: -11px;
+
+}
 
 .item.hover-left .no-image, .item.hover-right .no-image {
     width: 175px;
@@ -439,7 +436,6 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-
         position: absolute;
         top: 7px;
         bottom: 7px;
