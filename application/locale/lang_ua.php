@@ -727,6 +727,7 @@ return array (
 
     'feedback_form_name' => 'Форма зворотнього звязку',
     'contact_org_name' => 'Wantlook',
+    'contact_country_name'=>'',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',

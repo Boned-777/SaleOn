@@ -4,6 +4,7 @@
 
         <address>
             <strong><?= $translate->getAdapter()->translate("contact_org_name")?></strong><br>
+            <i><?= $translate->getAdapter()->translate("contact_country_name")?></i><br>
             <i class="icon-globe"></i>
                 &nbsp;&nbsp;<?= $translate->getAdapter()->translate("contact_org_skype_name")?><?= $translate->getAdapter()->translate("contact_org_skype_val")?><br>
                 <i class="cicon-mail"></i><a href="mailto:<?= $translate->getAdapter()->translate("contact_org_email")?>">
@@ -15,7 +16,7 @@
         </address>
 
     </div>
-    <div class="span5">
+    <div class="span5" style="border: none !important;">
     <form>
      <strong><?= $translate->getAdapter()->translate("feedback_form_name")?></strong><br><br>
                         <fieldset>
