@@ -730,8 +730,7 @@ return array(
     "video_info_text" => "Здесь можно загрузить видео для страницы полного описания акции",
 
     'feedback_form_name' => 'Форма обратной связи',
-    'contact_country_name'=>'Украина',
-    'contact_org_name' => 'Все Акции Украины',
+    'contact_org_name' => 'Wantlook',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',

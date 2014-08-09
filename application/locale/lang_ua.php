@@ -726,8 +726,7 @@ return array (
     "video_info_text" => "Тут можна завантажити відео для сторінки повного опису акції",
 
     'feedback_form_name' => 'Форма зворотнього звязку',
-    'contact_country_name'=>'Україна',
-    'contact_org_name' => 'Всі Акції України',
+    'contact_org_name' => 'Wantlook',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
