@@ -5109,6 +5109,7 @@ input[type="submit"].btn.btn-mini {
   margin: 20px 0;
   text-align: center;
   list-style: none;
+    width: 450px;
   *zoom: 1;
 }
 
@@ -5146,7 +5147,7 @@ input[type="submit"].btn.btn-mini {
 
 .pager .next > a,
 .pager .next > span {
-margin-left:35px;
+margin-left:-5px;
     width: 150px;
 }
 
