@@ -734,8 +734,12 @@ return array (
     'contact_org_skype_val' => 'bonedde',
     'contact_org_share_link' => 'Share our link',
     'ad_region' => 'Regions of the action',
-
-
+    'contact_topic' => 'Topic',
+    'contact_email' => 'e-mail',
+    'contact_name' => 'First name',
+    'contact_text' => 'Text',
+    'contact_send' => 'Send',
+    'feedback_form_name' => 'Feedback form',
     "invoice" => "Invoice",
     "uah" => "UAH",
     "publish" => "Publish",
