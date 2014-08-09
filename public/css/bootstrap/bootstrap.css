@@ -5153,6 +5153,7 @@ margin-left:35px;
 .pager .previous > a,
 .pager .previous > span {
   float: left;
+    width: 125px;
 }
 
 .pager .disabled > a,
