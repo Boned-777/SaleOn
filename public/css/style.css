@@ -141,7 +141,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .top-menu {
-        margin: 35px 0 15px 133px;
+        margin: 35px 0 15px 130px;
     }
     button#btn1.btn.btn-large{
         width: 108px;
@@ -792,7 +792,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin: 45px 0 10px 0;
     }
     .page-number span {
-        margin-left: -37px;
+        margin-left: -36px;
 
     }
 }
