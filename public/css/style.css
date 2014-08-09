@@ -1529,3 +1529,8 @@ a.pluso-more{display: none !important;}
 #action-address-modal{
     overflow-x:;
 }
+#spanik{
+    position: relative;
+    left: 0%;
+    width: 480px;
+}
