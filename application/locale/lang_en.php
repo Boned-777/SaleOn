@@ -724,7 +724,7 @@ return array (
     "banner_info_text" => "You can download a small banner for the main page",
     "video_info_text" => "You can download the video page for a complete description of the action",
 
-    'contact_org_name' => 'Wantlook Ukraine',
+    'contact_org_name' => 'Wantlook',
     'contact_country_name'=>'',
     'contact_org_phone_name' => 'Phone:',
     'contact_org_phone_val' => '+38(050) 123-77-88',
