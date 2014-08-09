@@ -743,5 +743,7 @@ return array (
     "remove" => "remove",
     "new_ad"=>"<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
     "new_ad_title"=>"Add",
-    'map'=>'All addresses'
+    'map'=>'All addresses',
+    'social_share'=>'Share in social networks',
+
 );
