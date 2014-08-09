@@ -87,7 +87,12 @@
         selectable: true
     });
 </script>
-
+<script type="text/javascript">$('#end_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+    $('#public_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });</script>
 <script src="/js/ad.js"></script>
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
