@@ -5147,13 +5147,13 @@ input[type="submit"].btn.btn-mini {
 .pager .next > a,
 .pager .next > span {
 margin-left:35px;
-    width: 125px;
+    width: 135px;
 }
 
 .pager .previous > a,
 .pager .previous > span {
   float: left;
-    width: 125px;
+    width: 135px;
 }
 
 .pager .disabled > a,

@@ -1131,6 +1131,19 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     top: 5px;
     margin-left: -33px !important;
 }
+@media (max-width: 1000px) {
+
+    .details-right .favorites-icon {
+        display: inline-block;
+        height: 22px;
+        width: 22px;
+        cursor: pointer;
+        position: relative;
+        right: -30px;
+        top: 5px;
+        margin-left: -33px !important;
+    }
+}
 
 a.pluso-more{display: none !important;}
 .leftMargin {
