@@ -1129,6 +1129,7 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     position: relative;
     right: -7px;
     top: 5px;
+    margin-left: -34px !important;
 }
 
 a.pluso-more{display: none !important;}
@@ -1512,4 +1513,7 @@ a.pluso-more{display: none !important;}
     position: absolute;
         text-align: center;
 
+}
+#action-address-modal{
+    overflow-x:;
 }
