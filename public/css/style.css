@@ -1512,11 +1512,20 @@ a.pluso-more{display: none !important;}
     background: #ccc;
 }
 .additional_address{
+
     border: 2px solid #eee;
     margin-top: -5px;
+    overflow: auto;
+    height: 230px;
 }
+.additional_address div{
+    margin-left:-15px;
+}
+
 #form_address{
     list-style: none;
+    margin-top: 10px;
+
 }
     a.no-image-href{
     display: block;
@@ -1533,4 +1542,15 @@ a.pluso-more{display: none !important;}
     position: relative;
     left: 0%;
     width: 480px;
+}
+.additional_address div.input-append{
+    display:block;
+    position: absolute;
+    margin-top: -56px;
+    margin-left: 0px !important;
+
+}
+
+#new_address input-append{
+    margin-top: -50px !important;
 }
