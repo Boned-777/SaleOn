@@ -483,8 +483,6 @@ margin-top: -6.8px;
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 177px;
         height:105px;
-        top: 7px;
-        bottom: 7px;
     }
 
     .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
