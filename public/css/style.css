@@ -515,6 +515,10 @@ margin-top: -6.8px;
         display: block;
         width: 130px;
     }
+    .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
+        display: none;
+
+    }
 }
 
 @media (min-width: 1199px) {
@@ -525,6 +529,10 @@ margin-top: -6.8px;
         position: absolute;
         display: block;
         width: 130px;
+    }
+    .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
+        display: none;
+
     }
 }
 
