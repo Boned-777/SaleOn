@@ -482,9 +482,9 @@ margin-top: -6.8px;
     .no-image {
         top: 7px;
         bottom: 7px;
-
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
+        background-image: none;
         width: 177px;
         height:105px;
         top: 7px;
@@ -501,6 +501,7 @@ margin-top: -6.8px;
     }
     .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
         display: none !important;
+        background-image: none;
 
     }
 }
