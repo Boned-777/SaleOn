@@ -31,11 +31,11 @@
                     <?php echo $this->contactsForm->setAction($this->url()); ?>
                 </div>
                 <div class="span5">
-                    <ul class="zend form" style="list-style: none; margin-top: 14px;">
+                    <ul class="zend form" style="list-style: none; margin-top: 14px; width: 530px;">
                         <li>
                             <label style="color:#999999;"><?= $translate->getAdapter()->translate("additional_addresses"); ?> *</label>
                         </li>
-                        <li>
+                        <li style="margin-left: -10px;">
                             <?php $this->additionalAddressAd($this->ad->addresses); ?>
                         </li>
 </ul>
