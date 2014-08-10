@@ -1546,7 +1546,7 @@ a.pluso-more{display: none !important;}
 .additional_address div.input-append{
     display:inline-block;
     position: absolute;
-    margin-top: -20%;
+    top: 478px;
     margin-left: -2px !important;
 
 }
@@ -1554,5 +1554,10 @@ a.pluso-more{display: none !important;}
     width: 570px;
     margin-top: 12px;
 }
-
+#address_partner .additional_address div.input-append{
+    display:inline-block;
+    position: absolute;
+    top: 750px;
+    margin-left: -2px !important;
+}
 
