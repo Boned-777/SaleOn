@@ -467,6 +467,7 @@ body {
 }
 .no-image:hover {
     background: url("/img/no-image-gray-ua.png") no-repeat;
+    width:230px;
    margin-top: -9px;
     margin-left: -4px;
 
