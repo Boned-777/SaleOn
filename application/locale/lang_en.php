@@ -22,7 +22,7 @@ return array (
     "brand" => "Brand your enterprise",
     "product" => "Brand promotional goods",
     "list_brand" => " enterprise",
-    "list_product" => "  goods",
+    "list_product" => " goods",
     "address" => "Address",
     "phone" => "Phone number",
     "additional_phone" => "Additional phone number",
