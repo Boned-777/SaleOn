@@ -1547,6 +1547,7 @@ a.pluso-more{display: none !important;}
     display:block;
     position: fixed;
     top: 446px;
+    margin-left: -2px !important;
 
 }
 
