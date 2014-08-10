@@ -1545,8 +1545,8 @@ a.pluso-more{display: none !important;}
 }
 .additional_address div.input-append{
     display:inline-block;
-    position: fixed;
-    top: 88%;
+    position: absolute;
+    margin-top: -4%;
     margin-left: -2px !important;
 
 }
