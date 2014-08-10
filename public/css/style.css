@@ -1550,5 +1550,9 @@ a.pluso-more{display: none !important;}
     margin-left: -2px !important;
 
 }
+.span_regions{
+    width: 570px;
+    margin-top: 12px;
+}
 
 
