@@ -501,6 +501,10 @@ margin-top: -6.8px;
 
 
     }
+    .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
+        display: none;
+
+    }
 }
 @media (max-width: 1199px) {
     .item.hover-left .no-image, .item.hover-right .no-image {
