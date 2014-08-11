@@ -125,10 +125,15 @@ class AdController extends Zend_Controller_Action
                 if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
                     $formData["invalidFormElements"] = array(array(
                         "element" => "image_file",
+                        "error" => Zend_Validate_NotEmpty::IS_EMPTY),
+                        array(
+                        "element" => "banner_file",
                         "error" => Zend_Validate_NotEmpty::IS_EMPTY
                     ));
                 }
+
             }
+
 
             if ($form->isValid($formData)) {
                 $mediaItemData = array();
