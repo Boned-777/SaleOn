@@ -46,9 +46,14 @@ $(function () {
         });
 
         $("#full-address").val($(this).text());
+        $(".location_item a").css("color","#999");
         $("#full-address").val($(this).text()).trigger("geocode");
 
         $(".location_item").click(function () {
+            $('.location_item').removeAttr('style');
+            $(this)
+            .css('color','red');
+
             $("#full-address").val($(this).text());
             $("#full-address").val($(this).text()).trigger("geocode");
         });
