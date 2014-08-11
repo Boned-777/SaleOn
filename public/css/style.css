@@ -1560,7 +1560,7 @@ a.pluso-more{display: none !important;}
 .additional_address div.input-append{
     display:inline-block;
     position: absolute;
-    top: 478px;
+    top: 587px;
     margin-left: -2px !important;
 
 }
@@ -1575,3 +1575,28 @@ a.pluso-more{display: none !important;}
     margin-left: -2px !important;
 }
 
+#full-address:active{
+    color:#002a80;
+    text-decoration-color: cadetblue;
+}
+button#btn1.btn.btn-large a:active{
+    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
+
+}
+
+button#btn2.btn.btn-large:active{
+    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
+
+}
+
+button#btn3.btn.btn-large:active{
+    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
+
+}
+
+.span5 .additional_address{
+    border: 2px solid #eee;
+    margin-top: -5px;
+    overflow: auto;
+    height: 325px;
+}
