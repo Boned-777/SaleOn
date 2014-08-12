@@ -474,7 +474,8 @@ margin-top: -6.8px;
 
 .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
    display: none !important;
-background-image: none;
+    background-image: none !important;
+    visibility: hidden !important;
 }
 
 
@@ -501,8 +502,8 @@ background-image: none;
     }
     .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
         display: none !important;
-        background-image: none;
-
+        background-image: none !important;
+        visibility: hidden !important;
     }
 }
 @media (max-width: 1199px) {
@@ -1599,4 +1600,7 @@ button#btn3.btn.btn-large:active{
     margin-top: -5px;
     overflow: auto;
     height: 325px;
+}
+.test{
+    background-color: #316ac5;
 }
