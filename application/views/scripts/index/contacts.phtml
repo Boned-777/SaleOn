@@ -17,27 +17,7 @@
 
     </div>
     <div class="span5" style="border: none !important;">
-    <form>
-     <strong><?= $translate->getAdapter()->translate("feedback_form_name")?></strong><br><br>
-                        <fieldset>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_name")?>" >
-                                </div>
-                                <div class="controls">
-                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_email")?> ">
-                                </div>          
-                                <div class="controls">
-                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_topic")?>" >
-
-                                </div>
-                                <div class="controls">
-                                    <textarea class="span4" id="textarea" rows="6" placeholder="<?= $translate->getAdapter()->translate("contact_text")?>"></textarea>
-                                </div>
-                                <button class="btn btn-default"><?= $translate->getAdapter()->translate("contact_send")?> </button>
-                            </div>
-                        </fieldset>
-                    </form>
+        <?php echo $this->form; ?>
 
        
     </div>
