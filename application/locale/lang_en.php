@@ -739,6 +739,7 @@ return array (
     'contact_name' => 'First name',
     'contact_text' => 'Text',
     'contact_send' => 'Send',
+    'contact_ok'=>'Sent successsful',
     'capcha' => 'Enter 5 digits displayed below',
     'feedback_form_name' => 'Feedback form',
     "invoice" => "Invoice",

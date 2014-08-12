@@ -11,6 +11,8 @@ class Application_Form_Contact extends Zend_Form
 
     public function init()
     {
+
+
         global $translate;
         $this->setTranslator($translate);
         $this->setmethod('post');
@@ -21,7 +23,6 @@ class Application_Form_Contact extends Zend_Form
             'label' => $translate->getAdapter()->translate("contact_name"),
             'required' => true,
         ));
-
 
         $this->addElement('text', 'email', array(
             'class' => "input-block-level",

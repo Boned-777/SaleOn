@@ -1,5 +1,5 @@
 <?php
-require_once APPLICATION_PATH.'/../library/Zend/Mail.php';
+require_once APPLICATION_PATH.'/../Library/Zend/Mail.php';
 class IndexController extends Zend_Controller_Action
 {
 
@@ -34,7 +34,8 @@ class IndexController extends Zend_Controller_Action
 // action body
 // Create form instance
             $form = new Application_Form_Contact();
-            $mail=new Zend_Mail();
+            global $translate;
+
             /**
              * Get request
              */
@@ -49,10 +50,11 @@ class IndexController extends Zend_Controller_Action
                  * Check if form is valid
                  */
                 if ($form->isValid($post)) {
-// build message
-                    $message = 'From: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Message: ' . $post['message'];
+echo'<div id="ok">'.$translate->getAdapter()->translate("contact_ok").'</div>';
+                    $message = 'От: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Сообщение: ' . $post['message'];
 // send mail
-                    $mail = new Zend_Mail('boss@elogic.com.ua', 'contact: ' . $post['subject'], $message);
+                    $mail = new Zend_Mail();
+                    mail('boned@eukr.net', 'Feedback Form WantLook: ' . $post['subject'], $message);
                 }
             }
 

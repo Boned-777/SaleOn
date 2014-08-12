@@ -1606,6 +1606,13 @@ button#btn3.btn.btn-large:active{
     overflow: auto;
     height: 325px;
 }
-.test{
-    background-color: #316ac5;
+#ok{
+    font-size: 14px;
+    position: absolute;
+    font-weight: bold;
+    background-color: rgb(9, 244, 9);
+    width: 32%;
+    text-align: center;
+    margin-left: 44.5%;
+    top: 30%;
 }
