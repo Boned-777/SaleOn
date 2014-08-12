@@ -39,6 +39,7 @@ $(function () {
         actionAddressModal.modal({show: true});
         hideVideo(actionAddressModal);
 
+
         $("#full-address").geocomplete({
             map             : ".map_canvas",
             location        : $(this).text(),
@@ -46,7 +47,6 @@ $(function () {
         });
 
         $("#full-address").val($(this).text());
-        $(".location_item a").css("color","#999");
         $("#full-address").val($(this).text()).trigger("geocode");
 
         $(".location_item").click(function () {
