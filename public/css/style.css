@@ -458,9 +458,6 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-#seo-text{
-display:block; z-index: -9999; visibility: hidden; margin-top: -380px;}
-}
 .no-image {
 
     width:240px;
@@ -912,6 +909,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .firefox-slider .item.hover-right {
     top: 1px;
 }
+
 .firefox-slider .item.hover-left img, .firefox-slider
 .item.hover-right img {
     opacity: 0.5;
