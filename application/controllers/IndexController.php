@@ -1,5 +1,5 @@
 <?php
-require_once APPLICATION_PATH.'/../library/Zend/Mail.php';
+require_once APPLICATION_PATH.'/../Library/Zend/Mail.php';
 class IndexController extends Zend_Controller_Action
 {
 
@@ -30,11 +30,11 @@ class IndexController extends Zend_Controller_Action
 
     public function contactsAction()
     {
+        global $translate;
         {
 // action body
 // Create form instance
             $form = new Application_Form_Contact();
-            global $translate;
 
             /**
              * Get request
@@ -50,11 +50,11 @@ class IndexController extends Zend_Controller_Action
                  * Check if form is valid
                  */
                 if ($form->isValid($post)) {
-echo'<div id="ok">'.$translate->getAdapter()->translate("contact_ok").'</div>';
+                    echo'<div id="ok">'.$translate->getAdapter()->translate("contact_ok").'</div>';
                     $message = 'От: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Сообщение: ' . $post['message'];
 // send mail
                     $mail = new Zend_Mail();
-                    mail('boned@ukr.net', 'Feedback Form WantLook: ' . $post['subject'], $message);
+                    mail('boned@ukr.net', 'WantLOOK Feedback Form ' . $post['subject'], $message);
                 }
             }
 
