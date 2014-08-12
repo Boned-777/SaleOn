@@ -528,10 +528,7 @@ margin-top: -6.8px;
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 130px;
     }
-    .img-polaroid:hover{
-        background: url("/img/no-image-gray-hover.png") no-repeat;
-        width: 190px;
-    }
+
     .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
         position: absolute;
         display: block;
