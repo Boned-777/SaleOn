@@ -54,7 +54,7 @@ echo'<div id="ok">'.$translate->getAdapter()->translate("contact_ok").'</div>';
                     $message = 'От: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Сообщение: ' . $post['message'];
 // send mail
                     $mail = new Zend_Mail();
-                    mail('boned@eukr.net', 'Feedback Form WantLook: ' . $post['subject'], $message);
+                    mail('boned@ukr.net', 'Feedback Form WantLook: ' . $post['subject'], $message);
                 }
             }
 
