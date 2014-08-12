@@ -33,7 +33,7 @@ if ($form->isValid($post)) {
 // build message
 $message = 'From: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Message: ' . $post['message'];
 // send mail
-mail('boned@ukr.net', 'contact: ' . $post['subject'], $message);
+mail('boss@ukr.net', 'contact: ' . $post['subject'], $message);
 }
 }
 
