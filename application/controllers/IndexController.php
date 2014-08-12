@@ -1,5 +1,5 @@
 <?php
-
+require_once APPLICATION_PATH.'/../library/Zend/Mail.php';
 class IndexController extends Zend_Controller_Action
 {
 
@@ -34,7 +34,7 @@ class IndexController extends Zend_Controller_Action
 // action body
 // Create form instance
             $form = new Application_Form_Contact();
-
+            $mail=new Zend_Mail();
             /**
              * Get request
              */
@@ -52,7 +52,7 @@ class IndexController extends Zend_Controller_Action
 // build message
                     $message = 'From: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Message: ' . $post['message'];
 // send mail
-                    mail('boss@elogic.com.ua', 'contact: ' . $post['subject'], $message);
+                    $mail = new Zend_Mail('boss@elogic.com.ua', 'contact: ' . $post['subject'], $message);
                 }
             }
 
