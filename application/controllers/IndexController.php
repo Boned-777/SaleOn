@@ -54,7 +54,7 @@ class IndexController extends Zend_Controller_Action
                     $message = 'От: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Сообщение: ' . $post['message'];
 // send mail
                     $mail = new Zend_Mail();
-                    mail('boss@elogic.com.ua', 'WantLOOK Feedback Form ' . $post['subject'], $message);
+                    mail('wantlookinfo@gmail.com', 'WantLOOK Feedback Form ' . $post['subject'], $message);
                 }
             }
 
