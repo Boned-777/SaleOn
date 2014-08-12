@@ -1,5 +1,5 @@
 <?php
-require_once APPLICATION_PATH.'/../Library/Zend/Mail.php';
+require_once APPLICATION_PATH.'/Library/Zend/Mail.php';
 class IndexController extends Zend_Controller_Action
 {
 
