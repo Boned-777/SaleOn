@@ -907,7 +907,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 /*fix firefox start*/
 .firefox-slider .item.hover-left,
 .firefox-slider .item.hover-right {
-    top: 1px;
+
 }
 
 .firefox-slider .item.hover-left img, .firefox-slider
@@ -953,12 +953,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 @media (min-width: 1200px) and (max-width: 1500px) {
     .firefox-slider .item.hover-left {
         left: -83%;
-        margin-top: 45px;
+        /*margin-top: 45px;*/
 
     }
     .firefox-slider .item.hover-right {
         left: 93%;
-        margin-top: 45px;
+        /*margin-top: 45px;*/
+
     }
     .firefox-slider .item.hover-left .no-image,
     .firefox-slider .item.hover-right .no-image {
