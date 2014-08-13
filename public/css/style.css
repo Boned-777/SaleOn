@@ -465,12 +465,12 @@ body {
     position: absolute;
 
 }
-.no-image:hover {
+/*.no-image:hover {
     background: url("/img/no-image-gray-hover.png") no-repeat;
     width:230px;
 margin-top: -6.8px;
 
-}
+}*/
 
 .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
    display: none !important;
