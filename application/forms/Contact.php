@@ -38,12 +38,12 @@ class Application_Form_Contact extends Zend_Form
             'validators' => array( array('validator' => 'StringLength', 'options' => array(0, 20) )
             )));
 
-        $this->addElement('captcha', 'captcha', array(
+       /* $this->addElement('captcha', 'captcha', array(
             'class' => "input-block-level",
             'label'      => $translate->getAdapter()->translate("capcha"),
             'required'   => true,
             'captcha'    => array('captcha' => 'Figlet','wordLen' => 5,'timeout' => 300 )
-        ));
+        ));*/
 
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
