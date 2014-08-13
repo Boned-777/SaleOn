@@ -754,7 +754,7 @@ return array(
     "additional_addresses" => "Дополнительные адреса",
     "add" => "Добавить",
     "remove" => "удалить",
-    "new_ad"=>"<script type='text/javascript'><img src='/img/no-image-gray-ua.png' onmouseover='this.src='/img/no-image-gray-hover.png'' onmouseout='this.src='/img/no-image-gray-ua.png'' class='img-polaroid'/></script>" ,
+    "new_ad"=>"<img src='/img/no-image-gray-ua.png' onmouseover='this.src='/img/no-image-gray-hover.png'' onmouseout='this.src='/img/no-image-gray-ua.png'' class='img-polaroid''/>",
     "new_ad_title"=>"Добавить акцию",
     'map'=>'Все адреса'
 );
