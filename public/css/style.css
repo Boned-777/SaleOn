@@ -907,7 +907,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 /*fix firefox start*/
 .firefox-slider .item.hover-left,
 .firefox-slider .item.hover-right {
-
+    top: 1px;
 }
 
 .firefox-slider .item.hover-left img, .firefox-slider
