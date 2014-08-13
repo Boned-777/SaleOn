@@ -50,6 +50,8 @@ class Application_Form_AdMain extends Zend_Form
             'required' => true,
         ));
 
+
+
         $this->addElement('textarea', 'full_description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("full_description"),

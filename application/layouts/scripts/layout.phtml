@@ -230,6 +230,10 @@
     <script type="text/javascript" src="/js/bootstrap/bootstrap-popover.js"></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-
+    <?php
+    if ( $this->layout()->ckeditor ) {
+        echo $this->headScript()->appendFile( $this->baseUrl().'/ckeditor/ckeditor.js');
+    }
+    ?>
 </body>
 </html>
