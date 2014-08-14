@@ -514,11 +514,11 @@ margin-top: -6.8px;
     }
     a.no-image-href{
         display: block;
-        width: 190px;
-        height: 119px;
+        width: 160px;
+        height: 100px;
         position: absolute;
         text-align: center;
-
+        z-index: 9999;
     }
 
 }
@@ -535,10 +535,11 @@ margin-top: -6.8px;
     }
     a.no-image-href{
         display: block;
-        width: 170px;
-        height: 100px;
+        width: 190px;
+        height: 119px;
         position: absolute;
         text-align: center;
+        z-index: 9999;
 
     }
 }
