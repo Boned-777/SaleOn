@@ -512,6 +512,14 @@ margin-top: -6.8px;
         display: block;
         width: 130px;
     }
+    a.no-image-href{
+        display: block;
+        width: 190px;
+        height: 119px;
+        position: absolute;
+        text-align: center;
+
+    }
 
 }
 
@@ -525,7 +533,14 @@ margin-top: -6.8px;
         display: block;
         width: 130px;
     }
+    a.no-image-href{
+        display: block;
+        width: 170px;
+        height: 100px;
+        position: absolute;
+        text-align: center;
 
+    }
 }
 
 
