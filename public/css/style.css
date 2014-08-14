@@ -500,28 +500,19 @@ margin-top: -6.8px;
 
 
     }
-    .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
-        display: none !important;
-        background-image: none !important;
-        visibility: hidden !important;
-    }
+
 }
 @media (max-width: 1199px) {
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 130px;
     }
-    .no-image:hover{
-        background: url("/img/no-image-gray-hover.png") no-repeat;
-    }
+
     .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
         position: absolute;
         display: block;
         width: 130px;
     }
-    .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
-        display: none !important;
 
-    }
 }
 
 @media (min-width: 1199px) {
@@ -534,10 +525,7 @@ margin-top: -6.8px;
         display: block;
         width: 130px;
     }
-    .item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
-        display: none !important;
 
-    }
 }
 
 
@@ -1615,4 +1603,7 @@ button#btn3.btn.btn-large:active{
     text-align: center;
     margin-left: 44.5%;
     top: 20%;
+}
+.success{
+    background-color: #ffff00;
 }
