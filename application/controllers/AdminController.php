@@ -274,4 +274,9 @@ class AdminController extends Zend_Controller_Action
         echo nl2br($item->full_description);
         exit();
     }
+
+    public function geoEditAction()
+    {
+
+    }
 }

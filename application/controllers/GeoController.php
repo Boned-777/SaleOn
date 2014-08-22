@@ -41,7 +41,31 @@ class GeoController extends Zend_Controller_Action
 
         $item = new Application_Model_Geo();
         $results = $item->getAllTree($adId);
-        $this->_helper->json(array($results));
+        $this->_helper->json($results);
+    }
+
+    public function addAction() {
+        $nativeName = $this->_getParam("native", null);
+        $internationalName = $this->_getParam("inter", null);
+        $parentCode = $this->_getParam("parent", null);
+
+        $item = new Application_Model_Geo();
+        $res = $item->addGeoItem($parentCode, $internationalName, $nativeName);
+
+        $this->_helper->json($res);
+    }
+
+    public function editAction() {
+
+    }
+
+    public function removeAction() {
+        $geoCode = $this->_getParam("code", null);
+
+        $item = new Application_Model_Geo();
+        $res = $item->removeGeoItem($geoCode);
+
+        $this->_helper->json($res);
     }
 }
 

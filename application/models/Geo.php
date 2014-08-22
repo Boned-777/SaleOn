@@ -55,23 +55,29 @@ class Application_Model_Geo
             }
             switch (sizeof($map)) {
                 case 1 :
-                    $data = $item->toArray($isChecked);
-                    $data["open"] = true;
+                    $data[$map[0]] = $item->toArray($isChecked);
+                    $data[$map[0]]["open"] = true;
                     break;
 
                 case 2 :
-                    $data["branch"][$map[1]] = $item->toArray($isChecked ? $isChecked : $data["checked"]);
-                    $data["inode"] = true;
+                    $data[$map[0]]["branch"][$map[1]] = $item->toArray($isChecked ? $isChecked : $data[$map[0]]["checked"]);
+                    $data[$map[0]]["inode"] = true;
                     break;
 
                 case 3 :
-                    $data["branch"][$map[1]]["branch"][] = $item->toArray($isChecked ? $isChecked : $data["branch"][$map[1]]["checked"]);
-                    $data["branch"][$map[1]]["inode"] = true;
+                    $data[$map[0]]["branch"][$map[1]]["branch"][] = $item->toArray($isChecked ? $isChecked : $data[$map[0]]["branch"][$map[1]]["checked"]);
+                    $data[$map[0]]["branch"][$map[1]]["inode"] = true;
                     break;
             }
         }
 
-        $data["branch"] = array_values($data["branch"]);
+        foreach ($data as $key => $items) {
+            if (sizeof($data[$key]["branch"] )) {
+                $data[$key]["branch"] = array_values($data[$key]["branch"]);
+            }
+        }
+
+        $data = array_values($data);
 
         return $data;
     }
@@ -276,6 +282,77 @@ class Application_Model_Geo
         }
         return implode(", ", $result);
 
+    }
+
+    public function addGeoItem ($parentCode, $internationalName, $nativeName) {
+        $res = array(
+            "success" => true,
+            "msg" => null
+        );
+
+        if (!$internationalName || !$nativeName || !$parentCode) {
+            $res["success"] = false;
+            $res["msg"] = "incorrect data";
+        } else {
+            $name = strtolower(urlencode(preg_replace("/[^a-zа-я\s]/ui",'',$internationalName)));
+            $db = new Application_Model_DbTable_Geo();
+            $item = $db->createRow();
+            $item->name = $name;
+            $item->code = $this->getNextCode($parentCode);
+            try {
+                $id = $item->save();
+                $res["msg"] = $id;
+            } catch (Exception $e) {
+                $res["success"] = false;
+                $res["msg"] = $e->getMessage();
+            }
+        }
+        return $res;
+    }
+
+    protected function getNextCode($parentCode) {
+        $db = new Application_Model_DbTable_Geo();
+        $select = $db->select()
+            ->from("geo", array("lastNumber" => new Zend_Db_Expr("REPLACE(code, '$parentCode-', '') + 0")))
+            ->where("code LIKE '$parentCode-_' OR code LIKE '$parentCode-__'")
+            ->having("lastNumber <> 99")
+            ->order("lastNumber DESC");
+        $item = $db->fetchRow($select);
+        if ($item) {
+            $nextId = $item->lastNumber + 1;
+        } else {
+            $nextId = 1;
+        }
+        return $parentCode."-".$nextId;
+    }
+
+    public function removeGeoItem($geoCode) {
+        if (is_null($geoCode)) {
+            $res = array(
+                "success" => false,
+                "msg" => "code is null"
+            );
+            return $res;
+        }
+        $res = array(
+            "success" => true,
+            "msg" => null
+        );
+
+        $db = new Application_Model_DbTable_Geo();
+        $select = $db->select()
+            ->from("geo", array("lastNumber" => new Zend_Db_Expr("REPLACE(code, '$parentCode-', '') + 0")))
+            ->where("code = ?", $geoCode);
+        $item = $db->fetchRow($select);
+        if ($item) {
+            $item->delete();
+        } else {
+            $res = array(
+                "success" => false,
+                "msg" => "code not found"
+            );
+        }
+        return $res;
     }
 }
 
