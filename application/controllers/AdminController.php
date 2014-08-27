@@ -277,6 +277,7 @@ class AdminController extends Zend_Controller_Action
 
     public function geoEditAction()
     {
-
+        $geoEditForm = new Application_Form_GeoEdit();
+        $this->view->geoEditForm = $geoEditForm;
     }
 }

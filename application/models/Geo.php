@@ -35,7 +35,22 @@ class Application_Model_Geo
         return $resArr;
     }
 
-    public function getAllTree($adId = null) {
+    public function getByCode($code) {
+        if (is_null($code)) {
+            return false;
+        }
+        $db = new Application_Model_DbTable_Geo();
+        $select = $db->select()
+            ->where("code = ?", $code);
+        $item = $db->fetchRow($select);
+        if ($item) {
+            return $item;
+        } else {
+            return false;
+        }
+    }
+
+    public function getAllTree($adId = null, $editMode = false) {
         $db = new Application_Model_DbTable_Geo();
         $dbItems = $db->fetchAll(null, array("code", "name"));
 
@@ -48,6 +63,7 @@ class Application_Model_Geo
 
         $data = array();
         foreach ($dbItems as $item) {
+            $a = new Application_Model_GeoDbRow();
             $map = explode("-", $item->code);
             $isChecked = false;
             if (in_array($item->code, $currentLocations)) {
@@ -55,17 +71,17 @@ class Application_Model_Geo
             }
             switch (sizeof($map)) {
                 case 1 :
-                    $data[$map[0]] = $item->toArray($isChecked);
+                    $data[$map[0]] = $item->toArray($isChecked, $editMode);
                     $data[$map[0]]["open"] = true;
                     break;
 
                 case 2 :
-                    $data[$map[0]]["branch"][$map[1]] = $item->toArray($isChecked ? $isChecked : $data[$map[0]]["checked"]);
+                    $data[$map[0]]["branch"][$map[1]] = $item->toArray($isChecked ? $isChecked : $data[$map[0]]["checked"], $editMode);
                     $data[$map[0]]["inode"] = true;
                     break;
 
                 case 3 :
-                    $data[$map[0]]["branch"][$map[1]]["branch"][] = $item->toArray($isChecked ? $isChecked : $data[$map[0]]["branch"][$map[1]]["checked"]);
+                    $data[$map[0]]["branch"][$map[1]]["branch"][] = $item->toArray($isChecked ? $isChecked : $data[$map[0]]["branch"][$map[1]]["checked"], $editMode);
                     $data[$map[0]]["branch"][$map[1]]["inode"] = true;
                     break;
             }
@@ -211,15 +227,16 @@ class Application_Model_Geo
 
         $select->reset(Zend_Db_Select::COLUMNS);
         $select->columns($columns);
-        $select2 = $ad->select()->from(
-            array(
-                'd' => new Zend_Db_Expr('(' . (string) $select . ')') //
-            ), array(
-                new Zend_Db_Expr("COUNT(d.location) count"),
-                new Zend_Db_Expr("d.*")
+        $select2 = $ad->select()
+            ->from(
+                array(
+                    'd' => new Zend_Db_Expr('(' . (string) $select . ')') //
+                ), array(
+                    new Zend_Db_Expr("COUNT(d.location) count"),
+                    new Zend_Db_Expr("d.*")
+                )
             )
-        )
-        ->group("d.location");
+            ->group("d.location");
         $select2->setIntegrityCheck(false);
 
         $data = $ad->fetchAll($select2)->toArray();
@@ -245,8 +262,6 @@ class Application_Model_Geo
 
     protected function _getAllCounts($temp = "", $params = null) {
         $temp = $temp?$temp:"";
-
-
         $ad = new Application_Model_DbTable_AdLocation();
         $select = $ad->select();
         $select->setIntegrityCheck(false);
@@ -256,7 +271,6 @@ class Application_Model_Geo
         ));
 
         $geoStmt = Application_Model_DbTable_AdLocation::prepareWhereStatement($temp, "al");
-
         $select->join(array("a" => "ads"), "a.id = al.ad_id");
         $select->where($geoStmt);
         $select->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
@@ -281,7 +295,6 @@ class Application_Model_Geo
             $result[] = $translate->getAdapter()->translate($value["name"]);
         }
         return implode(", ", $result);
-
     }
 
     public function addGeoItem ($parentCode, $internationalName, $nativeName) {
@@ -294,10 +307,8 @@ class Application_Model_Geo
             $res["success"] = false;
             $res["msg"] = "incorrect data";
         } else {
-            $name = strtolower(urlencode(preg_replace("/[^a-zа-я\s]/ui",'',$internationalName)));
-            $db = new Application_Model_DbTable_Geo();
-            $item = $db->createRow();
-            $item->name = $name;
+            $item = $this->getByCode($parentCode);
+            $this->processItem($item, $nativeName, $internationalName);
             $item->code = $this->getNextCode($parentCode);
             try {
                 $id = $item->save();
@@ -308,6 +319,39 @@ class Application_Model_Geo
             }
         }
         return $res;
+    }
+
+    public function editGeoItem ($currentCode, $internationalName, $nativeName) {
+        $res = array(
+            "success" => true,
+            "msg" => null
+        );
+
+        if (!$internationalName || !$nativeName || !$currentCode) {
+            $res["success"] = false;
+            $res["msg"] = "incorrect data";
+        } else {
+            $item = $this->getByCode($currentCode);
+            $this->processItem($item, $nativeName, $internationalName);
+            try {
+                $id = $item->save();
+                $res["msg"] = $id;
+            } catch (Exception $e) {
+                $res["success"] = false;
+                $res["msg"] = $e->getMessage();
+            }
+        }
+        return $res;
+    }
+
+    protected function processItem(&$dbItem, $nativeName, $interName) {
+        $name = strtolower(urlencode(preg_replace("/[^a-zа-я\s]/ui",'',$interName)));
+        $dbItem->name = $name;
+        $locale = array(
+            "US" => $interName,
+            "NATIVE" => $nativeName
+        );
+        $dbItem->locale = serialize($locale);
     }
 
     protected function getNextCode($parentCode) {
@@ -339,11 +383,7 @@ class Application_Model_Geo
             "msg" => null
         );
 
-        $db = new Application_Model_DbTable_Geo();
-        $select = $db->select()
-            ->from("geo", array("lastNumber" => new Zend_Db_Expr("REPLACE(code, '$parentCode-', '') + 0")))
-            ->where("code = ?", $geoCode);
-        $item = $db->fetchRow($select);
+        $item = $this->getByCode($geoCode);
         if ($item) {
             $item->delete();
         } else {

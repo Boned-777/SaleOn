@@ -4,18 +4,9 @@
             <div id="geo_tree" class="aciTree"></div>
         </div>
     </div>
-    <div class="span8">
+    <div class="span6">
         <div id="info">
-            <form action="#" method="get" id="geo_form">
-                <input type="hidden" name="id" />
-                <input type="hidden" name="code" />
-                <input type="hidden" name="parent" />
-                <input type="text" name="native" value="asdasda"/>
-                <input type="text" name="inter"  value="asdasda"/>
-
-                <input type="submit" value="Save">
-            </form>
-
+            <?= $this->geoEditForm->setAction('/geo/add'); ?>
         </div>
     </div>
 </div>

@@ -38,25 +38,56 @@ class GeoController extends Zend_Controller_Action
 
     public function getListAction() {
         $adId = $this->getParam("ad", null);
-
         $item = new Application_Model_Geo();
         $results = $item->getAllTree($adId);
+        $this->_helper->json($results);
+    }
+
+    public function getEditListAction() {
+        $adId = $this->getParam("ad", null);
+        $item = new Application_Model_Geo();
+        $results = $item->getAllTree($adId, true);
         $this->_helper->json($results);
     }
 
     public function addAction() {
         $nativeName = $this->_getParam("native", null);
         $internationalName = $this->_getParam("inter", null);
+        $currentCode = $this->_getParam("code", null);
         $parentCode = $this->_getParam("parent", null);
 
         $item = new Application_Model_Geo();
-        $res = $item->addGeoItem($parentCode, $internationalName, $nativeName);
+
+        if ($currentCode) {
+            //edit mode
+            $res = $item->editGeoItem($currentCode, $internationalName, $nativeName);
+        } else {
+            //create mode
+            $res = $item->addGeoItem($parentCode, $internationalName, $nativeName);
+        }
+
+
 
         $this->_helper->json($res);
     }
 
-    public function editAction() {
-
+    public function getEditAction() {
+        $geoCode = $this->_getParam("code", null);
+        $item = new Application_Model_Geo();
+        $res = $item->getByCode($geoCode);
+        if ($res === false) {
+            $this->_helper->json(array(
+                "success" => false,
+                "msg" => "code not found"
+            ));
+            exit;
+        }
+        $this->_helper->json(
+            array(
+                "success" => true,
+                "data" => $res->toItemArray()
+            )
+        );
     }
 
     public function removeAction() {
