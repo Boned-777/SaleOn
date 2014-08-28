@@ -749,7 +749,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     @media (max-height: 640px) {
         #main-page-slider {
             margin-top: 0px;
-            margin-bottom: -2px;
+            margin-bottom: -60px;
         }
     }
     @media (min-height: 641px) and (max-height: 680px) {
