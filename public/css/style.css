@@ -76,7 +76,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     width: 36px;
     margin-left: 99%;
     margin-bottom: -4%;
-    margin-top: -20px;
+    margin-top: -1px;
     height:24px;
 }
 #footer .contacts:hover, .contacts:focus {
@@ -1451,11 +1451,10 @@ a.pluso-more{display: none !important;}
 }
 #lng-switcher.dropdown-menu > li > a:hover,
 #lng-switcher.dropdown-menu > li > a:focus {
-    /*background-color: #C0C0C0;*/
+    background-color: #C0C0C0;
     background-image: url("/img/lang.png");
     background-repeat: no-repeat;
 }
-
 .lng {
     background: url("/img/lang.png") no-repeat 5px 0px;
     width: 24px;
