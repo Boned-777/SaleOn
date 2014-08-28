@@ -54,12 +54,13 @@ button#lng-btn.btn.dropdown-toggle.lng.ua{
     background-position: center;
     background-repeat: repeat-x;
     display: block;
+    margin-top: -78px;
 
 }
 #footer .container {
     position: relative;
     width: 97%;
-    margin-top: -68px;
+
 }
 
 .container .credit {
