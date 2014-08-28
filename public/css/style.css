@@ -54,8 +54,8 @@ button#lng-btn.btn.dropdown-toggle.lng.ua{
     background-position: center;
     background-repeat: repeat-x;
     display: block;
-    margin-top: -78px;
-
+    position: relative;
+    top: -30px;
 }
 #footer .container {
     position: relative;
@@ -75,7 +75,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     /*margin: 6px 0 0 10px;*/
     border: none !important;
     width: 36px;
-    margin-left: 101%;
+    margin-left: 200px;
     margin-bottom: -4%;
     margin-top: 13px;
     height:24px;
@@ -1464,6 +1464,7 @@ a.pluso-more{display: none !important;}
 #lng-btn.lng {
     width: 36px;
     height: 23px;
+    left: 50%;
 }
 #lng-btn.btn:hover, .btn:focus {
    /* border: 1px solid #999; */
