@@ -59,7 +59,7 @@ button#lng-btn.btn.dropdown-toggle.lng.ua{
 #footer .container {
     position: relative;
     width: 97%;
-    margin-top: -65px;
+    margin-top: -68px;
 }
 
 .container .credit {
@@ -76,7 +76,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     width: 36px;
     margin-left: 99%;
     margin-bottom: -4%;
-    margin-top: -1px;
+    margin-top: 13px;
     height:24px;
 }
 #footer .contacts:hover, .contacts:focus {
