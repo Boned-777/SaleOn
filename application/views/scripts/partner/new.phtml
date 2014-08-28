@@ -4,9 +4,12 @@
     <div class="span6">
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
         <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
+        <button id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="btn dropdown-toggle contacts" style="margin-top: -45px; margin-left:535px;"></button>
+
     </div>
     <div class="span6">
-        <div class="legend"><?php echo $translate->getAdapter()->translate("new_partner_reg"); ?></div>
+        <div class="legend"><?php echo $translate->getAdapter()->translate("new_partner_reg"); ?>
+        </div>
         <?php echo $this->registrationForm->setAction($this->url()); ?>
     </div>
 </div>
