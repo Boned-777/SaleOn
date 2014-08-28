@@ -54,8 +54,7 @@ button#lng-btn.btn.dropdown-toggle.lng.ua{
     background-position: center;
     background-repeat: repeat-x;
     display: block;
-    position: relative;
-    top: -50px;
+
 }
 #footer .container {
     position: relative;
@@ -750,6 +749,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     @media (max-height: 640px) {
         #main-page-slider {
             margin-top: 0px;
+            margin-bottom: -2px;
         }
     }
     @media (min-height: 641px) and (max-height: 680px) {
