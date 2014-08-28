@@ -22,6 +22,7 @@ button#lng-btn.btn.dropdown-toggle.lng.ua{
 #push,
 #footer {
     height: 65px;
+
 }
 .footer {
    /* background: rgb(79,79,79); /* Old browsers */
@@ -58,6 +59,7 @@ button#lng-btn.btn.dropdown-toggle.lng.ua{
 #footer .container {
     position: relative;
     width: 97%;
+    margin-top: -65px;
 }
 
 .container .credit {
