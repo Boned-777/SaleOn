@@ -4,9 +4,10 @@ body {
     background-color: #FFF;
     min-width: 1005px;
 }
-button#lng-btn.btn.dropdown-toggle.lng.ua{
+button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng.en,button#lng-btn.btn.dropdown-toggle.lng.ru{
     border:none !important;
 }
+
 /* Wrapper for page content to push down footer */
 #wrap {
     min-height: 100%;
