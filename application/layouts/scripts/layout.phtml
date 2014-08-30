@@ -43,7 +43,17 @@
     <div class="topbg"></div>
     <div id="wrap">
         <div class="container fix-content-position">
-                <div class="row">
+            <div class="btn-group dropdown pull-left" style="margin-left: 100%; margin-top: 4px; margin-bottom: -4%;">
+                <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
+                <ul class="dropdown-menu" id="lng-switcher">
+                    <li><a id="ua" class="lng ua" title="<?= $translate->getAdapter()->translate("lng_ukrainian")?>" href="#"></a></li>
+                    <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
+                    <li><a id="en" class="lng en" title="<?= $translate->getAdapter()->translate("lng_english")?>" href="#"></a></li>
+                    <li><a id="pl" class="lng pl" title="<?= $translate->getAdapter()->translate("lng_poland")?>" href="#"></a></li>
+                </ul>
+            </div>
+
+            <div class="row">
                     <div class="top-menu">
                     <div class="span4">
                         <button id="btn1" title="<?= $translate->getAdapter()->translate("mm_regions")?>" class="btn btn-large" ><i class="myicon-region"></i></button>
@@ -206,19 +216,10 @@
 
     <div id="footer" class="footer footer-gradient">
         <div class="container">
-            <div class="btn-group dropup pull-left">
-                <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
-                <ul class="dropdown-menu" id="lng-switcher">
-                    <li><a id="ua" class="lng ua" title="<?= $translate->getAdapter()->translate("lng_ukrainian")?>" href="#"></a></li>
-                    <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
-                    <li><a id="en" class="lng en" title="<?= $translate->getAdapter()->translate("lng_english")?>" href="#"></a></li>
-                    <li><a id="pl" class="lng pl" title="<?= $translate->getAdapter()->translate("lng_poland")?>" href="#"></a></li>
-                </ul>
-            </div>
-            <button id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="btn dropdown-toggle contacts"></button>
-            <p class="credit pull-right"><a href="https://plus.google.com/117708080449266987056/?rel=author">
-                    © Все Акции Украины, 2014
-                </a></p>
+
+              <!-- <p class="credit pull-right"><a href="https://plus.google.com/117708080449266987056/?rel=author">
+                    © SALEON, 2014
+                </a></p> -->
             <div id="footer-social" class="socials"></div>
         </div>
     </div>
@@ -231,6 +232,10 @@
     <script type="text/javascript" src="/js/bootstrap/bootstrap-popover.js"></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-
+    <?php
+    if ( $this->layout()->ckeditor ) {
+        echo $this->headScript()->appendFile( $this->baseUrl().'/ckeditor/ckeditor.js');
+    }
+    ?>
 </body>
 </html>

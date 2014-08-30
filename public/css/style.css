@@ -4,6 +4,9 @@ body {
     background-color: #FFF;
     min-width: 1005px;
 }
+button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng.en,button#lng-btn.btn.dropdown-toggle.lng.ru{
+    border:none !important;
+}
 
 /* Wrapper for page content to push down footer */
 #wrap {
@@ -11,7 +14,7 @@ body {
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -36px;
+    margin: 0 auto -65px;
     margin-left: -20px;
     overflow: hidden;
 }
@@ -19,23 +22,25 @@ body {
 /* Set the fixed height of the footer here */
 #push,
 #footer {
-    height: 35px;
+    height: 65px;
+
 }
 .footer {
-    background: rgb(79,79,79); /* Old browsers */
-    background: -moz-linear-gradient(top,  rgba(79,79,79,1) 0%, rgba(68,68,68,1) 50%, rgba(43,43,43,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(79,79,79,1)), color-stop(50%,rgba(68,68,68,1)), color-stop(100%,rgba(43,43,43,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* W3C */
-    color: #EEE;
+   /* background: rgb(79,79,79); /* Old browsers */
+   /* background: -moz-linear-gradient(top,  rgba(79,79,79,1) 0%, rgba(68,68,68,1) 50%, rgba(43,43,43,1) 100%); /* FF3.6+ */
+   /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(79,79,79,1)), color-stop(50%,rgba(68,68,68,1)), color-stop(100%,rgba(43,43,43,1))); /* Chrome,Safari4+ */
+   /* background: -webkit-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Chrome10+,Safari5.1+ */
+   /*  background: -o-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Opera 11.10+ */
+   /* background: -ms-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* IE10+ */
+   /* background: linear-gradient(to bottom,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* W3C */
+   /* color: #EEE;
     border-top: 1px solid #d4d4d4;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 10px rgba(0, 0, 0, 0.1); */
+
 }
 
 .footer-gradient {
-    font-size: 14px;
+    /*font-size: 14px;
     color: #333333;
     background-color: #f5f5f5;
     *background-color: #e6e6e6;
@@ -45,11 +50,17 @@ body {
     background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
     background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
     background-repeat: repeat-x;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;*/
+    background-image: url('/img/footer.png');
+    background-position: center;
+    background-repeat: repeat-x;
+    display: block;
+
 }
 #footer .container {
     position: relative;
     width: 97%;
+
 }
 
 .container .credit {
@@ -59,10 +70,14 @@ body {
 #footer .btn-group {
     margin: 6px 0 0 10px;
 }
-#footer .contacts {
+button#contact-btn.btn.dropdown-toggle.contacts {
     background: url("/img/contacts6.png") center 2px no-repeat;
-    margin: 6px 0 0 10px;
+    /*margin: 6px 0 0 10px;*/
+    border: none !important;
     width: 36px;
+    margin-left: 200px;
+    margin-bottom: -4%;
+    margin-top: 13px;
     height:24px;
 }
 #footer .contacts:hover, .contacts:focus {
@@ -141,7 +156,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .top-menu {
-        margin: 35px 0 15px 133px;
+        margin: 35px 0 15px 130px;
     }
     button#btn1.btn.btn-large{
         width: 108px;
@@ -183,6 +198,51 @@ body {
     }
 
 }
+@media (min-width: 1501px) {
+    .top-menu {
+        margin: 35px 0 15px 133px;
+    }
+    button#btn1.btn.btn-large{
+        width: 108px;
+        margin-left: -50px;
+        margin-right: -9px;
+        margin-top: 8px;
+    }
+
+    button#btn2.btn.btn-large{
+        width: 108px;
+        margin-left:10px;
+        margin-top:8px;
+    }
+
+    button#btn3.btn.btn-large{
+        width: 108px;
+        margin-left: -19px;
+        margin-top: 8px;
+    }
+
+
+    a#btn4.btn.btn-large{
+        width: 45px;
+        margin-left:56px;
+        margin-top: 8px;
+    }
+    a.btn.btn-large{
+        width:45px;
+        margin-left: 55px;
+
+        margin-right: -55px;
+        margin-top: 8px;
+
+
+    }
+    a#btn5.btn-large{
+        margin-left: 8px;
+        margin-left: 55px;
+    }
+
+}
+
 @media (max-width: 1199px) {
     .top-menu {
         margin: 35px 0 15px 117px;
@@ -415,42 +475,38 @@ body {
 }
 .no-image {
 
-    width:230px;
-    height: 137px;
-    top: 7px;
-    bottom: 7px;
+    width:240px;
+    height: 153px;
     position: absolute;
 
 }
 /*.no-image:hover {
-    background: url("/img/no_ad-hover.png") center center no-repeat;
-    position: absolute;
-    top: 7px;
-    bottom: 7px;
-    left:2px;
-    width:227px;
+    background: url("/img/no-image-gray-hover.png") no-repeat;
+    width:230px;
+margin-top: -6.8px;
+
 }*/
 
-.item.hover-left .no-image, .item.hover-right .no-image {
-    width: 175px;
-    top: 7px;
-    bottom: 7px;
+.item.hover-left:hover .no-image, .item.hover-right:hover .no-image {
+   display: none !important;
+    background-image: none !important;
+    visibility: hidden !important;
 }
+
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .no-image {
-
-        position: absolute;
         top: 7px;
         bottom: 7px;
-
     }
     .item.hover-left .no-image, .item.hover-right .no-image {
+        background-image: none;
         width: 177px;
         height:105px;
         top: 7px;
         bottom: 7px;
     }
+
     .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
         position: absolute;
         display: block;
@@ -459,18 +515,51 @@ body {
 
 
     }
+
 }
 @media (max-width: 1199px) {
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 130px;
     }
+
     .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
         position: absolute;
         display: block;
         width: 130px;
     }
+    a.no-image-href{
+        display: block;
+        width: 160px;
+        height: 100px;
+        position: absolute;
+        text-align: center;
+        z-index: 9999;
+    }
+    .img-info{top:-21px !important;}
 }
 
+@media (min-width: 1199px) {
+    .item.hover-left .no-image, .item.hover-right .no-image {
+        width: 130px;
+    }
+
+    .item.hover-left a.no-image-href, .item.hover-right a.no-image-href {
+        position: absolute;
+        display: block;
+        width: 130px;
+    }
+    a.no-image-href{
+        display: block;
+        width: 190px;
+        height: 119px;
+        position: absolute;
+        text-align: center;
+        z-index: 9999;
+
+    }
+
+
+}
 
 
 .active .img-wrapper:hover .img-info {
@@ -741,7 +830,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         margin: 45px 0 10px 0;
     }
     .page-number span {
-        margin-left: -37px;
+        margin-left: -36px;
 
     }
 }
@@ -841,6 +930,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .firefox-slider .item.hover-right {
     top: 1px;
 }
+
 .firefox-slider .item.hover-left img, .firefox-slider
 .item.hover-right img {
     opacity: 0.5;
@@ -1044,6 +1134,7 @@ textarea {
         margin-left: 9px;
         max-height:100%;
     }
+    .details-right div.span5.top-offset{width: 670px;}
 }
 
 @media (max-width: 1199px) {
@@ -1058,6 +1149,7 @@ textarea {
         width: 570px;
     }
     div.span6.details-right{margin-left: 60px !important; width: 55%;  }
+
 }
 .details-right div {
     text-align: justify;
@@ -1076,8 +1168,21 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     width: 22px;
     cursor: pointer;
     position: relative;
-    right: -7px;
+    right: 17px;
     top: 5px;
+
+}
+@media (max-width: 1000px) {
+
+    .details-right .favorites-icon {
+        display: inline-block;
+        height: 22px;
+        width: 22px;
+        cursor: pointer;
+        position: relative;
+        top: 5px;
+
+    }
 }
 
 a.pluso-more{display: none !important;}
@@ -1175,9 +1280,20 @@ a.pluso-more{display: none !important;}
     margin-bottom: 15px;
 }
 
-#full-description-modal.modal,
-#action-address-modal.modal	{
+#full-description-modal.modal{
     top: 90px;
+}
+
+#action-address-modal.modal	{
+    margin-left: -485px;
+    width: 970px;
+    top: 10%;
+
+}
+.map_sticky{
+    padding: 10px;
+    position:fixed;
+    width: 465px;
 }
 
 /*categories filters*/
@@ -1442,10 +1558,18 @@ a.pluso-more{display: none !important;}
 .additional_address{
     border: 1px solid #ccc;
     margin-top: -5px;
+    overflow: auto;
+    height: 225px;
     border-radius: 5px;
 }
+.additional_address div{
+    margin-left:-15px;
+}
+
 #form_address{
     list-style: none;
+    margin-top: 10px;
+
 }
     a.no-image-href{
     display: block;
@@ -1461,4 +1585,69 @@ a.pluso-more{display: none !important;}
     margin-top: 15px;
     padding-right: 9px;
     border-radius: 3px;
+}
+
+#action-address-modal{
+    overflow-x:hidden;
+}
+#spanik{
+    position: relative;
+    left: 0%;
+    width: 500px;
+}
+.additional_address div.input-append{
+    display:inline-block;
+    position: absolute;
+    top: 587px;
+    margin-left: -2px !important;
+
+}
+.span_regions{
+    width: 570px;
+    margin-top: 12px;
+}
+#address_partner .additional_address div.input-append{
+    display:inline-block;
+    position: absolute;
+    top: 747px;
+    margin-left: -2px !important;
+}
+
+#full-address:active{
+    color:#002a80;
+    text-decoration-color: cadetblue;
+}
+button#btn1.btn.btn-large a:active{
+    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
+
+}
+
+button#btn2.btn.btn-large:active{
+    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
+
+}
+
+button#btn3.btn.btn-large:active{
+    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
+
+}
+
+.span5 .additional_address{
+    border: 2px solid #eee;
+    margin-top: -5px;
+    overflow: auto;
+    height: 325px;
+}
+#ok{
+    font-size: 14px;
+    position: absolute;
+    font-weight: bold;
+    background-color: rgb(9, 244, 9);
+    width: 32%;
+    text-align: center;
+    margin-left: 44.5%;
+    top: 20%;
+}
+.success{
+    background-color: #ffff00;
 }

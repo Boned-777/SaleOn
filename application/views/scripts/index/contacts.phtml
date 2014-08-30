@@ -12,32 +12,13 @@
                 </a><br>
             <i class="cicon-phone"></i><?= $translate->getAdapter()->translate("contact_org_phone_name")?><?= $translate->getAdapter()->translate("contact_org_phone_val")?> <br>
             <i class="cicon-phone"></i><?= $translate->getAdapter()->translate("contact_org_phone_name")?><?= $translate->getAdapter()->translate("contact_org_phone_val2")?> <br>
-             <a href='http://vk.com/wantlookinfo' target="_blank"><div class="vk" hre></div></a> <a href='https://www.facebook.com/wantlook.info' target="_blank"><div class="fb"></div></a><a href="https://twitter.com/bonedde7" target="_blank"><div class="twitter"></div></a>
+             <a href='http://vk.com/wantlookinfo' target="_blank"><div class="vk"></div></a> <a href='https://www.facebook.com/wantlook.info' target="_blank"><div class="fb"></div></a><a href="https://twitter.com/bonedde7" target="_blank"><div class="twitter"></div></a><br>
+            <a href='http://wantlook.info' style="display:block; margin-left: 25px; margin-top:45px;">© SALEON 2014</a><br>
         </address>
 
     </div>
-    <div class="span5">
-    <form>
-     <strong><?= $translate->getAdapter()->translate("feedback_form_name")?></strong><br><br>
-                        <fieldset>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_name")?>" >
-                                </div>
-                                <div class="controls">
-                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_email")?> ">
-                                </div>          
-                                <div class="controls">
-                                    <input class="span4" type="text" placeholder="<?= $translate->getAdapter()->translate("contact_topic")?>" >
-
-                                </div>
-                                <div class="controls">
-                                    <textarea class="span4" id="textarea" rows="6" placeholder="<?= $translate->getAdapter()->translate("contact_text")?>"></textarea>
-                                </div>
-                                <button class="btn btn-default"><?= $translate->getAdapter()->translate("contact_send")?> </button>
-                            </div>
-                        </fieldset>
-                    </form>
+    <div class="span5" style="border: none !important;">
+        <?php echo $this->form; ?>
 
        
     </div>

@@ -125,10 +125,15 @@ class AdController extends Zend_Controller_Action
                 if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
                     $formData["invalidFormElements"] = array(array(
                         "element" => "image_file",
+                        "error" => Zend_Validate_NotEmpty::IS_EMPTY),
+                        array(
+                        "element" => "banner_file",
                         "error" => Zend_Validate_NotEmpty::IS_EMPTY
                     ));
                 }
+
             }
+
 
             if ($form->isValid($formData)) {
                 $mediaItemData = array();
@@ -368,7 +373,8 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
+            "translation" => $translate->getAdapter()->translate("new_ad"),
+             "tr_title" => $translate->getAdapter()->translate("new_ad_title")
         );
         $this->_helper->json($res);
     }
@@ -392,7 +398,7 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
+            "translation" => $translate->getAdapter()->translate("new_ad")
         );
         $this->_helper->json($res);
     }
@@ -410,7 +416,7 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
+            "translation" => $translate->getAdapter()->translate("new_ad")
         );
         $this->_helper->json($res);
     }
@@ -431,7 +437,7 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
+            "translation" => $translate->getAdapter()->translate("new_ad")
         );
 
         $this->_helper->json($res);

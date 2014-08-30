@@ -13,10 +13,9 @@
             <?php } ?>
 
         </a>
-
     </div>
     <div class="span6 details-right">
-        <h4><?php echo $this->ad->name; ?></h4>
+        <h1><?php echo $this->ad->name; ?></h1>
         <div><?php echo nl2br($this->ad->description); ?></div>
         <br><br>
 
@@ -62,16 +61,10 @@
             </script>
             <div class="pluso" data-background="transparent"
                  data-options="medium,square,line,horizontal,nocounter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email"></div>
-
-
-
-            <p>
-            <address>
+            <address><h4>
                 <a id="action-address" class="action-address" href="#action-address-modal" data-id="<?php echo $this->ad->id; ?>">
                     <?php echo $this->ad->address; ?>
                 </a>
-
-            </p>
             <br>
             <div><span><?php echo $this->ad->phone; ?></span>
                 <?php if ($this->ad->phone1) { ?>
@@ -84,7 +77,7 @@
             <a href="mailto:<?php echo $this->ad->email; ?>"><?php echo $this->ad->email; ?></a>
             <?php if ($this->ad->url) { ?>
                 <div><noindex><a href="<?php echo $this->ad->url; ?>" rel="nofollow" target="_blank"><?php echo $this->ad->url; ?></a></noindex></div>
-            <?php } ?>
+            <?php } ?></h4>
             </address>
         </div></div>
 
@@ -109,26 +102,25 @@
     <div class="modal-header">
         <h3 id="myModalLabel"><?php echo $translate->getAdapter()->translate("map_position"); ?></h3>
     </div>
-    <div class="modal-body">
-        <div class="span5">
+    <div class="modal-body" style="overflow-x:hidden;">
+        <div class="map_sticky" style="position: fixed !important;">
             <input type="hidden" id="full-address" value="<?=$this->ad->address; ?>">
-            <div class="map_canvas"></div>
+            <div class="map_canvas" style="width:100%; height:420px;  margin-top: -20px; margin-left: -20px;"></div>
         </div>
-        <div class="span2">
-            <div class="location_item"><i class="icon-map-marker"></i>&nbsp;<?= $this->ad->address; ?></div>
+        <div class="span2" style="position:relative; left: 46%; width:480px;">
+          <div id="spanik">  <div class="location_item" style="color:red"><i class="icon-map-marker"></i>&nbsp;<?= $this->ad->address; ?></div></div>
             <?php foreach($this->ad->addresses->list as $addrItem) : ?>
             <?php if ($addrItem["checked"]) : ?>
                 <div class="location_item"><i class="icon-map-marker"></i>&nbsp;<?= $addrItem['name']; ?></div>
-            <?php endif ?>
+                <?php endif ?>
             <?php endforeach ?>
         </div>
-        <div class="map_canvas"  style="width:60%;"></div>
-    </div>
+
+        <div class="map_canvas" style="width:100%; height:420px;  margin-top: -20px; margin-left: -20px;"></div></div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
     </div>
 </div>
-
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>

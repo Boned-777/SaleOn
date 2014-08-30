@@ -17,7 +17,7 @@
                 <div class="span5">
                     <?php echo $this->settingsForm->setAction($this->url()); ?>
                 </div>
-                <div class="span6">
+                <div class="span_regions">
                     <label><?= $translate->getAdapter()->translate("ad_region"); ?></label>
                     <div style="height: 320px; overflow-y: auto; border: 1px solid #cccccc; border-radius: 3px;">
                         <div id="geo_tree" class="aciTree"></div>
@@ -31,11 +31,11 @@
                     <?php echo $this->contactsForm->setAction($this->url()); ?>
                 </div>
                 <div class="span5">
-                    <ul class="zend form" style="list-style: none; margin-top: 14px;">
+                    <ul class="zend form" style="list-style: none; margin-top: 14px; width: 530px;">
                         <li>
                             <label style="color:#999999;"><?= $translate->getAdapter()->translate("additional_addresses"); ?> *</label>
                         </li>
-                        <li>
+                        <li style="margin-left: -10px;">
                             <?php $this->additionalAddressAd($this->ad->addresses); ?>
                         </li>
 </ul>
@@ -46,12 +46,13 @@
         <div class="tab-pane" id="media">
             <div class="span5"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
             <div class="span6">
-                <?php if (!empty($this->image)) { ?>
-                    <img src="<?php echo $this->serverUrl() . "/media/" . $this->image; ?>" class="img-polaroid"/><br/><br/>
-                <?php } ?>
                 <?php if (!empty($this->banner)) { ?>
-                    <img src="<?php echo $this->serverUrl() . "/media/" . $this->banner; ?>" class="img-polaroid"/>
+                    <img src="<?php echo $this->serverUrl() . "/media/" . $this->banner; ?>" class="img-polaroid"/><br/><br/>
                 <?php } ?>
+                <?php if (!empty($this->image)) { ?>
+                    <img src="<?php echo $this->serverUrl() . "/media/" . $this->image; ?>" class="img-polaroid"/>
+                <?php } ?>
+
             </div>
         </div>
     </div>
@@ -87,7 +88,12 @@
         selectable: true
     });
 </script>
-
+<script type="text/javascript">$('#end_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+    $('#public_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });</script>
 <script src="/js/ad.js"></script>
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
