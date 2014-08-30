@@ -2,7 +2,6 @@
 class Application_Model_GeoDbRow extends Zend_Db_Table_Row {
 
     public function toArray($checked=false, $editMode=false) {
-        global $translate;
         $displayName = $this->name;
         if ($editMode) {
             if(!empty($this->locale)) {
@@ -10,7 +9,7 @@ class Application_Model_GeoDbRow extends Zend_Db_Table_Row {
                 $displayName = $displayName["NATIVE"];
             }
         } else {
-            $displayName = $translate->getAdapter()->translate($this->name);
+            $displayName = Application_Model_Geo::getLocaleName($this->name);
         }
 
 

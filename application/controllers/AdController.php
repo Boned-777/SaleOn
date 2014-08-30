@@ -207,6 +207,7 @@ class AdController extends Zend_Controller_Action
                 "value" => $location->location
             ));
             $elem->setBelongsTo('location');
+            $elem->setDecorators(array('ViewHelper'));
             $this->view->settingsForm->addElement($elem);
         }
 
@@ -367,7 +368,7 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => $translate->getAdapter()->translate("new_ad")
+            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
         );
         $this->_helper->json($res);
     }
@@ -391,7 +392,7 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => $translate->getAdapter()->translate("new_ad")
+            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
         );
         $this->_helper->json($res);
     }
@@ -409,7 +410,7 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => $translate->getAdapter()->translate("new_ad")
+            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
         );
         $this->_helper->json($res);
     }
@@ -430,7 +431,7 @@ class AdController extends Zend_Controller_Action
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),
-            "translation" => $translate->getAdapter()->translate("new_ad")
+            "translation" => "<img src='/img/no-image-gray.jpg' class='img-polaroid'>"
         );
 
         $this->_helper->json($res);

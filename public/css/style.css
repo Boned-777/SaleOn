@@ -1362,6 +1362,9 @@ a.pluso-more{display: none !important;}
 .en {
     background-position: 5px -41px !important;
 }
+.pl {
+    background-position: 5px -63px !important;
+}
 .btn-group.open  #lng-btn.dropdown-toggle {
     background-image: url("/img/lang.png");
 }
@@ -1437,17 +1440,25 @@ a.pluso-more{display: none !important;}
     background: #ccc;
 }
 .additional_address{
-    border: 2px solid #eee;
+    border: 1px solid #ccc;
     margin-top: -5px;
+    border-radius: 5px;
 }
 #form_address{
     list-style: none;
 }
     a.no-image-href{
     display: block;
-        width: 240px;
-        height: 153px;
+    width: 240px;
+    height: 153px;
     position: absolute;
-        text-align: center;
+    text-align: center;
 
+}
+
+#geo_form {
+    border: 1px solid #CCC;
+    margin-top: 15px;
+    padding-right: 9px;
+    border-radius: 3px;
 }

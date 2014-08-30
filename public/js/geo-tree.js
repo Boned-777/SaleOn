@@ -29,12 +29,12 @@ $(function () {
     });
 
     $('#geo_tree').on('acitree', function(event, api, item, eventName, options) {
-        if (eventName == 'checked' || eventName == 'unchecked'){
-            $("[id^='1']").remove();
+        if (eventName == 'checked' || eventName == 'unchecked') {
             var currentItem = item;
             if (api.hasParent(item)) {
                 currentItem = api.topParent(item);
             }
+            $("[id^=" + api.getId(currentItem) + "]").remove();
             buildOptimalCheckedList(api, currentItem);
         }
     });

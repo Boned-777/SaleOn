@@ -98,5 +98,16 @@ class GeoController extends Zend_Controller_Action
 
         $this->_helper->json($res);
     }
+
+    public function generateAction() {
+        $a = new Application_Model_Geo();
+        $a->createLocaleFile(1);
+        $a->createLocaleFile(2);
+        $a->createInterLocaleFile();
+
+        $this->_helper->json(array(
+            "success" => true
+        ));
+    }
 }
 

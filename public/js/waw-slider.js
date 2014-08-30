@@ -4,8 +4,6 @@
 			NEXT_PREVIOUS_PAGE_SHIFT = 1,
 			EMPTY_STRING = "";
 
-        //var new_add = <?= $this->translate('new_ad') ?>;
-
         var wawSlyder = function(sliderData) {
 			this.mainTemplate = '<div id="myCarousel" class="carousel slide">\
 									<div class="carousel-inner">\

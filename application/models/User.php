@@ -150,7 +150,7 @@ class Application_Model_User
     }
 
     function setGlobalLocale($lang) {
-        $langList = array("ru", "ua", "en");
+        $langList = array("ru", "ua", "en", "pl");
         $session = new Zend_Session_Namespace();
         if (in_array($lang, $langList)) {
             $session->locale = $lang;

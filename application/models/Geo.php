@@ -2,19 +2,28 @@
 
 class Application_Model_Geo
 {
+    static $NATIVE_NAME = "NATIVE";
+    static $INTER_NAME = "US";
+
     public $id;
     public $code;
     public $name;
+    public $locale;
+
+    static function getLocaleName($name) {
+        global $locationsNative, $locationsInternational;
+        $resultName = $locationsNative->getAdapter()->translate($name);
+        if ($resultName === $name) {
+            $resultName = $locationsInternational->getAdapter()->translate($name);
+        }
+        return $resultName ? $resultName : $name;
+    }
 
     public function getAll($pattern = "") {
         global $translate;
-        $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
-        if ($pattern !== "")
-            $pattern .= "-";
-        $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
-
-        $itemsArr = $res->toArray();
+        $itemsList = $this->getAllItems($pattern);
+        $itemsArr = $itemsList->toArray();
 
         $resArr = array();
         if ($originalPattern !== "") {
@@ -22,17 +31,45 @@ class Application_Model_Geo
         }
         foreach ($itemsArr as $value) {
             if ($value["code"] == $originalPattern . "-99") {
-                $resArr[$value["code"]] = $translate->getAdapter()->translate($value["name"]);
+                $resArr[$value["code"]] = $this->getLocaleName($value["name"]);
             }
         }
 
         foreach ($itemsArr as $value) {
             if ($value["code"] != $originalPattern . "-99") {
-                $resArr[$value["code"]] = $translate->getAdapter()->translate($value["name"]);
+                $resArr[$value["code"]] = $this->getLocaleName($value["name"]);
             }
         }
 
         return $resArr;
+    }
+
+    public function getAllItems($pattern = "") {
+        $dbItem = new Application_Model_DbTable_Geo();
+        if ($pattern !== "")
+            $pattern .= "-";
+
+        $statement = null;
+        if ($pattern) {
+            $statement = 'code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"';
+        }
+
+        $items = $dbItem->fetchAll($statement);
+        return $items;
+    }
+
+    public function getAllChildren($pattern = "") {
+        $dbItem = new Application_Model_DbTable_Geo();
+        if ($pattern !== "")
+            $pattern .= "-";
+
+        $statement = null;
+        if ($pattern) {
+            $statement = 'code LIKE "' . $pattern . '%"';
+        }
+
+        $items = $dbItem->fetchAll($statement);
+        return $items;
     }
 
     public function getByCode($code) {
@@ -41,13 +78,21 @@ class Application_Model_Geo
         }
         $db = new Application_Model_DbTable_Geo();
         $select = $db->select()
-            ->where("code = ?", $code);
+            ->where("code = ?", (string)$code);
         $item = $db->fetchRow($select);
         if ($item) {
+            $this->loadData($item);
             return $item;
         } else {
             return false;
         }
+    }
+
+    protected function loadData($item) {
+        $this->id = $item->id;
+        $this->code = $item->code;
+        $this->name = $item->name;
+        $this->locale = unserialize($item->locale);
     }
 
     public function getAllTree($adId = null, $editMode = false) {
@@ -117,7 +162,7 @@ class Application_Model_Geo
             if ($value["code"] == $originalPattern . "-99") {
                 $resArr[] = array(
                     "value" => $value["code"],
-                    "option" => $translate->getAdapter()->translate($value["name"])
+                    "option" => $this->getLocaleName($value["name"])
                 );
             }
         }
@@ -126,7 +171,7 @@ class Application_Model_Geo
             if ($value["code"] != $originalPattern . "-99") {
                 $resArr[] = array(
                     "value" => $value["code"],
-                    "option" => $translate->getAdapter()->translate($value["name"])
+                    "option" => $this->getLocaleName($value["name"])
                 );
             }
         }
@@ -153,14 +198,14 @@ class Application_Model_Geo
             if (!preg_match("/^[0-9]{1,2}-[0-9]{1,2}-99/", $value["code"])) {
                 $resArr[] = array(
                     "name" => $value["code"],
-                    "value" => str_replace("І", "ИИ", $translate->getAdapter()->translate($value["name"])),
+                    "value" => str_replace("І", "ИИ", $this->getLocaleName($value["name"])),
                     "count" => $currentCount,
                     "is_path" => $is_path
                 );
             } else {
                 $cityArray = array(
                     "name" => $value["code"],
-                    "value" => $translate->getAdapter()->translate($value["name"]),
+                    "value" => $this->getLocaleName($value["name"]),
                     "count" => $currentCount,
                     "is_path" => $is_path
                 );
@@ -280,7 +325,6 @@ class Application_Model_Geo
     }
 
     public function getFullGeoName ($geoCode = "") {
-        global $translate;
         $indexes = explode("-", $geoCode);
         $condList = array();
         $tmp = "";
@@ -292,7 +336,7 @@ class Application_Model_Geo
         $res = $dbItem->fetchAll('code IN ("' . implode ('","', $condList) . '")')->toArray();
         $result = array();
         foreach ($res as $value) {
-            $result[] = $translate->getAdapter()->translate($value["name"]);
+            $result[] = $this->getLocaleName($value["name"]);
         }
         return implode(", ", $result);
     }
@@ -307,7 +351,9 @@ class Application_Model_Geo
             $res["success"] = false;
             $res["msg"] = "incorrect data";
         } else {
-            $item = $this->getByCode($parentCode);
+//            $parentItem = $this->getByCode($parentCode);
+            $db = new Application_Model_DbTable_Geo();
+            $item = $db->createRow();
             $this->processItem($item, $nativeName, $internationalName);
             $item->code = $this->getNextCode($parentCode);
             try {
@@ -348,8 +394,8 @@ class Application_Model_Geo
         $name = strtolower(urlencode(preg_replace("/[^a-zа-я\s]/ui",'',$interName)));
         $dbItem->name = $name;
         $locale = array(
-            "US" => $interName,
-            "NATIVE" => $nativeName
+            Application_Model_Geo::$INTER_NAME => $interName,
+            Application_Model_Geo::$NATIVE_NAME => $nativeName
         );
         $dbItem->locale = serialize($locale);
     }
@@ -386,6 +432,7 @@ class Application_Model_Geo
         $item = $this->getByCode($geoCode);
         if ($item) {
             $item->delete();
+            $this->removeChildren($geoCode);
         } else {
             $res = array(
                 "success" => false,
@@ -393,6 +440,52 @@ class Application_Model_Geo
             );
         }
         return $res;
+    }
+
+    protected function removeChildren($code) {
+        $db = new Application_Model_DbTable_Geo();
+        $sql = "DELETE FROM `geo` WHERE `code` LIKE '" . $code ."-%'";
+        $stmt = new Zend_Db_Statement_Mysqli($db->getAdapter(), $sql);
+        $stmt->execute();
+    }
+
+    public function createLocaleFile($countryCode) {
+        $countryItem = new Application_Model_Geo();
+        $countryItem->getByCode($countryCode);
+
+        $fileName = "location_" . strtoupper(substr($countryItem->locale[Application_Model_Geo::$INTER_NAME], 0, 3)) . ".php";
+
+        $subItems = $countryItem->getAllChildren($countryCode);
+
+        $file = fopen(APPLICATION_PATH . "/locale/" . $fileName, "w");
+        fwrite($file, "<?php \nreturn array(\n");
+
+        $realName = $countryItem->locale[Application_Model_Geo::$NATIVE_NAME];
+        fwrite($file, "    \"$countryItem->name\" => \"$realName\",\n");
+
+        foreach($subItems as $item) {
+            $realName = unserialize($item->locale)[Application_Model_Geo::$NATIVE_NAME];
+            fwrite($file, "    \"$item->name\" => \"$realName\",\n");
+        }
+        fwrite($file, ");");
+    }
+
+    public function createInterLocaleFile() {
+        $countryItem = new Application_Model_Geo();
+        $fileName = "location_" . Application_Model_Geo::$INTER_NAME . ".php";
+
+        $subItems = $countryItem->getAllItems();
+
+        $file = fopen(APPLICATION_PATH . "/locale/" . $fileName, "w");
+        fwrite($file, "<?php \nreturn array(\n");
+        foreach($subItems as $item) {
+            $realName = "";
+            if ($item->locale) {
+                $realName = unserialize($item->locale)[Application_Model_Geo::$INTER_NAME];
+            }
+            fwrite($file, "    \"$item->name\" => \"$realName\",\n");
+        }
+        fwrite($file, ");");
     }
 }
 

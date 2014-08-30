@@ -32,6 +32,31 @@ $translate = new Zend_Translate(
 $translate->setlocale($session->locale);
 Zend_Form::setDefaultTranslator($translate);
 
+$locationLang = "US";
+
+switch ($session->locale) {
+    case "ua" :
+    case "ru" :
+        $locationLang = "UKR";
+        break;
+
+    case "pl":
+        $locationLang = "POL";
+        break;
+}
+
+$locationsNative = new Zend_Translate(
+    'array',
+    APPLICATION_PATH . '/locale/location_' . $locationLang . ".php",
+    $session->locale
+);
+
+$locationsInternational = new Zend_Translate(
+    'array',
+    APPLICATION_PATH . '/locale/location_US.php',
+    $session->locale
+);
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 // Create application, bootstrap, and run

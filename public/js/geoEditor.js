@@ -27,10 +27,20 @@ function GeoEdit() {
                 success: function (res) {
                     if (res.success == true) {
                         refreshTree();
+                        $('#geo_form').hide();
                     }
                 }
             });
             return false;
+        });
+
+        $('#generate_files').click(function () {
+            $.ajax({
+                url: "/geo/generate",
+                success: function() {
+                    alert("Done!!!");
+                }
+            });
         });
 
         $.contextMenu({
@@ -50,13 +60,7 @@ function GeoEdit() {
                     remove: {
                         name: 'Remove',
                         callback: remove
-                    },
-                    sep: '',
-                    addCountry: {
-                        name: "Add country",
-                        callback: addCountry
                     }
-
                 };
                 return {
                     autoHide: true,
@@ -114,16 +118,6 @@ function GeoEdit() {
             },
             data: {
                 code: currentCode
-            },
-            dataType: "json"
-        });
-    }
-
-    function addCountry() {
-        $.ajax({
-            url: "/geo/add-country",
-            success: function(res) {
-                console.log(res);
             },
             dataType: "json"
         });

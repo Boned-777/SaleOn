@@ -25,7 +25,7 @@ class Application_Form_GeoEdit extends Zend_Form
 			'validators' => array(
 				array('StringLength', false, array(0, 50)),
 			),
-            'label' => "native",
+            'label' => "Название на родном языке",
 			'required' => true
 		));
 
@@ -34,7 +34,7 @@ class Application_Form_GeoEdit extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
             ),
-            'label' => "inter",
+            'label' => "Международное название",
             'required' => true
         ));
 		
@@ -42,7 +42,7 @@ class Application_Form_GeoEdit extends Zend_Form
 			'class' => 'btn btn-primary',
 			'required' => false,
 			'ignore' => true,
-			'label' => 'Create',
+			'label' => 'Сохранить',
 		));
     }
 	
