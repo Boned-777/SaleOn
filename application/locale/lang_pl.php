@@ -162,9 +162,10 @@ return array(
     "main_description" => "Wszystkie Akcje Ukrainy w jednym miejscu!",
     "Все Акции Украины-это новый ресурс с информацией о новых акциях, скидках, распродажах, подарках и бонусах от компаний.",
 	"copyright" => "© Wszystkie Akcje Ukrainie 2014",
-	"lng_russian" => "rosyjski",
-	"lng_ukrainian" => "Ukraїnska",
-	"lng_english" => "angielski",
+	"lng_russian" => "Русский",
+	"lng_ukrainian" => "Українська",
+	"lng_english" => "English",
+    "lng_poland" => "Polski",
 
 	"login" => "Zaloguj się:",
 	"tarifs" => "Plany inwestycyjne: (cena promocyjna w momencie rozpoczęcia projektu)",

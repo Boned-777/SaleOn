@@ -159,9 +159,10 @@ return array (
 
     "main_title" => "All Specials of Ukraine",
     "copyright" => "© All Specials of Ukraine, 2014",
-    "lng_russian" => "Russian",
-    "lng_ukrainian" => "Ukrainian",
+    "lng_russian" => "Русский",
+    "lng_ukrainian" => "Українська",
     "lng_english" => "English",
+    "lng_poland" => "Polski",
 
     "login" => "Login: ",
     "tarifs" => "Tariff plans: ",

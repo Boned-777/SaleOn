@@ -166,6 +166,7 @@ return array(
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
     "lng_english" => "English",
+    "lng_poland" => "Polski",
 
     "login" => "Логин: ",
     "tarifs" => "Тарифные планы:(цены акционные на время старта проекта)",
