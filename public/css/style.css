@@ -2,7 +2,7 @@ html,
 body {
     height: 100%;
     background-color: #FFF;
-    background-image:url(img/background.png);
+    background-image:url(/img/background.png);
     min-width: 1005px;
 }
 button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng.en,button#lng-btn.btn.dropdown-toggle.lng.ru{
