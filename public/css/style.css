@@ -1229,6 +1229,7 @@ a.pluso-more{display: none !important;}
     max-height: 485px;
     padding-top: 0;
     margin-left: -9px;
+    width: 100%;
 }
 #brands-modal .modal-body {
     max-height: 530px;
