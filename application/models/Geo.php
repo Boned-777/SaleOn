@@ -464,7 +464,8 @@ class Application_Model_Geo
         fwrite($file, "    \"$countryItem->name\" => \"$realName\",\n");
 
         foreach($subItems as $item) {
-            $realName = unserialize($item->locale)[Application_Model_Geo::$NATIVE_NAME];
+            $realName = unserialize($item->locale)
+            $realName = $realName[Application_Model_Geo::$NATIVE_NAME];
             fwrite($file, "    \"$item->name\" => \"$realName\",\n");
         }
         fwrite($file, ");");
