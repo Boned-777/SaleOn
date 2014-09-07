@@ -11,7 +11,7 @@ button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng
 
 /* Wrapper for page content to push down footer */
 #wrap {
-    min-height: 99%;
+    min-height: 97%;
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
@@ -534,7 +534,7 @@ margin-top: -6.8px;
         height: 100px;
         position: absolute;
         text-align: center;
-        z-index: 9999;
+        z-index: 0;
     }
     .img-info{top:-21px !important;}
 }
@@ -555,7 +555,7 @@ margin-top: -6.8px;
         height: 119px;
         position: absolute;
         text-align: center;
-        z-index: 9999;
+        z-index: 0;
 
     }
 
@@ -1055,7 +1055,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     line-height: 40px;
     color: #333333;
     border: 0;
-    border-bottom: 1px solid #e5e5e5;
+    /*border-bottom: 1px solid #e5e5e5;*/
 }
 
 /* Forms start*/
@@ -1089,7 +1089,9 @@ textarea {
     height: 150px !important;
 }
 /* Forms end*/
-
+.table td{
+    background-color: #fff !important;
+}
 /*partner menu start*/
 .nav-pills {
     width: 820px;
@@ -1172,6 +1174,11 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     right: 17px;
     top: 5px;
 
+}
+.details-right .details-description{
+    overflow: auto;
+    height: 150px;
+    width: 100%;
 }
 @media (max-width: 1000px) {
 
@@ -1466,7 +1473,7 @@ a.pluso-more{display: none !important;}
 }
 #lng-btn.lng {
     width: 36px;
-    height: 25px;
+    height: 23px;
 }
 #lng-btn.btn:hover, .btn:focus {
     border: 1px solid #999;
