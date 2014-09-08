@@ -1053,6 +1053,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     margin-bottom: 20px;
     font-size: 21px;
     line-height: 40px;
+    margin-left: 10px;
     color: #333333;
     border: 0;
     /*border-bottom: 1px solid #e5e5e5;*/
