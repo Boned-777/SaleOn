@@ -109,5 +109,11 @@ class GeoController extends Zend_Controller_Action
             "success" => true
         ));
     }
+
+    public function listCountriesAction() {
+        $item = new Application_Model_Geo();
+        $results = $item->getCountries();
+        $this->_helper->json($results);
+    }
 }
 

@@ -121,18 +121,17 @@ class AdController extends Zend_Controller_Action
                 $item->location->setLocationsList($this->getParam("location", array()));
             }
 
-            if ($formData["form"] == "AdMedia") {
-                if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
-                    $formData["invalidFormElements"] = array(array(
-                        "element" => "image_file",
-                        "error" => Zend_Validate_NotEmpty::IS_EMPTY),
-                        array(
-                        "element" => "banner_file",
-                        "error" => Zend_Validate_NotEmpty::IS_EMPTY
-                    ));
-                }
-
-            }
+//            if ($formData["form"] == "AdMedia") {
+//                if (empty($item->image) && $_FILES["image_file"]["error"] !== 0) {
+//                    $formData["invalidFormElements"] = array(array(
+//                        "element" => "image_file",
+//                        "error" => Zend_Validate_NotEmpty::IS_EMPTY),
+//                        array(
+//                        "element" => "banner_file",
+//                        "error" => Zend_Validate_NotEmpty::IS_EMPTY
+//                    ));
+//                }
+//            }
 
 
             if ($form->isValid($formData)) {
@@ -337,6 +336,10 @@ class AdController extends Zend_Controller_Action
                 $this->view->gotoTab = strtolower($tabs[1]);
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
+        }
+
+        if ($isReady) {
+            $this->_helper->redirector('ready', 'ad');
         }
 
         $data = $item->toArray();

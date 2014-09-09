@@ -188,7 +188,7 @@
                             echo "window.messages.notSupported   = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
                             echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
                             echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
-                            echo "window.messages.ukraine        = \"" . $translate->getAdapter()->translate("ukraine") . "\";"; 
+                            echo "window.messages.ukraine        = \"" . Application_Model_Geo::getLocaleName("ukraine") . "\";";
                         ?>
                     </script>
                     <script type="text/javascript" src="/js/bootstrap/bootstrap-transition.js"></script>
