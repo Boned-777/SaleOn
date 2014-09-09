@@ -25,11 +25,13 @@ class Application_Form_AdMedia extends Zend_Form
         $this->getElement("form")->setDecorators(array('ViewHelper'));
         $this->addElement('file', 'banner_file', array(
             'class' => "bottom-offset",
-            'label' => $translate->getAdapter()->translate("banner"). ' *'
+            'label' => $translate->getAdapter()->translate("banner"). ' *',
+            'required' => true
         ));
         $this->addElement('file', 'image_file', array(
             'class' => "bottom-offset",
-            'label' => $translate->getAdapter()->translate("image")
+            'label' => $translate->getAdapter()->translate("image") . " *",
+            'required' => true
         ));
 
 

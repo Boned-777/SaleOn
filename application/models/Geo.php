@@ -489,5 +489,22 @@ class Application_Model_Geo
         }
         fwrite($file, ");");
     }
+
+    public function getCountries() {
+        $db = new Application_Model_DbTable_Geo();
+        $select = $db->select()
+            ->where('code LIKE "_" OR code LIKE "__"');
+        $result = $db->fetchAll($select);
+        $result->toArray();
+        $data = array();
+        foreach ($result as $item) {
+            $tmp = array(
+                "code" => $item->code,
+                "name" => self::getLocaleName($item->name)
+            );
+            $data[] = $tmp;
+        }
+        return $data;
+    }
 }
 
