@@ -11,7 +11,7 @@ button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng
 
 /* Wrapper for page content to push down footer */
 #wrap {
-    min-height: 97%;
+    min-height: 91.7%;
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
