@@ -157,7 +157,7 @@ return array (
     "mm_favorites" => "Favorites",
     "mm_user" => "User",
 
-    "main_title" => "All Specials",
+    "main_title" => "All Special offers",
     "copyright" => "© All Specials of Ukraine, 2014",
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
