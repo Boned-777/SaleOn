@@ -161,21 +161,25 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     }
     button#btn1.btn.btn-large{
         width: 108px;
-        margin-left: -50px;
+        margin-left: -40px;
         margin-right: -9px;
         margin-top: 8px;
     }
 
     button#btn2.btn.btn-large{
         width: 108px;
-        margin-left:10px;
+        margin-left:5px;
         margin-top:8px;
+        margin-right: 16px;
+        border-left:none;
+        border-right:none;
     }
 
     button#btn3.btn.btn-large{
         width: 108px;
         margin-left: -19px;
         margin-top: 8px;
+        border-left:none;
     }
 
 
@@ -183,6 +187,8 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 45px;
         margin-left:56px;
         margin-top: 8px;
+        border-left:none;
+        border-right:none;
     }
     a.btn.btn-large{
         width:45px;
@@ -196,6 +202,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     a#btn5.btn-large{
         margin-left: 8px;
         margin-left: 55px;
+        border-left: none;
     }
 
 }
@@ -1660,4 +1667,17 @@ button#btn3.btn.btn-large:active{
 }
 .success{
     background-color: #ffff00;
+}
+#contact_button{
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    top:-48px;
+    left: 477px;
 }
