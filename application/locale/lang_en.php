@@ -157,7 +157,7 @@ return array (
     "mm_favorites" => "Favorites",
     "mm_user" => "User",
 
-    "main_title" => "All Specials of Ukraine",
+    "main_title" => "All Specials",
     "copyright" => "© All Specials of Ukraine, 2014",
     "lng_russian" => "Русский",
     "lng_ukrainian" => "Українська",
@@ -191,7 +191,7 @@ return array (
     'contact_org_phone_val2' => '+38(068) 746-38-98',
     'contact_org_email' => 'wantlookinfo@gmail.com',
     'contact_org_skype_name' => 'Skype:',
-    'contact_org_skype_val' => 'bonedde',
+    'contact_org_skype_val' => 'wantlook.info',
     'contact_org_share_link' => 'Share our link',
     'ad_region' => 'Regions of the action',
     'contact_topic' => 'Topic *',
