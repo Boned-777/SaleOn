@@ -35,11 +35,12 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
 <script type="text/javascript" src="/js/jquery/jquery.maskedinput.min.js"></script>
-<script src="/js/ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'description' );
-    CKEDITOR.replace( 'full_description' );
-</script>
+<script type="text/javascript">$('#end_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+    $('#public_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });</script>
 
 <script>
     var smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="<?= $translate->getAdapter()->translate("banner_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
