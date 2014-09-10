@@ -124,19 +124,18 @@ class Custom_Form_Validator_DateCompare extends Zend_Validate_Abstract
             $this->_error(self::MISSING_TOKEN);
             return false;
         }
+
         try {
-            $date1 = new Zend_Date($value);
-            $date2 = new Zend_Date($context[$token]);
+            $date1 = new Zend_Date($value, "y-M-d");
+            $date2 = new Zend_Date($context[$token], "y-M-d");
         } catch (Exception $e) {
             $this->_error(self::NOT_LATER);
             return false;
         }
 
-
-
         // Not Later
         if ($this->getCompare()) {
-            if ($date1->compare($date2) <= 0 || ($date1==$date2)) {
+            if ($date1->compare($date2) <= 0) {
                 $this->_error(self::NOT_LATER);
                 return false;
             }

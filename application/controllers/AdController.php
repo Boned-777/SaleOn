@@ -2,7 +2,6 @@
 
 class AdController extends Zend_Controller_Action
 {
-
     private $user = null;
 
     public function init()
@@ -312,6 +311,9 @@ class AdController extends Zend_Controller_Action
 
                 $itemData["owner"] = $this->user->id;
                 $item->load($itemData);
+                if ($isReady = $item->isValid()) {
+                    $item->status = Application_Model_DbTable_Ad::STATUS_READY;
+                }
                 $item->save();
 
                 if ($item->id) {
@@ -335,12 +337,6 @@ class AdController extends Zend_Controller_Action
                 $tabs = explode("Ad", $formData["form"]);
                 $this->view->gotoTab = strtolower($tabs[1]);
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
-            }
-
-            if ($isReady) {
-                $item->status = Application_Model_DbTable_Ad::STATUS_READY;
-                $item->save();
-                $this->_helper->redirector('ready', 'ad');
             }
         }
 
@@ -449,8 +445,6 @@ class AdController extends Zend_Controller_Action
     }
 
     public function setStatusAction () {
-        global $translate;
-
         $vars = $this->getAllParams();
         $ad = new Application_Model_Ad();
         if ($ad->get($vars["id"])){
