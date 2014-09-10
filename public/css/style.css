@@ -21,7 +21,9 @@ button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng
 }
 
 /* Set the fixed height of the footer here */
-#push,
+#push{
+    height: 40px;
+}
 #footer {
     height: 65px;
 
@@ -93,13 +95,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     .fix-content-position {
         padding-left: 49px;
     }
-    #wrap {
 
-        /* Negative indent footer by it's height */
-        margin: 0 auto -90px;
-
-        overflow: hidden;
-    }
 }
 @media (max-width: 1199px) {
     .fix-content-position {
