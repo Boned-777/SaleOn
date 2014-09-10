@@ -15,7 +15,7 @@ button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -67px;
+    margin: 0 auto -65px;
     margin-left: -20px;
     overflow: hidden;
 }
@@ -698,6 +698,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 .page-number span {
     margin-left: -40px;
+
 }
 .pluso{margin-bottom: 10px;}
 
@@ -859,7 +860,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         font-size: 15px;
         font-weight: bold;
         line-height: 20px;
-        margin: 25px 0 10px 0;
+        margin: 13px 0 10px 0;
     }
     .page-number span {
         margin-left: -36px;
@@ -1651,7 +1652,7 @@ a.pluso-more{display: none !important;}
 #address_partner .additional_address div.input-append{
     display:inline-block;
     position: absolute;
-    top: 747px;
+    top: 725px;
     margin-left: -2px !important;
 }
 

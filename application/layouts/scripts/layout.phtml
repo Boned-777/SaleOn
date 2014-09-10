@@ -54,7 +54,7 @@
 
             <div class="row">
                     <div class="top-menu">
-                    <div class="span4">
+                    <div class="span4" style="cursor: pointer;">
                         <button id="btn1" title="<?= $translate->getAdapter()->translate("mm_regions")?>" class="btn btn-large" ><i class="myicon-region"></i></button>
                         <button id="btn2" title="<?= $translate->getAdapter()->translate("mm_categories")?>" class="btn btn-large" ><i class="myicon-category"></i></button>
                         <button id="btn3" title="<?= $translate->getAdapter()->translate("mm_brands")?>" class="btn btn-large"><i class="myicon-brands"></i></button>
@@ -62,7 +62,7 @@
                     <div class="span3 jumbotron">
                         <a id="link" href="/" title="<?= $translate->getAdapter()->translate("main_page")?>"><div class="logo"></div></a>
                     </div>
-                    <div class="span4">
+                    <div class="span4" style="cursor: pointer;">
                         <a href="/index/news" id="btn" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" ><i class="myicon-new"></i></a>
                         <?php
                             $auth = Zend_Auth::getInstance();
