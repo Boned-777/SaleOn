@@ -336,12 +336,12 @@ class AdController extends Zend_Controller_Action
                 $this->view->gotoTab = strtolower($tabs[1]);
                 $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
             }
-        }
 
-        if ($isReady) {
-            $item->status = Application_Model_DbTable_Ad::STATUS_READY;
-            $item->save();
-            $this->_helper->redirector('ready', 'ad');
+            if ($isReady) {
+                $item->status = Application_Model_DbTable_Ad::STATUS_READY;
+                $item->save();
+                $this->_helper->redirector('ready', 'ad');
+            }
         }
 
         $data = $item->toArray();
