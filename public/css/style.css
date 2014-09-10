@@ -11,11 +11,11 @@ button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng
 
 /* Wrapper for page content to push down footer */
 #wrap {
-    min-height: 91.7%;
+    min-height: 100%;
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -65px;
+    margin: 0 auto -67px;
     margin-left: -20px;
     overflow: hidden;
 }
@@ -164,6 +164,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: -40px;
         margin-right: -9px;
         margin-top: 8px;
+        cursor: pointer;
     }
 
     button#btn2.btn.btn-large{
@@ -173,6 +174,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-right: 16px;
         border-left:none;
         border-right:none;
+        cursor: pointer;
     }
 
     button#btn3.btn.btn-large{
@@ -180,6 +182,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: -19px;
         margin-top: 8px;
         border-left:none;
+        cursor: pointer;
     }
 
 
@@ -195,6 +198,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
        margin-left: 55px;
        margin-right: -65px;
        margin-top: 8px;
+        cursor: pointer;
 
 
     }
@@ -202,6 +206,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: 8px;
         margin-left: 55px;
         border-left: none;
+        cursor: pointer;
     }
 
 }
@@ -214,30 +219,39 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: -50px;
         margin-right: -9px;
         margin-top: 8px;
+        cursor: pointer;
     }
 
     button#btn2.btn.btn-large{
         width: 108px;
-        margin-left:10px;
+        margin-left:4px;
         margin-top:8px;
+        border-left:none;
+        border-right:none;
+        cursor: pointer;
     }
 
     button#btn3.btn.btn-large{
         width: 108px;
         margin-left: -19px;
         margin-top: 8px;
+        border-left:none;
+        cursor: pointer;
     }
 
 
     a#btn4.btn.btn-large{
         width: 45px;
-        margin-left:56px;
+        margin-left:50px;
         margin-top: 8px;
+        border-left:none;
+        border-right:none;
+        cursor: pointer;
     }
     a.btn.btn-large{
         width:45px;
         margin-left: 55px;
-
+        cursor: pointer;
         margin-right: -55px;
         margin-top: 8px;
 
@@ -245,7 +259,9 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     }
     a#btn5.btn-large{
         margin-left: 8px;
-        margin-left: 55px;
+        margin-left: 50px;
+        border-left: none;
+        cursor: pointer;
     }
 
 }
@@ -260,16 +276,19 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: -78px;
         margin-right: 43px;
         margin-top: 8px;
+        cursor: pointer;
     }
     button#btn2.btn.btn-large{
         width: 85px;
         margin-left:-42px;
         margin-top: 8px;
+        cursor: pointer;
     }
     button#btn3.btn.btn-large{
         width: 85px;
         margin-left: 100px;
         margin-top: -36px;
+        cursor: pointer;
     }
 
     a#btn4.btn.btn-large{
@@ -277,12 +296,14 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: 59px;
         margin-right: -58px;
         margin-top: 8px;
+        cursor: pointer;
     }
     a.btn.btn-large{
         width:45px;
         margin-left: 58px;
         margin-right: -58px;
         margin-top: 8px;
+        cursor: pointer;
 
 
     }
@@ -290,6 +311,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 45px;
         margin-left:58px;
         margin-top: 8px;
+        cursor: pointer;
     }
 }
 /*Top menu end*/
@@ -1067,11 +1089,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 /* Forms start*/
 dl dt {
-    color: #999999;
+    color: #000;
     margin-left: 10px;
 }
 dl dt label {
     margin: 0px;
+    color:#000;
 }
 input[type="file"] {
     height: auto;
@@ -1097,7 +1120,7 @@ textarea {
 }
 /* Forms end*/
 .table td{
-    background-color: #fff !important;
+    background-color: #EFEFEF !important;
 }
 /*partner menu start*/
 .nav-pills {
@@ -1669,7 +1692,8 @@ button#btn3.btn.btn-large:active{
 }
 #contact_button{
     padding: 5px 14px;
-    background-color: #fff;
+    background-color: #EFEFEF;
+    color:#000;
     border: 1px solid #ddd;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -1679,4 +1703,7 @@ button#btn3.btn.btn-large:active{
     position: relative;
     top:-48px;
     left: 477px;
+}
+dd#login-element{
+    margin-top: -11px;
 }
