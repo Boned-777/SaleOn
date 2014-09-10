@@ -4054,6 +4054,7 @@ input[type="submit"].btn.btn-mini {
 
 .nav-tabs > li > a {
   padding-top: 8px;
+    background-color: #dddddd;
   padding-bottom: 8px;
   line-height: 20px;
   border: 1px solid transparent;
