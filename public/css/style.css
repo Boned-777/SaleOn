@@ -93,6 +93,13 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     .fix-content-position {
         padding-left: 49px;
     }
+    #wrap {
+
+        /* Negative indent footer by it's height */
+        margin: 0 auto -70px;
+
+        overflow: hidden;
+    }
 }
 @media (max-width: 1199px) {
     .fix-content-position {
