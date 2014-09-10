@@ -96,7 +96,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     #wrap {
 
         /* Negative indent footer by it's height */
-        margin: 0 auto -70px;
+        margin: 0 auto -90px;
 
         overflow: hidden;
     }
@@ -1713,4 +1713,7 @@ button#btn3.btn.btn-large:active{
 }
 dd#login-element{
     margin-top: -11px;
+}
+#socials{
+
 }
