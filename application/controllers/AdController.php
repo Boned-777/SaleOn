@@ -339,6 +339,8 @@ class AdController extends Zend_Controller_Action
         }
 
         if ($isReady) {
+            $item->status = Application_Model_DbTable_Ad::STATUS_READY;
+            $item->save();
             $this->_helper->redirector('ready', 'ad');
         }
 
