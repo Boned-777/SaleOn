@@ -19,7 +19,7 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
             "ready" => array("link" => array("/ad/ready"), "caption" => $translate->getAdapter()->translate("ready")),
             "active" => array("link" => array("/ad/active"), "caption" => $translate->getAdapter()->translate("active")),
             "archive" => array("link" => array("/ad/archive"), "caption" => $translate->getAdapter()->translate("archive")),
-            "favorites" => array("link" => array("/index/favorites"), "caption" => $translate->getAdapter()->translate("mm_favorites")),
+            //"favorites" => array("link" => array("/index/favorites"), "caption" => $translate->getAdapter()->translate("mm_favorites")),
             "rules" => array("link" => array("/partner/rules"), "caption" => $translate->getAdapter()->translate("rules")),
             //"exit" => array("link" => array("/auth/logout"), "caption" => $translate->getAdapter()->translate("exit"))
         );
