@@ -69,6 +69,7 @@ class Application_Model_Partner
         foreach ($vars as $key => $value) {
             switch ($key) {
                 case 'brand_name' :
+                case 'addresses' :
                     break;
 
                 default:

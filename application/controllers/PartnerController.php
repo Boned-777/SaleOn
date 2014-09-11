@@ -93,7 +93,7 @@ class PartnerController extends Zend_Controller_Action
                         $view->errorMessage = $translate->getAdapter()->translate("error") . " " . $translate->getAdapter()->translate("data_save_error");
                     }
                 } else {
-                    $item->load($form->getValues());
+                    $item->load($vars);
                     if ($item->save()) {
                         $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                     } else {
