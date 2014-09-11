@@ -9,8 +9,8 @@
 			this.mainTemplate = '<div id="regions-list" class="filter-list top-offset"></div>\
 						      	<div id="areas-list" class="filter-list top-offset"></div>';
 			
-			this.rowTemplate = ['<div class="row">', '</div>'];
-			this.itemTemplate = '<div data-id="$regionId" data-path="$isPath" class="span3 category-wrapper">\
+			this.rowTemplate = ['<div class="row floatleft" style="float:left!important;">', '</div>'];
+			this.itemTemplate = '<div data-id="$regionId" data-path="$isPath" class="span3 nofloat category-wrapper" style="float:none!important;">\
 									<div class="flagi-right"><div title="$regionName" class="ellipsis">$regionName</div><span class="counter">$regionCount</span></div>\
 								</div>';	
 			this.eventObject = $({});
@@ -77,7 +77,7 @@
 								.replace("$regionCount",	dataList[i].count)
 								.replace(/\$regionName/gi, 	dataList[i].value)
 						} 
-					if (j==2) {
+					if (j==8) {
 						j = 0;
 						result += this.rowTemplate[1]; 
 					} else {j++;}
