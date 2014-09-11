@@ -211,6 +211,6 @@ return array(
 	"additional_addresses" => "więcej adresów",
 	"add" => "Dodaj",
 	"remove" => "usuń",
-	"new_ad" => "aaa",
+	"new_ad" => "<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
 	"map" => "Wszystkie adresy"
 );
