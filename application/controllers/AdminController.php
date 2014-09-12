@@ -27,7 +27,7 @@ class AdminController extends Zend_Controller_Action
             $this->view->ad = $item;
             $this->view->user = $owner;
         } else {
-            $this->redirect("/index/index");
+            $this->redirect("/admin/ready");
         }
     }
 
