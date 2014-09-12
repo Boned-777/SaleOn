@@ -178,5 +178,17 @@ class Application_Model_User
             return $authUrl;
         }
     }
+
+    public function getAuthObject() {
+        $obj = new stdClass();
+        $obj->id = $this->id;
+        $obj->username = $this->username;
+        $obj->locale = $this->locale;
+        $obj->role = $this->role;
+        $obj->username = $this->username;
+        $obj->favorites_ads = $this->favorites_ads;
+
+        return $obj;
+    }
 }
 

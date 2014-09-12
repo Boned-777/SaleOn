@@ -8,6 +8,9 @@ class UserController extends Zend_Controller_Action
 //    	$accessDenied = array("salesperson");
 //
 //		$auth = Zend_Auth::getInstance();
+//        Zend_Debug::dump($auth->getIdentity());
+//
+//        die();
 //		if ($auth->hasIdentity()) {
 //			if (in_array($auth->getIdentity()->role, $accessDenied))
 //				$this->_helper->redirector('index', 'index');
@@ -152,8 +155,9 @@ class UserController extends Zend_Controller_Action
 
     public function favoritesAction() {
         $auth = Zend_Auth::getInstance();
+        $userId = $auth->getIdentity()->id;
         $user = new Application_Model_User();
-        $user->getUser($auth->getIdentity()->id);
+        $user->getUser($userId);
         if ($this->getParam("act") == "add")
             $user->addFavoriteAd($this->getParam("ad_id"));
         else

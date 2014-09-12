@@ -10,9 +10,9 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$password = $vars["password"];
 		$data["salt"] = md5($this->_passwordGenerator(6));
 		$data["password"] = sha1($password.$data["salt"]);
-		$data["date_created"] = "NOW()";
+		$data["date_created"] = date('Y-m-d H:i:s');
 		$data["username"] = $vars["username"];
-		$data["role"] = $vars["role"];;
+		$data["role"] = $vars["role"];
 		$res = $this->save($data);
 		
 		if ($res === false) {

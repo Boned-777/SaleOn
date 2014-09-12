@@ -17,9 +17,10 @@ include "Zend/Loader/Autoloader.php";
 
 
 $autoloader = Zend_Loader_Autoloader::getInstance();
+$autoloader->registerNamespace('SAuth');
 $autoloader->registerNamespace('Bvb');
 $autoloader->registerNamespace('Zendx');
-$autoloader->registerNamespace('SAuth');
+
 
 $session = new Zend_Session_Namespace();
 $session->locale = isset($session->locale)?$session->locale:"ua";
