@@ -169,6 +169,17 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-top: 8px;
         cursor: pointer;
     }
+    button#btn-fav.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        border-right:none;
+        cursor: pointer;
+    }
+    button#btn-logout.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        cursor: pointer;
+    }
 
     button#btn2.btn.btn-large{
         width: 108px;
@@ -236,7 +247,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
     button#btn3.btn.btn-large{
         width: 108px;
-        margin-left: -19px;
+        margin-left: -24px;
         margin-top: 8px;
         border-left:none;
         cursor: pointer;
@@ -266,6 +277,18 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         border-left: none;
         cursor: pointer;
     }
+    button#btn-fav.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        border-right:none;
+        cursor: pointer;
+    }
+    button#btn-logout.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        cursor: pointer;
+    }
+
 
 }
 
@@ -313,9 +336,23 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     a#btn5.btn.btn-large{
         width: 45px;
         margin-left:58px;
+        border-right: none;
+        boder-left:none;
         margin-top: 8px;
         cursor: pointer;
     }
+    button#btn-fav.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        border-right:none;
+        cursor: pointer;
+    }
+    button#btn-logout.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        cursor: pointer;
+    }
+
 }
 /*Top menu end*/
 
