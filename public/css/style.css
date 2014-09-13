@@ -174,10 +174,12 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 45px;
         border-left:none;
         border-right:none;
+        margin-left: 61px;
         cursor: pointer;
     }
     a#btn-logout.btn.btn-large{
         width: 45px;
+        margin-left: 61px;
         border-left:none;
         cursor: pointer;
     }
@@ -213,7 +215,8 @@ button#contact-btn.btn.dropdown-toggle.contacts {
        margin-left: 65px;
        margin-right: -65px;
        margin-top: 8px;
-        cursor: pointer;
+       border-right: none;
+       cursor: pointer;
 
 
     }
