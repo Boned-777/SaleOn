@@ -69,7 +69,7 @@
                             if ($auth->hasIdentity()) { ?>
                                 <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
                                     <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
-                                    <a href="/auth/logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="myicon-logout"></i></a>
+                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="myicon-logout"></i></a>
                                 <?php } else { ?>
                                     <a href="/index/favorites" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
                                     <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
