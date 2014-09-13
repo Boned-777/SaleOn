@@ -169,13 +169,13 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-top: 8px;
         cursor: pointer;
     }
-    button#btn-fav.btn.btn-large{
+    a#btn-fav.btn.btn-large{
         width: 45px;
         border-left:none;
         border-right:none;
         cursor: pointer;
     }
-    button#btn-logout.btn.btn-large{
+    a#btn-logout.btn.btn-large{
         width: 45px;
         border-left:none;
         cursor: pointer;
@@ -277,14 +277,16 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         border-left: none;
         cursor: pointer;
     }
-    button#btn-fav.btn.btn-large{
+    a#btn-fav.btn.btn-large{
         width: 45px;
         border-left:none;
         border-right:none;
+        margin-left: 50px;
         cursor: pointer;
     }
-    button#btn-logout.btn.btn-large{
+    a#btn-logout.btn.btn-large{
         width: 45px;
+        margin-left:50px;
         border-left:none;
         cursor: pointer;
     }
@@ -341,13 +343,13 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-top: 8px;
         cursor: pointer;
     }
-    button#btn-fav.btn.btn-large{
+    a#btn-fav.btn.btn-large{
         width: 45px;
         border-left:none;
         border-right:none;
         cursor: pointer;
     }
-    button#btn-logout.btn.btn-large{
+    a#btn-logout.btn.btn-large{
         width: 45px;
         border-left:none;
         cursor: pointer;
