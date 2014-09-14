@@ -116,7 +116,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     background: url("/img/logo7.png") center center no-repeat;
     width: 299px;
     height: 70px;
-    margin-left: -70px;
+    margin-left: -80px;
 }
 
 .logo:hover {
@@ -136,9 +136,21 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 @media (max-width: 1199px) {
     .jumbotron {
         margin-left: -25px !important;
+        margin-right: 10px;
     }
 }
-
+@media (min-width: 1200px) and (max-width: 1500px) {
+    .jumbotron {
+        margin-left: 5px !important;
+        margin-right: -9px;
+    }
+}
+@media (min-width: 1501px){
+    .jumbotron {
+        margin-left: -2px !important;
+        margin-right: 5px;
+    }
+}
 .bottom-offset {
     margin-bottom: 20px;
 }
@@ -162,6 +174,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     .top-menu {
         margin: 35px 0 15px 130px;
     }
+
     button#btn1.btn.btn-large{
         width: 108px;
         margin-left: -37px;
@@ -174,6 +187,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 45px;
         border-left:none;
         border-right:none;
+        margin-right: -68px;
         margin-left: 61px;
         cursor: pointer;
     }
@@ -188,7 +202,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 108px;
         margin-left:5px;
         margin-top:8px;
-        margin-right: 16px;
+        margin-right: 14px;
         border-left:none;
         border-right:none;
         cursor: pointer;
