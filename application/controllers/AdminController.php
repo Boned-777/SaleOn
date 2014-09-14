@@ -63,6 +63,15 @@ class AdminController extends Zend_Controller_Action
         return '<a href = "' . "/ad/set-status/id/$val/status/$status" . '">' . $text = $translate->getAdapter()->translate("set_" . $status) . '</a>';
     }
 
+    public function _getOwner($userId) {
+        $user = new Application_Model_User();
+        if ($user->getUser($userId)) {
+            return "<a href='/partner/profile/id/$userId'>" . $user->username . "</a>";
+        } else {
+            return false;
+        }
+    }
+
     public function _createPreviewLink($id, $name)
     {
         global $translate;
@@ -128,7 +137,7 @@ class AdminController extends Zend_Controller_Action
         $source = new Bvb_Grid_Source_Zend_Table(new Application_Model_DbTable_Ad());
         $grid->setSource($source);
         $grid->getSelect()->where("status IN (?)", array(Application_Model_DbTable_Ad::STATUS_DRAFT));
-        $grid->setGridColumns(array("name", "public_dt", "end_dt", "set_status"));
+        $grid->setGridColumns(array("name", "public_dt", "end_dt", "owner_email"));
         $grid->updateColumn('name',array(
             "title" =>  $translate->getAdapter()->translate("name"),
             'callback'=>array(
@@ -142,15 +151,15 @@ class AdminController extends Zend_Controller_Action
         $grid->updateColumn('end_dt',array(
             "title" =>  $translate->getAdapter()->translate("end_date"),
         ));
-//        $grid->addExtraColumn(array(
-//                "name" => "set_status",
-//                "position" => "right",
-//                "title" =>  $translate->getAdapter()->translate("set_status"),
-//                'callback'=>array(
-//                    'function'=>array($this, '_changeState'),
-//                    'params'=>array('{{id}}', Application_Model_DbTable_Ad::STATUS_READY)
-//                ))
-//        );
+        $grid->addExtraColumn(array(
+                "name" => "owner_email",
+                "position" => "right",
+                "title" =>  $translate->getAdapter()->translate("email"),
+                'callback'=>array(
+                    'function'=>array($this, '_getOwner'),
+                    'params'=>array('{{owner}}')
+                ))
+        );
         $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
         $grid->setNoFilters(true);
         $grid->setExport(array());
