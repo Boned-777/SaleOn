@@ -7,7 +7,7 @@
         <li><a href="#settings"><?php echo $translate->getAdapter()->translate("settings"); ?></a></li>
         <li><a href="#contacts"><?php echo $translate->getAdapter()->translate("contacts"); ?></a></li>
         <li><a href="#media"><?php echo $translate->getAdapter()->translate("media"); ?></a></li>
-        <li style="float: right;"><a target="_blank" href="/ad/index/id/<?php echo $this->ad->id; ?>"><?php echo $translate->getAdapter()->translate("preview"); ?></a></li>
+        <li><a target="_blank" href="/ad/index/id/<?php echo $this->ad->id; ?>"><?php echo $translate->getAdapter()->translate("preview"); ?></a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="main"><?php echo $this->mainForm->setAction($this->url()); ?></div>

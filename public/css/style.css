@@ -116,7 +116,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     background: url("/img/logo7.png") center center no-repeat;
     width: 299px;
     height: 70px;
-    margin-left: -80px;
+    margin-left: -70px;
 }
 
 .logo:hover {
@@ -164,9 +164,23 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     }
     button#btn1.btn.btn-large{
         width: 108px;
-        margin-left: -40px;
+        margin-left: -37px;
         margin-right: -9px;
+        border-right: none;
         margin-top: 8px;
+        cursor: pointer;
+    }
+    a#btn-fav.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        border-right:none;
+        margin-left: 61px;
+        cursor: pointer;
+    }
+    a#btn-logout.btn.btn-large{
+        width: 45px;
+        margin-left: 61px;
+        border-left:none;
         cursor: pointer;
     }
 
@@ -198,10 +212,10 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     }
     a.btn.btn-large{
        width:45px;
-       margin-left: 55px;
+       margin-left: 65px;
        margin-right: -65px;
        margin-top: 8px;
-        cursor: pointer;
+       cursor: pointer;
 
 
     }
@@ -222,6 +236,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: -50px;
         margin-right: -9px;
         margin-top: 8px;
+        border-right: none;
         cursor: pointer;
     }
 
@@ -236,7 +251,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
     button#btn3.btn.btn-large{
         width: 108px;
-        margin-left: -19px;
+        margin-left: -24px;
         margin-top: 8px;
         border-left:none;
         cursor: pointer;
@@ -266,6 +281,20 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         border-left: none;
         cursor: pointer;
     }
+    a#btn-fav.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        border-right:none;
+        margin-left: 50px;
+        cursor: pointer;
+    }
+    a#btn-logout.btn.btn-large{
+        width: 45px;
+        margin-left:50px;
+        border-left:none;
+        cursor: pointer;
+    }
+
 
 }
 
@@ -279,6 +308,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: -78px;
         margin-right: 43px;
         margin-top: 8px;
+        border-right: none;
         cursor: pointer;
     }
     button#btn2.btn.btn-large{
@@ -313,9 +343,23 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     a#btn5.btn.btn-large{
         width: 45px;
         margin-left:58px;
+        border-right: none;
+        boder-left:none;
         margin-top: 8px;
         cursor: pointer;
     }
+    a#btn-fav.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        border-right:none;
+        cursor: pointer;
+    }
+    a#btn-logout.btn.btn-large{
+        width: 45px;
+        border-left:none;
+        cursor: pointer;
+    }
+
 }
 /*Top menu end*/
 
@@ -1211,7 +1255,7 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
 }
 .details-right .details-description{
     overflow: auto;
-    height: 150px;
+    height: 140px;
     width: 100%;
 }
 @media (max-width: 1000px) {
@@ -1705,12 +1749,17 @@ button#btn3.btn.btn-large:active{
     list-style: none;
     display: inline-block;
     position: relative;
-    top:-48px;
+    top:-52px;
     left: 477px;
 }
 dd#login-element{
     margin-top: -11px;
 }
-#socials{
 
+#socials {
+    margin-top: -29px;
+    margin-left: 11px;
+}
+#auth_through{
+    margin-top: -42px;
 }
