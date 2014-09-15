@@ -190,7 +190,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     }
     a#btn-logout.btn.btn-large{
         width: 45px;
-        margin-left: 61px;
+        margin-left: 60px;
         border-left:none;
         cursor: pointer;
     }
@@ -1566,7 +1566,18 @@ a.pluso-more{display: none !important;}
     background-image: url("/img/lang.png");
     background-repeat: no-repeat;
 }
-
+#region-switcher.dropdown-menu {
+    min-width: 54px;
+}
+#region-switcher.dropdown-menu > li > a {
+    padding: 3px 5px;
+}
+#region-switcher.dropdown-menu > li > a:hover,
+#region-switcher.dropdown-menu > li > a:focus {
+    background-color: #C0C0C0;
+    background-image: url("/img/lang.png");
+    background-repeat: no-repeat;
+}
 .lng {
     background: url("/img/lang.png") no-repeat 5px 0px;
     width: 24px;
