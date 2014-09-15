@@ -1215,6 +1215,9 @@ textarea {
 .details-left {
     overflow: hidden;
 }
+.details-left .push{
+    height: 40px;
+}
 .details-left img,
 .details-left iframe {
     width: 450px;
@@ -1252,6 +1255,9 @@ textarea {
 .details-right div {
     text-align: justify;
     margin-left: 0px;
+}
+.details-right div.span5{
+    margin-top: -40px;
 }
 
 div.span6.details-right{margin-left: -85px; width: 55%;  }
