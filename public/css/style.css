@@ -5,9 +5,6 @@ body {
     background-image:url(/img/background.png);
     min-width: 1005px;
 }
-button#lng-btn.btn.dropdown-toggle.lng.ua,button#lng-btn.btn.dropdown-toggle.lng.en,button#lng-btn.btn.dropdown-toggle.lng.ru{
-    border:none !important;
-}
 
 /* Wrapper for page content to push down footer */
 #wrap {
@@ -179,7 +176,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 108px;
         margin-left: -37px;
         margin-right: -9px;
-        border-right: none;
+    border:none;
         margin-top: 8px;
         cursor: pointer;
     }
@@ -203,8 +200,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left:5px;
         margin-top:8px;
         margin-right: 14px;
-        border-left:none;
-        border-right:none;
+        border:none;
         cursor: pointer;
     }
 
@@ -212,7 +208,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 108px;
         margin-left: -19px;
         margin-top: 8px;
-        border-left:none;
+        border:none;
         cursor: pointer;
     }
 
@@ -222,6 +218,9 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left:56px;
         margin-top: 8px;
         border-left:none;
+        border-right:none;
+    }
+    a#btn0.btn.btn-large{
         border-right:none;
     }
     a.btn.btn-large{
@@ -280,6 +279,9 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         border-right:none;
         cursor: pointer;
     }
+    a#btn0.btn.btn-large{
+        border-right:none;
+    }
     a.btn.btn-large{
         width:45px;
         margin-left: 55px;
@@ -293,6 +295,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: 8px;
         margin-left: 50px;
         border-left: none;
+        border-right: none;
         cursor: pointer;
     }
     a#btn-fav.btn.btn-large{
@@ -824,7 +827,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         font-size: 15px;
         font-weight: bold;
         line-height: 20px;
-        margin: 5px 0 5px 0;
+        margin: -5px 0 5px 0;
     }
 
     .page-number span {
@@ -1566,6 +1569,7 @@ a.pluso-more{display: none !important;}
 #lng-btn.lng {
     width: 36px;
     height: 23px;
+    border: none;
 }
 #lng-btn.btn:hover, .btn:focus {
     border: 1px solid #999;
@@ -1776,4 +1780,7 @@ dd#login-element{
 }
 #auth_through{
     margin-top: -42px;
+}
+#admin_nav.row{
+    max-height:35px;
 }

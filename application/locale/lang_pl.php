@@ -158,7 +158,7 @@ return array(
     "mm_favorites" => "Ulubione",
     "mm_user" => "użytkowników",
 
-    "main_title" => "Wszystkie akcje z Ukrainy: Ukraina AktsiiSpetsialnye предложенияСкидкиРаспродажиБонусыПодаркиДисконты",
+    "main_title" => "All Special Offers",
     "main_description" => "Wszystkie Akcje Ukrainy w jednym miejscu!",
     "Все Акции Украины-это новый ресурс с информацией о новых акциях, скидках, распродажах, подарках и бонусах от компаний.",
 	"copyright" => "© Wszystkie Akcje Ukrainie 2014",
@@ -190,7 +190,7 @@ return array(
 
 	"feedback_form_name" => "Formularz opinii",
 	"contact_country_name" => "Ukraina",
-	"contact_org_name" => "Wszystkie Akcje Ukrainy",
+	"contact_org_name" => "All Special Offers",
 	"contact_org_phone_name" => "Telefon:",
 	"contact_org_phone_val" => "+38 (050) 132-95-18",
 	"contact_org_phone_val2" => "+38 (068) 746-38-98",
