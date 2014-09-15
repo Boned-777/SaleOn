@@ -176,7 +176,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 108px;
         margin-left: -37px;
         margin-right: -9px;
-    border:none;
+        border-right:none;
         margin-top: 8px;
         cursor: pointer;
     }
@@ -200,7 +200,8 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left:5px;
         margin-top:8px;
         margin-right: 14px;
-        border:none;
+        border-left:none;
+        border-right:none;
         cursor: pointer;
     }
 
@@ -208,7 +209,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 108px;
         margin-left: -19px;
         margin-top: 8px;
-        border:none;
+        border-left:none;
         cursor: pointer;
     }
 
