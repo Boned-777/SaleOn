@@ -1222,9 +1222,11 @@ textarea {
     overflow: hidden;
 }
 .details-left .push{
-    height: 40px;
+    height: 0px;
 }
-.details-left img,
+.details-left img{
+    cursor: none;
+}
 .details-left iframe {
     width: 450px;
     
