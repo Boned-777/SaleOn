@@ -1225,7 +1225,7 @@ textarea {
     height: 0px;
 }
 .details-left img{
-    cursor: none;
+    cursor: default;
     width: 450px;
 }
 .details-left iframe {
