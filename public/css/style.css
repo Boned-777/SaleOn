@@ -322,7 +322,10 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         width: 770px;
     }
     #push{
-        height: 46px;
+        height: 48px;
+    }
+    .footer-gradient{
+        margin-left: -13px;
     }
     button#btn1.btn.btn-large{
         width: 85px;
