@@ -1226,6 +1226,7 @@ textarea {
 }
 .details-left img{
     cursor: none;
+    width: 450px;
 }
 .details-left iframe {
     width: 450px;
