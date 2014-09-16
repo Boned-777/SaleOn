@@ -190,7 +190,7 @@ return array(
 
 	"feedback_form_name" => "Formularz opinii",
 	"contact_country_name" => "Ukraina",
-	"contact_org_name" => "All Special Offers",
+	"contact_org_name" => "Wantlook",
 	"contact_org_phone_name" => "Telefon:",
 	"contact_org_phone_val" => "+38 (050) 132-95-18",
 	"contact_org_phone_val2" => "+38 (068) 746-38-98",
