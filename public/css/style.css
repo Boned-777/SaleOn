@@ -574,7 +574,6 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     box-sizing: border-box;
 }
 .no-image {
-
     width:240px;
     height: 153px;
     position: absolute;
@@ -1702,8 +1701,8 @@ a.pluso-more{display: none !important;}
 }
     a.no-image-href{
     display: block;
-    width: 240px;
-    height: 153px;
+    width: 232px;
+    height: 140px;
     position: absolute;
     text-align: center;
 
