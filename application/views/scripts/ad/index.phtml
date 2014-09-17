@@ -7,7 +7,7 @@
         <a href="#">
             <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
-                <img src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
+                <img src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid" height="550">
                 <div class="push"></div>
             <?php } else { ?>
                 <?php echo $this->ad->video; ?>
