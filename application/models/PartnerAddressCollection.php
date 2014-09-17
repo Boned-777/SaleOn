@@ -10,11 +10,13 @@ class Application_Model_PartnerAddressCollection {
      */
     public function get() {
         $userId = Zend_Auth::getInstance()->getIdentity()->id;
-        $dbItem = new Application_Model_DbTable_PartnerAddress();
-        $select = $dbItem->select()
-            ->where("user_id = ?", $userId);
-        $this->_items = $dbItem->fetchAll($select);
-        $this->list = $this->_items->toArray();
+        if ($userId) {
+            $dbItem = new Application_Model_DbTable_PartnerAddress();
+            $select = $dbItem->select()
+                ->where("user_id = ?", $userId);
+            $this->_items = $dbItem->fetchAll($select);
+            $this->list = $this->_items->toArray();
+        }
         return true;
     }
 
