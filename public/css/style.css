@@ -1228,7 +1228,7 @@ textarea {
 .details-left img{
     cursor: default;
     width: 450px;
-    max-height: 550;
+    max-height: 520px;
 }
 .details-left iframe {
     width: 450px;
@@ -1242,9 +1242,7 @@ textarea {
 @media (min-width: 1200px) {
     .details-left img,
     .details-left iframe {
-
         margin-left: 9px;
-        max-height:100%;
     }
     .details-right div.span5.top-offset{width: 670px;}
 }
