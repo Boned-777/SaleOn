@@ -1228,6 +1228,7 @@ textarea {
 .details-left img{
     cursor: default;
     width: 450px;
+    max-height: 555px;
 }
 .details-left iframe {
     width: 450px;
@@ -1239,7 +1240,10 @@ textarea {
 }
 
 @media (min-width: 1200px) {
-    .details-left img,
+    .details-left img{
+        margin-left: 9px;
+        max-height:555px;
+    }
     .details-left iframe {
 
         margin-left: 9px;
@@ -1252,7 +1256,10 @@ textarea {
     .details-left {
         width: 350px;
     }
-    .details-left img,
+    .details-left img{
+        width: 340px;
+        max-height:555px;
+    }
     .details-left iframe {
         width: 340px;
     }
