@@ -100,6 +100,5 @@ class Application_Form_Partner extends Zend_Form
         ));
     }
 
-
 }
 
