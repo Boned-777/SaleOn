@@ -70,7 +70,7 @@ class Application_Form_AdMain extends Zend_Form
             ),
         ));
 
-        $this->addElement('submit', 'login', array(
+        $this->addElement('submit', 'ad_save', array(
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
             'ignore' => true,

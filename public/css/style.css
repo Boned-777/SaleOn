@@ -1151,6 +1151,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     padding: 0;
     margin-bottom: 20px;
     font-size: 21px;
+    margin-bottom: -5px;
     line-height: 40px;
     margin-left: 10px;
     color: #333333;
@@ -1196,7 +1197,7 @@ textarea {
 /*partner menu start*/
 .nav-pills {
     width: 820px;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
 }
 .nav-wide {
     width: 940px;
@@ -1740,7 +1741,7 @@ a.pluso-more{display: none !important;}
 #address_partner .additional_address div.input-append{
     display:inline-block;
     position: absolute;
-    top: 725px;
+    top: 500px;
     margin-left: -2px !important;
 }
 
@@ -1809,4 +1810,13 @@ dd#login-element{
 }
 #admin_nav.row{
     max-height:35px;
+}
+#partner{
+    display: block;
+    position: relative;
+    width: 1500px;
+    margin-top: -30px;
+}
+input#ad_save{
+    margin-top: -20px;
 }

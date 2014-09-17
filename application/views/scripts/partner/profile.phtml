@@ -1,8 +1,10 @@
 <?php global $translate; ?>
 <br />
+<div id="partner">
 <div id="view-content">
     <div class="row">
         <div class="span6">
+
             <div class="legend"><?php echo $translate->getAdapter()->translate("set_new_password"); ?></div>
             <?php echo $this->changePasswordForm->setAction($this->url()); ?>
             <div class="legend"><?php echo $translate->getAdapter()->translate("additional_addresses"); ?></div>
@@ -38,7 +40,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
 <script type="text/javascript" src="/js/jquery/jquery.maskedinput.min.js"></script>
