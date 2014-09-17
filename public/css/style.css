@@ -1228,7 +1228,7 @@ textarea {
 .details-left img{
     cursor: default;
     width: 450px;
-    zoom: 0.95;
+    zoom: 0.75;
 }
 .details-left iframe {
     width: 450px;
@@ -1242,7 +1242,7 @@ textarea {
 @media (min-width: 1200px) {
     .details-left img{
         margin-left: 9px;
-zoom: 0.95;
+zoom: 0.75;
     }
     .details-left iframe {
 
@@ -1258,7 +1258,7 @@ zoom: 0.95;
     }
     .details-left img{
         width: 340px;
-        zoom: 0.95;
+        zoom: 0.75;
     }
     .details-left iframe {
         width: 340px;
