@@ -126,9 +126,19 @@
         var mq = window.matchMedia( "(min-width: 1200px)" );
         if (mq.matches) {
             $('#push').css('height', 0);
+            $(window).on('resize', function(){
+                var mq = window.matchMedia( "(min-width: 1200px)" );
+                if (mq.matches) {
+                    $('#push').css('height', 0);
+                }
+                else{
+                $('.details-left .push').css('height', 200);
+                }
+            });
         }
+
         else {
-            $('.details-left .push').css('height', 260);
+
         }
 
     });</script>
