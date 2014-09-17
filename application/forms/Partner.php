@@ -92,14 +92,13 @@ class Application_Form_Partner extends Zend_Form
 //            'required' => true,
         ));
 
-        $this->addElement('submit', 'login', array(
+        $this->addElement('submit', 'partner_save', array(
             //'class' => 'btn btn-large btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate("update"),
         ));
     }
-
 
 }
 
