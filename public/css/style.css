@@ -1228,7 +1228,7 @@ textarea {
 .details-left img{
     cursor: default;
     width: 450px;
-    zoom: 0.75;
+    max-height: 550;
 }
 .details-left iframe {
     width: 450px;
