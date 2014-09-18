@@ -1796,7 +1796,6 @@ button#btn3.btn.btn-large:active{
     line-height: 12px;
     -webkit-appearance: button; /* 2 */
     cursor: pointer; /* 3 */
-    height: 10px;
     left: 478px;
 }
 #contact_button a:link{
