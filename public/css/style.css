@@ -1743,6 +1743,9 @@ a.pluso-more{display: none !important;}
     top: 500px;
     margin-left: -2px !important;
 }
+#address_partner{
+    background-color: #EEEEEE;
+}
 
 #full-address:active{
     color:#002a80;
@@ -1764,7 +1767,8 @@ button#btn3.btn.btn-large:active{
 }
 
 .span5 .additional_address{
-    border: 2px solid #eee;
+    border: 1px solid #B6B3B3;
+    background-color:#EEE;
     margin-top: -5px;
     overflow: auto;
     height: 325px;
@@ -1783,19 +1787,27 @@ button#btn3.btn.btn-large:active{
     background-color: #ffff00;
 }
 #contact_button{
+    color: #000000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 5px 14px;
-    background-color: #EFEFEF;
-    color:#000;
-    border: 1px solid #ddd;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    list-style: none;
     display: inline-block;
     position: relative;
-    top:-52px;
-    left: 477px;
+    top:-45px;
+    line-height: 12px;
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    height: 10px;
+    left: 478px;
 }
+#contact_button a:link{
+    color:#000000;
+}
+@media (max-width: 1199px) {
+    #contact_button {
+        left: 367px;
+    }
+}
+
 dd#login-element{
     margin-top: -11px;
 }
