@@ -5,9 +5,8 @@
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
         <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
         <div id="contact_button">
-            <li>
-                <a href="/index/contacts"><?= $translate->getAdapter()->translate("contacts") ?></a><br/>
-            </li>
+
+            <a href="/index/contacts"><?= $translate->getAdapter()->translate("contacts") ?></a><br/>
         </div>
         <div id="auth_through">
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter_throw"); ?>
