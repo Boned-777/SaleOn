@@ -8,9 +8,9 @@ class UserController extends Zend_Controller_Action
 //    	$accessDenied = array("salesperson");
 //
 //		$auth = Zend_Auth::getInstance();
-//        Zend_Debug::dump($auth->getIdentity());
+//      Zend_Debug::dump($auth->getIdentity());
 //
-//        die();
+//      die();
 //		if ($auth->hasIdentity()) {
 //			if (in_array($auth->getIdentity()->role, $accessDenied))
 //				$this->_helper->redirector('index', 'index');
@@ -223,10 +223,4 @@ class UserController extends Zend_Controller_Action
         $a = $item->create($data);
         return $a;
     }
-
 }
-
-
-
-
-

@@ -11,7 +11,28 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
         $URIArr = explode("/", $uri);
         if (sizeof($URIArr) < 3)
             return false;
-        $uri = '/' . $URIArr[1] . '/' . $URIArr[2];
+
+        $uri = "";
+        for($i=1; ($i<sizeof($URIArr) && $i<3); $i++) {
+            $uri .= "/".$URIArr[$i];
+        }
+        if (!$uri) {
+            $uri = "/";
+        }
+
+        $hideOnPages = array(
+            "/",
+            "/index",
+            "/index/index",
+            "/index/news",
+            "/ad/index",
+            "/index/favorites"
+        );
+
+        if (in_array($uri, $hideOnPages)) {
+            return false;
+        }
+
         $menuItems = array(
             "profile" => array("link" => array("/partner/profile"), "caption" => $translate->getAdapter()->translate("profile")),
             "add_new" => array("link" => array("/ad/new#main"), "caption" => $translate->getAdapter()->translate("add_new")),
