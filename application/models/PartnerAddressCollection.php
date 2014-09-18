@@ -13,7 +13,8 @@ class Application_Model_PartnerAddressCollection {
         if ($userId) {
             $dbItem = new Application_Model_DbTable_PartnerAddress();
             $select = $dbItem->select()
-                ->where("user_id = ?", $userId);
+                ->where("user_id = ?", $userId)
+                ->order("name");
             $this->_items = $dbItem->fetchAll($select);
             $this->list = $this->_items->toArray();
         }

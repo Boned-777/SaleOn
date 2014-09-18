@@ -6,7 +6,6 @@ class Application_Model_AdAddressCollection {
 
     protected $_items;
 
-
     /**
      * Load model data
      *
@@ -30,6 +29,7 @@ class Application_Model_AdAddressCollection {
                 "aa.address_id = pa.id"
             )
             ->where("user_id = ?", $currentUserId)
+            ->order("name")
             ->group("pa.id");
         $partnerStmt->setIntegrityCheck(false);
         $partnerStmt->reset(Zend_Db_Select::COLUMNS);

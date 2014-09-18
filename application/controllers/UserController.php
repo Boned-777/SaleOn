@@ -88,9 +88,12 @@ class UserController extends Zend_Controller_Action
     }
 
     protected function _sendRecoveryMsg($code, $user) {
-        $mailhost= '127.0.0.1';
+        $mailhost= 'smtp.gmail.com';
         $mailconfig = array(
-            'port'    =>  '25',
+            'ssl' => 'tls',
+            'auth' => 'login',
+            'username' => 'wantlookpass@gmail.com ',
+            'password' => 'eBsxvVSkMbnOaqMG'
         );
 
         $transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
