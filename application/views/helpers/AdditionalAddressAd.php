@@ -29,7 +29,7 @@
                 url: "/partner/add-address",
                 data: {
                     val: address,
-                    user: $("#ad_contacts_form #id").val()
+                    ad: $("#ad_contacts_form #id").val()
                 },
                 type: "post",
                 success: function (res) {
