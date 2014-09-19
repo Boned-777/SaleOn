@@ -1800,11 +1800,10 @@ button#btn3.btn.btn-large:active{
     padding: 5px 14px;
     display: inline-block;
     position: relative;
-    top:-45px;
+    top:-47px;
     line-height: 12px;
-    -webkit-appearance: button; /* 2 */
     cursor: pointer; /* 3 */
-    left: 478px;
+    left: 460px;
 }
 #contact_button a:link{
     color:#000000;
