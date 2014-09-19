@@ -477,7 +477,7 @@ class AdController extends Zend_Controller_Action
         if ($val)
             $text = $translate->getAdapter()->translate("yes");
         else
-            $text = '<a href="/payment/prepare/item_id/' . $id .'">' . $translate->getAdapter()->translate("make_payment") . '</a>';
+            $text = '<a href="/payment/prepare/item_id/' . $id .'">' . $translate->getAdapter()->translate("publish") . '</a>';
         return $text;
     }
 
