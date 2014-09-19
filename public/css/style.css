@@ -1095,6 +1095,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     .firefox-slider .item.hover-right.hide-right {
         left: 199%;
     }
+    .firefox-slider .page-number{
+        margin: 23px 0px 10px;
+    }
 }
 @media (max-width: 1199px) {
     .firefox-slider .item.hover-left {
