@@ -6,8 +6,9 @@
         <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
         <div id="contact_button">
 
-            <input type="button" value="<?= $translate->getAdapter()->translate("contacts") ?>"
-                   onclick="window.location='/index/contacts';" />
+            <div id="contact_button">
+                <dd>
+                    <input type="submit" onclick="window.location='/index/contacts';" value="<?= $translate->getAdapter()->translate("contacts") ?>"></dd>
             </div>
     </div>
     <div class="span6">
