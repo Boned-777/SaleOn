@@ -6,7 +6,8 @@
         <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
         <div id="contact_button">
 
-            <a href="/index/contacts"><?= $translate->getAdapter()->translate("contacts") ?></a><br/>
+            <input type="button" value="<?= $translate->getAdapter()->translate("contacts") ?>"
+                   onclick="window.location='/index/contacts';" />
         </div>
         <div id="auth_through">
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter_throw"); ?>
