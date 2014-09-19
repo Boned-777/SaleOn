@@ -41,9 +41,12 @@
     <input id="current-lng" type="hidden" value="<?= $session->locale; ?>" />
     <div class="topbg"></div>
     <div id="wrap">
+
         <div class="container fix-content-position">
+            <button id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="btn dropdown-toggle contacts"></button>
+
             <div class="btn-group dropdown pull-left" style="margin-left: 100%; margin-top: 4px; margin-bottom: -4%;">
-                <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
+                 <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
                 <ul class="dropdown-menu" id="lng-switcher">
                     <li><a id="ua" class="lng ua" title="<?= $translate->getAdapter()->translate("lng_ukrainian")?>" href="#"></a></li>
                     <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
