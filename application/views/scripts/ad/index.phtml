@@ -122,27 +122,20 @@
         <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
     </div>
 </div>
-<script type="text/javascript">$( window ).load(function() {
-        var mq = window.matchMedia( "(min-width: 1200px)" );
-        if (mq.matches) {
-            $('#push').css('height', 0);
+<script type="text/javascript">
             $(window).on('resize', function(){
                 var mq = window.matchMedia( "(min-width: 1200px)" );
                 if (mq.matches) {
                     $('#push').css('height', 0);
                 }
                 else{
-                $('.details-left .push').css('height', 80);
+                $('.details-left .push').css('height', 90);
 
                 }
             });
-        }
 
-        else {
 
-        }
-
-    });</script>
+</script>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
 <script type="text/javascript" src="/js/full-action.js"></script>
