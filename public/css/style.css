@@ -1843,3 +1843,8 @@ input#ad_save{
 input#partner_save{
     margin-top: -28px;
 }
+img#banner{
+    display: block;
+    position: relative;
+    top: -13px;
+}
