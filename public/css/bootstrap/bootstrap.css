@@ -5163,7 +5163,8 @@ margin-left:-5px;
 .pager .disabled > span {
   color: #999999;
   cursor: default;
-  background-color: #fff;
+    pointer-events: none;
+    background-color: #fff;
 }
 
 .modal-backdrop {
