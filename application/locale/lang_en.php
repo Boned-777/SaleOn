@@ -156,6 +156,8 @@ return array (
     "mm_exit" => "Exit",
     "mm_favorites" => "Favorites",
     "mm_user" => "User",
+    "mm_admin"=>"Control panel",
+
 
     "main_title" => "All Special Offers",
     "copyright" => "© All Specials of Ukraine, 2014",

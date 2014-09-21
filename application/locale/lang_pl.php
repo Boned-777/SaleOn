@@ -157,6 +157,8 @@ return array(
     "mm_exit" => "Wyloguj",
     "mm_favorites" => "Ulubione",
     "mm_user" => "użytkowników",
+    "mm_admin"=>"Panel kontrola",
+
 
     "main_title" => "All Special Offers",
     "main_description" => "Wszystkie Akcje Ukrainy w jednym miejscu!",

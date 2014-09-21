@@ -151,6 +151,8 @@ return array (
     "mm_exit" => "Вийти",
     "mm_favorites" => "Вибране",
     "mm_user" => "Користувачам",
+    "mm_admin"=>"Панель керування",
+
 
     "main_title" => "Всі Акції",
     "main_description" => "Всі Акції України в єдиному місці!!!

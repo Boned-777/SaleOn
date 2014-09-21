@@ -418,6 +418,11 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 .myicon-favorites {
     background-position: -129px 2px;
 }
+.myicon-admin {
+
+    background-image: url("/img/admin.png");
+    background-position: 0px 2px;
+}
 .myicon-user {
     background-position: -162px 2px;
 }
