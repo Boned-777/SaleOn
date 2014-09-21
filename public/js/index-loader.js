@@ -209,20 +209,25 @@
 				$.removeCookie("geo");
 				this.clearCategoryBrandsCookies();
 				$.cookie('geo', data.regionId, this.cookieOptions);
-			},
+                $( "#btn1").addClass("regactive");
+
+            },
 			setCategoryCookie : function (data) {
 				this.clearCategoryBrandsCookies();
 				$.cookie('category', parseInt(data.categoryId), this.cookieOptions);
+                $( "#btn2").addClass("catactive");
 			},
 			setBrandsCookie : function (data) {
 				this.clearCategoryBrandsCookies();
 				if (data.brandsId) {
-					$.cookie('brands',   data.brandsId, this.cookieOptions);	
-				}
+					$.cookie('brands',   data.brandsId, this.cookieOptions);
+                }
 				if (data.productsId) {
 					$.cookie('products', data.productsId, this.cookieOptions);
 				}
-			},
+                $( "#btn3").addClass("bractive");
+
+            },
 			clearCategoryBrandsCookies : function () {
 				$.removeCookie("category");
 				$.removeCookie("brands");
