@@ -1853,3 +1853,14 @@ img#banner{
     position: relative;
     top: -13px;
 }
+.regactive{
+    border-bottom:solid darkviolet 2px;
+}
+.catactive{
+    border-bottom:solid orangered 2px;
+
+}
+.bractive{
+    border-bottom:solid orange 2px;
+
+}
