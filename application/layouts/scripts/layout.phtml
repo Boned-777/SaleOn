@@ -74,7 +74,7 @@
                                     <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
                                     <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="myicon-logout"></i></a>
                                 <?php } elseif ($auth->getIdentity()->role == Application_Model_User::ADMIN) { ?>
-                                    <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
+                                    <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="myicon-admin"></i></a>
                                     <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                                 <?php } else { ?>
                                     <a href="/index/favorites" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>

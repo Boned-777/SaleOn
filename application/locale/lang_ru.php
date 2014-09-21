@@ -158,6 +158,7 @@ return array(
     "mm_exit"=>"Выйти",
     "mm_favorites"=>"Избранное",
     "mm_user"=>"Пользователям",
+    "mm_admin"=>"Панель управления",
 
     "main_title" => "Все Акции",
     "main_description" => "Все Акции в единственном месте!
