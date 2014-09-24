@@ -43,7 +43,7 @@
                          class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
                 </li>
                 <li class="next  <?= $this->nextAdUrl ? "" : "disabled" ?>">
-                    <a href="<?= $this->nextAdUrl ?>"><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
+                    <a href="<?= $this->nextAdUrl ?>" onclick=""><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
                 </li>
             </ul>
         </div>
@@ -124,12 +124,15 @@
 </div>
 <script type="text/javascript">$( window ).load(function() {
         $('#push').css('height', 0);
+        $('.firefox-slider #push').css('height', 0);
         var resizeMethod = function(){
             if (document.body.clientWidth > 1199) {
                 $('#push').css('height', 0);
+                $('.firefox-slider #push').css('height', 20);
             }
             if (document.body.clientWidth < 1199) {
                 $('#push').css('height', 90);
+                $('.firefox-slider #push').css('height', 90);
             }
         };
         window.addEventListener("resize", resizeMethod, true);

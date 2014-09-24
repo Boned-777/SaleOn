@@ -72,17 +72,17 @@ body {
 }
 button#contact-btn.btn.dropdown-toggle.contacts {
     background: url("/img/contacts6.png") center 2px no-repeat;
-    /*margin: 6px 0 0 10px;*/
-    border: none !important;
+    margin: 6px 0 0 -35px;
+    border: none;
     width: 36px;
-    margin-left: 5.47%;
-    margin-bottom: -4%;
-    margin-top: 4px;
     height:24px;
     display: inline-block;
     position: absolute;
-    left: -2%;
+    margin-top: 4px;
+    margin-bottom: -4%;
+
 }
+
 
 #footer .contacts:hover, .contacts:focus {
     border: 1px solid #999;
@@ -499,7 +499,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 .carousel-inner > .next.left  {
     opacity: 1;
     -webkit-transition: 0.47s ease-in-out left, 0.47s linear opacity, 0.47s linear top;
-    -moz-transition: 0.5s ease-in-out left, 0.5s linear opacity, 0.5s linear top;
+    -moz-transition: 0.45s ease-in-out left, 0.45s linear opacity, 0.45s linear top;
     -o-transition: 0.47s ease-in-out left, 0.47s linear opacity, 0.47s linear top;
     transition: 0.47s ease-in-out left, 0.47s linear opacity, 0.47s linear top;
 }
@@ -507,7 +507,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 .carousel-inner > .next.left img {
     width: 190px;
     -webkit-transition: 0.47s linear width;
-    -moz-transition: 0.5s linear width;
+    -moz-transition: 0.45s linear width;
     -o-transition: 0.47s linear width;
     transition: 0.47s linear width;
 }
@@ -877,7 +877,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             margin-top: 60px;
         }
     }
-
+@media (min-width: 1500px){
+    .footer-gradient{
+    margin-left: -50px;
+    }
+}
     .carousel-inner {
         height: 450px;
     }
@@ -1104,6 +1108,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
     .firefox-slider .item.hover-right.hide-right {
         left: 199%;
+    }
+    .firefox-slider .page-number{
+        margin: 23px 0px 10px;
+    }
+
+}
+
+@media (min-width: 1500px) {
+    .firefox-slider .item.hover-left {
+        left: -104%;
+        margin-top: 45px;
+
+    }
+    .firefox-slider .item.hover-right {
+        left: 109%;
+        margin-top: 45px;
+    }
+    .firefox-slider .item.hover-left .no-image,
+    .firefox-slider .item.hover-right .no-image {
+        width: 210px;
+    }
+    .firefox-slider .item.hover-left .img-wrapper,
+    .firefox-slider .item.hover-right .img-wrapper {
+        width: 190px;
+    }
+    .firefox-slider .item.hover-left.hide-left {
+        left: -249%;
+    }
+    .firefox-slider .item.hover-right.hide-right {
+        left: 259%;
     }
     .firefox-slider .page-number{
         margin: 23px 0px 10px;
