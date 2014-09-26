@@ -337,7 +337,6 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-left: -78px;
         margin-right: 43px;
         margin-top: 8px;
-        border-right: none;
         cursor: pointer;
     }
     button#btn2.btn.btn-large{
@@ -372,20 +371,15 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     a#btn5.btn.btn-large{
         width: 45px;
         margin-left:58px;
-        border-right: none;
-        boder-left:none;
         margin-top: 8px;
         cursor: pointer;
     }
     a#btn-fav.btn.btn-large{
         width: 45px;
-        border-left:none;
-        border-right:none;
         cursor: pointer;
     }
     a#btn-logout.btn.btn-large{
         width: 45px;
-        border-left:none;
         cursor: pointer;
     }
 
@@ -1085,6 +1079,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     width: 240px;
 }
 
+.firefox-slider .page-number span{
+    margin-top: ;
+}
 @media (min-width: 1200px) and (max-width: 1500px) {
     .firefox-slider .item.hover-left {
         left: -83%;
