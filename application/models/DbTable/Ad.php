@@ -45,7 +45,7 @@ class Application_Model_DbTable_Ad extends Zend_Db_Table_Abstract
     }
 
     public function archiveAllFinished() {
-        $sql = "UPDATE $this->_name SET status='".self::STATUS_ARCHIVE."' WHERE end_dt < NOW()";
+        $sql = "UPDATE $this->_name SET status='".self::STATUS_ARCHIVE."' WHERE end_dt < NOW() - INTERVAL 1 DAY";
         $db = $this->getAdapter();
         $db->query($sql);
     }
