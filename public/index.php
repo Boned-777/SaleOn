@@ -24,7 +24,7 @@ $autoloader->registerNamespace('Zendx');
 
 $session = new Zend_Session_Namespace();
 $session->locale = isset($session->locale)?$session->locale:"ua";
-date_default_timezone_set("Europe/Kiev");
+
 $translate = new Zend_Translate(
     'array',
     APPLICATION_PATH . '/locale/lang_' . $session->locale . ".php",
@@ -46,17 +46,17 @@ switch ($session->locale) {
         break;
 }
 
-//$locationsNative = new Zend_Translate(
-//    'array',
-//    APPLICATION_PATH . '/locale/location_' . $locationLang . ".php",
-//    $session->locale
-//);
-//
-//$locationsInternational = new Zend_Translate(
-//    'array',
-//    APPLICATION_PATH . '/locale/location_US.php',
-//    $session->locale
-//);
+$locationsNative = new Zend_Translate(
+    'array',
+    APPLICATION_PATH . '/locale/location_' . $locationLang . ".php",
+    $session->locale
+);
+
+$locationsInternational = new Zend_Translate(
+    'array',
+    APPLICATION_PATH . '/locale/location_US.php',
+    $session->locale
+);
 
 /** Zend_Application */
 require_once 'Zend/Application.php';
