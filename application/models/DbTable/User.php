@@ -13,8 +13,16 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$data["date_created"] = date('Y-m-d H:i:s');
 		$data["username"] = $vars["username"];
 		$data["role"] = $vars["role"];
-		$res = $this->save($data);
-		
+        $data["social_id"] = "";
+        $data["social_type"] = "";
+        try {
+            $item = $this->createRow($data);
+            $res = $item->save();
+        } catch (Exception $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
+
 		if ($res === false) {
 			return false;
 		}

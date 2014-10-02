@@ -161,10 +161,12 @@ class PartnerController extends Zend_Controller_Action
             if ($registrationForm->isValid($request->getPost())) {
                 $data = $registrationForm->getValues();
                 if ($this->_create($data)) {
-                    $this->_helper->redirector('index', 'auth', null, array(
-                        "username" => $data["username"],
-                        "password" => $data["password"],
-                    ));
+                    $authObj = new Application_Model_Auth();
+                    $authObj->process(
+                        $data["username"],
+                        $data["password"]
+                    );
+                    $this->_helper->redirector('profile', 'partner');
                     $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
                     $registrationForm->getElement("username")->addError($translate->getAdapter()->translate("error_username_exists"));

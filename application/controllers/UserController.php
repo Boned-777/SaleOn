@@ -201,10 +201,12 @@ class UserController extends Zend_Controller_Action
             if ($registrationForm->isValid($request->getPost())) {
                 $data = $registrationForm->getValues();
                 if ($this->_create($data)) {
-                    $this->_helper->redirector('index', 'auth', null, array(
-                        "username" => $data["username"],
-                        "password" => $data["password"],
-                    ));
+                    $authObj = new Application_Model_Auth();
+                    $authObj->process(
+                        $data["username"],
+                        $data["password"]
+                    );
+                    $this->_helper->redirector('index', 'index');
                     $view->successMessage = $translate->getAdapter()->translate("success") . " " . $translate->getAdapter()->translate("data_save_success");
                 } else {
                     $registrationForm->getElement("username")->addError($translate->getAdapter()->translate("error_username_exists"));
@@ -220,7 +222,7 @@ class UserController extends Zend_Controller_Action
     private function _create($data) {
         $item = new Application_Model_User();
         $data["role"] = Application_Model_User::USER;
-        $a = $item->create($data);
-        return $a;
+        $res = $item->create($data);
+        return $res;
     }
 }

@@ -262,7 +262,7 @@ class Application_Model_Ad
             ->distinct()
             ->from(array("a" => "ads"), array("a.*"))
             ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order(".public_dt DESC");
+            ->order("a.public_dt DESC");
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
