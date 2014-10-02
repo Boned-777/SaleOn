@@ -26,7 +26,8 @@ class Zend_View_Helper_AdminNavigationBar extends Zend_View_Helper_Abstract
             "/index/index",
             "/index/news",
             "/ad/index",
-            "/index/favorites"
+            "/index/favorites",
+            "/index/contacts"
         );
 
         if (in_array($uri, $hideOnPages)) {
