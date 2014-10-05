@@ -57,9 +57,9 @@ class Application_Form_AdMedia extends Zend_Form
             foreach ($images as $imgKey => $imgVal) {
                 switch ($imgKey) {
                     case "image_file" :
-                        if (!isset($images["banner_file"])) {
-                            $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
-                        }
+//                        if (!isset($images["banner_file"])) {
+//                            $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
+//                        }
                         $mediaItemData["image"] = $imgVal;
                         break;
 
