@@ -35,6 +35,7 @@
                 success: function (res) {
                     $(".additional_address ul").append('<li><input type="checkbox" value="' + res.id + '" checked="checked" />&nbsp;' + res.name + '</li>');
                     addAddress(res.id);
+                    $("#new_address").val("");
                 },
                 dataType: "json"
             });

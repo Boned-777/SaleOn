@@ -24,7 +24,7 @@ class PartnerController extends Zend_Controller_Action
             if ($identity->role == Application_Model_User::ADMIN) {
                 $userId = null;
                 $adId = $this->getParam("ad", null);
-                if (is_null($userId)) {
+                if (!is_null($adId)) {
                     $ad = new Application_Model_Ad();
                     $ad->get($adId);
                     $userId = $ad->owner;
