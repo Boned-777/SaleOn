@@ -49,7 +49,7 @@ class Application_Form_AdMedia extends Zend_Form
         ));
     }
 
-    public function processData($formData) {
+    public function processData($formData, $bannerAutoUpload = false) {
         $upload = new Zend_File_Transfer_Adapter_Http();
         $images = $this->_processImage($upload);
         $mediaItemData = array();
@@ -57,9 +57,9 @@ class Application_Form_AdMedia extends Zend_Form
             foreach ($images as $imgKey => $imgVal) {
                 switch ($imgKey) {
                     case "image_file" :
-//                        if (!isset($images["banner_file"])) {
-//                            $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
-//                        }
+                        if ($bannerAutoUpload && !isset($images["banner_file"])) {
+                            $mediaItemData["banner"] = $this->_resizeImage(APPLICATION_PATH . "/../public/media/" . $imgVal, 240, 153);
+                        }
                         $mediaItemData["image"] = $imgVal;
                         break;
 
