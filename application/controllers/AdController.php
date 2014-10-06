@@ -295,7 +295,7 @@ class AdController extends Zend_Controller_Action
             if ($form->isValid($formData)) {
                 $mediaItemData = array();
                 if ($formData["form"] == "AdMedia") {
-                    $mediaItemData = $form->processData($formData, (bool)$item->banner);
+                    $mediaItemData = $form->processData($formData, !(bool)$item->banner);
                 }
                 $itemData = $form->getValues();
                 $itemData = array_merge($itemData, $mediaItemData);
