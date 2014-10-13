@@ -58,6 +58,21 @@ $locationsInternational = new Zend_Translate(
     $session->locale
 );
 
+$ctrl = Zend_Controller_Front::getInstance();
+$router = $ctrl->getRouter();
+$route = new Zend_Controller_Router_Route(
+    'filter/:geo/:category/:brand/*',
+    array(
+        'module' => "default",
+        'controller' => 'test',
+        'action' => 'index'
+    ),
+    array(
+        "a" , "b"
+    )
+);
+$router->addRoute('filter', $route);
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 // Create application, bootstrap, and run

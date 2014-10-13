@@ -1,24 +1,5 @@
-<div class="row">
-    <div style="height: 300px; overflow-y: auto; " class="span5">
-        <div id="geo_tree" class="aciTree"></div>
-    </div>
+<?php
+    foreach ($this->items as $item) {
+        echo $this->adItem($item);
+    }
 
-    <div id="geo_data" class="span5">
-    </div>
-</div>
-
-<?php $this->headLink()->prependStylesheet($this->baseUrl('css/aciTree.css')); ?>
-<script type="text/javascript" src="/js/aciTree/jquery.aciPlugin.min.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.min.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.core.js"></script>
-<!--<script type="text/javascript" src="/js/aciTree/jquery.aciTree.dom.js"></script>-->
-<!--<script type="text/javascript" src="/js/aciTree/jquery.aciTree.radio.js"></script>-->
-<!--<script type="text/javascript" src="/js/aciTree/jquery.aciTree.selectable.js"></script>-->
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.checkbox.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.utils.js"></script>
-
-<script type="text/javascript" src="/js/geo-tree.js"></script>
-
-<script type="application/javascript">
-
-</script>

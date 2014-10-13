@@ -13,12 +13,13 @@ class TestController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $a = new Application_Model_Geo();
-        $a->createLocaleFile(1);
-        $a->createLocaleFile(2);
-        $a->createInterLocaleFile();
-
-        die();
+        $ad = new Application_Model_Ad();
+        $res = $ad->getList(array());
+        $data = array();
+        foreach ($res AS $val) {
+            $data[] = $val->toListArray(NULL);
+        }
+        $this->view->items = $data;
     }
 
     public function aAction() {
