@@ -145,5 +145,11 @@ class Application_Model_Partner
         return false;
     }
 
+    public function getBrands() {
+        $brands = new Application_Model_Brand();
+        return $brands->getByPartnerId($this->id);
+
+    }
+
 }
 

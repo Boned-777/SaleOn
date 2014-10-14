@@ -51,6 +51,26 @@ class PartnerController extends Zend_Controller_Action
         }
     }
 
+    public function brandsAction() {
+        $userId = Zend_Auth::getInstance()->getIdentity()->id;
+
+        $partner = new Application_Model_Partner();
+        $partner->getByUserId($userId);
+        $brands = $partner->getBrands();
+
+        $grid = Bvb_Grid::factory('Table');
+        $grid->setSource(new Bvb_Grid_Source_Array($brands));
+        $grid->setGridColumns(array("name", 'status', 'stats'));
+        $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
+        $grid->setNoFilters(true);
+        $grid->setExport(array());
+        $grid->setImagesUrl('/img/');
+
+        $this->view->grid = $grid;
+
+        $this->view->brandForm = new Application_Form_Brand();
+    }
+
     public function removeAddressAction() {
         $res = false;
         $addressId = $this->getParam("addr");
