@@ -199,6 +199,7 @@ class Application_Model_Geo
                 $resArr[] = array(
                     "name" => $value["code"],
                     "value" => str_replace("І", "ИИ", $this->getLocaleName($value["name"])),
+                    "seo_name" => $value["name"],
                     "count" => $currentCount,
                     "is_path" => $is_path
                 );
@@ -206,6 +207,7 @@ class Application_Model_Geo
                 $cityArray = array(
                     "name" => $value["code"],
                     "value" => $this->getLocaleName($value["name"]),
+                    "seo_name" => $value["name"],
                     "count" => $currentCount,
                     "is_path" => $is_path
                 );
@@ -500,7 +502,8 @@ class Application_Model_Geo
         foreach ($result as $item) {
             $tmp = array(
                 "code" => $item->code,
-                "name" => self::getLocaleName($item->name)
+                "name" => self::getLocaleName($item->name),
+                "seo_name" => $item->name
             );
             $data[] = $tmp;
         }
