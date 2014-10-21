@@ -343,6 +343,16 @@ class Application_Model_Geo
         return implode(", ", $result);
     }
 
+    public function getByAlias ($alias = "") {
+        $dbItem = new Application_Model_DbTable_Geo();
+        $res = $dbItem->fetchRow("name = '$alias'");
+        if ($res) {
+            $this->loadData($res);
+            return $res->id;
+        }
+        return false;
+    }
+
     public function addGeoItem ($parentCode, $internationalName, $nativeName) {
         $res = array(
             "success" => true,

@@ -13,13 +13,33 @@ class TestController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $params = $this->_getAllParams();
+        $filterParams = $this->prepareParams($params);
         $ad = new Application_Model_Ad();
-        $res = $ad->getList(array());
+        $res = $ad->getList($filterParams);
         $data = array();
         foreach ($res AS $val) {
             $data[] = $val->toListArray(NULL);
         }
         $this->view->items = $data;
+
+
+    }
+
+    protected function prepareParams($data) {
+        $filtersList = array("geo", "category", "brand");
+        $result = array();
+        foreach($filtersList as $filterName) {
+            if ($data[$filterName] != "all") {
+                $filterClass = "Application_Model_" . $filterName;
+                $filter = new $filterClass();
+                $filterValue = $filter->getByAlias($data[$filterName]);
+                if ($filterValue) {
+                    $result[$filterName] = $filterValue;
+                }
+            }
+        }
+        return $result;
     }
 
     public function aAction() {
