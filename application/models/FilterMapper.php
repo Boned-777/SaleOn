@@ -83,10 +83,12 @@ class Application_Model_FilterMapper
         foreach($itemsArr as $item) {
             if ($item["parent"] == 0) {
                 $resArray[$item["id"]]["name"] = $translate->getAdapter()->translate($item["name"]);
+                $resArray[$item["id"]]["seo_name"] = $item["name"];
             } else {
                 $tmp = array(
                     "id" => $item["id"],
                     "name" => $translate->getAdapter()->translate($item["name"]),
+                    "seo_name" => $item["name"],
                     "count" => isset($countsList[$item["id"]])?$countsList[$item["id"]]:0
                 );
                 $resArray[$item["parent"]]["sub"][] = $tmp;
