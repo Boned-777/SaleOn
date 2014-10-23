@@ -225,6 +225,7 @@ class Application_Model_Geo
 
         $additional = array(array(
             "name" => $originalPattern,
+            "seo_name" => "any",
             "value" => $translate->getAdapter()->translate("any"),
             "count" => $this->_getAllCounts($originalPattern, $params),
             "is_path" => 0
@@ -348,7 +349,7 @@ class Application_Model_Geo
         $res = $dbItem->fetchRow("name = '$alias'");
         if ($res) {
             $this->loadData($res);
-            return $res->id;
+            return $res->code;
         }
         return false;
     }
