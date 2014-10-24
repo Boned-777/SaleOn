@@ -136,7 +136,8 @@
 				this.categories.eventObject.on("categorySelected", _.bind(function(e, data){
 					this.setCategoryCookie(data);
 					this.hideCategoryModal();
-					this.isMainPage() ? this.initWawSlider() : location.href = "/";
+					var url = this.prepareURL();
+					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
 				}, this));
 			},
 
@@ -168,8 +169,31 @@
 				this.regions.eventObject.on("regionSelected", _.bind(function(e, data){
 					this.setRegionCookie(data);
 					this.hideRegionsModal();
-					this.isMainPage() ? this.initWawSlider() : location.href = "/";
+					var url = this.prepareURL(data.regionId);
+					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
+					// this.isMainPage() ? this.initWawSlider() : location.href = "/";
 				}, this));
+			},
+
+			prepareURL : function () {
+				var defaultRegion = defaultCategory = defaultBrand = "any",
+					urlTemplate 	= _.template("/filter/<%= region %>/<%= category %>/<%= brand %>"),
+					regionSeoUrl 	= this.regions ? this.regions.getSeoUrl($.cookie('geo')) : defaultRegion;
+					categorySeoUrl 	= this.categories ? this.categories.getSeoUrl($.cookie('category')) : defaultCategory;
+				return urlTemplate({
+					region 		: regionSeoUrl || defaultRegion,
+					category 	: categorySeoUrl || defaultCategory,
+					brand 		: defaultBrand
+				});
+			},
+
+			updateURL : function (url) {
+				var title = "title";
+				history.pushState(null, title, url);
+			},
+
+			loadURL : function (url) {
+				location.href = url;
 			},
 
 			/* Brands popup */
