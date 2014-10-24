@@ -21,7 +21,7 @@
 			
 			init : function (regionsData) {
 				this.data = regionsData;
-				this.data.area = [];				 
+				this.data.area = {};				 
 				this.registerDOMElements();
 				this.renderMainTemplate();
 				this.updateDOMElements();
@@ -150,8 +150,16 @@
 			setHeader : function (regionId) {
 				var regionElement = _.find(this.data.list, function(el) {
 					return (el.name == regionId);
-				})
+				});
 				this.dom.headerName.text(regionElement.value);
+			},
+
+			getSeoUrl : function (regionId) {
+				var listItem =_.map(this.data.area, function(el) {
+					 return _.findWhere(el.list, {name: regionId});
+				});
+
+				return (listItem && listItem[0] && listItem[0].seo_name) ? listItem[0].seo_name : null;
 			},
 
 			showError : function () {
