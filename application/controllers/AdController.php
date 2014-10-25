@@ -349,20 +349,29 @@ class AdController extends Zend_Controller_Action
             $forms[$formData["form"]]->populate($formData);
     }
 
+    protected function prepareParams($paramsNeedle=array()) {
+        $params = null;
+        foreach ($paramsNeedle as $param) {
+            $request = new Zend_Controller_Request_Http();
+            $coockie = $request->getCookie($param);
+            if ($coockie && $coockie != "all" ) {
+                $filterClass = "Application_Model_" . $param;
+                $filter = new $filterClass();
+                $filterValue = $filter->getByAlias($coockie);
+                if ($filterValue) {
+                    $params[$param] = $filterValue;
+                }
+            }
+        }
+        return $params;
+    }
+
     public function listAction () {
         global $translate;
 
-        $params = null;
-        $request = new Zend_Controller_Request_Http();
+        $params = $this->prepareParams(array("category", "geo"//, "brands", "products"
+        ));
 
-        if ($request->getCookie('category'))
-            $params["category"] = $request->getCookie('category');
-        if ($request->getCookie('brands'))
-            $params["brand"] = $request->getCookie('brands');
-        if ($request->getCookie('products'))
-            $params["product"] = $request->getCookie('products');
-        if ($request->getCookie('geo'))
-            $params["geo"] = $request->getCookie('geo');
         $ad = new Application_Model_Ad();
         $res = $ad->getList($params);
         $data = array();

@@ -46,17 +46,25 @@ switch ($session->locale) {
         break;
 }
 
-$locationsNative = new Zend_Translate(
-    'array',
-    APPLICATION_PATH . '/locale/location_' . $locationLang . ".php",
-    $session->locale
-);
+try {
+    $locationsNative = new Zend_Translate(
+        'array',
+        APPLICATION_PATH . '/locale/location_' . $locationLang . ".php",
+        $session->locale
+    );
+} catch (Exeption $e){
 
+}
+
+try {
 $locationsInternational = new Zend_Translate(
     'array',
     APPLICATION_PATH . '/locale/location_US.php',
     $session->locale
 );
+} catch (Exeption $e){
+
+}
 
 $ctrl = Zend_Controller_Front::getInstance();
 $router = $ctrl->getRouter();
