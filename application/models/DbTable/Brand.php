@@ -31,10 +31,15 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
 
         $db = $dbItem->getAdapter();
         $countsList = $this->getCounts($db, "brand", $params);
+        $orginial_locale = setlocale(LC_CTYPE, 0);
+
+        $translite = new Zend_Filter_Transliteration();
+
         foreach ($res as $value) {
             if (isset($countsList[$value["id"]])) {
                 $result[] = array(
                     "name" => $value["name"],
+                    "seo_name" => $value["id"] . "_" . $translite->filter($value["name"]),
                     "value" => $value["id"],
                     "count" => isset($countsList[$value["id"]])?$countsList[$value["id"]]:0
                 );

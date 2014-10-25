@@ -32,10 +32,14 @@ class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
         $db = $dbItem->getAdapter();
         $countsList = $this->getCounts($db, "product", $params);
         $result = array();
+
+        $translite = new Zend_Filter_Transliteration();
+
         foreach ($res as $value) {
             if (isset($countsList[$value["id"]])) {
                 $result[] = array(
                     "name" => $value["name"],
+                    "seo_name" => $value["id"] . "_" . $translite->filter($value["name"]),
                     "value" => $value["id"],
                     "count" => isset($countsList[$value["id"]])?$countsList[$value["id"]]:0
                 );
