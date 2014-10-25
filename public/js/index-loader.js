@@ -21,6 +21,7 @@
 			init : function () {
 				this.registerDOMElements();
 				this.bindEvents();
+				this.applyUrlState();
 				this.isNewsPage() && this.clearCategoryBrandsCookies();
 				this.isFavoritesPage() && this.extendSliderForFavorites();
 				this.isBrowserCompatible() && this.isSliderPage() && this.initWawSlider();	
@@ -83,6 +84,17 @@
 				// });
 			},
 
+			applyUrlState : function () {
+				var urlFilterKey = "filter",
+					urlPath = location.pathname,
+					urlParts = urlPath.split("/");
+
+				if(urlParts && (urlParts[1] == urlFilterKey)){
+					this.setRegionCookie(urlParts[2]);
+					this.setCategoryCookie(urlParts[3]);
+				}
+			},
+
 			/* slider */
 			initWawSlider : function () {
 				this.dom.lockLoading.show();
@@ -134,7 +146,7 @@
 
 			bindCategorySelectedEvent : function () {
 				this.categories.eventObject.on("categorySelected", _.bind(function(e, data){
-					this.setCategoryCookie(data);
+					this.setCategoryCookie(data.categoryId);
 					this.hideCategoryModal();
 					var url = this.prepareURL();
 					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
@@ -167,7 +179,7 @@
 
 			bindRegionSelectedEvent : function () {
 				this.regions.eventObject.on("regionSelected", _.bind(function(e, data){
-					this.setRegionCookie(data);
+					this.setRegionCookie(data.regionId);
 					this.hideRegionsModal();
 					var url = this.prepareURL(data.regionId);
 					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
@@ -232,13 +244,13 @@
 			setRegionCookie : function (data) {
 				$.removeCookie("geo");
 				this.clearCategoryBrandsCookies();
-				$.cookie('geo', data.regionId, this.cookieOptions);
+				$.cookie('geo', data, this.cookieOptions);
                 $( "#btn1").addClass("regactive");
 
             },
 			setCategoryCookie : function (data) {
 				this.clearCategoryBrandsCookies();
-				$.cookie('category', parseInt(data.categoryId), this.cookieOptions);
+				$.cookie('category', data, this.cookieOptions);
                 $( "#btn2").addClass("catactive");
 			},
 			setBrandsCookie : function (data) {
