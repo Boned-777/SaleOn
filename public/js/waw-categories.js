@@ -16,7 +16,7 @@
 						      	<div id="category-group-list" class="filter-list"></div>';
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
-			this.itemTemplate = '<div data-id="$catId" class="span3 category-wrapper">\
+			this.itemTemplate = '<div data-id="$catId" data-cat-seo-name="$seoName" class="span3 category-wrapper">\
 									<div class="flagi-right"><div title="$catName" class="ellipsis">$catName</div><span class="counter">$catCount</span></div>\
 								</div>';	
 			this.eventObject = $({});
@@ -77,6 +77,7 @@
 						if (dataList[i]) {
 							result += this.itemTemplate
 								.replace("$catId", 			dataList[i].id)
+								.replace("$seoName", 		dataList[i].seo_name)
 								.replace("$catCount",	 	dataList[i].count)
 								.replace(/\$catName/gi, 	dataList[i].name)
 						} 
@@ -110,17 +111,17 @@
 					}
 				},this));
 				this.dom.categoryGroupList.on("click", _.bind(function(e){
-					var categoryId = $(e.target).closest(".category-wrapper").data("id");
-					this.eventObject.trigger("categorySelected", {categoryId : categoryId})
+					var categorySeoName = $(e.target).closest(".category-wrapper").data("cat-seo-name");
+					this.eventObject.trigger("categorySelected", {categorySeoName : categorySeoName})
 				},this));
 			},
 
-			getSeoUrl : function (categoryId) {
-				var listItem =_.find(this.data[this.currentCategoryGroup].sub, function(el) {
-					return (el.id == categoryId);
-				});
-				return (listItem && listItem.seo_name) ? listItem.seo_name : null;
-			},
+			// getSeoUrl : function (categoryId) {
+			// 	var listItem =_.find(this.data[this.currentCategoryGroup].sub, function(el) {
+			// 		return (el.id == categoryId);
+			// 	});
+			// 	return (listItem && listItem.seo_name) ? listItem.seo_name : null;
+			// },
 
 			switchCategoryGroupHeader : function () {
 				var currentActive = this.dom.filterContent.find(".category-group.alert-success");

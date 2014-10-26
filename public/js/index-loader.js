@@ -146,7 +146,7 @@
 
 			bindCategorySelectedEvent : function () {
 				this.categories.eventObject.on("categorySelected", _.bind(function(e, data){
-					this.setCategoryCookie(data.categoryId);
+					this.setCategoryCookie(data.categorySeoName);
 					this.hideCategoryModal();
 					var url = this.prepareURL();
 					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
@@ -179,19 +179,18 @@
 
 			bindRegionSelectedEvent : function () {
 				this.regions.eventObject.on("regionSelected", _.bind(function(e, data){
-					this.setRegionCookie(data.regionId);
+					this.setRegionCookie(data.regionSeoName);
 					this.hideRegionsModal();
-					var url = this.prepareURL(data.regionId);
+					var url = this.prepareURL();
 					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
-					// this.isMainPage() ? this.initWawSlider() : location.href = "/";
 				}, this));
 			},
 
 			prepareURL : function () {
 				var defaultRegion = defaultCategory = defaultBrand = "any",
 					urlTemplate 	= _.template("/filter/<%= region %>/<%= category %>/<%= brand %>"),
-					regionSeoUrl 	= this.regions ? this.regions.getSeoUrl($.cookie('geo')) : defaultRegion;
-					categorySeoUrl 	= this.categories ? this.categories.getSeoUrl($.cookie('category')) : defaultCategory;
+					regionSeoUrl 	= this.regions ? $.cookie('geo') : defaultRegion;
+					categorySeoUrl 	= this.categories ? $.cookie('category') : defaultCategory;
 				return urlTemplate({
 					region 		: regionSeoUrl || defaultRegion,
 					category 	: categorySeoUrl || defaultCategory,
@@ -202,6 +201,7 @@
 			updateURL : function (url) {
 				var title = "title";
 				history.pushState(null, title, url);
+				return true;
 			},
 
 			loadURL : function (url) {

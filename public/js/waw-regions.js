@@ -10,7 +10,7 @@
 						      	<div id="areas-list" class="filter-list top-offset"></div>';
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
-			this.itemTemplate = '<div data-id="$regionId" data-path="$isPath" class="span3 category-wrapper">\
+			this.itemTemplate = '<div data-id="$regionId" data-region-seo-name="$seoName" data-path="$isPath" class="span3 category-wrapper">\
 									<div class="flagi-right"><div title="$regionName" class="ellipsis">$regionName</div><span class="counter">$regionCount</span></div>\
 								</div>';	
 			this.eventObject = $({});
@@ -73,6 +73,7 @@
 						if (dataList[i]) {
 							result += this.itemTemplate
 								.replace("$regionId", 		dataList[i].name)
+								.replace("$seoName", 		dataList[i].seo_name)
 								.replace("$isPath", 		dataList[i].is_path)
 								.replace("$regionCount",	dataList[i].count)
 								.replace(/\$regionName/gi, 	dataList[i].value)
@@ -104,13 +105,14 @@
 				this.dom.regionsList.on("click", _.bind(function(e){
 					var row = $(e.target).closest(".category-wrapper"),
 						regionId = row.data("id"),
+						regionSeoName = row.data("region-seo-name"),
 						isPath = row.data("path");
-					isPath == "1" ? this.loadAreas(regionId) : this.eventObject.trigger("regionSelected", {regionId : regionId});
+					isPath == "1" ? this.loadAreas(regionId) : this.eventObject.trigger("regionSelected", {regionSeoName : regionSeoName});
 				}, this));
 
 				this.dom.areasList.on("click",_.bind(function(e){
-					var regionId = $(e.target).closest(".category-wrapper").data("id");
-					this.eventObject.trigger("regionSelected", {regionId : regionId});
+					var regionSeoName = $(e.target).closest(".category-wrapper").data("region-seo-name");
+					this.eventObject.trigger("regionSelected", {regionSeoName : regionSeoName});
 				}, this));
 			},
 
@@ -154,13 +156,13 @@
 				this.dom.headerName.text(regionElement.value);
 			},
 
-			getSeoUrl : function (regionId) {
-				var listItem =_.map(this.data.area, function(el) {
-					 return _.findWhere(el.list, {name: regionId});
-				});
+			// getSeoUrl : function (regionId) {
+			// 	var listItem =_.map(this.data.area, function(el) {
+			// 		 return _.findWhere(el.list, {name: regionId});
+			// 	});
 
-				return (listItem && listItem[0] && listItem[0].seo_name) ? listItem[0].seo_name : null;
-			},
+			// 	return (listItem && listItem[0] && listItem[0].seo_name) ? listItem[0].seo_name : null;
+			// },
 
 			showError : function () {
 				this.dom.lockLayer.hide();
