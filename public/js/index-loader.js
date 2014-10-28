@@ -92,6 +92,7 @@
 				if(urlParts && (urlParts[1] == urlFilterKey)){
 					this.setRegionCookie(urlParts[2]);
 					this.setCategoryCookie(urlParts[3]);
+					this.setBrandsCookie({brandSeoName: urlParts[4], productSeoName: urlParts[5]});
 				}
 			},
 
@@ -186,28 +187,6 @@
 				}, this));
 			},
 
-			prepareURL : function () {
-				var defaultRegion = defaultCategory = defaultBrand = "any",
-					urlTemplate 	= _.template("/filter/<%= region %>/<%= category %>/<%= brand %>"),
-					regionSeoUrl 	= this.regions ? $.cookie('geo') : defaultRegion;
-					categorySeoUrl 	= this.categories ? $.cookie('category') : defaultCategory;
-				return urlTemplate({
-					region 		: regionSeoUrl || defaultRegion,
-					category 	: categorySeoUrl || defaultCategory,
-					brand 		: defaultBrand
-				});
-			},
-
-			updateURL : function (url) {
-				var title = "title";
-				history.pushState(null, title, url);
-				return true;
-			},
-
-			loadURL : function (url) {
-				location.href = url;
-			},
-
 			/* Brands popup */
 			initBrands : function () {
 				if (_.isEmpty(this.brands) || this.isRegionForBrandsChanged()){
@@ -237,9 +216,37 @@
 				this.brands.eventObject.on("brandsSelected", _.bind(function(e, data){
 					this.setBrandsCookie(data);
 					this.hideBrandsModal();
-					this.isMainPage() ? this.initWawSlider() : location.href = "/";
+					var url = this.prepareURL();
+					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
 				}, this));
 			},
+
+			/* URL methods */
+			prepareURL : function () {
+				var defaultRegion = defaultCategory = defaultBrand = "any",
+					urlTemplate 	= _.template("/filter/<%= region %>/<%= category %>/<%= brand %>/<%= product %>");
+					// regionSeoUrl 	= this.regions ? $.cookie('geo') : defaultRegion;
+					// categorySeoUrl 	= this.categories ? $.cookie('category') : defaultCategory;
+					// brandSeoUrl 	= this.brands ? $.cookie('brand') : defaultBrand;
+					// productSeoUrl 	= this.brands ? $.cookie('product') : defaultBrand;
+				return urlTemplate({
+					region 		: $.cookie('geo') 		|| defaultRegion,
+					category 	: $.cookie('category') 	|| defaultCategory,
+					brand 		: $.cookie('brand') 	|| defaultBrand,
+					product 	: $.cookie('product') 	|| defaultBrand,
+				});
+			},
+
+			updateURL : function (url) {
+				var title = "title";
+				history.pushState(null, title, url);
+				return true;
+			},
+
+			loadURL : function (url) {
+				location.href = url;
+			},
+
 			
 			setRegionCookie : function (data) {
 				$.removeCookie("geo");
@@ -255,19 +262,19 @@
 			},
 			setBrandsCookie : function (data) {
 				this.clearCategoryBrandsCookies();
-				if (data.brandsId) {
-					$.cookie('brands',   data.brandsId, this.cookieOptions);
+				if (data.brandSeoName) {
+					$.cookie('brand',   data.brandSeoName, this.cookieOptions);
                 }
-				if (data.productsId) {
-					$.cookie('products', data.productsId, this.cookieOptions);
+				if (data.productSeoName) {
+					$.cookie('product', data.productSeoName, this.cookieOptions);
 				}
                 $( "#btn3").addClass("bractive");
 
             },
 			clearCategoryBrandsCookies : function () {
 				$.removeCookie("category");
-				$.removeCookie("brands");
-				$.removeCookie("products");
+				$.removeCookie("brand");
+				$.removeCookie("product");
 			},
 
 			duplicateResponce : function (source, count) {
