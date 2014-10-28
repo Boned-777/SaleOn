@@ -18,7 +18,7 @@
 						      	<div class="left-arrow"></div><div class="right-arrow"></div>';
 			
 			this.rowTemplate = ['<div class="row">', '</div>'];
-			this.itemTemplate = '<div data-id="$brandId" class="span3 category-wrapper">\
+			this.itemTemplate = '<div data-id="$brandId" data-brand-seo-name="$seoName" class="span3 category-wrapper">\
 									<div class="flagi-right"><div title="$brandName" class="ellipsis">$brandName</div><span class="counter">$brandCount</span></div>\
 								</div>';	
 			this.noDataTemplate = '<div class="muted text-center no-brand-data">'+window.messages.noData+'</div>';
@@ -116,7 +116,8 @@
 							result += this.itemTemplate
 								.replace("$brandId", 		dataList[i].value)
 								.replace("$brandCount",	 	dataList[i].count)
-								.replace(/\$brandName/gi, 		dataList[i].name)
+								.replace("$seoName",	 	dataList[i].seo_name)
+								.replace(/\$brandName/gi, 	dataList[i].name)
 						} 
 					if (j==2) {
 						j = 0;
@@ -171,9 +172,10 @@
 					}
 				},this));
 				this.dom.brandsGroupList.on("click", _.bind(function(e){
-					var id = $(e.target).closest(".category-wrapper").data("id");
-					if (!id) {return;}
-					var data = (this.currentBrandsGroup == "0") ? {brandsId: id, productsId: null} : {brandsId: null, productsId: id};
+					var brandProductSeoName = $(e.target).closest(".category-wrapper").data("brand-seo-name");
+					if (!brandProductSeoName) {return;}
+					var data = (this.currentBrandsGroup == "0") ? {brandSeoName: brandProductSeoName, productSeoName: null} 
+																: {brandSeoName: null, productSeoName: brandProductSeoName};
 					this.eventObject.trigger("brandsSelected", data);
 				},this));
 
