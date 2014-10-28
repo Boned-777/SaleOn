@@ -69,7 +69,7 @@ $locationsInternational = new Zend_Translate(
 $ctrl = Zend_Controller_Front::getInstance();
 $router = $ctrl->getRouter();
 $route = new Zend_Controller_Router_Route(
-    'filter/:geo/:category/:brand/*',
+    'filter/:geo/:category/:brand/:product/*',
     array(
         'module' => "default",
         'controller' => 'test',
