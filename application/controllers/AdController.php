@@ -38,17 +38,7 @@ class AdController extends Zend_Controller_Action
             $this->view->ad = $item;
             $this->view->user = $owner;
 
-            $params = null;
-            $request = new Zend_Controller_Request_Http();
-
-            if ($request->getCookie('category'))
-                $params["category"] = $request->getCookie('category');
-            if ($request->getCookie('brands'))
-                $params["brand"] = $request->getCookie('brands');
-            if ($request->getCookie('products'))
-                $params["product"] = $request->getCookie('products');
-            if ($request->getCookie('geo'))
-                $params["geo"] = $request->getCookie('geo');
+            $params = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
 
             $neighborArr = $item->getNeighborhood($params);
             $this->view->nextAdUrl = !is_null($neighborArr["previous"])?$neighborArr["previous"]->createUrl():null;
@@ -349,29 +339,9 @@ class AdController extends Zend_Controller_Action
             $forms[$formData["form"]]->populate($formData);
     }
 
-    protected function prepareParams($paramsNeedle=array()) {
-        $params = null;
-        foreach ($paramsNeedle as $param) {
-            $request = new Zend_Controller_Request_Http();
-            $coockie = $request->getCookie($param);
-            if ($coockie && $coockie != "all" ) {
-                $filterClass = "Application_Model_" . $param;
-                $filter = new $filterClass();
-                $filterValue = $filter->getByAlias($coockie);
-                if ($filterValue) {
-                    $params[$param] = $filterValue;
-                }
-            }
-        }
-        return $params;
-    }
-
     public function listAction () {
         global $translate;
-
-        $params = $this->prepareParams(array("category", "geo"//, "brands", "products"
-        ));
-
+        $params = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
         $ad = new Application_Model_Ad();
         $res = $ad->getList($params);
         $data = array();
@@ -392,11 +362,7 @@ class AdController extends Zend_Controller_Action
     public function newsListAction () {
         global $translate;
 
-        $params = null;
-        $request = new Zend_Controller_Request_Http();
-        if ($request->getCookie('geo'))
-            $params["geo"] = $request->getCookie('geo');
-
+        $params = Application_Model_FilterParameter::prepare(array("geo"));
         $ad = new Application_Model_Ad();
         $res = $ad->getNewsList($params);
         $data = array();
