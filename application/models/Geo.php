@@ -223,9 +223,11 @@ class Application_Model_Geo
             $resArr[$key]["value"] = str_replace("ИИ", "І", $resArr[$key]["value"]);
         }
 
+        $geoOriginal = new Application_Model_Geo();
+        $geoOriginal->getByCode($originalPattern);
         $additional = array(array(
             "name" => $originalPattern,
-            "seo_name" => "any",
+            "seo_name" => $geoOriginal->name,
             "value" => $translate->getAdapter()->translate("any"),
             "count" => $this->_getAllCounts($originalPattern, $params),
             "is_path" => 0
