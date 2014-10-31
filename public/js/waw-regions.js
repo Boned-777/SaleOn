@@ -156,14 +156,6 @@
 				this.dom.headerName.text(regionElement.value);
 			},
 
-			// getSeoUrl : function (regionId) {
-			// 	var listItem =_.map(this.data.area, function(el) {
-			// 		 return _.findWhere(el.list, {name: regionId});
-			// 	});
-
-			// 	return (listItem && listItem[0] && listItem[0].seo_name) ? listItem[0].seo_name : null;
-			// },
-
 			showError : function () {
 				this.dom.lockLayer.hide();
 				var errorModal = $("#error-modal-block");
