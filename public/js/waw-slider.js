@@ -62,7 +62,8 @@
 					return;
 				}
 
-				this.currentPage = 1;
+				//this.currentPage = 1;
+				this.getInitialPageNumber();
 				this.renderMainTemplate();
 				this.registerDOMElements();
 				this.bindEvents();
@@ -75,6 +76,11 @@
 				$(".no-data").html(window.messages.noData).show();
 				$("#myCarousel").hide();
 				// $(".lock-loading").hide();
+			},
+
+			getInitialPageNumber : function () {
+				var pageNumber = parseInt(window.location.hash.substring(1));
+				this.currentPage = (_.isNumber(pageNumber) && pageNumber <= this.getPageCount() && pageNumber) || 1;
 			},
 
 			renderMainTemplate : function () {
@@ -188,15 +194,25 @@
 				});
 			},
 			/* Bind handlers */
+
+			countInitialPageNumbers : function () {
+				return {
+					leftHidden 		: this.getNextPage(this.currentPage - HIDDEN_PAGE_SHIFT),
+					leftVisible 	: this.getNextPage(this.currentPage - NEXT_PREVIOUS_PAGE_SHIFT),
+					rightVisible 	: this.getNextPage(this.currentPage + NEXT_PREVIOUS_PAGE_SHIFT),
+					rightHidden 	: this.getNextPage(this.currentPage + HIDDEN_PAGE_SHIFT)
+				}
+			},
 					
 			initStartPages : function () {
-				this.isCycleAvailable() && this.buildPage(this.dom.leftHiddenWrapper, this.getIndexes(this.getPageCount()-1));			
-				this.isCycleAvailable() && this.buildPage(this.dom.leftVisibleWrapper, this.getIndexes(this.getPageCount()));
+				var pageNumbers = this.countInitialPageNumbers();
+				this.isCycleAvailable() && this.buildPage(this.dom.leftHiddenWrapper, this.getIndexes(pageNumbers.leftHidden));			
+				this.isCycleAvailable() && this.buildPage(this.dom.leftVisibleWrapper, this.getIndexes(pageNumbers.leftVisible));
 											
-				this.buildPage(this.dom.activeWrapper, this.getIndexes(1));
+				this.buildPage(this.dom.activeWrapper, this.getIndexes(this.currentPage));
 				
-				(this.isTwoPages() || this.isCycleAvailable()) && this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(2));
-				this.isCycleAvailable() && this.buildPage(this.dom.rightHiddenWrapper, this.getIndexes(3));
+				(this.isTwoPages() || this.isCycleAvailable()) && this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(pageNumbers.rightVisible));
+				this.isCycleAvailable() && this.buildPage(this.dom.rightHiddenWrapper, this.getIndexes(pageNumbers.rightHidden));
 			},
 
 			initCarousel : function () {
@@ -320,6 +336,7 @@
 				var pageNumber = $("#page-number");	
 				pageNumber.html(this.currentPage);
 				pageNumber.parent().show();
+				window.location.hash = "#" + this.currentPage;
 			},
 
 			showError : function () {
