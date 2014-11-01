@@ -32,6 +32,11 @@ class AdController extends Zend_Controller_Action
         $owner = new Application_Model_Partner();
         $vars = $this->getAllParams();
 
+        if (isset($vars["ad_id"])) {
+            $aliasParts = explode("_", $vars["ad_id"]);
+            $vars["id"] = (int)$aliasParts[0];
+        }
+
         if (isset($vars["id"])) {
             $item->get($vars["id"]);
             $owner->getByUserId($item->owner);

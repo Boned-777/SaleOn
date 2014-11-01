@@ -27,7 +27,7 @@ class TestController extends Zend_Controller_Action
     }
 
     protected function prepareParams($data) {
-        $filtersList = array("geo", "category", "brand");
+        $filtersList = array("geo", "category", "brand", "product");
         $result = array();
         foreach($filtersList as $filterName) {
             if ($data[$filterName] != "all") {
