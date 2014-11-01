@@ -12,8 +12,8 @@ $(function () {
         var cookieOptions  = { expires: 7, path: '/' };
         $.removeCookie("geo", cookieOptions);
         $.removeCookie("category", cookieOptions);
-        $.removeCookie("brands", cookieOptions);
-        $.removeCookie("products", cookieOptions);
+        $.removeCookie("brand", cookieOptions);
+        $.removeCookie("product", cookieOptions);
     });
 
     /*Lng switcher*/

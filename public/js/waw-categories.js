@@ -116,13 +116,6 @@
 				},this));
 			},
 
-			// getSeoUrl : function (categoryId) {
-			// 	var listItem =_.find(this.data[this.currentCategoryGroup].sub, function(el) {
-			// 		return (el.id == categoryId);
-			// 	});
-			// 	return (listItem && listItem.seo_name) ? listItem.seo_name : null;
-			// },
-
 			switchCategoryGroupHeader : function () {
 				var currentActive = this.dom.filterContent.find(".category-group.alert-success");
 					currentInactive = this.dom.filterContent.find(".category-group.category-group-inactive");
