@@ -74,9 +74,16 @@ $route = new Zend_Controller_Router_Route(
         'module' => "default",
         'controller' => 'test',
         'action' => 'index'
-    ),
+    )
+);
+$router->addRoute('filter', $route);
+
+$route = new Zend_Controller_Router_Route(
+    'show/:ad_id',
     array(
-        "a" , "b"
+        'module' => "default",
+        'controller' => 'ad',
+        'action' => 'index'
     )
 );
 $router->addRoute('filter', $route);
