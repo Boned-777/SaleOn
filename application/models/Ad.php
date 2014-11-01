@@ -355,6 +355,8 @@ class Application_Model_Ad
             }
         }
         $data["days"] = $this->getDaysLeft();
+        $translite = new Zend_Filter_Transliteration();
+        $data["seo_name"] = $this->id . "_" . $translite->filter($this->name);
         return $data;
     }
 
