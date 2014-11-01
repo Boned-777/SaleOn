@@ -31,7 +31,7 @@
 			
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
 			this.itemTemplate = '<div class="span3 bottom-offset">\
-									<a class="img-wrapper" href="/ad/index/id/$link">\
+									<a class="img-wrapper" href="/show/$seoLink">\
 										<img src="/media/$imageLink" class="img-polaroid"/>\
 										<div class="post-link img-info">\
 												<div data-link="$favoriteLink" title="$favoritesTooltip" data-id="$link" class="favorites-icon $isFavorite"></div>\
@@ -233,6 +233,7 @@
 							result += this.itemTemplate
 								.replace("$imageLink", 		data.list[i].photoimg)
 								.replace(/\$link/gi, 		data.list[i].post_id)
+								.replace("$seoLink",   		data.list[i].seo_name)
 								.replace("$favoriteLink", 	data.list[i].favorites_link)
 
 								.replace("$isFavorite", 		(data.list[i].is_favorite) ? "favorites-icon-on" : "favorites-icon-off")
