@@ -86,7 +86,7 @@ $route = new Zend_Controller_Router_Route(
         'action' => 'index'
     )
 );
-$router->addRoute('filter', $route);
+$router->addRoute('show', $route);
 
 /** Zend_Application */
 require_once 'Zend/Application.php';
