@@ -16,7 +16,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/normalize.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/style.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/select2.css')); ?>
@@ -26,7 +25,7 @@
     <?php echo $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap.css')); ?>
     <script type="text/javascript" src="/js/browser.js"></script>
     <script type="text/javascript" src="/js/jquery/jquery.cookie.js"></script>
-    
+
 </head>
 <body>
     <?php global $session;?>
@@ -59,7 +58,7 @@
                         <a id="link" href="/" title="<?= $translate->getAdapter()->translate("main_page")?>"><div class="logo"></div></a>
                     </div>
                     <div class="span4" style="cursor: pointer;">
-                        <a href="/index/news" id="btn0" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" ><i class="myicon-new"></i></a>
+                        <a href="/filter/any/any/any/any/new" id="btn0" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" ><i class="myicon-new"></i></a>
                         <?php
                             $auth = Zend_Auth::getInstance();
                             if ($auth->hasIdentity()) { ?>
@@ -70,7 +69,7 @@
                                     <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="myicon-admin"></i></a>
                                     <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                                 <?php } else { ?>
-                                    <a href="/index/favorites" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
+                                    <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
                                     <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                                 <?php } ?>
                             <?php } else { ?>
