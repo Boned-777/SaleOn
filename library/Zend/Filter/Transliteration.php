@@ -71,6 +71,7 @@ class Zend_Filter_Transliteration implements Zend_Filter_Interface
             }
         }
         $return = strtolower(str_replace(" ", "_", $return));
+        $return = strtolower(str_replace("%", "", $return));
         return $return;
     }
 

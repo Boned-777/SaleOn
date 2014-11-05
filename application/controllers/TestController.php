@@ -31,7 +31,7 @@ class TestController extends Zend_Controller_Action
         $result = array();
         foreach($filtersList as $filterName) {
             if ($data[$filterName] != "all") {
-                $filterClass = "Application_Model_" . $filterName;
+                $filterClass = "Application_Model_" . ucfirst($filterName);
                 $filter = new $filterClass();
                 $filterValue = $filter->getByAlias($data[$filterName]);
                 if ($filterValue) {
