@@ -1,7 +1,7 @@
 html,
 body {
     height: 100%;
-    background-color: #FFF;
+    background-color: #F8F8F8;
    /* background-image:url(/img/background.png); */
     min-width: 1005px;
 }
@@ -478,7 +478,8 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
 /* Waw slider start*/
 .img-polaroid {
-    width: 250px;
+	border-radius: 4px;
+    box-shadow: 20px 15px 20px -23px #333333;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -567,7 +568,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 .img-wrapper {
     display: block;
     position: relative;
-    width: 250px;
+    width: 240px;
     -webkit-transition: 0.5s linear width;
     -moz-transition: 0.5s linear width;
     -o-transition: 0.5s linear width;
@@ -693,24 +694,22 @@ background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /*
 background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* W3C */
 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#99000000',GradientType=0 ); /* IE6-9 */
+
     visibility: hidden;
     opacity: 0;
 
     position: absolute;
-    top: 2px;
+    top: 1px;
     bottom: 1px;
     left: 1px;
     right: 1px;
-    padding: 10px 20px 5px 10px;
+    padding: 92px 10px 0;
     cursor: pointer;
-    color: #fff;}
+    color: #fff;
+}
 
 .img-info p {
-    line-height: 15px;
-    font-size: 13px;
-    margin: 0 15px 3px 0;
-    margin-top: 77px;
-    margin-bottom: -74px;
+    margin: 0 0 4px;
 }
 
 .ellipsis {
@@ -738,7 +737,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     height: 22px;
     width: 22px;
     right: 10px;
-    top: 84px;
+    bottom: 7px;
     cursor: pointer;
 }
 
@@ -758,7 +757,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 @font-face {
     font-family: NumberFont;
-    src: url(/fonts/rusfont436.ttf); /* РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ СЃРѕ С€СЂРёС„С‚РѕРј */
+    src: url(/fonts/rusfont436.ttf); 
 
 }
 .page-number {
