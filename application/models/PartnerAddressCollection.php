@@ -8,8 +8,13 @@ class Application_Model_PartnerAddressCollection {
      * @param $id
      * @return bool
      */
-    public function get() {
-        $userId = Zend_Auth::getInstance()->getIdentity()->id;
+    public function get()
+    {
+        $identity = Zend_Auth::getInstance()->getIdentity();
+        $userId = null;
+        if (isset($identity->id)) {
+            $userId = Zend_Auth::getInstance()->getIdentity()->id;
+        }
         if ($userId) {
             $dbItem = new Application_Model_DbTable_PartnerAddress();
             $select = $dbItem->select()
