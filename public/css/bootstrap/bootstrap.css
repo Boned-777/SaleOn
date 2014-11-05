@@ -220,11 +220,11 @@ textarea {
     page-break-after: avoid;
   }
 }
-@font-face{ font-family: Play;
-    src: url(/fonts/Play-Regular.ttf); /* РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ СЃРѕ С€СЂРёС„С‚РѕРј */}
+
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic);*/
 body {
   margin: 0;
-  font-family: Play, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
