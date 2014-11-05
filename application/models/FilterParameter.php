@@ -12,7 +12,7 @@ class Application_Model_FilterParameter {
             $request = new Zend_Controller_Request_Http();
             $coockie = $request->getCookie($param);
             if ($coockie && $coockie != "all") {
-                $filterClass = "Application_Model_" . $param;
+                $filterClass = "Application_Model_" . ucfirst($param);
                 $filter = new $filterClass();
                 $filterValue = $filter->getByAlias($coockie);
                 if ($filterValue) {
