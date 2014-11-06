@@ -22,37 +22,9 @@
 				this.registerDOMElements();
 				this.bindEvents();
 				this.applyUrlState();
-				this.isNewsPage() && this.clearCategoryBrandsCookies();
+				// this.isNewsPage() && this.clearCategoryBrandsCookies();
 				this.isFavoritesPage() && this.extendSliderForFavorites();
 				this.isBrowserCompatible() && this.isSliderPage() && this.initWawSlider();	
-			},
-
-			extendSliderForFavorites : function () {
-				window.messages.noFavoritesData && (window.messages.noData = window.messages.noFavoritesData);
-				_.extend(wawSlyder.prototype, {
-					onFavoritesUpdated : function (target) {
-						if (!this.isFavoritesOff(target)) {
-							var list = _.reject(this.data.list, function(item){ 
-								return (item.post_id == target.data("id"));
-							});
-							this.data.list = list;
-							this.init(this.data);
-						}  
-					}
-				});
-			},
-
-			isMainPage : function () {
-				return (this.pageName == "mainPage");
-			},
-			isSliderPage :  function () {
-				return ((this.pageName == "mainPage")||(this.pageName == "newsPage")||(this.pageName == "favoritesPage"));
-			},
-			isFavoritesPage : function () {
-				return (this.pageName == "favoritesPage");
-			},
-			isNewsPage : function () {
-				return (this.pageName == "newsPage");
 			},
 
 			registerDOMElements : function () {
@@ -97,9 +69,43 @@
 					urlParts[3] && $.cookie('category', urlParts[3], this.cookieOptions);
 					urlParts[4] && $.cookie('brand', urlParts[4], this.cookieOptions);
 					urlParts[5] && $.cookie('product', urlParts[5], this.cookieOptions);
+
+					(urlParts[6] && urlParts[6] == 'new') 		&& $.cookie('sort', urlParts[6], this.cookieOptions);
+					(urlParts[6] && urlParts[6] == 'favorite')  && $.cookie('sort', urlParts[6], this.cookieOptions);
+					if(!urlParts[6]) {this.clearSortingCookies();};
 				}
 				this.setFiltersButtonHilight();
 			},
+
+			extendSliderForFavorites : function () {
+				window.messages.noFavoritesData && (window.messages.noData = window.messages.noFavoritesData);
+				_.extend(wawSlyder.prototype, {
+					onFavoritesUpdated : function (target) {
+						if (!this.isFavoritesOff(target)) {
+							var list = _.reject(this.data.list, function(item){ 
+								return (item.post_id == target.data("id"));
+							});
+							this.data.list = list;
+							this.init(this.data);
+						}  
+					}
+				});
+			},
+
+			// TODO: May be remove this.pageName because this property has no sense
+			isMainPage : function () {
+				return (this.pageName == "mainPage");
+			},
+			isSliderPage :  function () {
+				return ((this.pageName == "mainPage")||(this.pageName == "newsPage")||(this.pageName == "favoritesPage"));
+			},
+			isFavoritesPage : function () {
+				return ($.cookie('sort') == "favorite");
+			},
+			isNewsPage : function () {
+				return ($.cookie('sort') == "new");
+			},
+
 
 			/* slider */
 			initWawSlider : function () {
@@ -155,7 +161,7 @@
 					this.setCategoryCookie(data.categorySeoName);
 					this.setFiltersButtonHilight();
 					this.hideCategoryModal();
-					var url = this.prepareURL({isCategory: true});
+					var url = this.prepareURL();
 					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
 				}, this));
 			},
@@ -189,7 +195,7 @@
 					this.setRegionCookie(data.regionSeoName);
 					this.setFiltersButtonHilight();
 					this.hideRegionsModal();
-					var url = this.prepareURL({isRegion: true});
+					var url = this.prepareURL();
 					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
 				}, this));
 			},
@@ -224,7 +230,7 @@
 					this.setBrandsCookie(data);
 					this.setFiltersButtonHilight();
 					this.hideBrandsModal();
-					var url = this.prepareURL({isBrand: true});
+					var url = this.prepareURL();
 					this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
 				}, this));
 			},
@@ -244,6 +250,7 @@
 			updateURL : function (url) {
 				var title = "title";
 				history.pushState(null, title, url);
+				this.clearSortingCookies();
 				return true;
 			},
 
@@ -279,6 +286,10 @@
 				$.removeCookie("category", this.cookieOptions);
 				$.removeCookie("brand", this.cookieOptions);
 				$.removeCookie("product", this.cookieOptions);
+			},
+
+			clearSortingCookies : function () {
+				$.removeCookie("sort", this.cookieOptions);
 			},
 
 			setFiltersButtonHilight : function () {

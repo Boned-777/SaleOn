@@ -3,9 +3,9 @@
     <?php
         global $translate;
     ?>
-
-    <?= $this->headMeta();?>
     <?= $this->headTitle($translate->getAdapter()->translate("main_title"));?>
+    <?= $this->headMeta();?>
+    
     <?php
     echo $this->jQuery()
         ->setVersion('1.9.1')
@@ -13,7 +13,7 @@
         ->enable()
         ->uiEnable();
     ?>
-
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/normalize.css')); ?>
@@ -185,6 +185,7 @@
                             echo "window.messages.notSupported   = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
                             echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
                             echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
+                            echo "window.messages.noFavoritesData  = \"" . $translate->getAdapter()->translate("no_favorites_data_available") . "\";";
                             echo "window.messages.ukraine        = \"" . Application_Model_Geo::getLocaleName("ukraine") . "\";";
                         ?>
                     </script>
