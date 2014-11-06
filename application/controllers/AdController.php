@@ -346,13 +346,18 @@ class AdController extends Zend_Controller_Action
 
     public function listAction () {
         global $translate;
-        $params = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
+        $filterParams = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
+        $userId = isset($this->user) ? $this->user : null;
+        if ($userId) {
+            $filterParams["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
+        }
         $ad = new Application_Model_Ad();
-        $res = $ad->getList($params);
+        $res = $ad->getList($filterParams);
         $data = array();
         foreach ($res AS $val) {
-            $data[] = $val->toListArray($this->user);
+            $data[] = $val->toListArray($userId);
         }
+
         $res = array(
             "list" => $data,
             "options" => array(

@@ -8,8 +8,8 @@ class Application_Model_FilterParameter {
      */
     static function prepare($paramsNeedle=array()) {
         $params = null;
+        $request = new Zend_Controller_Request_Http();
         foreach ($paramsNeedle as $param) {
-            $request = new Zend_Controller_Request_Http();
             $coockie = $request->getCookie($param);
             if ($coockie && $coockie != "all") {
                 $filterClass = "Application_Model_" . ucfirst($param);
@@ -20,6 +20,9 @@ class Application_Model_FilterParameter {
                 }
             }
         }
+
+        $params["sort"] = $request->getCookie("sort");
+
         return $params;
     }
 }

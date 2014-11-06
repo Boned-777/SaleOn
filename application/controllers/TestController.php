@@ -13,17 +13,19 @@ class TestController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $params = $this->_getAllParams();
+        $params = $this->getAllParams();
         $filterParams = $this->prepareParams($params);
+        $data = array();
+        $userId = isset($this->user) ? $this->user : null;
+        if ($userId) {
+            $data["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
+        }
         $ad = new Application_Model_Ad();
         $res = $ad->getList($filterParams);
-        $data = array();
         foreach ($res AS $val) {
-            $data[] = $val->toListArray(NULL);
+            $data[] = $val->toListArray($userId);
         }
         $this->view->items = $data;
-
-
     }
 
     protected function prepareParams($data) {
@@ -38,6 +40,9 @@ class TestController extends Zend_Controller_Action
                     $result[$filterName] = $filterValue;
                 }
             }
+        }
+        if (!empty($data["sort"])) {
+            $result["sort"] = $data["sort"];
         }
         return $result;
     }

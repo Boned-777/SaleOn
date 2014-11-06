@@ -210,18 +210,20 @@ class Application_Model_Ad
         }
     }
 
-    public function getList($params=null) {
+    public function getRegularList($params=null) {
         $item = new Application_Model_DbTable_Ad();
         $select = $item->select();
         $select->setIntegrityCheck(false);
         $select
             ->distinct()
             ->from(array("a" => "ads"), array("a.*"))
-            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order("a.order_index DESC");
+            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
+                    case "sort":
+                    case "favorites_list" :
+                        break;
                     case "geo" :
                         $item->select()->setIntegrityCheck(false);
                         $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
@@ -238,6 +240,16 @@ class Application_Model_Ad
         $select->reset(Zend_Db_Select::COLUMNS);
         $select->columns("a.*");
 
+        switch (isset($params["sort"]) ? isset($params["sort"]) : null) {
+            case "new" :
+                $select->order("a.public_dt DESC");
+                break;
+
+            default:
+                $select->order("a.order_index DESC");
+
+        }
+
         $data = $item->fetchAll($select);
 
         if ($data !== false) {
@@ -252,6 +264,21 @@ class Application_Model_Ad
         } else {
             return false;
         }
+    }
+
+    public function getList($params=null) {
+        $sort = isset($params["sort"]) ? $params["sort"] : "regular";
+
+        switch ($sort) {
+            case "favorite" :
+                $items = $this->getFavorites($params["favorites_list"]);
+                break;
+
+            default :
+                $items = $this->getRegularList($params);
+        }
+
+        return $items;
     }
 
     public function getNewsList($params=null) {
