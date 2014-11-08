@@ -359,6 +359,7 @@ class Application_Model_Ad
             "brand_name" => "brand_name",
             "name" => "name",
             "photoimg" => "banner",
+            "description" => "description"
         );
 
         $data = array();
@@ -437,6 +438,9 @@ class Application_Model_Ad
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
+                    case "sort":
+                        break;
+
                     case "geo" :
                         $item->select()->setIntegrityCheck(false);
                         $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
