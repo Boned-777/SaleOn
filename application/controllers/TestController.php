@@ -14,14 +14,17 @@ class TestController extends Zend_Controller_Action
     public function indexAction()
     {
         $params = $this->getAllParams();
-        $filterParams = $this->prepareParams($params);
+        $preparedParams = $this->prepareParams($params);
+        $pageTitle = implode(" / ", $preparedParams["filterNames"]);
+        $this->view->headTitle($pageTitle);
+        $this->view->headTitle()->setSeparator(' / ');
         $data = array();
         $userId = isset($this->user) ? $this->user : null;
         if ($userId) {
             $data["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
         }
         $ad = new Application_Model_Ad();
-        $res = $ad->getList($filterParams);
+        $res = $ad->getList($preparedParams["filterParams"]);
         foreach ($res AS $val) {
             $data[] = $val->toListArray($userId);
         }
@@ -30,21 +33,26 @@ class TestController extends Zend_Controller_Action
 
     protected function prepareParams($data) {
         $filtersList = array("geo", "category", "brand", "product");
-        $result = array();
+        $filters = array();
+        $names = array();
         foreach($filtersList as $filterName) {
             if ($data[$filterName] != "all") {
                 $filterClass = "Application_Model_" . ucfirst($filterName);
                 $filter = new $filterClass();
                 $filterValue = $filter->getByAlias($data[$filterName]);
                 if ($filterValue) {
-                    $result[$filterName] = $filterValue;
+                    $filters[$filterName] = $filterValue;
+                    $names[$filterName] = $filter->getName();
                 }
             }
         }
         if (!empty($data["sort"])) {
-            $result["sort"] = $data["sort"];
+            $filters["sort"] = $data["sort"];
         }
-        return $result;
+        return array(
+            "filterParams" => $filters,
+            "filterNames" => $names
+        );
     }
 
     public function aAction() {

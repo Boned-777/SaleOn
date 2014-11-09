@@ -19,6 +19,10 @@ class Application_Model_Geo
         return $resultName ? $resultName : $name;
     }
 
+    function getName() {
+        return $this->getLocaleName($this->name);
+    }
+
     public function getAll($pattern = "") {
         global $translate;
         $originalPattern = $pattern;

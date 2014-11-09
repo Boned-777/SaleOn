@@ -58,6 +58,9 @@ class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
+                    case "sort":
+                        break;
+
                     case "geo" :
                         $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
                         $geoWhere = "al.location LIKE '$val' OR al.location LIKE '$val-%'";

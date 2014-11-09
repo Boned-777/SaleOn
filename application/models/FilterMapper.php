@@ -29,6 +29,10 @@ class Application_Model_FilterMapper
         return $result;
     }
 
+    public function getName() {
+        return $this->name;
+    }
+
     protected function getCounts($db, $colName, $params=null) {
         $select = $db->select();
         $select->from(array("a"=>"ads"), array(
