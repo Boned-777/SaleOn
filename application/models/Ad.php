@@ -488,7 +488,9 @@ class Application_Model_Ad
     }
 
     public function createUrl() {
-        return "/ad/index/id/" . $this->id;
+        $translite = new Zend_Filter_Transliteration();
+        $seo_name = $this->id . "_" . $translite->filter($this->name);
+        return "/show/" . $seo_name;
     }
 
     public function checkFavorites($user, $template="", &$url=null) {
