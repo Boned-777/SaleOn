@@ -19,7 +19,7 @@ body {
 
 /* Set the fixed height of the footer here */
 #push{
-    height: 40px;
+    height: 65px;
 }
 #footer {
     height: 65px;
@@ -129,12 +129,13 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 }
 
 .jumbotron {
-    margin-left: -2px !important;
-    margin-top: -10px;
-    text-align: center;
-    width: 145px !important;
+	margin-top: -10px;
+	text-align: center;
+	width: 200px !important;
 }
 
+
+/*Temp remove
 @media (max-width: 1199px) {
     .jumbotron {
         margin-left: -25px !important;
@@ -153,15 +154,17 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         margin-right: 5px;
     }
 }
+*/
 .bottom-offset {
     margin-bottom: 20px;
 }
 
+
 /*Top menu start*/
 .top-menu {
-    height: 50px;
-    margin: 35px 0 15px 135px;
-    width: 970px;
+	height: 60px;
+	margin: 30px auto 15px -30px;
+	width: 1250px;
 }
 
 .btn.btn-large:hover{
@@ -173,10 +176,10 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
 
 @media (min-width: 1200px) and (max-width: 1500px) {
-    .top-menu {
-        margin: 35px 0 15px 130px;
+   .top-menu {
+        margin: 30px auto 15px -25px;
     }
-
+/*  
     button#btn1.btn.btn-large{
         width: 108px;
         margin-left: -37px;
@@ -244,78 +247,78 @@ button#contact-btn.btn.dropdown-toggle.contacts {
         border-left: none;
         cursor: pointer;
     }
-
+*/
 }
 @media (min-width: 1501px) {
     .top-menu {
-        margin: 35px 0 15px 133px;
+        margin: 30px auto 15px -35px;
     }
     button#btn1.btn.btn-large{
-        width: 108px;
+       /* width: 108px;
         margin-left: -50px;
         margin-right: -9px;
         margin-top: 8px;
         border-right: none;
-        cursor: pointer;
+        cursor: pointer;*/
     }
 
     button#btn2.btn.btn-large{
-        width: 108px;
+        /*width: 108px;
         margin-left:4px;
         margin-top:8px;
         border-left:none;
         border-right:none;
-        cursor: pointer;
+        cursor: pointer;*/
     }
 
     button#btn3.btn.btn-large{
-        width: 108px;
+        /*width: 108px;
         margin-left: -24px;
         margin-top: 8px;
         border-left:none;
-        cursor: pointer;
+        cursor: pointer;*/
     }
 
 
     a#btn4.btn.btn-large{
-        width: 45px;
+       /* width: 45px;
         margin-left:50px;
         margin-top: 8px;
         border-left:none;
         border-right:none;
-        cursor: pointer;
+        cursor: pointer;*/
     }
     a#btn0.btn.btn-large{
-        border-right:none;
+        /*border-right:none;*/
     }
     a.btn.btn-large{
-        width:45px;
+        /*width:45px;
         margin-left: 55px;
         cursor: pointer;
         margin-right: -55px;
-        margin-top: 8px;
+        margin-top: 8px;*/
 
 
     }
     a#btn5.btn-large{
-        margin-left: 8px;
+       /* margin-left: 8px;
         margin-left: 50px;
         border-left: none;
         border-right: none;
-        cursor: pointer;
+        cursor: pointer;*/
     }
     a#btn-fav.btn.btn-large{
-        width: 45px;
+       /* width: 45px;
         border-left:none;
         border-right:none;
         margin-left: 50px;
-        cursor: pointer;
+        cursor: pointer;*/
     }
     a#btn-logout.btn.btn-large{
-        width: 45px;
+        /*width: 45px;
         margin-left:50px;
         border-left:none;
-        cursor: pointer;
+        cursor: pointer;*/
     }
 
 
@@ -428,8 +431,9 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 }
 
 .btn-large {
-    margin-right: 20px;
-    padding: 5px 30px;
+	margin-right: 5px;
+	padding: 6px 15px 6px 11px;
+	font-size: 17px;
 }
 .btn:focus,
 .logo:focus {
@@ -478,7 +482,7 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
 /* Waw slider start*/
 .img-polaroid {
-	border-radius: 4px;
+	border-radius: 6px;
     box-shadow: 20px 15px 20px -23px #333333;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -597,8 +601,38 @@ margin-top: -6.8px;
     visibility: hidden !important;
 }
 
+.img-info{
+transition: all .1s ease-out .1s;
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.6))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#99000000',GradientType=0 ); /* IE6-9 */
+
+    visibility: hidden;
+    opacity: 0;
+
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: 1px;
+    right: 1px;
+    padding: 92px 10px 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+.img-info p {
+    margin: 0 0 4px;
+}
+
 
 @media (min-width: 1200px) and (max-width: 1500px) {
+
+	.img-info{padding: 85px 10px 0;}
+
     .no-image {
         top: 7px;
         bottom: 7px;
@@ -616,8 +650,6 @@ margin-top: -6.8px;
         display: block;
         width: 142px;
         height: 110px;
-
-
     }
 
 }
@@ -643,6 +675,7 @@ margin-top: -6.8px;
 }
 
 @media (min-width: 1199px) {
+
     .item.hover-left .no-image, .item.hover-right .no-image {
         width: 130px;
     }
@@ -661,8 +694,6 @@ margin-top: -6.8px;
         z-index: 0;
 
     }
-
-
 }
 
 
@@ -677,40 +708,6 @@ margin-top: -6.8px;
     opacity: 1;
 }
 
-
-.img-info{
-transition: all .1s ease-out .1s;
-
-background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); /* FF3.6+ */
-
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.6))); /* Chrome,Safari4+ */
-
-background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Chrome10+,Safari5.1+ */
-
-background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Opera 11.10+ */
-
-background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* IE10+ */
-
-background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* W3C */
-
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#99000000',GradientType=0 ); /* IE6-9 */
-
-    visibility: hidden;
-    opacity: 0;
-
-    position: absolute;
-    top: 1px;
-    bottom: 1px;
-    left: 1px;
-    right: 1px;
-    padding: 92px 10px 0;
-    cursor: pointer;
-    color: #fff;
-}
-
-.img-info p {
-    margin: 0 0 4px;
-}
 
 .ellipsis {
     white-space:nowrap;
@@ -876,7 +873,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     }
 }
     .carousel-inner {
-        height: 450px;
+        height: 490px;
     }
     .item.hover-left .items-wrapper {
         width: 750px;
@@ -910,12 +907,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         left: 95%;
     }
     .items-wrapper {
-        margin-left: 95px;
-        width: 960px;
+        margin-left: 70px;
+		width: 1030px;
     }
+    /*
     .bottom-offset {
         margin-bottom: 10px;
     }
+    */
 
     .img-wrapper {
         width: 230px;
@@ -1135,9 +1134,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     .firefox-slider .item.hover-right.hide-right {
         left: 259%;
     }
-    .firefox-slider .page-number{
+    /*not shure we need this*/
+    /*.firefox-slider .page-number{
         margin: 23px 0px 10px;
-    }
+    }*/
 
 }
 @media (max-width: 1199px) {
@@ -1795,7 +1795,7 @@ a.pluso-more{display: none !important;}
     color:#002a80;
     text-decoration-color: cadetblue;
 }
-button#btn1.btn.btn-large a:active{
+/*button#btn1.btn.btn-large a:active{
     background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
 
 }
@@ -1808,7 +1808,7 @@ button#btn2.btn.btn-large:active{
 button#btn3.btn.btn-large:active{
     background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
 
-}
+}*/
 
 .span5 .additional_address{
     border: 1px solid #B6B3B3;
