@@ -59,8 +59,6 @@ class GeoController extends Zend_Controller_Action
             $res = $item->addGeoItem($parentCode, $internationalName, $nativeName);
         }
 
-
-
         $this->_helper->json($res);
     }
 

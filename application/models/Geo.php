@@ -187,7 +187,7 @@ class Application_Model_Geo
         $countsList = $this->_getCounts($pattern, $params);
         $dbItem = new Application_Model_DbTable_Geo();
         $originalPattern = $pattern;
-        $allCount = isset($countsList[$originalPattern]) ? $countsList[$originalPattern] : 0;
+        $allCount = isset($countsList["origin"]) ? $countsList["origin"] : 0;
         if ($pattern !== "")
             $pattern .= "-";
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
@@ -198,7 +198,7 @@ class Application_Model_Geo
         if (sizeof(explode("-", $pattern)) == 2)
             $is_path = 1;
         foreach ($itemsArr as $value) {
-            $currentCount = isset($countsList[$value["code"]])?$countsList[$value["code"]]:$allCount;
+            $currentCount = (isset($countsList[$value["code"]]) ? $countsList[$value["code"]] : 0) + $allCount;
             if (!preg_match("/^[0-9]{1,2}-[0-9]{1,2}-99/", $value["code"])) {
                 $resArr[] = array(
                     "name" => $value["code"],
@@ -295,22 +295,24 @@ class Application_Model_Geo
 
         $data = $ad->fetchAll($select2)->toArray();
         $resData = array();
-        $resData[$temp] = 0;
+        $resData["origin"] = 0;
 
         foreach($data as $val) {
             if (!empty($temp))
                 if ($val["et"]){
                     if (strstr($val["et"], ">")) {
-                        $resData[$temp] += $val["count"];
+                        $resData["origin"] += $val["count"];
                     } else {
-                        $resData[$temp."-".$val["et"]] = $val["count"] + $resData[$temp];
+                        $resData[$temp."-".$val["et"]] = (isset($resData[$temp."-".$val["et"]]) ? $resData[$temp."-".$val["et"]] : 0)
+                            + $val["count"];
                     }
                 } else {
-                    $resData[$temp] = $val["count"] + $resData[$temp];
+                    $resData[$temp] = $val["count"] + $resData["origin"];
                 }
             else
-                $resData[$val["et"]] = $val["count"] + $resData[$temp];
+                $resData[$val["et"]] = $val["count"] + $resData["origin"];
         }
+
         return $resData;
     }
 
