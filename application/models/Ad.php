@@ -268,7 +268,6 @@ class Application_Model_Ad
 
     public function getList($params=null) {
         $sort = isset($params["sort"]) ? $params["sort"] : "regular";
-
         switch ($sort) {
             case "favorite" :
                 $items = $this->getFavorites($params["favorites_list"]);
@@ -433,12 +432,31 @@ class Application_Model_Ad
         $select
             ->distinct()
             ->from(array("a" => "ads"), array("a.*"))
-            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-            ->order("a.order_index");
+            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+        switch (isset($params["sort"]) ? $params["sort"] : null) {
+            case "new" :
+                $select->order("a.public_dt DESC");
+                break;
+
+            case "favorite" :
+
+                if (isset($params["favorites_ads"])) {
+                    if (sizeof($params["favorites_ads"])) {
+                        $select
+                            ->where("id IN (" . $params["favorites_ads"] . ")");
+                    }
+                }
+
+            default:
+                $select->order("a.order_index DESC");
+
+        }
+
         if (!is_null($params)) {
             foreach ($params as $key => $val) {
                 switch ($key) {
                     case "sort":
+                    case "favorites_ads":
                         break;
 
                     case "geo" :

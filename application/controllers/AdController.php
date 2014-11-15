@@ -45,19 +45,22 @@ class AdController extends Zend_Controller_Action
 
             $params = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
 
-            $neighborArr = $item->getNeighborhood($params);
-            $this->view->nextAdUrl = !is_null($neighborArr["previous"])?$neighborArr["previous"]->createUrl():null;
-            $this->view->prevAdUrl = !is_null($neighborArr["next"])?$neighborArr["next"]->createUrl():null;
-
             if ($auth->hasIdentity()) {
-                $this->view->isFavorite = $item->checkFavorites($auth->getIdentity());
+                $identity = $auth->getIdentity();
+                $this->view->isFavorite = $item->checkFavorites($identity);
                 $this->view->isFavoritesUrl = $item->getFavoritesUrl(null, "remove");
                 $this->view->notFavoritesUrl = $item->getFavoritesUrl(null, "add");
+                $params["favorites_ads"] = $identity->favorites_ads;
             } else {
                 $this->view->isFavorite = false;
                 $this->view->isFavoritesUrl = $item->getFavoritesUrl();
                 $this->view->notFavoritesUrl = $item->getFavoritesUrl();
             }
+
+            $neighborArr = $item->getNeighborhood($params);
+            $this->view->nextAdUrl = !is_null($neighborArr["previous"])?$neighborArr["previous"]->createUrl():null;
+            $this->view->prevAdUrl = !is_null($neighborArr["next"])?$neighborArr["next"]->createUrl():null;
+
         } else {
             $this->redirect("/index/index");
         }

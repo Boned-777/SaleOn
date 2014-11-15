@@ -8,7 +8,11 @@ class TestController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $auth = Zend_Auth::getInstance();
+
+        if ($auth->hasIdentity()) {
+            $this->user = $auth->getIdentity();
+        }
     }
 
     public function indexAction()
@@ -20,9 +24,11 @@ class TestController extends Zend_Controller_Action
         $this->view->headTitle()->setSeparator(' / ');
         $data = array();
         $userId = isset($this->user) ? $this->user : null;
+
         if ($userId) {
-            $data["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
+            $preparedParams["filterParams"]["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
         }
+
         $ad = new Application_Model_Ad();
         $res = $ad->getList($preparedParams["filterParams"]);
         foreach ($res AS $val) {
