@@ -240,7 +240,7 @@ class Application_Model_Ad
         $select->reset(Zend_Db_Select::COLUMNS);
         $select->columns("a.*");
 
-        switch (isset($params["sort"]) ? isset($params["sort"]) : null) {
+        switch (isset($params["sort"]) ? $params["sort"] : null) {
             case "new" :
                 $select->order("a.public_dt DESC");
                 break;
