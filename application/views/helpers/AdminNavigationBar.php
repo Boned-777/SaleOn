@@ -34,6 +34,9 @@ class Zend_View_Helper_AdminNavigationBar extends Zend_View_Helper_Abstract
             return false;
         }
 
+        if (strpos($uri, "filter")) {
+            return false;
+        }
 
         $menuItems = array(
             "noactive" => array("link" => array("/admin/noactive", "/ad/edit"), "caption" => $translate->getAdapter()->translate("noactive")),
