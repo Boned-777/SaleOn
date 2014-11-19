@@ -31,7 +31,7 @@
 			
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
 			this.itemTemplate = '<div class="span3 bottom-offset">\
-									<a class="img-wrapper" href="/show/$seoLink">\
+									<a class="img-wrapper" href="/show/$seoLink" data-toggle="tooltip" title="$description">\
 										<img src="/media/$imageLink" class="img-polaroid"/>\
 										<div class="post-link img-info">\
 												<div data-link="$favoriteLink" title="$favoritesTooltip" data-id="$link" class="favorites-icon $isFavorite"></div>\
@@ -243,11 +243,11 @@
 								.replace("$brand", 			data.list[i].brand_name)
 								.replace("$daysLeft", 		data.list[i].days)
                                 .replace("$daysMsgText", 	data.options.days_left_text)
+                                .replace("$description", 	data.list[i].description)
                                 .replace("$no-ad_link", 	data.translation);
 						} else {
 							result += this.noImgTemplate
                                 .replace("$no-ad_link", 	data.translation)
-
                                 .replace("$no-ad_link_title", 	data.tr_title);
 						}
 					if (j==3) {
@@ -256,6 +256,9 @@
 					} else {j++;}
 				}
 				container.html(result);
+				$('.img-wrapper').tooltip('destroy')
+				$(".item.active .img-wrapper").tooltip({placement: "top", delay: { show: 500, hide: 100 }});
+
 			},
 			
 			buildNextHiddenPage : function (){

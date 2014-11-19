@@ -34,6 +34,10 @@ $(function () {
         window.location.href = "/index/contacts";
     });
 
+    /*main menu tooltip*/
+    $(".btn-large").tooltip({placement: "bottom"});
+
+
     /* Add browser depended classes */
     if (navigator.sayswho.search("Firefox") != -1) {
         $("body").addClass("firefox-slider");

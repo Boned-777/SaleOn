@@ -34,55 +34,52 @@
     <div class="topbg"></div>
     <div id="wrap">
 
+
         <div class="container fix-content-position">
-            <button id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="btn dropdown-toggle contacts"></button>
-
-            <div class="btn-group dropdown pull-left" style="margin-left: 100%; margin-top: 4px; margin-bottom: -4%;">
-                 <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
-                <ul class="dropdown-menu" id="lng-switcher">
-                    <li><a id="ua" class="lng ua" title="<?= $translate->getAdapter()->translate("lng_ukrainian")?>" href="#"></a></li>
-                    <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
-                    <li><a id="en" class="lng en" title="<?= $translate->getAdapter()->translate("lng_english")?>" href="#"></a></li>
-                    <li><a id="pl" class="lng pl" title="<?= $translate->getAdapter()->translate("lng_poland")?>" href="#"></a></li>
-                </ul>
-
-            </div>
+       
+                <!-- contacts and lng switcher -->
+                <div class="contact-lngswitcher-wrapper">
+                    <a href id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="contact-btn"></a>
+                    <div class="btn-group dropdown pull-right" style="">
+                        <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
+                        <ul class="dropdown-menu" id="lng-switcher">
+                            <li><a id="ua" class="lng ua" title="<?= $translate->getAdapter()->translate("lng_ukrainian")?>" href="#"></a></li>
+                            <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
+                            <li><a id="en" class="lng en" title="<?= $translate->getAdapter()->translate("lng_english")?>" href="#"></a></li>
+                            <li><a id="pl" class="lng pl" title="<?= $translate->getAdapter()->translate("lng_poland")?>" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="top-menu">
-                    <div class="span5">
-                        <button id="btn1" title="<?= $translate->getAdapter()->translate("mm_regions")?>" class="btn btn-large" ><i class="myicon-region"></i>
-                            <?= $translate->getAdapter()->translate("mm_regions")?>
-                        </button>
-                        <button id="btn2" title="<?= $translate->getAdapter()->translate("mm_categories")?>" class="btn btn-large" ><i class="myicon-category"></i>
-                            <?= $translate->getAdapter()->translate("mm_categories")?>
-                        </button>
-                        <button id="btn3" title="<?= $translate->getAdapter()->translate("mm_brands")?>" class="btn btn-large"><i class="myicon-brands"></i>
-                            <?= $translate->getAdapter()->translate("mm_brands")?>
-                        </button>
+                    <div class="menu-button-wrapper">
+                        <button id="btn1" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_regions")?>" class="btn btn-large" ><i class="myicon-region"></i></button>
+                        <button id="btn2" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_categories")?>" class="btn btn-large" ><i class="myicon-category"></i></button>
+                        <button id="btn3" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_brands")?>" class="btn btn-large"><i class="myicon-brands"></i></button>
                     </div>
-                    <div class="span3 jumbotron">
+                    <div class="jumbotron">
                         <a id="link" href="/" title="<?= $translate->getAdapter()->translate("main_page")?>"><div class="logo"></div></a>
                     </div>
-                    <div class="span5">
+                    <div class="menu-button-wrapper">
                         <a href="/filter/any/any/any/any/new" id="btn0" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" ><i class="myicon-new"></i>
-                        <?= $translate->getAdapter()->translate("mm_news")?></a>
+                        </a>
                         <?php
                             $auth = Zend_Auth::getInstance();
                             if ($auth->hasIdentity()) { ?>
                                 <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
-                                    <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"><?= $translate->getAdapter()->translate("mm_partners")?></i></a>
-                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="myicon-logout"></i><?= $translate->getAdapter()->translate("mm_exit")?></a>
+                                    <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
+                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="myicon-logout"></i></a>
                                 <?php } elseif ($auth->getIdentity()->role == Application_Model_User::ADMIN) { ?>
                                     <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="myicon-admin"></i>
-                                    <?= $translate->getAdapter()->translate("mm_admin")?></a>
-                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i><?= $translate->getAdapter()->translate("mm_exit")?></a>
+                                    </a>
+                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                                 <?php } else { ?>
-                                    <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i><?= $translate->getAdapter()->translate("mm_favorites")?></a>
-                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i><?= $translate->getAdapter()->translate("mm_exit")?></a>
+                                    <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
+                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                                 <?php } ?>
                             <?php } else { ?>
-                                <a href="/user/new" id="btn4" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="myicon-user"></i><?= $translate->getAdapter()->translate("mm_user")?></a>
-                                <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i><?= $translate->getAdapter()->translate("mm_partners")?></a>
+                                <a href="/user/new" id="btn4" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="myicon-user"></i></a>
+                                <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
                             <?php }
                         ?>
                     </div>

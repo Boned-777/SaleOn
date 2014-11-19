@@ -70,40 +70,41 @@ body {
 #footer .btn-group {
     margin: 6px 0 0 10px;
 }
-button#contact-btn.btn.dropdown-toggle.contacts {
+.contact-btn {
     background: url("/img/contacts6.png") center 2px no-repeat;
-    margin: 6px 0 0 -35px;
+    margin: 0;
     border: none;
     width: 36px;
     height:24px;
-    display: inline-block;
     position: absolute;
-    margin-top: 4px;
-    margin-bottom: -4%;
+    right: 35px;
+}
 
+.contact-lngswitcher-wrapper {
+	position: absolute;
+	top: 35px;
+	right: -30px;
 }
 
 
-#footer .contacts:hover, .contacts:focus {
+#footer .contacts:hover, .contact-btn:focus {
     border: 1px solid #999;
 }
 
 .fix-content-position {
     padding-left: 15px;
+    position: relative;
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
     .fix-content-position {
         padding-left: 49px;
     }
-
-
-    }
-@media (max-width: 1199px) {
-    .fix-content-position {
-        padding-left: 15px;
-    }
+    .contact-lngswitcher-wrapper {
+		right: -15px;
+	}
 }
+
 
 .topbg {
     background: url("/img/topbg.png") center center repeat-x;
@@ -118,7 +119,6 @@ button#contact-btn.btn.dropdown-toggle.contacts {
     background: url("/img/logo7.png") center center no-repeat;
     width: 299px;
     height: 70px;
-    margin-left: -80px;
 }
 
 .logo:hover {
@@ -129,32 +129,17 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 }
 
 .jumbotron {
-	margin-top: -10px;
-	text-align: center;
-	width: 200px !important;
+    float: left;
+    margin-top: -10px;
+    text-align: center;
+    width: 320px;
 }
 
+.menu-button-wrapper {
+	float: left;
+	width: 330px;
+}
 
-/*Temp remove
-@media (max-width: 1199px) {
-    .jumbotron {
-        margin-left: -25px !important;
-        margin-right: 10px;
-    }
-}
-@media (min-width: 1200px) and (max-width: 1500px) {
-    .jumbotron {
-        margin-left: 5px !important;
-        margin-right: -9px;
-    }
-}
-@media (min-width: 1501px){
-    .jumbotron {
-        margin-left: -2px !important;
-        margin-right: 5px;
-    }
-}
-*/
 .bottom-offset {
     margin-bottom: 20px;
 }
@@ -162,9 +147,9 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
 /*Top menu start*/
 .top-menu {
-	height: 60px;
-	margin: 30px auto 15px -30px;
-	width: 1250px;
+    height: 60px;
+    margin: 30px auto;
+    width: 1015px;
 }
 
 .btn.btn-large:hover{
@@ -177,213 +162,25 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
 @media (min-width: 1200px) and (max-width: 1500px) {
    .top-menu {
-        margin: 30px auto 15px -25px;
+        margin: 30px auto;
+         width: 990px;
     }
-/*  
-    button#btn1.btn.btn-large{
-        width: 108px;
-        margin-left: -37px;
-        margin-right: -9px;
-        border-right:none;
-        margin-top: 8px;
-        cursor: pointer;
-    }
-    a#btn-fav.btn.btn-large{
-        width: 45px;
-        border-left:none;
-        border-right:none;
-        margin-right: -68px;
-        margin-left: 61px;
-        cursor: pointer;
-    }
-    a#btn-logout.btn.btn-large{
-        width: 45px;
-        margin-left: 60px;
-        border-left:none;
-        cursor: pointer;
-    }
-
-    button#btn2.btn.btn-large{
-        width: 108px;
-        margin-left:5px;
-        margin-top:8px;
-        margin-right: 14px;
-        border-left:none;
-        border-right:none;
-        cursor: pointer;
-    }
-
-    button#btn3.btn.btn-large{
-        width: 108px;
-        margin-left: -19px;
-        margin-top: 8px;
-        border-left:none;
-        cursor: pointer;
-    }
-
-
-    a#btn4.btn.btn-large{
-        width: 45px;
-        margin-left:56px;
-        margin-top: 8px;
-        border-left:none;
-        border-right:none;
-    }
-    a#btn0.btn.btn-large{
-        border-right:none;
-    }
-    a.btn.btn-large{
-       width:45px;
-       margin-left: 65px;
-       margin-right: -65px;
-       margin-top: 8px;
-       cursor: pointer;
-
-
-    }
-    a#btn5.btn-large{
-        margin-left: 8px;
-        margin-left: 55px;
-        border-left: none;
-        cursor: pointer;
-    }
-*/
-}
-@media (min-width: 1501px) {
-    .top-menu {
-        margin: 30px auto 15px -35px;
-    }
-    button#btn1.btn.btn-large{
-       /* width: 108px;
-        margin-left: -50px;
-        margin-right: -9px;
-        margin-top: 8px;
-        border-right: none;
-        cursor: pointer;*/
-    }
-
-    button#btn2.btn.btn-large{
-        /*width: 108px;
-        margin-left:4px;
-        margin-top:8px;
-        border-left:none;
-        border-right:none;
-        cursor: pointer;*/
-    }
-
-    button#btn3.btn.btn-large{
-        /*width: 108px;
-        margin-left: -24px;
-        margin-top: 8px;
-        border-left:none;
-        cursor: pointer;*/
-    }
-
-
-    a#btn4.btn.btn-large{
-       /* width: 45px;
-        margin-left:50px;
-        margin-top: 8px;
-        border-left:none;
-        border-right:none;
-        cursor: pointer;*/
-    }
-    a#btn0.btn.btn-large{
-        /*border-right:none;*/
-    }
-    a.btn.btn-large{
-        /*width:45px;
-        margin-left: 55px;
-        cursor: pointer;
-        margin-right: -55px;
-        margin-top: 8px;*/
-
-
-    }
-    a#btn5.btn-large{
-       /* margin-left: 8px;
-        margin-left: 50px;
-        border-left: none;
-        border-right: none;
-        cursor: pointer;*/
-    }
-    a#btn-fav.btn.btn-large{
-       /* width: 45px;
-        border-left:none;
-        border-right:none;
-        margin-left: 50px;
-        cursor: pointer;*/
-    }
-    a#btn-logout.btn.btn-large{
-        /*width: 45px;
-        margin-left:50px;
-        border-left:none;
-        cursor: pointer;*/
-    }
-
-
 }
 
 @media (max-width: 1199px) {
     .top-menu {
-        margin: 35px 0 15px 117px;
-        width: 770px;
+        width: 840px;
     }
-    #push{
-        height: 48px;
-    }
+    .jumbotron {
+    	width: 310px;
+	}
+
+	.menu-button-wrapper {
+		width: 265px;
+	}
+
     .footer-gradient{
         margin-left: -13px;
-    }
-    button#btn1.btn.btn-large{
-        width: 85px;
-        margin-left: -78px;
-        margin-right: 43px;
-        margin-top: 8px;
-        cursor: pointer;
-    }
-    button#btn2.btn.btn-large{
-        width: 85px;
-        margin-left:-42px;
-        margin-top: 8px;
-        cursor: pointer;
-    }
-    button#btn3.btn.btn-large{
-        width: 85px;
-        margin-left: 100px;
-        margin-top: -36px;
-        cursor: pointer;
-    }
-
-    a#btn4.btn.btn-large{
-        width: 45px;
-        margin-left: 59px;
-        margin-right: -58px;
-        margin-top: 8px;
-        cursor: pointer;
-    }
-    a.btn.btn-large{
-        width:45px;
-        margin-left: 58px;
-        margin-right: -58px;
-        margin-top: 8px;
-        cursor: pointer;
-
-
-    }
-    a#btn5.btn.btn-large{
-        width: 45px;
-        margin-left:58px;
-        margin-top: 8px;
-        cursor: pointer;
-    }
-    a#btn-fav.btn.btn-large{
-        width: 45px;
-        cursor: pointer;
-    }
-    a#btn-logout.btn.btn-large{
-        width: 45px;
-        cursor: pointer;
     }
 
 }
@@ -432,9 +229,18 @@ button#contact-btn.btn.dropdown-toggle.contacts {
 
 .btn-large {
 	margin-right: 5px;
-	padding: 6px 15px 6px 11px;
+	padding: 6px 30px 6px 33px;
 	font-size: 17px;
 }
+.menu-button-wrapper .tooltip-inner {
+	font-size: 13px;
+	font-weight: bold;
+}
+.carousel .tooltip-inner {
+	font-size: 12px;
+	max-width: 350px;
+}
+
 .btn:focus,
 .logo:focus {
     outline: 1px auto #BDBDBD;
