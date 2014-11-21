@@ -12,35 +12,35 @@ body {
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -65px;
+    margin: 0 auto -41px;
     margin-left: -20px;
     overflow: hidden;
 }
 
 /* Set the fixed height of the footer here */
 #push{
-    height: 65px;
+    height: 40px;
 }
 #footer {
-    height: 65px;
+    height: 40px;
 
 }
 .footer {
-   /* background: rgb(79,79,79); /* Old browsers */
-   /* background: -moz-linear-gradient(top,  rgba(79,79,79,1) 0%, rgba(68,68,68,1) 50%, rgba(43,43,43,1) 100%); /* FF3.6+ */
-   /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(79,79,79,1)), color-stop(50%,rgba(68,68,68,1)), color-stop(100%,rgba(43,43,43,1))); /* Chrome,Safari4+ */
-   /* background: -webkit-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Chrome10+,Safari5.1+ */
-   /*  background: -o-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Opera 11.10+ */
-   /* background: -ms-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* IE10+ */
-   /* background: linear-gradient(to bottom,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* W3C */
-   /* color: #EEE;
-    border-top: 1px solid #d4d4d4;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 10px rgba(0, 0, 0, 0.1); */
+   background: rgb(79,79,79); /* Old browsers */
+   background: -moz-linear-gradient(top,  rgba(79,79,79,1) 0%, rgba(68,68,68,1) 50%, rgba(43,43,43,1) 100%); /* FF3.6+ */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(79,79,79,1)), color-stop(50%,rgba(68,68,68,1)), color-stop(100%,rgba(43,43,43,1))); /* Chrome,Safari4+ */
+   background: -webkit-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Chrome10+,Safari5.1+ */
+   background: -o-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* Opera 11.10+ */
+   background: -ms-linear-gradient(top,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* IE10+ */
+   background: linear-gradient(to bottom,  rgba(79,79,79,1) 0%,rgba(68,68,68,1) 50%,rgba(43,43,43,1) 100%); /* W3C */
+   color: #EEE;
+   border-top: 1px solid #d4d4d4;
+   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 10px rgba(0, 0, 0, 0.1);
 
 }
 
 .footer-gradient {
-    /*font-size: 14px;
+    font-size: 13px;
     color: #333333;
     background-color: #f5f5f5;
     *background-color: #e6e6e6;
@@ -50,21 +50,24 @@ body {
     background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
     background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
     background-repeat: repeat-x;
-    border-top: 1px solid #cccccc;*/
+    border-top: 1px solid #cccccc;
+    /*
     background-image: url('/img/footer.png');
     background-position: center;
     background-repeat: repeat-x;
-    display: block;
+    display: block;*/
 
 }
+
+/*
 #footer .container {
     position: relative;
     width: 97%;
-
 }
+*/
 
 .container .credit {
-    margin: 8px 0 0 20px;
+    margin: 10px 0 0;
     display: inline-block;
 }
 #footer .btn-group {
@@ -178,11 +181,11 @@ body {
 	.menu-button-wrapper {
 		width: 265px;
 	}
-
+/*
     .footer-gradient{
         margin-left: -13px;
     }
-
+*/
 }
 /*Top menu end*/
 
@@ -673,11 +676,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             margin-top: 60px;
         }
     }
-@media (min-width: 1500px){
-    .footer-gradient{
-    margin-left: -50px;
-    }
-}
     .carousel-inner {
         height: 490px;
     }

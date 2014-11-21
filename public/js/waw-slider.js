@@ -31,7 +31,7 @@
 			
 			this.rowTemplate = ['<div class="row-fluid">', '</div>'];
 			this.itemTemplate = '<div class="span3 bottom-offset">\
-									<a class="img-wrapper" href="/show/$seoLink" data-toggle="tooltip" title="$description">\
+									<a class="img-wrapper" href="/show/$seoLink">\
 										<img src="/media/$imageLink" class="img-polaroid"/>\
 										<div class="post-link img-info">\
 												<div data-link="$favoriteLink" title="$favoritesTooltip" data-id="$link" class="favorites-icon $isFavorite"></div>\
@@ -243,7 +243,7 @@
 								.replace("$brand", 			data.list[i].brand_name)
 								.replace("$daysLeft", 		data.list[i].days)
                                 .replace("$daysMsgText", 	data.options.days_left_text)
-                                .replace("$description", 	data.list[i].description)
+                                //.replace("$description", 	data.list[i].description)
                                 .replace("$no-ad_link", 	data.translation);
 						} else {
 							result += this.noImgTemplate

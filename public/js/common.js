@@ -30,13 +30,10 @@ $(function () {
             window.location.reload();
         });
     });
-    contactBtn.click(function(e){
-        window.location.href = "/index/contacts";
-    });
 
     /*main menu tooltip*/
-    $(".btn-large").tooltip({placement: "bottom"});
-
+    $(".btn-large").add("#link").add("#contact-btn").add("#lng-btn").tooltip({placement: "bottom"});
+    
 
     /* Add browser depended classes */
     if (navigator.sayswho.search("Firefox") != -1) {

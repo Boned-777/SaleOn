@@ -190,7 +190,7 @@ return array (
 
 
     'feedback_form_name' => 'Форма зворотнього звязку',
-    'contact_org_name' => 'Wantlook',
+    'contact_org_name' => 'Saleon',
     'contact_country_name'=>'',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
@@ -218,5 +218,6 @@ return array (
     "remove" => "видалити",
     "new_ad"=>"<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
      "new_ad_title"=>"Додати акцію",
-    'map'=>'Всі адреси'
+    'map'=>'Всі адреси',
+    'lng_switcher' => 'Мова сайту'
 );
