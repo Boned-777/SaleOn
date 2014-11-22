@@ -191,7 +191,7 @@ return array(
     "video_info_text" => "Здесь можно загрузить видео для страницы полного описания акции",
     "contacts" => "Контакты",
     'feedback_form_name' => 'Форма обратной связи',
-    'contact_org_name' => 'Wantlook',
+    'contact_org_name' => 'Saleon',
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
@@ -217,5 +217,6 @@ return array(
     "remove" => "удалить",
     "new_ad"=>"<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
     "new_ad_title"=>"Добавить акцию",
-    'map'=>'Все адреса'
+    'map'=>'Все адреса',
+    'lng_switcher' => 'Язык сайта'
 );

@@ -192,7 +192,7 @@ return array(
 
 	"feedback_form_name" => "Formularz opinii",
 	"contact_country_name" => "Ukraina",
-	"contact_org_name" => "Wantlook",
+	"contact_org_name" => "Saleon",
 	"contact_org_phone_name" => "Telefon:",
 	"contact_org_phone_val" => "+38 (050) 132-95-18",
 	"contact_org_phone_val2" => "+38 (068) 746-38-98",
@@ -214,5 +214,6 @@ return array(
 	"add" => "Dodaj",
 	"remove" => "usuń",
 	"new_ad" => "<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
-	"map" => "Wszystkie adresy"
+	"map" => "Wszystkie adresy",
+    'lng_switcher' => 'Język strony'
 );
