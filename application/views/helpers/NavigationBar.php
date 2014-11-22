@@ -38,6 +38,10 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
             return false;
         }
 
+        if (strpos($uri, "show")) {
+            return false;
+        }
+
         $menuItems = array(
             "profile" => array("link" => array("/partner/profile"), "caption" => $translate->getAdapter()->translate("profile")),
             "add_new" => array("link" => array("/ad/new#main"), "caption" => $translate->getAdapter()->translate("add_new")),
