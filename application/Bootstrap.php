@@ -26,7 +26,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $siteDir = $this->getOption('siteDir');
         $siteUrl = $this->getOption('siteUrl');
-        $url = "http://wantlook.info/auth/auth/";
+        $url = "http://saleon.info/auth/auth/";
 
         $sauthConf['twitter'] = array(
             'consumerKey' => 'zTMUlfNyrW8VuStaR6kgjw',

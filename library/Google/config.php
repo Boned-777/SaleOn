@@ -27,7 +27,7 @@ $apiConfig = array(
     // OAuth2 Settings, you can get these keys at https://code.google.com/apis/console
     'oauth2_client_id' => '897869651508-gfk2vv17r495ructelva10aav8qoblh7.apps.googleusercontent.com',
     'oauth2_client_secret' => 'UuLROj9QJ18AgzO4Pmzh0EzE',
-    'oauth2_redirect_uri' => 'http://wantlook.info/auth/google-auth',
+    'oauth2_redirect_uri' => 'http://saleon.info/auth/google-auth',
 
     // The developer key, you get this at https://code.google.com/apis/console
     'developer_key' => '',

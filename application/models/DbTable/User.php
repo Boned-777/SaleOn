@@ -156,14 +156,14 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         $transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
         Zend_Mail::setDefaultTransport($transport);
 
-        $text = "Рады приветствовать Вас на сайте WantLook.info".
+        $text = "Рады приветствовать Вас на сайте saleon.info".
             "\n\n\nWelcome on WantLook.info";
 
         $mail = new Zend_Mail('UTF-8');
         $mail->setBodyText($text);
-        $mail->setFrom('no-reply@wantlook.info', 'WantLook.info');
+        $mail->setFrom('no-reply@saleon.info', 'saleon.info');
         $mail->addTo($data["username"], '');
-        $mail->setSubject('Регистрация на WantLook.info');
+        $mail->setSubject('Регистрация на saleon.info');
         try {
             $mail->send();
         } catch (Exception $e) {

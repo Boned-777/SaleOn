@@ -1,4 +1,4 @@
-Sitemap: http://wantlook.info/sitemap.xml
+Sitemap: http://saleon.info/sitemap.xml
 User-agent: *
 Disallow: /user/
 Disallow: /partner/
@@ -14,4 +14,4 @@ Disallow: /user/
 Disallow: /partner/
 Disallow: /css/
 Disallow: /fonts/
-Host: wantlook.info
+Host: saleon.info
