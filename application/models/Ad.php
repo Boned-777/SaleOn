@@ -327,7 +327,8 @@ class Application_Model_Ad
         if (!empty($favorites_ads)) {
             $item = new Application_Model_DbTable_Ad();
             $stmt = $item->select()
-                ->where("end_dt > NOW() AND status = ? AND id IN (" . $favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+                ->where("end_dt > NOW() AND status = ? AND id IN (" . $favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+                ->order("end_dt");
             $data = $item->fetchAll($stmt);
             if ($data !== false) {
                 $res = array();
@@ -443,7 +444,8 @@ class Application_Model_Ad
                 if (isset($params["favorites_ads"])) {
                     if (sizeof($params["favorites_ads"])) {
                         $select
-                            ->where("id IN (" . $params["favorites_ads"] . ")");
+                            ->where("id IN (" . $params["favorites_ads"] . ")")
+                            ->order("end_dt");
                     }
                 }
 
