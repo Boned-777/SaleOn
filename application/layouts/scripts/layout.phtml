@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
     <?php
-        global $translate;
+    global $translate;
     ?>
     <?= $this->headTitle($translate->getAdapter()->translate("main_title"));?>
     <?= $this->headMeta()->appendName('description', $translate->getAdapter()->translate("main_description"));?>
-    
-    
+
+
     <?php
     echo $this->jQuery()
         ->setVersion('1.9.1')
@@ -29,230 +29,224 @@
 
 </head>
 <body>
-    <?php global $session;?>
-    <input id="current-lng" type="hidden" value="<?= $session->locale; ?>" />
-    <div class="topbg"></div>
-    <div id="wrap">
+<?php global $session;?>
+<input id="current-lng" type="hidden" value="<?= $session->locale; ?>" />
+<div class="topbg"></div>
+<div id="wrap">
 
-        <div class="container fix-content-position">
-            <button id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="btn dropdown-toggle contacts"></button>
 
-            <div class="btn-group dropdown pull-left" style="margin-left: 100%; margin-top: 4px; margin-bottom: -4%;">
-                 <button id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
+    <div class="container fix-content-position">
+
+        <!-- contacts and lng switcher -->
+        <div class="contact-lngswitcher-wrapper">
+            <a href="/index/contacts" data-toggle="tooltip" id="contact-btn" title="<?= $translate->getAdapter()->translate("contacts")?>" class="contact-btn"></a>
+            <div class="btn-group dropdown pull-right">
+                <button data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("lng_switcher")?>"
+                        id="lng-btn" class="btn dropdown-toggle lng" data-toggle="dropdown"></button>
                 <ul class="dropdown-menu" id="lng-switcher">
                     <li><a id="ua" class="lng ua" title="<?= $translate->getAdapter()->translate("lng_ukrainian")?>" href="#"></a></li>
                     <li><a id="ru" class="lng ru" title="<?= $translate->getAdapter()->translate("lng_russian")?>" href="#"></a></li>
                     <li><a id="en" class="lng en" title="<?= $translate->getAdapter()->translate("lng_english")?>" href="#"></a></li>
                     <li><a id="pl" class="lng pl" title="<?= $translate->getAdapter()->translate("lng_poland")?>" href="#"></a></li>
                 </ul>
-
             </div>
+        </div>
 
-                <div class="top-menu">
-                    <div class="span5">
-                        <button id="btn1" title="<?= $translate->getAdapter()->translate("mm_regions")?>" class="btn btn-large" ><i class="myicon-region"></i>
-                            <?= $translate->getAdapter()->translate("mm_regions")?>
-                        </button>
-                        <button id="btn2" title="<?= $translate->getAdapter()->translate("mm_categories")?>" class="btn btn-large" ><i class="myicon-category"></i>
-                            <?= $translate->getAdapter()->translate("mm_categories")?>
-                        </button>
-                        <button id="btn3" title="<?= $translate->getAdapter()->translate("mm_brands")?>" class="btn btn-large"><i class="myicon-brands"></i>
-                            <?= $translate->getAdapter()->translate("mm_brands")?>
-                        </button>
+        <div class="top-menu">
+            <div class="menu-button-wrapper">
+                <button id="btn1" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_regions")?>" class="btn btn-large" ><i class="myicon-region"></i></button>
+                <button id="btn2" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_categories")?>" class="btn btn-large" ><i class="myicon-category"></i></button>
+                <button id="btn3" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_brands")?>" class="btn btn-large"><i class="myicon-brands"></i></button>
+            </div>
+            <div class="jumbotron">
+                <a id="link" href="/" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("main_page")?>"><div class="logo"></div></a>
+            </div>
+            <div class="menu-button-wrapper">
+                <a href="/filter/any/any/any/any/new" id="btn0" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" ><i class="myicon-new"></i>
+                </a>
+                <?php
+                $auth = Zend_Auth::getInstance();
+                if ($auth->hasIdentity()) { ?>
+                    <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
+                        <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
+                        <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="myicon-logout"></i></a>
+                    <?php } elseif ($auth->getIdentity()->role == Application_Model_User::ADMIN) { ?>
+                        <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="myicon-admin"></i>
+                        </a>
+                        <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
+                    <?php } else { ?>
+                        <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
+                        <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
+                    <?php } ?>
+                <?php } else { ?>
+                    <a href="/user/new" id="btn4" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="myicon-user"></i></a>
+                    <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
+                <?php }
+                ?>
+            </div>
+        </div>
+        <?php echo $this->navigationBar($this->link); ?>
+        <?php echo $this->adminNavigationBar(); ?>
+        <div class="layout-content">
+            <?php echo $this->layout()->content; ?>
+
+
+
+            <div class="text-center lead no-data"></div>
+            <div class="lock-loading"></div>
+
+            <div id="filters-modal" class="modal hide fade" tabindex="-1">
+                <div id="filters-content" class="modal-body"></div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                </div>
+            </div>
+            <div id="regions-modal" class="modal hide fade" tabindex="-1">
+                <div id="regions-header" class="modal-header row"></div>
+                <div id="regions-content" class="modal-body"></div>
+                <div class="modal-footer">
+                    <button id="region-back" class="btn pull-left hide"><?php echo $translate->getAdapter()->translate("back"); ?></button>
+                    <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
+                </div>
+            </div>
+            <div id="brands-modal" class="modal hide fade" tabindex="-1">
+                <div id="brands-content" class="modal-body"></div>
+                <div class="modal-footer">
+                    <div id="brands-letters" class="row">
+                        <div class="span8 brands-letters-wrapper text-center">
+                            <a class="muted brands-letters">А</a>
+                            <a class="muted brands-letters">Б</a>
+                            <a class="muted brands-letters">В</a>
+                            <a class="muted brands-letters">Г</a>
+                            <a class="muted brands-letters">Д</a>
+                            <a class="muted brands-letters">Е</a>
+                            <a class="muted brands-letters">Є</a>
+                            <a class="muted brands-letters">Ж</a>
+                            <a class="muted brands-letters">З</a>
+                            <a class="muted brands-letters">И</a>
+                            <a class="muted brands-letters">І</a>
+                            <a class="muted brands-letters">Ї</a>
+                            <a class="muted brands-letters">Й</a>
+                            <a class="muted brands-letters">К</a>
+                            <a class="muted brands-letters">Л</a>
+                            <a class="muted brands-letters">М</a>
+                            <a class="muted brands-letters">Н</a>
+                            <a class="muted brands-letters">О</a>
+                            <a class="muted brands-letters">П</a>
+                            <a class="muted brands-letters">Р</a>
+                            <a class="muted brands-letters">С</a>
+                            <a class="muted brands-letters">Т</a>
+                            <a class="muted brands-letters">У</a>
+                            <a class="muted brands-letters">Ф</a>
+                            <a class="muted brands-letters">Х</a>
+                            <a class="muted brands-letters">Ц</a>
+                            <a class="muted brands-letters">Ч</a>
+                            <a class="muted brands-letters">Ш</a>
+                            <a class="muted brands-letters">Щ</a>
+                            <a class="muted brands-letters">Э</a>
+                            <a class="muted brands-letters">Ю</a>
+                            <a class="muted brands-letters">Я</a>
+                        </div>
+                        <div class="span8 brands-letters-wrapper text-center">
+                            <a class="muted brands-letters">0-9</a>
+                            <a class="muted brands-letters">A</a>
+                            <a class="muted brands-letters">B</a>
+                            <a class="muted brands-letters">C</a>
+                            <a class="muted brands-letters">D</a>
+                            <a class="muted brands-letters">E</a>
+                            <a class="muted brands-letters">F</a>
+                            <a class="muted brands-letters">G</a>
+                            <a class="muted brands-letters">H</a>
+                            <a class="muted brands-letters">I</a>
+                            <a class="muted brands-letters">J</a>
+                            <a class="muted brands-letters">K</a>
+                            <a class="muted brands-letters">L</a>
+                            <a class="muted brands-letters">M</a>
+                            <a class="muted brands-letters">N</a>
+                            <a class="muted brands-letters">O</a>
+                            <a class="muted brands-letters">P</a>
+                            <a class="muted brands-letters">Q</a>
+                            <a class="muted brands-letters">R</a>
+                            <a class="muted brands-letters">S</a>
+                            <a class="muted brands-letters">T</a>
+                            <a class="muted brands-letters">U</a>
+                            <a class="muted brands-letters">V</a>
+                            <a class="muted brands-letters">W</a>
+                            <a class="muted brands-letters">X</a>
+                            <a class="muted brands-letters">Y</a>
+                            <a class="muted brands-letters">Z</a>
+                        </div>
                     </div>
-                    <div class="span3 jumbotron">
-                        <a id="link" href="/" title="<?= $translate->getAdapter()->translate("main_page")?>"><div class="logo"></div></a>
-                    </div>
-                    <div class="span5">
-                        <a href="/filter/any/any/any/any/new" id="btn0" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" ><i class="myicon-new"></i>
-                        <?= $translate->getAdapter()->translate("mm_news")?></a>
-                        <?php
-                            $auth = Zend_Auth::getInstance();
-                            if ($auth->hasIdentity()) { ?>
-                                <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
-                                    <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"><?= $translate->getAdapter()->translate("mm_partners")?></i></a>
-                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="myicon-logout"></i><?= $translate->getAdapter()->translate("mm_exit")?></a>
-                                <?php } elseif ($auth->getIdentity()->role == Application_Model_User::ADMIN) { ?>
-                                    <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="myicon-admin"></i>
-                                    <?= $translate->getAdapter()->translate("mm_admin")?></a>
-                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i><?= $translate->getAdapter()->translate("mm_exit")?></a>
-                                <?php } else { ?>
-                                    <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i><?= $translate->getAdapter()->translate("mm_favorites")?></a>
-                                    <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i><?= $translate->getAdapter()->translate("mm_exit")?></a>
-                                <?php } ?>
-                            <?php } else { ?>
-                                <a href="/user/new" id="btn4" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="myicon-user"></i><?= $translate->getAdapter()->translate("mm_user")?></a>
-                                <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i><?= $translate->getAdapter()->translate("mm_partners")?></a>
-                            <?php }
-                        ?>
+                    <div class="brands-button">
+                        <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
                     </div>
                 </div>
-            <?php echo $this->navigationBar($this->link); ?>
-            <?php echo $this->adminNavigationBar(); ?>
-            <div class="layout-content">
-                <?php echo $this->layout()->content; ?>
-
-
-
-                <div class="text-center lead no-data"></div>
-                <div class="lock-loading"></div>
-
-                    <div id="filters-modal" class="modal hide fade" tabindex="-1">
-                        <div id="filters-content" class="modal-body"></div>
-                        <div class="modal-footer">
-                            <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
-                        </div>
-                    </div>
-                    <div id="regions-modal" class="modal hide fade" tabindex="-1">
-                        <div id="regions-header" class="modal-header row"></div>
-                        <div id="regions-content" class="modal-body"></div>
-                        <div class="modal-footer">
-                            <button id="region-back" class="btn pull-left hide"><?php echo $translate->getAdapter()->translate("back"); ?></button>
-                            <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
-                        </div>
-                    </div>
-                    <div id="brands-modal" class="modal hide fade" tabindex="-1">
-                        <div id="brands-content" class="modal-body"></div>
-                        <div class="modal-footer">
-                            <div id="brands-letters" class="row">
-                                <div class="span8 brands-letters-wrapper text-center">
-                                    <a class="muted brands-letters">А</a>
-                                    <a class="muted brands-letters">Б</a>
-                                    <a class="muted brands-letters">В</a>
-                                    <a class="muted brands-letters">Г</a>
-                                    <a class="muted brands-letters">Д</a>
-                                    <a class="muted brands-letters">Е</a>
-                                    <a class="muted brands-letters">Є</a>
-                                    <a class="muted brands-letters">Ж</a>
-                                    <a class="muted brands-letters">З</a>
-                                    <a class="muted brands-letters">И</a>
-                                    <a class="muted brands-letters">І</a>
-                                    <a class="muted brands-letters">Ї</a>
-                                    <a class="muted brands-letters">Й</a>
-                                    <a class="muted brands-letters">К</a>
-                                    <a class="muted brands-letters">Л</a>
-                                    <a class="muted brands-letters">М</a>
-                                    <a class="muted brands-letters">Н</a>
-                                    <a class="muted brands-letters">О</a>
-                                    <a class="muted brands-letters">П</a>
-                                    <a class="muted brands-letters">Р</a>
-                                    <a class="muted brands-letters">С</a>
-                                    <a class="muted brands-letters">Т</a>
-                                    <a class="muted brands-letters">У</a>
-                                    <a class="muted brands-letters">Ф</a>
-                                    <a class="muted brands-letters">Х</a>
-                                    <a class="muted brands-letters">Ц</a>
-                                    <a class="muted brands-letters">Ч</a>
-                                    <a class="muted brands-letters">Ш</a>
-                                    <a class="muted brands-letters">Щ</a>
-                                    <a class="muted brands-letters">Э</a>
-                                    <a class="muted brands-letters">Ю</a>
-                                    <a class="muted brands-letters">Я</a>
-                                </div>
-                                <div class="span8 brands-letters-wrapper text-center">
-                                    <a class="muted brands-letters">0-9</a>
-                                    <a class="muted brands-letters">A</a>
-                                    <a class="muted brands-letters">B</a>
-                                    <a class="muted brands-letters">C</a>
-                                    <a class="muted brands-letters">D</a>
-                                    <a class="muted brands-letters">E</a>
-                                    <a class="muted brands-letters">F</a>
-                                    <a class="muted brands-letters">G</a>
-                                    <a class="muted brands-letters">H</a>
-                                    <a class="muted brands-letters">I</a>
-                                    <a class="muted brands-letters">J</a>
-                                    <a class="muted brands-letters">K</a>
-                                    <a class="muted brands-letters">L</a>
-                                    <a class="muted brands-letters">M</a>
-                                    <a class="muted brands-letters">N</a>
-                                    <a class="muted brands-letters">O</a>
-                                    <a class="muted brands-letters">P</a>
-                                    <a class="muted brands-letters">Q</a>
-                                    <a class="muted brands-letters">R</a>
-                                    <a class="muted brands-letters">S</a>
-                                    <a class="muted brands-letters">T</a>
-                                    <a class="muted brands-letters">U</a>
-                                    <a class="muted brands-letters">V</a>
-                                    <a class="muted brands-letters">W</a>
-                                    <a class="muted brands-letters">X</a>
-                                    <a class="muted brands-letters">Y</a>
-                                    <a class="muted brands-letters">Z</a>
-                                </div>
-                            </div>
-                            <div class="brands-button">
-                                <button class="btn" data-dismiss="modal"><?php echo $translate->getAdapter()->translate("close"); ?></button>
-                            </div>
-                        </div>
-                    </div>
-                    <script type="text/javascript">
-                        window.messages || (window.messages = {});
-                        <?php 
-                            echo "window.messages.noData         = \"" . $translate->getAdapter()->translate("no_data_available") . "\";";
-                            echo "window.messages.serverError    = \"" . $translate->getAdapter()->translate("server_error") . "\";";
-                            echo "window.messages.notSupported   = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";"; 
-                            echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";"; 
-                            echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";"; 
-                            echo "window.messages.noFavoritesData  = \"" . $translate->getAdapter()->translate("no_favorites_data_available") . "\";";
-                            echo "window.messages.ukraine        = \"" . Application_Model_Geo::getLocaleName("ukraine") . "\";";
-                        ?>
-                    </script>
-                    <script type="text/javascript" src="/js/bootstrap/bootstrap-transition.js"></script>
-                    <script type="text/javascript" src="/js/bootstrap/bootstrap-carousel.js"></script>
-                    <script type="text/javascript" src="/js/underscore-min.js"></script>
-                    <script type="text/javascript" src="/js/waw-slider.js"></script>
-                    <script type="text/javascript" src="/js/waw-categories.js"></script>
-                    <script type="text/javascript" src="/js/waw-regions.js"></script>
-                    <script type="text/javascript" src="/js/waw-brands.js"></script>
-                    <script type="text/javascript" src="/js/index-loader.js"></script>
-
             </div>
+            <script type="text/javascript">
+                window.messages || (window.messages = {});
+                <?php
+                    echo "window.messages.noData         = \"" . $translate->getAdapter()->translate("no_data_available") . "\";";
+                    echo "window.messages.serverError    = \"" . $translate->getAdapter()->translate("server_error") . "\";";
+                    echo "window.messages.notSupported   = \"" . $translate->getAdapter()->translate("browser_not_supported") . "\";";
+                    echo "window.messages.addToFavorites = \"" . $translate->getAdapter()->translate("add_to_favorites") . "\";";
+                    echo "window.messages.removeFromFavorites = \"" . $translate->getAdapter()->translate("remove_from_favorites") . "\";";
+                    echo "window.messages.noFavoritesData  = \"" . $translate->getAdapter()->translate("no_favorites_data_available") . "\";";
+                    echo "window.messages.ukraine        = \"" . Application_Model_Geo::getLocaleName("ukraine") . "\";";
+                ?>
+            </script>
+            <script type="text/javascript" src="/js/bootstrap/bootstrap-transition.js"></script>
+            <script type="text/javascript" src="/js/bootstrap/bootstrap-carousel.js"></script>
+            <script type="text/javascript" src="/js/underscore-min.js"></script>
+            <script type="text/javascript" src="/js/waw-slider.js"></script>
+            <script type="text/javascript" src="/js/waw-categories.js"></script>
+            <script type="text/javascript" src="/js/waw-regions.js"></script>
+            <script type="text/javascript" src="/js/waw-brands.js"></script>
+            <script type="text/javascript" src="/js/index-loader.js"></script>
+
         </div>
-        <div id="push"></div>
     </div>
+    <div id="push"></div>
+</div>
 
-    <div id="success-modal-block" class="footer-message alert-success hide">
-        <p class="block-label text-center"><?php echo $this->successMessage; ?></p>
+<div id="success-modal-block" class="footer-message alert-success hide">
+    <p class="block-label text-center"><?php echo $this->successMessage; ?></p>
+</div>
+
+<div id="error-modal-block" class="footer-message alert-error hide">
+    <p class="block-label text-center"><?php echo $this->errorMessage; ?></p>
+</div>
+
+<div id="footer" class="footer footer-gradient">
+    <div class="container">
+
+        <p class="credit pull-right">© SALEON, 2014</p>
+        <div id="footer-social" class="socials"></div>
     </div>
+</div>
 
-    <div id="error-modal-block" class="footer-message alert-error hide">
-        <p class="block-label text-center"><?php echo $this->errorMessage; ?></p>
-    </div>
+<script type="text/javascript" src="/js/bootstrap/bootstrap-modal.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap-tab.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap-button.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap-popover.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
 
-    <div id="footer" class="footer footer-gradient">
-        <div class="container">
+<?php
+/** Ask about this code **/
+if ( $this->layout()->ckeditor ) {
+    echo $this->headScript()->appendFile( $this->baseUrl().'/ckeditor/ckeditor.js');
+}
+?>
 
-              <!-- <p class="credit pull-right"><a href="https://plus.google.com/117708080449266987056/?rel=author">
-                    © SALEON, 2014
-                </a></p> -->
-            <div id="footer-social" class="socials"></div>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-modal.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-tab.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-button.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-popover.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="/js/common.js"></script>
-    
-    <?php
-    /** Ask about this code **/
-    if ( $this->layout()->ckeditor ) {
-        echo $this->headScript()->appendFile( $this->baseUrl().'/ckeditor/ckeditor.js');
-    }
-    ?>
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-51869251-1', 'saleon.info');
-        ga('send', 'pageview');
-
-    </script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-51869251-1', 'saleon.info');
+    ga('send', 'pageview');
+</script>
 </body>
 </html>
