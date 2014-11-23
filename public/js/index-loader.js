@@ -280,6 +280,7 @@
             clearAllCookies : function () {
             	$.removeCookie("geo", this.cookieOptions);
             	this.clearCategoryBrandsCookies();
+            	this.clearSortingCookies();
             },
 
 			clearCategoryBrandsCookies : function () {
