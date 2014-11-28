@@ -30,7 +30,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $sauthConf['twitter'] = array(
             'consumerKey' => 'umLBxpl2qIik2V83EuZET2D3j',
-            'consumerSecret' => 'iBlwECsETaGNobispnuHJQ2c9gmSeCqzwchv8t7diqz1ws4bv1',
+            'consumerSecret' => 'iBlwECsETaGNobispnuHJQ2c9gmSeCqzwCHv8T7diQz1wS4Bv1',
             'callbackUrl' => $url . 'by/twitter',
         );
 
