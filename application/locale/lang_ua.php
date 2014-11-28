@@ -195,7 +195,7 @@ return array (
     'contact_org_phone_name' => 'Тел:',
     'contact_org_phone_val' => '+38(050) 132-95-18',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
-    'contact_org_email' => 'wantlookinfo@gmail.com',
+    'contact_org_email' => 'saleoninfo@gmail.com',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'wantlook.info',
     'contact_org_share_link' => 'Поділитися посиланням в соцмережах',
@@ -217,7 +217,7 @@ return array (
     "add" => "Додати",
     "remove" => "видалити",
     "new_ad"=>"<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
-     "new_ad_title"=>"Додати акцію",
+    "new_ad_title"=>"Додати акцію",
     'map'=>'Всі адреси',
     'lng_switcher' => 'Мова сайту'
 );

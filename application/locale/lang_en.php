@@ -191,7 +191,7 @@ return array (
     'contact_org_phone_name' => 'Phone:',
     'contact_org_phone_val' => '+38(050) 123-77-88',
     'contact_org_phone_val2' => '+38(068) 746-38-98',
-    'contact_org_email' => 'wantlookinfo@gmail.com',
+    'contact_org_email' => 'saleoninfo@gmail.com',
     'contact_org_skype_name' => 'Skype:',
     'contact_org_skype_val' => 'wantlook.info',
     'contact_org_share_link' => 'Share our link',
