@@ -250,6 +250,7 @@ body {
 .no-image .tooltip-inner {
     font-size: 13px;
     max-width: 350px;
+    font-weight: bolder;
 }
 .btn:focus,
 .logo:focus {

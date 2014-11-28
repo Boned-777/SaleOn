@@ -29,8 +29,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $url = "http://saleon.info/auth/auth/";
 
         $sauthConf['twitter'] = array(
-            'consumerKey' => 'zTMUlfNyrW8VuStaR6kgjw',
-            'consumerSecret' => '2rspzvAhqGDxXjhPtbEdQw8GijcktlPX5hfr7EGI',
+            'consumerKey' => 'umLBxpl2qIik2V83EuZET2D3j',
+            'consumerSecret' => 'iBlwECsETaGNobispnuHJQ2c9gmSeCqzwchv8t7diqz1ws4bv1',
             'callbackUrl' => $url . 'by/twitter',
         );
 
@@ -45,8 +45,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
 
         $sauthConf['vkontakte'] = array(
-            'consumerId' => '4138930',
-            'consumerSecret' => 'vvtR6C0BRP5KnANSloef',
+            'consumerId' => '4654202',
+            'consumerSecret' => 'Tm0kNZk8tCIVKjbpwFkW',
             'callbackUrl' => $url . 'by/vkontakte',
         );
 
