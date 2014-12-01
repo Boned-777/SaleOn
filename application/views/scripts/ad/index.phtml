@@ -31,8 +31,8 @@
         <div class="span5">
 
             <ul class="pager">
-                <li class="previous <?= $this->prevAdUrl ? "" : "disabled" ?>">
-                    <a href="<?= $this->prevAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
+                <li class="previous <?= $this->nextAdUrl ? "" : "disabled" ?>">
+                    <a href="<?= $this->nextAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
                 </li>
                 <li>
                     <div id="favorites-link"
@@ -42,8 +42,8 @@
                          data-status="<?= $this->isFavorite ? "on" : "off" ?>"
                          class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
                 </li>
-                <li class="next  <?= $this->nextAdUrl ? "" : "disabled" ?>">
-                    <a href="<?= $this->nextAdUrl ?>" onclick=""><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
+                <li class="next  <?= $this->prevAdUrl ? "" : "disabled" ?>">
+                    <a href="<?= $this->prevAdUrl ?>" onclick=""><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>
                 </li>
             </ul>
         </div>
