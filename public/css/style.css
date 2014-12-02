@@ -2,7 +2,6 @@ html,
 body {
     height: 100%;
     background-color: #F8F8F8;
-    /* background-image:url(/img/background.png); */
     min-width: 1005px;
 }
 
@@ -12,17 +11,18 @@ body {
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -41px;
+    margin: 0 auto -21px;
     margin-left: -20px;
     overflow: hidden;
 }
 
 /* Set the fixed height of the footer here */
 #push{
-    height: 40px;
+    height: 20px;/*It was 40px*/
 }
 #footer {
     height: 40px;
+    display: none;
 
 }
 .footer {
@@ -58,13 +58,6 @@ body {
     display: block;*/
 
 }
-
-/*
-#footer .container {
-    position: relative;
-    width: 97%;
-}
-*/
 
 .container .credit {
     margin: 10px 0 0;
@@ -274,7 +267,6 @@ body {
 
 .carousel {
     margin-bottom: 0;
-
 }
 
 .mycarousel-control {
@@ -307,47 +299,50 @@ body {
 }
 
 /* opera fix */
-.carousel-inner > .active {
+/*.carousel-inner > .active {
     top: 1px;
-}
+}*/
 
 .carousel-inner > .prev.right,
 .carousel-inner > .next.left  {
     opacity: 1;
-    -webkit-transition: 0.47s ease-in-out left, 0.47s linear opacity, 0.47s linear top;
-    -moz-transition: 0.45s ease-in-out left, 0.45s linear opacity, 0.45s linear top;
-    -o-transition: 0.47s ease-in-out left, 0.47s linear opacity, 0.47s linear top;
-    transition: 0.47s ease-in-out left, 0.47s linear opacity, 0.47s linear top;
+    -webkit-transition: 0.8s ease left;
+    -moz-transition: 0.8s ease left;
+    -o-transition: 0.8s ease left;
+    transition: 0.8s ease left;
+
 }
 .carousel-inner > .prev.right img,
 .carousel-inner > .next.left img {
-    width: 190px;
-    -webkit-transition: 0.47s linear width;
-    -moz-transition: 0.45s linear width;
-    -o-transition: 0.47s linear width;
-    transition: 0.47s linear width;
+    /*width: 190px;
+    -webkit-transition: 0.6s linear width;
+    -moz-transition: 0.6s linear width;
+    -o-transition: 0.6s linear width;
+    transition: 0.6s linear width;*/
+}
+.item {
+	top: 0px;
 }
 
 .item.hover-left,
 .item.hover-right {
     display: block;
-    top: 55px;
     position: absolute;
     width: 100%;
     z-index: 1000;
-    -webkit-transition: 0.47s ease-in-out left, 0.47s linear top;
-    -moz-transition: 0.45s ease-in-out left, 0.45s linear top;
-    -o-transition: 0.47s ease-in-out left, 0.47s linear top;
-    transition: 0.47s ease-in-out left, 0.47s linear top;
+    -webkit-transition: 0.8s ease left;
+    -moz-transition: 0.8s ease left;
+    -o-transition: 0.8s ease left;
+    transition: 0.8s ease left;
 }
 .item.hover-left img,
 .item.hover-right img {
     opacity: 0.5;
     width: 190px;
-    -webkit-transition: 0.47s linear width, 0.47s linear opacity;
-    -moz-transition: 0.5s linear width, 0.5s linear opacity;
-    -o-transition: 0.47s linear width, 0.47s linear opacity;
-    transition: 0.47s linear width, 0.47s linear opacity;
+    -webkit-transition: 0.6s ease width, 0.6s ease opacity;
+    -moz-transition: 0.6s ease width, 0.6s ease opacity;
+    -o-transition: 0.6s ease width, 0.6s ease opacity;
+    transition: 0.6s ease width, 0.6s ease opacity;
 }
 .item.hover-left {
     left: -100%;
@@ -357,32 +352,37 @@ body {
 }
 .item.hover-right.hide-right {
     display: block;
-    top: 55px;
     position: absolute;
     left: 139%;
 }
 .item.hover-left.hide-left {
     display: block;
-    top: 55px;
     position: absolute;
     left: -139%;
 }
 
 .items-wrapper {
     width:1170px;
-    -webkit-transition: 0.5s linear margin, 0.5s linear width, 0.5s linear padding;
-    -moz-transition: 0.5s linear margin, 0.5s linear width, 0.5s linear padding;
-    -o-transition: 0.5s linear margin, 0.5s linear width, 0.5s linear padding;
-    transition: 0.5s linear margin, 0.5s linear width, 0.5s linear padding;
+    -webkit-transition: 0.6s ease margin, 0.6s ease width;
+    -moz-transition: 0.6s ease margin, 0.6s ease width;
+    -o-transition: 0.6s ease margin, 0.6s ease width;
+    transition: 0.6s ease margin, 0.6s ease width;
 }
-.item.hover-left  .items-wrapper {
+.item.hover-left .items-wrapper {
     width:950px;
-    margin: 0 0 0 200px;
+    margin: 50px 0 0 200px;
 }
 .item.hover-right  .items-wrapper {
     width:950px;
-    margin: 0 0 0 33px;
+    margin: 50px 0 0 33px;
 }
+.item.hover-right.hide-right .items-wrapper {
+	margin: 50px 0 0 0px;
+}
+.item.hover-left.hide-left .items-wrapper {
+	margin: 50px 0 0 0px;
+}
+
 /*Waw slider end*/
 
 /* Slider images start */
@@ -390,10 +390,10 @@ body {
     display: block;
     position: relative;
     width: 240px;
-    -webkit-transition: 0.5s linear width;
-    -moz-transition: 0.5s linear width;
-    -o-transition: 0.5s linear width;
-    transition: 0.5s linear width;
+    -webkit-transition: 0.6s ease width;
+    -moz-transition: 0.6s ease width;
+    -o-transition: 0.6s ease width;
+    transition: 0.6s ease width;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -419,16 +419,16 @@ margin-top: -6.8px;
 }
 
 .img-info{
-    transition: all .1s ease-out .1s;
-    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.6))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#99000000',GradientType=0 ); /* IE6-9 */
-    border-radius: 6px;
-    visibility: hidden;
+	transition: all .1s ease-out .1s;
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.6))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#99000000',GradientType=0 ); /* IE6-9 */
+	border-radius: 6px;
+   visibility: hidden;
     opacity: 0;
 
     position: absolute;
@@ -853,10 +853,10 @@ margin-top: -6.8px;
 .item.hover-right img {
     opacity: 0.5;
     width: 180px;
-    -webkit-transition: 0.5s linear width, 0.5s linear opacity;
-    -moz-transition: 0.5s linear width, 0.5s linear opacity;
-    -o-transition: 0.5s linear width, 0.5s linear opacity;
-    transition: 0.5s linear width, 0.5s linear opacity;
+    -webkit-transition: 0.4s ease width, 0.4s ease opacity;
+    -moz-transition: 0.4s ease width, 0.4s ease opacity;
+    -o-transition: 0.4s ease width, 0.4s ease opacity;
+    transition: 0.4s ease width, 0.4s ease opacity;
 }
 
 .firefox-slider .item.hover-left {
@@ -878,7 +878,7 @@ margin-top: -6.8px;
 .firefox-slider .item.hover-right .items-wrapper {
     margin: 0;
     width: inherit;
-    -moz-transition: 0.5s linear margin, 0.5s linear width, 0.5s linear padding;
+    -moz-transition: 0.4s ease margin, 0.4s ease width, 0.4s ease padding;
 }
 /*.firefox-slider .item.hover-left img,
 .firefox-slider .item.hover-right img {
@@ -1607,20 +1607,6 @@ a.no-image-href{
     color:#002a80;
     text-decoration-color: cadetblue;
 }
-/*button#btn1.btn.btn-large a:active{
-    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
-
-}
-
-button#btn2.btn.btn-large:active{
-    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
-
-}
-
-button#btn3.btn.btn-large:active{
-    background-image: linear-gradient(to bottom, #ffffff, #BABABA) !important;
-
-}*/
 
 .span5 .additional_address{
     border: 1px solid #B6B3B3;
