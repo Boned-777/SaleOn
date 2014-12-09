@@ -9,16 +9,7 @@ class Application_Model_AdSolr {
     }
 
     public function initClient() {
-        $config = array(
-            'endpoint' => array(
-                'localhost' => array(
-                    'host' => '127.0.0.1',
-                    'port' => 8983,
-                    'path' => '/solr/',
-                )
-            )
-        );
-        $this->_client = new Solarium\Client($config);
+        $this->_client = new Solarium\Client(Zend_Registry::get('config')->solr->toArray());
     }
 
     public function updateAllSolrData() {
