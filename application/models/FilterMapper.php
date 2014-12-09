@@ -34,46 +34,13 @@ class Application_Model_FilterMapper
     }
 
     protected function getCounts($db, $colName, $params=null) {
-        $select = $db->select();
-        $select->from(array("a"=>"ads"), array(
-            new Zend_Db_Expr("a.".$colName),
-            new Zend_Db_Expr("COUNT(a.$colName) count")
-        ));
-        $select->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-        if (!is_null($params)) {
-            foreach ($params as $key => $val) {
-                switch ($key) {
-                    case "geo" :
-                        $select->join(array("al" => "AdLocation"), "a.id = al.ad_id");
-                        $geoWhere = "al.location LIKE '$val' OR al.location LIKE '$val-%'";
-                        $mainId = explode("-", $val);
-                        if (count($mainId) > 1) {
-                            $geoWhere .= " OR al.location LIKE '$mainId[0]'";
-                            if (isset($mainId[1])) {
-                                $geoWhere .= " OR al.location LIKE '$mainId[0]-$mainId[1]-0'";
-                            }
-                        }
-                        $select->where("(" . $geoWhere . ")");
-                        break;
-
-                    default :
-                        $select->where("a.$key = ?", $val);
-                        break;
-                }
-            }
-        }
-        $select->group("a.".$colName);
-        $stmt = $select->query();
-        $data = $stmt->fetchAll();
-        $countsList = array();
-        foreach ($data as $countVal) {
-            $countsList[$countVal[$colName]] = $countVal["count"];
-        }
+        $adSolr = new Application_Model_AdSolr();
+        $countsList = $adSolr->getFacets($colName, $params);
 
         return $countsList;
     }
 
-    public function  listAll($params=null) {
+    public function listAll($params=null) {
         global $translate;
         $res = $this->dbItem->fetchAll();
         $itemsArr = $res->toArray();

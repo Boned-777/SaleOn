@@ -576,4 +576,72 @@ class Application_Model_Ad
         $raw->ad_id = $this->id;
         $raw->address_id = $adAddress;
     }
+
+    /**
+     * Creates Solr document
+     *
+     * @return mixed
+     */
+    public function createSolrDocument() {
+        $config = array(
+            'endpoint' => array(
+                'localhost' => array(
+                    'host' => '127.0.0.1',
+                    'port' => 8983,
+                    'path' => '/solr/',
+                )
+            )
+        );
+
+        $fields = array(
+            "id",
+            "name",
+            "status",
+            "description",
+            "banner",
+            "category",
+            "brand",
+            "brand_name",
+            "product",
+            "product_name"
+        );
+        $client = new Solarium\Client($config);
+        $update = $client->createUpdate();
+
+        $solrDocument = $update->createDocument();
+        foreach ($fields as $field) {
+            $solrDocument->$field = $this->$field;
+
+            $solrDocument->public_dt = $this->public_dt . "T00:00:00Z";
+            $solrDocument->end_dt = $this->end_dt . "T23:59:59Z";
+            $solrDocument->geo = $this->location->getLocationsList();
+
+            foreach ($this->splitGeo($solrDocument->geo) as $geoKey=>$geoVal) {
+                $propName = "geoLvl_" . $geoKey;
+                $solrDocument->$propName = $geoVal;
+            }
+        }
+
+        return $solrDocument;
+    }
+
+    protected function splitGeo($val) {
+        $res = array();
+
+        foreach ($val as $v) {
+            $sv = explode("-", $v);
+            $tmp = "";
+            for ($i=0; $i<count($sv); $i++) {
+                $res[$i][] = $tmp . $sv[$i];
+                $tmp .= $sv[$i] . "-";
+            }
+        }
+
+        foreach ($res as $key => $resItem) {
+            $res[$key] = array_unique($resItem);
+        }
+
+        return $res;
+    }
+
 }

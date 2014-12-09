@@ -184,14 +184,23 @@ class Application_Model_Geo
 
     public function getAllChildList($pattern = "", $params = null) {
         global $translate;
+
+        if ($pattern == "") {
+            $pattern = "1";
+        }
+
         $countsList = $this->_getCounts($pattern, $params);
-        $dbItem = new Application_Model_DbTable_Geo();
+
+
         $originalPattern = $pattern;
+        $pattern .= "-";
+        $dbItem = new Application_Model_DbTable_Geo();
+
         $allCount = isset($countsList["origin"]) ? $countsList["origin"] : 0;
-        if ($pattern !== "")
-            $pattern .= "-";
+
         $res = $dbItem->fetchAll('code LIKE "' . $pattern . '_" OR code LIKE "' . $pattern . '__"');
         $itemsArr = $res->toArray();
+
         $resArr = array();
         $cityArray = null;
         $is_path = 0;
@@ -244,95 +253,25 @@ class Application_Model_Geo
     }
 
     protected function _getCounts($temp = "", $params = null) {
-        $temp = $temp?$temp:"";
-        $mainId = explode("-", $temp);
-        $mainId = $mainId[0];
-        $ad = new Application_Model_DbTable_AdLocation();
-        $select = $ad->select();
-        $select->setIntegrityCheck(false);
+        $temp = $temp?$temp:"1";
+        $params["geo"] = $temp;
+        $adSolr = new Application_Model_AdSolr();
+        $data = $adSolr->getFacets("geo", $params);
+        return $data;
+    }
 
-        $columns = array(
-            new Zend_Db_Expr("a.id"),
-            new Zend_Db_Expr('REPLACE(LEFT(REPLACE(CONCAT(">", al.location), ">'.$temp.'-", ""), 2), "-","") et')
-        );
-
-        if ($temp == "1") {
-            $columns[] = new Zend_Db_Expr("LEFT(al.location, 4) location");
-        } else {
-            $columns[] = new Zend_Db_Expr("al.location");
+    protected function getGeoIndex($index, $value) {
+        $geoCodeParts = explode("-", $value);
+        for($i=$index+1; $i <= count($geoCodeParts); $i++) {
+            unset($geoCodeParts[$i]);
         }
-
-        $select->from(array("al" => "AdLocation"));
-        $select->distinct();
-
-
-        $geoStmt = "";
-        if ($temp !== "") {
-            $geoStmt .= 'al.location LIKE "'.$temp.'" OR al.location LIKE "'.$temp.'-%"';
-        } else {
-            $geoStmt .= 'al.location LIKE "" OR al.location LIKE "%"';
-        }
-        if ($temp != $mainId) {
-            $geoStmt .= " OR al.location LIKE '$mainId'";
-        }
-        $select->join(array("a" => "ads"), "a.id = al.ad_id");
-        $select->where($geoStmt);
-        $select->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-
-        $select->reset(Zend_Db_Select::COLUMNS);
-        $select->columns($columns);
-        $select2 = $ad->select()
-            ->from(
-                array(
-                    'd' => new Zend_Db_Expr('(' . (string) $select . ')') //
-                ), array(
-                    new Zend_Db_Expr("COUNT(d.location) count"),
-                    new Zend_Db_Expr("d.*")
-                )
-            )
-            ->group("d.location");
-        $select2->setIntegrityCheck(false);
-
-        $data = $ad->fetchAll($select2)->toArray();
-        $resData = array();
-        $resData["origin"] = 0;
-
-        foreach($data as $val) {
-            if (!empty($temp))
-                if ($val["et"]){
-                    if (strstr($val["et"], ">")) {
-                        $resData["origin"] += $val["count"];
-                    } else {
-                        $resData[$temp."-".$val["et"]] = (isset($resData[$temp."-".$val["et"]]) ? $resData[$temp."-".$val["et"]] : 0)
-                            + $val["count"];
-                    }
-                } else {
-                    $resData[$temp] = $val["count"] + $resData["origin"];
-                }
-            else
-                $resData[$val["et"]] = $val["count"] + $resData["origin"];
-        }
-
-        return $resData;
+        return implode("-", $geoCodeParts);
     }
 
     protected function _getAllCounts($temp = "", $params = null) {
-        $temp = $temp?$temp:"";
-        $ad = new Application_Model_DbTable_AdLocation();
-        $select = $ad->select();
-        $select->setIntegrityCheck(false);
-        $select->distinct();
-        $select->from(array("al" => "AdLocation"), array(
-            new Zend_Db_Expr("a.id")
-        ));
-
-        $geoStmt = Application_Model_DbTable_AdLocation::prepareWhereStatement($temp, "al");
-        $select->join(array("a" => "ads"), "a.id = al.ad_id");
-        $select->where($geoStmt);
-        $select->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
-
-        $res = $ad->fetchAll($select);
-        return $res->count();
+        $adSolr = new Application_Model_AdSolr();
+        $res = $adSolr->getAdsCount($temp, $params);
+        return $res;
     }
 
     public function getFullGeoName ($geoCode = "") {
