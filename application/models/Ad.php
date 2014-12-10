@@ -210,6 +210,12 @@ class Application_Model_Ad
         }
     }
 
+    public function getSolrList($params=null) {
+        $adSolr = new Application_Model_AdSolr();
+        $data = $adSolr->getAds($params);
+        return $data->getData();
+    }
+
     public function getRegularList($params=null) {
         $item = new Application_Model_DbTable_Ad();
         $select = $item->select();
@@ -274,7 +280,7 @@ class Application_Model_Ad
                 break;
 
             default :
-                $items = $this->getRegularList($params);
+                $items = $this->getSolrList($params);
         }
 
         return $items;
@@ -594,27 +600,30 @@ class Application_Model_Ad
         );
 
         $fields = array(
-            "id",
-            "name",
-            "status",
-            "description",
-            "banner",
-            "category",
-            "brand",
-            "brand_name",
-            "product",
-            "product_name"
+            "post_id" => "id",
+            "name" => "name",
+            "status" => "status",
+            "description" => "description",
+            "photoimg" => "banner",
+            "category" => "category",
+            "brand" => "brand",
+            "brand_name" => "brand_name",
+            "product" => "product",
+            "product_name" => "product_name",
+            "post_full_url" => "url"
         );
         $client = new Solarium\Client($config);
         $update = $client->createUpdate();
 
         $solrDocument = $update->createDocument();
-        foreach ($fields as $field) {
-            $solrDocument->$field = $this->$field;
+        foreach ($fields as $key=>$field) {
+            $solrDocument->$key = $this->$field;
 
             $solrDocument->public_dt = $this->public_dt . "T00:00:00Z";
             $solrDocument->end_dt = $this->end_dt . "T23:59:59Z";
             $solrDocument->geo = $this->location->getLocationsList();
+            $translite = new Zend_Filter_Transliteration();
+            $solrDocument->seo_name = $this->id . "_" . $translite->filter($this->name);
 
             foreach ($this->splitGeo($solrDocument->geo) as $geoKey=>$geoVal) {
                 $propName = "geoLvl_" . $geoKey;
