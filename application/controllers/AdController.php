@@ -355,14 +355,9 @@ class AdController extends Zend_Controller_Action
             $filterParams["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
         }
         $ad = new Application_Model_Ad();
-        $res = $ad->getList($filterParams);
-        $data = array();
-        foreach ($res AS $val) {
-            $data[] = $val->toListArray($userId);
-        }
-
+        $data = $ad->getList($filterParams);
         $res = array(
-            "list" => $data,
+            "list" => $data["response"]["docs"],
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),

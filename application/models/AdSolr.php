@@ -17,6 +17,7 @@ class Application_Model_AdSolr {
 
         $ad = new Application_Model_Ad();
         $list = $ad->getRegularList();
+
         $update = $this->getClient()->createUpdate();
 
         foreach($list as $item) {
@@ -35,23 +36,22 @@ class Application_Model_AdSolr {
         $query = $this->getQuery();
         $query->setRows(10000000);
         $query->setFields(array(
-            "id",
-            "name",
-            "status",
-            //"description",
-            "banner",
-            "category",
-            "brand",
+            "post_id",
+            "post_full_url",
             "brand_name",
-            "product",
-            "product_name",
-            "geo"
+            "name",
+            "photoimg",
+            "description",
+            //"favorites_link",
+            //"is_favorite",
+            //"days",
+            "seo_name"
         ));
         $this->applyParams($params);
 
         $resultSet = $this->getClient()->execute($query);
 
-        return $resultSet->getResponse()->getBody();
+        return $resultSet;
     }
 
     public function getAdsCount($temp, $params=null) {
@@ -59,7 +59,7 @@ class Application_Model_AdSolr {
 
         $query = $this->getQuery();
         $query->setFields(array(
-            "id"
+            "post_id"
         ));
         $this->applyParams($params);
 
@@ -106,11 +106,6 @@ class Application_Model_AdSolr {
     }
 
     public function getGeoFacets($facetField, $params=null) {
-        $geo = $params["geo"];
-        if (!isset($params["geo"])) {
-            $geo = 1;
-        }
-
         $query = $this->getQuery();
         $facetSet = $query->getFacetSet();
         $facetSet->createFacetField($facetField)->setField($facetField);
@@ -119,6 +114,10 @@ class Application_Model_AdSolr {
     public function applyParams($params=null) {
         foreach((array)$params as $key=>$value) {
             switch ($key) {
+                case 'sort':
+                    continue;
+                    break;
+
                 case 'geo' :
                     $geoArr = explode("-", $value);
                     $tmp = "";
@@ -129,10 +128,10 @@ class Application_Model_AdSolr {
                     }
                     $geoList[] = $tmp . "*";
                     $value = "(" . implode(" OR ", $geoList) . ")";
-                    break;
 
+                default:
+                    $this->getQuery()->createFilterQuery($key)->setQuery($key.':'.$value);
             }
-            $this->getQuery()->createFilterQuery($key)->setQuery($key.':'.$value);
         }
     }
 
@@ -149,7 +148,7 @@ class Application_Model_AdSolr {
 
     protected function clearAllSolrData() {
         $update = $this->getClient()->createUpdate();
-        $update->addDeleteQuery('id:*');
+        $update->addDeleteQuery('post_id:*');
         $update->addCommit();
         $result = $this->getClient()->update($update);
 
