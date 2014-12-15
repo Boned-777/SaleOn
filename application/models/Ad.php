@@ -272,7 +272,7 @@ class Application_Model_Ad
         }
     }
 
-    public function getList($params=null) {
+    public function getList($params=null, $useSolr=false) {
         $sort = isset($params["sort"]) ? $params["sort"] : "regular";
         switch ($sort) {
             case "favorite" :
@@ -280,7 +280,11 @@ class Application_Model_Ad
                 break;
 
             default :
-                $items = $this->getSolrList($params);
+                if ($useSolr) {
+                    $items = $this->getSolrList($params);
+                } else {
+                    $items = $this->getRegularList($params);
+                }
         }
 
         return $items;
