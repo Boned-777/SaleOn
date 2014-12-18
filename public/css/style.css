@@ -1628,12 +1628,13 @@ img#banner{
     border-bottom:solid orange 2px;
 
 }
-.show-seo-text{
+.seo-text-show{
     background-image: url("../img/arrow-down.png");
     background-repeat: no-repeat;
     display: block;
     position: relative;
     width: 128px;
     height: 128px;
-    left: 44%;
+    left: 43%;
+    margin-top: -4%;
 }
