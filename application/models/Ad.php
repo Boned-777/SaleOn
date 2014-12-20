@@ -212,8 +212,40 @@ class Application_Model_Ad
 
     public function getSolrList($params=null) {
         $adSolr = new Application_Model_AdSolr();
-        $data = $adSolr->getAds($params);
-        return $data->getData();
+        $solrData = $adSolr->getAds($params);
+        $data = $solrData->getData();
+
+        $user = null;
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity()) {
+            $user = $auth->getIdentity();
+        }
+
+        if (is_null($user)) {
+            foreach ($data["response"]["docs"] as $key => $val) {
+                $data["response"]["docs"][$key]["favorites_link"] = '/auth';
+                $data["response"]["docs"][$key]["is_favorite"] = 0;
+            }
+        } else {
+            $favoritesList = array();
+            if (!empty($user->favorites_ads)) {
+                $favoritesList = explode(",", $user->favorites_ads);
+            }
+            foreach ($data["response"]["docs"] as $key => $val) {
+                $isFavorite = in_array($val["post_id"], $favoritesList);
+                $data["response"]["docs"][$key]["favorites_link"] =
+                    $this->getFavoritesLink(
+                        $val["post_id"],
+                        $isFavorite
+                    );
+                $data["response"]["docs"][$key]["is_favorite"] = $isFavorite ? 1 : 0;
+            }
+        }
+        return $data;
+    }
+
+    public function getFavoritesLink($id, $isFavorite) {
+        return '/user/favorites?ad_id=' . $id . '&act=' . (!$isFavorite ? "add" : "remove");
     }
 
     public function getRegularList($params=null) {
@@ -628,6 +660,7 @@ class Application_Model_Ad
             $solrDocument->geo = $this->location->getLocationsList();
             $translite = new Zend_Filter_Transliteration();
             $solrDocument->seo_name = $this->id . "_" . $translite->filter($this->name);
+            $solrDocument->days = $this->getDaysCount();
 
             foreach ($this->splitGeo($solrDocument->geo) as $geoKey=>$geoVal) {
                 $propName = "geoLvl_" . $geoKey;
