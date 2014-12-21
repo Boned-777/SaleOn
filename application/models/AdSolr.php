@@ -34,7 +34,7 @@ class Application_Model_AdSolr {
 
     public function getAds($params=null) {
         $query = $this->getQuery();
-        $query->setRows(10000000);
+        $query->setRows(9999);
         $query->setFields(array(
             "post_id",
             "post_full_url",
@@ -44,7 +44,7 @@ class Application_Model_AdSolr {
             "description",
             //"favorites_link",
             //"is_favorite",
-            //"days",
+            "days",
             "seo_name"
         ));
         $this->applyParams($params);
@@ -115,7 +115,10 @@ class Application_Model_AdSolr {
         foreach((array)$params as $key=>$value) {
             switch ($key) {
                 case 'sort':
-                    continue;
+                    if ($value == "new")
+                    $this->getQuery()->addSort("public_dt", "DESC");
+                    break;
+                case 'favorites_list' :
                     break;
 
                 case 'geo' :
