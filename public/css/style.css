@@ -5,6 +5,10 @@ body {
     min-width: 1005px;
 }
 
+/*.disable-hover {
+  pointer-events: none;
+}*/
+
 /* Wrapper for page content to push down footer */
 #wrap {
     min-height: 100%;
@@ -292,38 +296,34 @@ body {
 /* Waw slider start*/
 .img-polaroid {
 	width: 240px;
+	/*height: 153px;*/
+	box-shadow: 0 0 0 #000;
     border-radius: 6px;
     box-shadow: 20px 15px 20px -23px #333333;
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+
     /* To reduce image transitions put 0.3s ease width */
-    -webkit-transition: 0.5s ease width, 0.6s ease opacity;
-    -moz-transition: 0.5s ease width, 0.6s ease opacity;
-    -o-transition: 0.5s ease width, 0.6s ease opacity;
-    transition: 0.5s ease width, 0.6s ease opacity;
+    -webkit-transition: 0.4s ease width, 0.6s ease opacity;
+    -moz-transition: 0.4s ease width, 0.6s ease opacity;
+    -o-transition: 0.4s ease width, 0.6s ease opacity;
+    transition: 0.4s ease width, 0.6s ease opacity;
 
 }
 
 .carousel-inner > .prev.right,
 .carousel-inner > .next.left  {
     opacity: 1;
-    -webkit-transition: 0.8s ease left;
-    -moz-transition: 0.8s ease left;
-    -o-transition: 0.8s ease left;
-    transition: 0.8s ease left;
+}
 
-}
-/*
-.carousel-inner > .prev.right img,
-.carousel-inner > .next.left img {
-	width: 190px;
-    -webkit-transition: 0.4s ease width;
-    -moz-transition: 0.4s ease width;
-    -o-transition: 0.4s ease width;
-    transition: 0.4s ease width;
-}
-*/
 .item {
 	top: 0px;
 }
@@ -334,21 +334,18 @@ body {
     position: absolute;
     width: 100%;
     z-index: 1000;
-    -webkit-transition: 0.8s ease left;
-    -moz-transition: 0.8s ease left;
-    -o-transition: 0.8s ease left;
-    transition: 0.8s ease left;
 }
 
-.item.hover-left img,
-.item.hover-right img {
+.item.hover-left .img-polaroid,
+.item.hover-right .img-polaroid {
     opacity: 0.5;
     width: 190px;
-    /* To reduce image transitions put 0.3s ease width */
+
+    /*  height: 121px;To reduce image transitions put 0.3s ease width 
     -webkit-transition: 0.5s ease width, 0.6s ease opacity;
     -moz-transition: 0.5s ease width, 0.6s ease opacity;
     -o-transition: 0.5s ease width, 0.6s ease opacity;
-    transition: 0.5s ease width, 0.6s ease opacity;
+    transition: 0.5s ease width, 0.6s ease opacity;*/
 }
 .item.hover-left {
     left: -100%;
@@ -367,8 +364,15 @@ body {
     left: -139%;
 }
 
+
+.carousel-inner > .prev.right .items-wrapper,
+.carousel-inner > .next.left .items-wrapper  {
+	margin-top: 0px; 
+}
+
 .items-wrapper {
     width:1170px;
+    margin-top: 0px; 
     -webkit-transition: 0.6s ease margin, 0.6s ease width;
     -moz-transition: 0.6s ease margin, 0.6s ease width;
     -o-transition: 0.6s ease margin, 0.6s ease width;
@@ -397,15 +401,19 @@ body {
     display: block;
     position: relative;
 	/* To reduce image transitions put 0.3s ease width */
-    -webkit-transition: 0.5s ease width;
-    -moz-transition: 0.5s ease width;
-    -o-transition: 0.5s ease width;
-    transition: 0.5s ease width;
+
+    -webkit-transition: 0.4s ease width;
+    -moz-transition: 0.4s ease width;
+    -o-transition: 0.4s ease width;
+    transition: 0.4s ease width;
+    
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+
 .no-image {
 	width: 100%;
 	height: 100%;
@@ -554,13 +562,16 @@ a.no-image-href {
         }
     }
 
+	.item.hover-left .items-wrapper {
+		width: 950px;
+		margin: 0px 0 0 50px;
+	}
+	.item.hover-right .items-wrapper {
+		width: 950px;
+		margin: 00px 0 0 33px;
+	}
     .carousel-inner {
         height: 405px;
-    }
-    .item.hover-left .items-wrapper,
-    .item.hover-right .items-wrapper {
-        width: 820px;
-
     }
     .item.hover-right {
         left: 95%;
@@ -604,6 +615,7 @@ a.no-image-href {
     .img-info{ 
     	padding: 60px 10px 0; 
     }
+   
     /*.no-image:hover {
         background: url("/img/no_ad-hover.png") center center no-repeat !important;
     }*/
@@ -788,6 +800,21 @@ a.no-image-href {
 
 
 /*fix firefox start*/
+.firefox-slider .item.hover-left .items-wrapper {
+    margin: 0 0 0 -60px;
+     width: 1170px;
+}
+.firefox-slider .item.hover-right .items-wrapper {
+    margin: 0 0 0 60px;
+     width: 1170px;
+}
+.firefox-slider .item.hover-left .img-polaroid, 
+.firefox-slider .item.hover-right .img-polaroid {
+    opacity: 0.5;
+    width: 240px;
+}
+
+/*
 .firefox-slider .item.hover-left,
 .firefox-slider .item.hover-right {
     top: 1px;
@@ -824,10 +851,7 @@ a.no-image-href {
     width: inherit;
     -moz-transition: 0.4s ease margin, 0.4s ease width, 0.4s ease padding;
 }
-/*.firefox-slider .item.hover-left img,
-.firefox-slider .item.hover-right img {
-    width: inherit;
-}*/
+
 .firefox-slider .item.hover-left .no-image,
 .firefox-slider .item.hover-right .no-image {
     width: 240px;
@@ -836,7 +860,15 @@ a.no-image-href {
 .firefox-slider .page-number span{
     margin-top: ;
 }
+*/
 @media (min-width: 1200px) and (max-width: 1500px) {
+
+    .item.hover-left .img-wrapper,
+    .item.hover-right .img-wrapper {
+        width: 230px;
+    }
+
+/*
     .firefox-slider .item.hover-left {
         left: -83%;
         margin-top: 45px;
@@ -863,9 +895,9 @@ a.no-image-href {
     .firefox-slider .page-number{
         margin: 23px 0px 10px;
     }
-
+*/
 }
-
+/*
 @media (min-width: 1500px) {
     .firefox-slider .item.hover-left {
         left: -104%;
@@ -890,25 +922,18 @@ a.no-image-href {
     .firefox-slider .item.hover-right.hide-right {
         left: 259%;
     }
-    /*not shure we need this*/
-    /*.firefox-slider .page-number{
-        margin: 23px 0px 10px;
-    }*/
 
 }
+*/
 @media (max-width: 1199px) {
-    .firefox-slider .item.hover-left {
-        left: -96%;
-        margin-top: 45px;
-    }
-    .firefox-slider .item.hover-right {
-        left: 99%;
-        margin-top: 45px;
-    }
-    .firefox-slider .item.hover-left .no-image,
-    .firefox-slider .item.hover-right .no-image {
-        width: 190px;
-    }
+.firefox-slider .item.hover-left .items-wrapper {
+    margin: 0;
+     width: 970px;
+}
+.firefox-slider .item.hover-right .items-wrapper {
+    margin: 0 0 0 80px;
+     width: 1170px;
+}
 }
 
 /*fix firefox end*/
