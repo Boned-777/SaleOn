@@ -317,7 +317,7 @@ $(function () {
         // },
 
         isFavoritesOff : function (target) {
-            var itemId = target.data("id"),
+            var itemId = target.data("id").toString(),
                 itemData = _.findWhere(this.data.list, {post_id: itemId});
             return target.hasClass("favorites-icon-off") && (itemData.is_favorite == 0);
         },
