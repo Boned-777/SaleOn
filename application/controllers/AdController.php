@@ -69,6 +69,9 @@ class AdController extends Zend_Controller_Action
     public function randomizeAction() {
         $item = new Application_Model_Ad();
         $item->randomizeAll();
+
+        $solr = new Application_Model_AdSolr();
+        $solr->updateAllSolrData();
     }
 
     public function newAction()

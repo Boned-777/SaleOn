@@ -26,7 +26,6 @@ $(function () {
 									<div id="left-paging" class="mycarousel-control left" href="#myCarousel" data-slide="prev"></div>\
 									<div id="right-paging" class="mycarousel-control right" href="#myCarousel" data-slide="next"></div>\
 									<div class="text-center lead page-number"><span id="page-number"></span></div>\
-									<div class="seo-text-show"></div>\
 									<div class="lock-gray"></div>\
 								</div>';
 
