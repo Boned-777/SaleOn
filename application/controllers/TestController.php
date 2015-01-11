@@ -25,7 +25,7 @@ class TestController extends Zend_Controller_Action
         $userId = isset($this->user) ? $this->user : null;
 
         if ($userId) {
-            $preparedParams["filterParams"]["user_id"] = $userId->id;
+            $preparedParams["filterParams"]["user_id"] = $userId;
             $preparedParams["filterParams"]["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
         }
 
