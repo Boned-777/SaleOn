@@ -261,6 +261,7 @@ class Application_Model_Ad
                 switch ($key) {
                     case "sort":
                     case "favorites_list" :
+                    case "user-id" :
                         break;
                     case "geo" :
                         $item->select()->setIntegrityCheck(false);
@@ -296,6 +297,7 @@ class Application_Model_Ad
             foreach ($data AS $val) {
                 $tmp = new Application_Model_Ad();
                 $tmp->load($val);
+
                 $res[] = $tmp;
             }
             return $res;
@@ -305,21 +307,27 @@ class Application_Model_Ad
     }
 
     public function getList($params=null, $useSolr=false) {
+        $resData = array();
         $sort = isset($params["sort"]) ? $params["sort"] : "regular";
         switch ($sort) {
             case "favorite" :
                 $items = $this->getFavorites($params["favorites_list"]);
+                foreach ($items as $item) {
+                    $resData[] = $item->toListArray($params["user_id"]);
+                }
                 break;
 
             default :
                 if ($useSolr) {
                     $items = $this->getSolrList($params);
+                    $resData = $items["response"]["docs"];
                 } else {
                     $items = $this->getRegularList($params);
+                    $resData = $items;
                 }
         }
 
-        return $items;
+        return $resData;
     }
 
     public function getNewsList($params=null) {
@@ -660,7 +668,7 @@ class Application_Model_Ad
             $solrDocument->geo = $this->location->getLocationsList();
             $translite = new Zend_Filter_Transliteration();
             $solrDocument->seo_name = $this->id . "_" . $translite->filter($this->name);
-            $solrDocument->days = $this->getDaysCount();
+            $solrDocument->days = $this->getDaysLeft();
 
             foreach ($this->splitGeo($solrDocument->geo) as $geoKey=>$geoVal) {
                 $propName = "geoLvl_" . $geoKey;

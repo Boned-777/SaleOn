@@ -119,6 +119,7 @@ class Application_Model_AdSolr {
                     $this->getQuery()->addSort("public_dt", "DESC");
                     break;
                 case 'favorites_list' :
+                case 'user_id':
                     break;
 
                 case 'geo' :

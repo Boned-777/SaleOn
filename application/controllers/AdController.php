@@ -355,12 +355,13 @@ class AdController extends Zend_Controller_Action
         $filterParams = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
         $userId = isset($this->user) ? $this->user : null;
         if ($userId) {
+            $filterParams["user_id"] = $userId->id;
             $filterParams["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
         }
         $ad = new Application_Model_Ad();
         $data = $ad->getList($filterParams, true);
         $res = array(
-            "list" => $data["response"]["docs"],
+            "list" => $data,
             "options" => array(
                 "days_left_text" => $translate->getAdapter()->translate("days_left")
             ),

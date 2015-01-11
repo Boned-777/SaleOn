@@ -22,19 +22,16 @@ class TestController extends Zend_Controller_Action
         $pageTitle = implode(" / ", $preparedParams["filterNames"]);
         $this->view->headTitle($pageTitle);
         $this->view->headTitle()->setSeparator(' / ');
-        $data = array();
         $userId = isset($this->user) ? $this->user : null;
 
         if ($userId) {
+            $preparedParams["filterParams"]["user_id"] = $userId->id;
             $preparedParams["filterParams"]["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
         }
 
         $ad = new Application_Model_Ad();
-        $res = $ad->getList($preparedParams["filterParams"]);
-        foreach ($res AS $val) {
-            $data[] = $val->toListArray($userId);
-        }
-        $this->view->items = $data;
+        $res = $ad->getList($preparedParams["filterParams"], true);
+        $this->view->items = $res;
     }
 
     protected function prepareParams($data) {
