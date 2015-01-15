@@ -22,7 +22,6 @@
 				this.registerDOMElements();
 				this.bindEvents();
 				this.applyUrlState();
-				// this.isNewsPage() && this.clearCategoryBrandsCookies();
 				this.isFavoritesPage() && this.extendSliderForFavorites();
 				this.isBrowserCompatible() && this.isSliderPage() && this.initWawSlider();	
 			},
@@ -32,6 +31,7 @@
 					regionsBtn 	 : $("#btn1"),
 					categoryBtn  : $("#btn2"),
 					brandsBtn    : $("#btn3"),
+					newBtn  	 : $("#btn4"),
 					filterModal  : $("#filters-modal"),
 					regionsModal : $("#regions-modal"),
 					brandsModal  : $("#brands-modal"),
@@ -50,6 +50,10 @@
 				this.dom.brandsBtn.on("click", function(e){
 					that.initBrands();
 				});
+				this.dom.newBtn.on("click", function(e){
+					that.initNew();
+				});
+
 				// $(".credit").on("click", function(e){
 				// 	that.slider = null;
 				// 	that.slider = new that.wawSlyder(that.duplicateResponce(that.originalData, 83));	
@@ -102,10 +106,6 @@
 			isFavoritesPage : function () {
 				return ($.cookie('sort') == "favorite");
 			},
-			isNewsPage : function () {
-				return ($.cookie('sort') == "new");
-			},
-
 
 			/* slider */
 			initWawSlider : function () {
@@ -235,22 +235,35 @@
 				}, this));
 			},
 
+			initNew : function () {
+				if(this.isNewActive()) {
+					this.clearSortingCookies();
+				} else {
+					this.setSortingCookie();	
+				}
+				this.setFiltersButtonHilight();
+				var url = this.prepareURL();
+				this.isMainPage() ? (this.updateURL(url) && this.initWawSlider()) : this.loadURL(url);
+			},
+
 			/* URL methods */
 			prepareURL : function () {
-				var defaultRegion = defaultCategory = defaultBrand = "any",
-					urlTemplate 	= _.template("/filter/<%= region %>/<%= category %>/<%= brand %>/<%= product %>");
+				var newAction = "/new",
+					defaultRegion = defaultCategory = defaultBrand = "any",
+					urlTemplate 	= _.template("/filter/<%= region %>/<%= category %>/<%= brand %>/<%= product %><%= latest %>");
 				return urlTemplate({
 					region 		: $.cookie('geo') 		|| defaultRegion,
 					category 	: $.cookie('category') 	|| defaultCategory,
 					brand 		: $.cookie('brand') 	|| defaultBrand,
 					product 	: $.cookie('product') 	|| defaultBrand,
+					latest 		: ($.cookie('sort') && $.cookie('sort') == 'new') ? newAction : ""
 				});
 			},
 
 			updateURL : function (url) {
 				var title = "title";
 				history.pushState(null, title, url);
-				this.clearSortingCookies();
+				this.clearFavoritesCookies();
 				return true;
 			},
 
@@ -260,13 +273,15 @@
 
 			
 			setRegionCookie : function (data) {
-				this.clearAllCookies();
+				this.clearAllWithoutNewCookies();
 				$.cookie('geo', data, this.cookieOptions);
             },
 			setCategoryCookie : function (data) {
 				this.clearCategoryBrandsCookies();
 				$.cookie('category', data, this.cookieOptions);
-                
+			},
+			setSortingCookie : function () {
+				$.cookie('sort', 'new', this.cookieOptions);
 			},
 			setBrandsCookie : function (data) {
 				this.clearCategoryBrandsCookies();
@@ -282,6 +297,11 @@
             	this.clearCategoryBrandsCookies();
             	this.clearSortingCookies();
             },
+            clearAllWithoutNewCookies : function () {
+            	$.removeCookie("geo", this.cookieOptions);
+            	this.clearCategoryBrandsCookies();
+            	this.clearFavoritesCookies();
+            },
 
 			clearCategoryBrandsCookies : function () {
 				$.removeCookie("category", this.cookieOptions);
@@ -291,6 +311,10 @@
 
 			clearSortingCookies : function () {
 				$.removeCookie("sort", this.cookieOptions);
+			},
+
+			clearFavoritesCookies : function () {
+				($.cookie('sort') && $.cookie('sort') == 'favorite') && $.removeCookie("sort", this.cookieOptions);
 			},
 
 			setFiltersButtonHilight : function () {
@@ -303,6 +327,10 @@
 				
 				(($.cookie('brand') && ($.cookie('brand') != defaultBrand)) || ($.cookie('product') && ($.cookie('product') != defaultBrand)))
 					? this.dom.brandsBtn.addClass("bractive") : this.dom.brandsBtn.removeClass("bractive");
+
+  				($.cookie('sort') && $.cookie('sort') == 'new') 
+					? this.dom.newBtn.addClass("newactive") : this.dom.newBtn.removeClass("newactive");
+	
 				
 			},
 
@@ -314,6 +342,10 @@
 				}
 				result.options = source.options;
 				return result;
+			},
+
+			isNewActive : function () {
+				return this.dom.newBtn.hasClass("newactive");
 			},
 
 			isRegionForCategoryChanged : function () {

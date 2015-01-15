@@ -1651,7 +1651,9 @@ img#banner{
 }
 .bractive{
     border-bottom:solid orange 2px;
-
+}
+.newactive{
+    border-bottom:solid green 2px;
 }
 .seo-text-show{
     background-image: url("../img/arrow-down.png");

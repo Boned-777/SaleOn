@@ -63,6 +63,7 @@ $(function () {
             }
 
             //this.currentPage = 1;
+            this.transitionActive = false;
             this.getInitialPageNumber();
             this.renderMainTemplate();
             this.registerDOMElements();
@@ -112,11 +113,11 @@ $(function () {
                 var wrapperContainer = $(e.currentTarget).parent(),
                     target = $(e.target);
 
-                if (that.isRightClick(wrapperContainer)){
+                if (that.isRightClick(wrapperContainer) && !that.isTransitionActive()){
                     e.preventDefault();
                     that.showNextPage();
                 }
-                if (that.isLeftClick(wrapperContainer)){
+                if (that.isLeftClick(wrapperContainer) && !that.isTransitionActive()){
                     e.preventDefault();
                     that.showPreviousPage();
                 }
@@ -129,10 +130,10 @@ $(function () {
             })
             $(document).on("keyup", function (e) {
                 var keyCode = e.which;
-                if(keyCode == 39) { //right key
+                if(keyCode == 39 && !that.isTransitionActive()) { //right key
                     (that.isCycleAvailable() || (that.currentPage == 1 && that.isTwoPages())) && that.showNextPage();
                 }
-                if(keyCode == 37) { //left key
+                if(keyCode == 37 && !that.isTransitionActive()) { //left key
                     (that.isCycleAvailable() || (that.currentPage == 2 && that.isTwoPages())) && that.showPreviousPage();
                 }
                 e.preventDefault();
@@ -182,6 +183,7 @@ $(function () {
 
         showNextPage : function () {
             var that = this;
+            this.setTransitionStart();
             that.dom.rightPagingBtn.trigger("click", {
                 postSlideCallback : function() {that.buildNextHiddenPage()}
             });
@@ -189,6 +191,7 @@ $(function () {
 
         showPreviousPage : function () {
             var that = this;
+            this.setTransitionStart();
             that.dom.leftPagingBtn.trigger("click", {
                 postSlideCallback : function() {that.buildPreviousHiddenPage()}
             });
@@ -231,7 +234,7 @@ $(function () {
                 if (j==0) {result += this.rowTemplate[0]}
                 if (data.list[i]) {
                     result += this.itemTemplate
-                        .replace("$imageLink", 		data.list[i].photoimg)
+                        .replace("$imageLink", 		data.list[i].photoimg || "543614e4370fd.jpg")
                         .replace(/\$link/gi, 		data.list[i].post_id)
                         .replace("$seoLink",   		data.list[i].seo_name)
                         .replace("$favoriteLink", 	data.list[i].favorites_link)
@@ -269,6 +272,7 @@ $(function () {
                 this.refreshHiddenElements();
                 this.buildPage(this.dom.rightHiddenWrapper, this.getIndexes(pageToBuild));
             }
+            this.setTransitionEnd();
         },
 
         buildPreviousHiddenPage : function (){
@@ -279,6 +283,7 @@ $(function () {
                 this.refreshHiddenElements();
                 this.buildPage(this.dom.leftHiddenWrapper, this.getIndexes(pageToBuild));
             }
+            this.setTransitionEnd();
         },
 
         getIndexes : function (page) {
@@ -300,6 +305,21 @@ $(function () {
             if (page == 0) 			{return pageCount}
             if (page == -1)			{return pageCount - 1}
             return page;
+        },
+
+        isTransitionActive : function () {
+            return this.transitionActive;
+        },
+
+        setTransitionStart : function () {
+            this.transitionActive = true;
+        },
+
+        setTransitionEnd : function () {
+            var that = this;
+            setTimeout(function(){
+                that.transitionActive = false;    
+            }, 500);
         },
 
         isRightClick : function (el) {
