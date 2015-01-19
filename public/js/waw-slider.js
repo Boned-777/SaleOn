@@ -234,7 +234,7 @@ $(function () {
                 if (j==0) {result += this.rowTemplate[0]}
                 if (data.list[i]) {
                     result += this.itemTemplate
-                        .replace("$imageLink", 		data.list[i].photoimg || "543614e4370fd.jpg")
+                        .replace("$imageLink", 		data.list[i].photoimg)
                         .replace(/\$link/gi, 		data.list[i].post_id)
                         .replace("$seoLink",   		data.list[i].seo_name)
                         .replace("$favoriteLink", 	data.list[i].favorites_link)
