@@ -320,16 +320,16 @@
 			setFiltersButtonHilight : function () {
 				var defaultRegion = defaultCategory = defaultBrand = "any";
 				($.cookie('geo') && ($.cookie('geo') != defaultRegion)) 
-					? this.dom.regionsBtn.addClass("regactive") : this.dom.regionsBtn.removeClass("regactive");
+					? this.dom.regionsBtn.addClass("bordered-btn regactive") : this.dom.regionsBtn.removeClass("bordered-btn regactive");
 				
 				($.cookie('category') && ($.cookie('category') != defaultCategory)) 
-					? this.dom.categoryBtn.addClass("catactive") : this.dom.categoryBtn.removeClass("catactive");
+					? this.dom.categoryBtn.addClass("bordered-btn catactive") : this.dom.categoryBtn.removeClass("bordered-btn catactive");
 				
 				(($.cookie('brand') && ($.cookie('brand') != defaultBrand)) || ($.cookie('product') && ($.cookie('product') != defaultBrand)))
-					? this.dom.brandsBtn.addClass("bractive") : this.dom.brandsBtn.removeClass("bractive");
+					? this.dom.brandsBtn.addClass("bordered-btn bractive") : this.dom.brandsBtn.removeClass("bordered-btn bractive");
 
   				($.cookie('sort') && $.cookie('sort') == 'new') 
-					? this.dom.newBtn.addClass("newactive") : this.dom.newBtn.removeClass("newactive");
+					? this.dom.newBtn.addClass("bordered-btn newactive") : this.dom.newBtn.removeClass("bordered-btn newactive");
 	
 				
 			},

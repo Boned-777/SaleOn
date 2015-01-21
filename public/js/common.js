@@ -14,6 +14,7 @@ $(function () {
         $.removeCookie("category", cookieOptions);
         $.removeCookie("brand", cookieOptions);
         $.removeCookie("product", cookieOptions);
+        $.removeCookie("sort", this.cookieOptions);
     });
 
     /*Lng switcher*/
@@ -42,6 +43,17 @@ $(function () {
     if (navigator.sayswho == "MSIE 8.0") {
         $("body").addClass("ie-slider");
     }   
+
+    $('.seo-text-show').on("click", function() {
+        var text = $('#seo-text');
+        if (text.is(":visible")){
+            text.hide();
+            $("body").animate({ scrollTop: 0 }, 1000);             
+        } else {
+            text.show();
+            $("body").animate({ scrollTop: $(document).height() }, 1000);
+        }      
+    });
 
 
 	/*Handle success and error message*/

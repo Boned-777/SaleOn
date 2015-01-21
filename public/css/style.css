@@ -296,10 +296,10 @@ body {
 /* Waw slider start*/
 .img-polaroid {
 	width: 240px;
-	/*height: 153px;*/
-	box-shadow: 0 0 0 #000;
+	/*box-shadow: 0 0 0 #000;*/
     border-radius: 6px;
-    box-shadow: 20px 15px 20px -23px #333333;
+    border-width: 0;
+    /*box-shadow: 20px 15px 20px -23px #333333;*/
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1642,18 +1642,24 @@ img#banner{
     position: relative;
     top: -13px;
 }
-.regactive{
-    border-bottom:solid darkviolet 2px;
-}
-.catactive{
-    border-bottom:solid orangered 2px;
+.btn-large.bordered-btn,
+.btn-large.bordered-btn:focus,
+.btn-large.bordered-btn:hover {
+	border-bottom: 2px solid transparent;
+    padding-bottom: 5px;
 
 }
-.bractive{
-    border-bottom:solid orange 2px;
+.btn-large.bordered-btn.regactive{
+    border-bottom-color:darkviolet;
 }
-.newactive{
-    border-bottom:solid green 2px;
+.btn-large.bordered-btn.catactive{
+    border-bottom-color: orangered;
+}
+.btn-large.bordered-btn.bractive{
+    border-bottom-color: orange;
+}
+.btn-large.bordered-btn.newactive{
+    border-bottom-color: green;
 }
 .seo-text-show{
     background-image: url("../img/arrow-down.png");

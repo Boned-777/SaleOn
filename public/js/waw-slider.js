@@ -113,13 +113,13 @@ $(function () {
                 var wrapperContainer = $(e.currentTarget).parent(),
                     target = $(e.target);
 
-                if (that.isRightClick(wrapperContainer) && !that.isTransitionActive()){
+                if (that.isRightClick(wrapperContainer)){
                     e.preventDefault();
-                    that.showNextPage();
+                    that.isTransitionActive() || that.showNextPage();
                 }
-                if (that.isLeftClick(wrapperContainer) && !that.isTransitionActive()){
+                if (that.isLeftClick(wrapperContainer)){
                     e.preventDefault();
-                    that.showPreviousPage();
+                    that.isTransitionActive() || that.showPreviousPage();
                 }
 
                 if (that.isFavoritesClick(target)) {
