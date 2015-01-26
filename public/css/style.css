@@ -1,7 +1,7 @@
 html,
 body {
     height: 100%;
-    background-color: #F8F8F8;
+    /*background-color: #F8F8F8;*/
     min-width: 1005px;
 }
 
@@ -1422,8 +1422,11 @@ a.pluso-more{display: none !important;}
     height: 23px;
     border: none;
 }
-#lng-btn.btn:hover, .btn:focus {
+#lng-btn.btn:hover{
     border: 1px solid #999;
+}
+.menu-button-wrapper .btn-large {
+	outline: 0;
 }
 .ru {
     background-position: 5px -21px !important;
@@ -1647,8 +1650,9 @@ img#banner{
 .btn-large.bordered-btn:hover {
 	border-bottom: 2px solid transparent;
     padding-bottom: 5px;
-
 }
+
+
 .btn-large.bordered-btn.regactive{
     border-bottom-color:darkviolet;
 }

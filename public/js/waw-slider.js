@@ -319,7 +319,7 @@ $(function () {
             var that = this;
             setTimeout(function(){
                 that.transitionActive = false;    
-            }, 500);
+            }, 700);
         },
 
         isRightClick : function (el) {
