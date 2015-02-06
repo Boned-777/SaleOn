@@ -312,10 +312,10 @@ body {
     transform: translateZ(0);
 
     /* To reduce image transitions put 0.3s ease width */
-    -webkit-transition: 0.4s ease width, 0.6s ease opacity;
-    -moz-transition: 0.4s ease width, 0.6s ease opacity;
-    -o-transition: 0.4s ease width, 0.6s ease opacity;
-    transition: 0.4s ease width, 0.6s ease opacity;
+    -webkit-transition: 0.7s ease width, 0.8s ease opacity;
+    -moz-transition: 0.7s ease width, 0.8s ease opacity;
+    -o-transition: 0.7s ease width, 0.8s ease opacity;
+    transition: 0.7s ease width, 0.8s ease opacity;
 
 }
 
@@ -324,8 +324,12 @@ body {
     opacity: 1;
 }
 
-.item {
+.carousel-inner > .item {
 	top: 0px;
+    -webkit-transition: 0.8s ease-in-out left, 0.8s ease top;
+    -moz-transition: 0.8s ease-in-out left, 0.8s ease top;
+    -o-transition: 0.8s ease-in-out left, 0.8s ease top;
+	transition: 0.8s ease-in-out left, 0.8s ease top;
 }
 
 .item.hover-left,
@@ -334,6 +338,7 @@ body {
     position: absolute;
     width: 100%;
     z-index: 1000;
+    top: 50px;
 }
 
 .item.hover-left .img-polaroid,
@@ -373,24 +378,24 @@ body {
 .items-wrapper {
     width:1170px;
     margin-top: 0px; 
-    -webkit-transition: 0.6s ease margin, 0.6s ease width;
-    -moz-transition: 0.6s ease margin, 0.6s ease width;
-    -o-transition: 0.6s ease margin, 0.6s ease width;
-    transition: 0.6s ease margin, 0.6s ease width;
+    -webkit-transition: 1.0s ease-in margin, 0.4s ease-in width;
+    -moz-transition: 1.0s ease margin, 0.4s ease-in width;
+    -o-transition: 1.0s ease margin, 0.4s ease-in width;
+    transition: 1.0s ease margin, 0.4s ease-in width;
 }
 .item.hover-left .items-wrapper {
     width:950px;
-    margin: 50px 0 0 200px;
+    margin: 0 0 0 200px;
 }
 .item.hover-right  .items-wrapper {
     width:950px;
-    margin: 50px 0 0 33px;
+    margin: 0 0 0 33px;
 }
 .item.hover-right.hide-right .items-wrapper {
-	margin: 50px 0 0 0px;
+	margin: 0 0 0 0px;
 }
 .item.hover-left.hide-left .items-wrapper {
-	margin: 50px 0 0 0px;
+	margin: 0 0 0 0px;
 }
 /*Waw slider end*/
 
@@ -402,10 +407,10 @@ body {
     position: relative;
 	/* To reduce image transitions put 0.3s ease width */
 
-    -webkit-transition: 0.4s ease width;
-    -moz-transition: 0.4s ease width;
-    -o-transition: 0.4s ease width;
-    transition: 0.4s ease width;
+    -webkit-transition: 0.8s ease width;
+    -moz-transition: 0.8s ease width;
+    -o-transition: 0.8s ease width;
+    transition: 0.8s ease width;
     
 
     -webkit-box-sizing: border-box;
