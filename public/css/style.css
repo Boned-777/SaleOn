@@ -312,10 +312,10 @@ body {
     transform: translateZ(0);
 
     /* To reduce image transitions put 0.3s ease width */
-    -webkit-transition: 0.7s ease width, 0.8s ease opacity;
-    -moz-transition: 0.7s ease width, 0.8s ease opacity;
-    -o-transition: 0.7s ease width, 0.8s ease opacity;
-    transition: 0.7s ease width, 0.8s ease opacity;
+    -webkit-transition: 0.5s ease width, 0.6s ease opacity;
+    -moz-transition: 0.5s ease width, 0.6s ease opacity;
+    -o-transition: 0.5s ease width, 0.6s ease opacity;
+    transition: 0.5s ease width, 0.6s ease opacity;
 
 }
 
@@ -326,10 +326,10 @@ body {
 
 .carousel-inner > .item {
 	top: 0px;
-    -webkit-transition: 0.8s ease-in-out left, 0.8s ease top;
-    -moz-transition: 0.8s ease-in-out left, 0.8s ease top;
-    -o-transition: 0.8s ease-in-out left, 0.8s ease top;
-	transition: 0.8s ease-in-out left, 0.8s ease top;
+    -webkit-transition: 0.6s ease-in-out left, 0.6s ease top;
+    -moz-transition: 0.6s ease-in-out left, 0.6s ease top;
+    -o-transition: 0.6s ease-in-out left, 0.6s ease top;
+	transition: 0.6s ease-in-out left, 0.6s ease top;
 }
 
 .item.hover-left,
@@ -378,10 +378,10 @@ body {
 .items-wrapper {
     width:1170px;
     margin-top: 0px; 
-    -webkit-transition: 1.0s ease-in margin, 0.4s ease-in width;
-    -moz-transition: 1.0s ease margin, 0.4s ease-in width;
-    -o-transition: 1.0s ease margin, 0.4s ease-in width;
-    transition: 1.0s ease margin, 0.4s ease-in width;
+    -webkit-transition: 0.8s ease-in margin, 0.2s ease-in width;
+    -moz-transition: 0.8s ease margin, 0.2s ease-in width;
+    -o-transition: 0.8s ease margin, 0.2s ease-in width;
+    transition: 0.8s ease margin, 0.2s ease-in width;
 }
 .item.hover-left .items-wrapper {
     width:950px;
@@ -407,10 +407,10 @@ body {
     position: relative;
 	/* To reduce image transitions put 0.3s ease width */
 
-    -webkit-transition: 0.8s ease width;
-    -moz-transition: 0.8s ease width;
-    -o-transition: 0.8s ease width;
-    transition: 0.8s ease width;
+    -webkit-transition: 0.6s ease width;
+    -moz-transition: 0.6s ease width;
+    -o-transition: 0.6s ease width;
+    transition: 0.6s ease width;
     
 
     -webkit-box-sizing: border-box;
@@ -805,6 +805,11 @@ a.no-image-href {
 
 
 /*fix firefox start*/
+.firefox-slider .item.hover-left, 
+.firefox-slider .item.hover-right {
+	top: 0;
+}
+
 .firefox-slider .item.hover-left .items-wrapper {
     margin: 0 0 0 -60px;
      width: 1170px;
