@@ -15,15 +15,18 @@ class Application_Model_Partner
     public $email;
     public $addresses;
 
+    public $user;
 
     public function create($data) {
         $dbItem = new Application_Model_DbTable_User();
         $res = $dbItem->create(array(
             "password" => $data["password"],
-            "username" => $data["username"]
+            "username" => $data["username"],
+            "role" => Application_Model_User::PARTNER
         ));
-        if (!$res)
+        if (!$res) {
             return false;
+        }
         $this->load($data);
         $this->user_id = $res;
         $this->save();
@@ -38,13 +41,13 @@ class Application_Model_Partner
                     $this->brand = null;
                     $this->brand_name = null;
 
-                    $item = new Application_Model_DbTable_Brand();
-                    $res = $item->getOrCreate($data['brand'], !empty($data['brand_name']) ? $data['brand_name'] : null);
+                    //$item = new Application_Model_DbTable_Brand();
+                    //$res = $item->getOrCreate($data['brand'], !empty($data['brand_name']) ? $data['brand_name'] : null);
 
-                    if ($res !== false) {
-                        $this->brand = $res->id;
-                        $this->brand_name = $res->name;
-                    }
+//                    if ($res !== false) {
+//                        $this->brand = $res->id;
+//                        $this->brand_name = $res->name;
+//                    }
                     break;
 
                 case "addresses":
@@ -92,18 +95,31 @@ class Application_Model_Partner
         return $data;
     }
 
+    public function getByUsername($username) {
+        if ($username) {
+            $user = new Application_Model_User();
+            if ($user->getByUsername($username)) {
+                return $this->getByUserId($user->id);
+            }
+        }
+        return false;
+    }
+
     public function getByUserId($id) {
         $dbItem = new Application_Model_DbTable_Partner();
         $stmt = $dbItem->select()->where("user_id = ?", $id);
         $stmt = $stmt->query();
         $result = $stmt->fetchAll();
-        if (isset($result[0])) {
-            $this->load($result[0]);
+
+        if (current($result)) {
+            $this->load(current($result));
         } else {
             return false;
         }
 
-        return $result[0];
+        $this->user = new Application_Model_User();
+        $this->user->getByUserId($id);
+        return current($result);
     }
 
     public function toArray() {

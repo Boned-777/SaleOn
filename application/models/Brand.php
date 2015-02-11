@@ -2,8 +2,12 @@
 class Application_Model_Brand {
     var $id;
     var $name;
+    var $user_id;
     var $partner;
     var $status;
+    var $description;
+
+    var $owner;
 
     var $_dbItem;
 
@@ -12,14 +16,30 @@ class Application_Model_Brand {
     const NEW_BRAND = "NEW_BRAND";
 
     public function get($id) {
+        if (!(int)$id) {
+            return false;
+        }
+
         $db = new Application_Model_DbTable_Brand();
         $this->_dbItem = $db->find($id);
         if ($this->_dbItem) {
             $resArr = $this->_dbItem->toArray();
-            $this->loadData($resArr);
+            $this->loadData($resArr[0]);
             return $resArr;
         }
         return false;
+    }
+
+    public function getOwner() {
+        $this->owner = new Application_Model_Partner();
+        if ($this->user_id) {
+            $this->owner->getByUserId($this->user_id);
+        }
+    }
+
+    public function setOwner($partner) {
+        $this->owner = $partner;
+        $this->save();
     }
 
     public function getByPartnerId($id) {
@@ -34,8 +54,9 @@ class Application_Model_Brand {
         $fields = array(
             "id",
             "name",
-            "partner",
-            "status"
+            "user_id",
+            "status",
+            "description"
         );
         foreach ($fields as $field) {
             if (isset($data[$field])) {
@@ -47,7 +68,7 @@ class Application_Model_Brand {
 
     public function create($brandName, $partnerId) {
         $this->name = $brandName;
-        $this->partner = $partnerId;
+        $this->user_id = $partnerId;
         $this->status = self::NEW_BRAND;
         if ($this->id = $this->save()) {
             return $this->id;
@@ -59,8 +80,9 @@ class Application_Model_Brand {
         $fields = array(
             "id",
             "name",
-            "partner",
-            "status"
+            "user_id",
+            "status",
+            "description"
         );
         $resArr = array();
         foreach ($fields as $field) {
@@ -68,11 +90,32 @@ class Application_Model_Brand {
                 $resArr[$field] = $this->$field;
             }
         }
+
+        if ($this->owner) {
+            $resArr["user_id"] = $this->owner->user_id;
+        }
         return $resArr;
     }
 
     public function save() {
         $db = new Application_Model_DbTable_Brand();
-        return $db->save($this->toArray());
+        return $db->save($this->toArray(), $this->id);
     }
+
+    public function getAll() {
+        $brandDb = new Application_Model_DbTable_Brand();
+        $select = $brandDb->select()
+            ->from(array("b" => "brands"))
+            ->joinLeft(array("u" => "users"), "u.id = b.user_id")
+            ->setIntegrityCheck(false);
+
+        $select->reset(Zend_Db_Select::COLUMNS);
+        $select->columns(array("b.*", "u.username"));
+
+        $data = $brandDb->fetchAll($select);
+
+        return $data->toArray();
+    }
+
+
 }

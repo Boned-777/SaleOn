@@ -1,9 +1,5 @@
 <?php
-require_once APPLICATION_PATH.'/../library/Google/Google_Client.php';
-require_once APPLICATION_PATH.'/../library/Google/contrib/Google_PlusService.php';
-require_once APPLICATION_PATH.'/../library/Google/contrib/Google_Oauth2Service.php';
-
-class Application_Model_User
+class Application_Model_UniversalUser
 {
     const  PARTNER = "PARTNER";
     const  USER = "USER";
@@ -47,58 +43,16 @@ class Application_Model_User
         return $data;
     }
 
-    public function toObject() {
-        $vars = get_class_vars(get_class());
-        $data = new stdClass();
-        foreach ($vars as $key => $value) {
-            switch ($key) {
-                case 'brand_name' :
-                    break;
-
-                default:
-                    $data->$key = $this->$key;
-                    break;
-            }
-        }
-        return $data;
+    public function loadExtras($data) {
+        return true;
     }
 
-    public function get($id) {
-        $dbItem = new Application_Model_DbTable_Partner();
-        $data = $dbItem->get($id);
-        if ($data !== false)
-            $this->load($data);
-
-        return $data;
+    public function saveExtras() {
+        return true;
     }
 
-    public function getByUserId($id) {
-        $dbItem = new Application_Model_DbTable_User();
-        $data = $dbItem->get($id);
-        if ($data !== false)
-            $this->load($data);
-
-        return $data;
-    }
-
-    public function getUser($id) {
-        $dbItem = new Application_Model_DbTable_User();
-        $data = $dbItem->get($id);
-        if ($data !== false)
-            $this->load($data);
-
-        return $data;
-    }
-
-    public function getByUsername($username) {
-        $dbItem = new Application_Model_DbTable_User();
-        $data = $dbItem->getByUsername($username);
-        if ($data !== false)
-            $this->load($data);
-        else
-            return false;
-
-        return $data;
+    public function extrasToArray() {
+        return array();
     }
 
     public function getByRecoveryCode($code) {
@@ -169,35 +123,5 @@ class Application_Model_User
         }
     }
 
-    static public function prepareGoogleLink()
-    {
-        $client = new Google_Client();
-        $client->setApplicationName("WantLook");
-        $plus = new Google_PlusService($client);
 
-        if ($client->getAccessToken()) {
-            $client->setUseBatch(true);
-            $batch = new Google_BatchRequest();
-            $batch->add($plus->people->get('me'), 'key1');
-            $batch->add($plus->people->get('me'), 'key2');
-            $result = $batch->execute();
-            $_SESSION['token'] = $client->getAccessToken();
-        } else {
-            $authUrl = $client->createAuthUrl();
-            return $authUrl;
-        }
-    }
-
-    public function getAuthObject() {
-        $obj = new stdClass();
-        $obj->id = $this->id;
-        $obj->username = $this->username;
-        $obj->locale = $this->locale;
-        $obj->role = $this->role;
-        $obj->username = $this->username;
-        $obj->favorites_ads = $this->favorites_ads;
-
-        return $obj;
-    }
 }
-
