@@ -311,6 +311,9 @@ body {
     -o-transform: translateZ(0);
     transform: translateZ(0);
 
+    /*-webkit-font-smoothing: antialiased;
+    	-webkit-transform: rotateZ(360deg);*/
+
     /* To reduce image transitions put 0.3s ease width */
     -webkit-transition: 0.5s ease width, 0.6s ease opacity;
     -moz-transition: 0.5s ease width, 0.6s ease opacity;
@@ -537,10 +540,23 @@ a.no-image-href {
     margin: 10px 0;
     font-family: NumberFont;
 }
-.page-number span {
-    margin-left: -40px;
-
+.page-items:first-child  {
+    margin-left: -60px;
 }
+.page-items {
+    display: inline-block;
+}
+.page-arrows {
+	font-weight: bold;
+	font-size: 27px;
+	cursor: pointer;
+}
+.page-arrows:hover {
+	color: #08C;
+	/*text-decoration: underline;	*/
+}
+
+
 .pluso{margin-bottom: 10px;}
 
 
@@ -579,22 +595,20 @@ a.no-image-href {
         height: 405px;
     }
     .item.hover-right {
-        left: 95%;
+        left: 94%;
     }
-    .item.hover-left img,
-    .item.hover-right img {
+/*    .item.hover-left .img-polaroid,
+    .item.hover-right .img-polaroid {
         width: 140px;
-    }
-    .carousel-inner > .prev.right img,
-    .carousel-inner > .next.left img {
-        width: 190px;
-    }
-    .carousel-inner > .active.right {
-        left: 95%;
-    }
+    }*/
+
     .items-wrapper {
         margin-left: 60px;
         width: 820px;
+    }
+    .item.hover-left, 
+    .item.hover-right {
+    	top: 0px;
     }
     .bottom-offset {
         margin-bottom: 10px;
@@ -608,15 +622,15 @@ a.no-image-href {
     .page-number {
         color: #888888;
         display: none;
-        font-size: 15px;
+        font-size: 18px;
         font-weight: bold;
         line-height: 20px;
         margin: -5px 0 5px 0;
     }
 
-    .page-number span {
-        margin-left: -13px;
-    }
+    .page-items:first-child  {
+    	margin-left: -16px;
+	}
     .img-info{ 
     	padding: 60px 10px 0; 
     }
@@ -702,15 +716,18 @@ a.no-image-href {
     .page-number {
         color: #888888;
         display: none;
-        font-size: 15px;
+        font-size: 18px;
         font-weight: bold;
         line-height: 20px;
         margin: 13px 0 10px 0;
     }
-    .page-number span {
+    .page-items:first-child  {
+    	margin-left: -40px;
+	}
+/*    .page-number span {
         margin-left: -36px;
 
-    }
+    }*/
     .img-info{ padding: 85px 10px 0; }
 }
 

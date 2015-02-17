@@ -25,7 +25,11 @@ $(function () {
 									</div>\
 									<div id="left-paging" class="mycarousel-control left" href="#myCarousel" data-slide="prev"></div>\
 									<div id="right-paging" class="mycarousel-control right" href="#myCarousel" data-slide="next"></div>\
-									<div class="text-center lead page-number"><span id="page-number"></span></div>\
+									<div class="text-center lead page-number">\
+                                        <div class="page-items page-arrows" id="left-paging-arrow">&larr;</div>\
+                                        <div class="page-items" id="page-number"></div>\
+                                        <div class="page-items page-arrows" id="right-paging-arrow">&rarr;</div>\
+                                    </div>\
 									<div class="lock-gray"></div>\
 								</div>';
 
@@ -99,6 +103,8 @@ $(function () {
                 itemWrapper 	: $(".items-wrapper"),
                 rightPagingBtn 	: $("#right-paging"),
                 leftPagingBtn 	: $("#left-paging"),
+                rightPagingArrow: $("#right-paging-arrow"),
+                leftPagingArrow : $("#left-paging-arrow"),
                 activeWrapper 		: $(".active").find(".items-wrapper"),
                 leftVisibleWrapper 	: $(".hover-left.visible").find(".items-wrapper"),
                 rightVisibleWrapper : $(".hover-right.visible").find(".items-wrapper"),
@@ -131,12 +137,23 @@ $(function () {
             $(document).on("keyup", function (e) {
                 var keyCode = e.which;
                 if(keyCode == 39 && !that.isTransitionActive()) { //right key
-                    (that.isCycleAvailable() || (that.currentPage == 1 && that.isTwoPages())) && that.showNextPage();
+                    that.isNextPageAvailable() && that.showNextPage();
                 }
                 if(keyCode == 37 && !that.isTransitionActive()) { //left key
-                    (that.isCycleAvailable() || (that.currentPage == 2 && that.isTwoPages())) && that.showPreviousPage();
+                    that.isPreviousPageAvailable() && that.showPreviousPage();
                 }
                 e.preventDefault();
+            })
+
+            this.dom.rightPagingArrow.on("click", function(e){
+                if(!that.isTransitionActive()) { 
+                    that.isNextPageAvailable() && that.showNextPage();
+                }
+            })
+            this.dom.leftPagingArrow.on("click", function(e){
+                if(!that.isTransitionActive()) { 
+                    that.isPreviousPageAvailable() && that.showPreviousPage();
+                }
             })
         },
 
@@ -210,11 +227,13 @@ $(function () {
         initStartPages : function () {
             var pageNumbers = this.countInitialPageNumbers();
             this.isCycleAvailable() && this.buildPage(this.dom.leftHiddenWrapper, this.getIndexes(pageNumbers.leftHidden));
-            this.isCycleAvailable() && this.buildPage(this.dom.leftVisibleWrapper, this.getIndexes(pageNumbers.leftVisible));
+            ((this.isTwoPages() && this.currentPage == 2) || this.isCycleAvailable()) 
+                && this.buildPage(this.dom.leftVisibleWrapper, this.getIndexes(pageNumbers.leftVisible));
 
             this.buildPage(this.dom.activeWrapper, this.getIndexes(this.currentPage));
 
-            (this.isTwoPages() || this.isCycleAvailable()) && this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(pageNumbers.rightVisible));
+            ((this.isTwoPages() && this.currentPage == 1) || this.isCycleAvailable()) 
+                && this.buildPage(this.dom.rightVisibleWrapper, this.getIndexes(pageNumbers.rightVisible));
             this.isCycleAvailable() && this.buildPage(this.dom.rightHiddenWrapper, this.getIndexes(pageNumbers.rightHidden));
         },
 
@@ -351,6 +370,15 @@ $(function () {
             return (pageCount == 2);
         },
 
+        isNextPageAvailable : function () {
+            return this.isCycleAvailable() || (this.currentPage == 1 && this.isTwoPages());
+        },
+
+        isPreviousPageAvailable : function () {
+            return this.isCycleAvailable() || (this.currentPage == 2 && this.isTwoPages());
+        },
+
+
         refreshHiddenElements : function () {
             this.dom.leftHiddenWrapper = $(".hover-left.hide-left").find(".items-wrapper");
             this.dom.rightHiddenWrapper = $(".hover-right.hide-right").find(".items-wrapper");
@@ -361,6 +389,9 @@ $(function () {
             pageNumber.html(this.currentPage);
             pageNumber.parent().show();
             window.location.hash = "#" + this.currentPage;
+
+            this.isNextPageAvailable()     ? this.dom.rightPagingArrow.show() : this.dom.rightPagingArrow.hide();
+            this.isPreviousPageAvailable() ? this.dom.leftPagingArrow.show()  : this.dom.leftPagingArrow.hide();
         },
 
         showError : function () {
