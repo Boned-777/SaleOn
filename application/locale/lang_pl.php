@@ -215,5 +215,6 @@ return array(
     "remove" => "usuń",
     "new_ad" => "<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
     "map" => "Wszystkie adresy",
-    'lng_switcher' => 'Język strony'
+    'lng_switcher' => 'Język strony',
+    'brand_label' => 'Marka'
 );

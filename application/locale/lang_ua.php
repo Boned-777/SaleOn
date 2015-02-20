@@ -219,5 +219,6 @@ return array (
     "new_ad"=>"<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
     "new_ad_title"=>"Додати акцію",
     'map'=>'Всі адреси',
-    'lng_switcher' => 'Мова сайту'
+    'lng_switcher' => 'Мова сайту',
+    'brand_label' => 'Бренд'
 );
