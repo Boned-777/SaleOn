@@ -15,6 +15,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$data["role"] = $vars["role"];
         $data["social_id"] = "";
         $data["social_type"] = "";
+
         try {
             $item = $this->createRow($data);
             $res = $item->save();
@@ -26,6 +27,8 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		if ($res === false) {
 			return false;
 		}
+
+        $this->sendHelloMsg($data);
 		
 		return $res;
 	}
@@ -45,7 +48,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 			return FALSE;
 		}
 	}
-	
+
 	public function delete($id) {
 		$this->save(array("deleted" => 1), $id);
 	}
@@ -148,28 +151,14 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     }
 
     public function sendHelloMsg($data) {
-        $mailhost= '127.0.0.1';
-        $mailconfig = array(
-            'port'    =>  '25',
-        );
-
-        $transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
-        Zend_Mail::setDefaultTransport($transport);
 
         $text = "Рады приветствовать Вас на сайте saleon.info".
             "\n\n\nWelcome on WantLook.info";
 
-        $mail = new Zend_Mail('UTF-8');
-        $mail->setBodyText($text);
-        $mail->setFrom('no-reply@saleon.info', 'saleon.info');
-        $mail->addTo($data["username"], '');
-        $mail->setSubject('Регистрация на saleon.info');
-        try {
-            $mail->send();
-        } catch (Exception $e) {
-            return false;
-        }
-        return true;
+        $email = new Application_Model_MandrillAdapter();
+        $res = $email->sendText('Регистрация на saleon.info', $text, array($data["username"] => ""));
+
+        return $res;
     }
 }
 
