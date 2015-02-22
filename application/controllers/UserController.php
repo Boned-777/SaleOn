@@ -88,26 +88,11 @@ class UserController extends Zend_Controller_Action
     }
 
     protected function _sendRecoveryMsg($code, $user) {
-        $mailhost= 'smtp.gmail.com';
-        $mailconfig = array(
-            'ssl' => 'tls',
-            'auth' => 'login',
-            'username' => 'wantlookpass@gmail.com ',
-            'password' => 'eBsxvVSkMbnOaqMG'
-        );
-
-        $transport = new Zend_Mail_Transport_Smtp ($mailhost, $mailconfig);
-        Zend_Mail::setDefaultTransport($transport);
-
         $text = "На сайте saleon.info был создан запрос на восстановление пароля. Перейдите по ссылке ниже для окончания процедуры смены пароля.\n\n".
             "http://saleon.info/user/passrecovery?code=" . $code;
 
-        $mail = new Zend_Mail('UTF-8');
-        $mail->setBodyText($text);
-        $mail->setFrom('no-reply@saleon.info', 'saleon.info');
-        $mail->addTo($user->username, '');
-        $mail->setSubject('Восстановление пароля');
-        $mail->send();
+        $email = new Application_Model_MandrillAdapter();
+        return $email->sendText('Восстановление пароля', $text, array($user->username => ""));
     }
 
     public function passrecoveryAction()
