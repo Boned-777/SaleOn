@@ -17,6 +17,7 @@
     </div>
     <div class="span6 details-right">
         <h1><?php echo $this->ad->name; ?></h1>
+        
         <div class="details-description"><?php echo nl2br($this->ad->description); ?></div>
         <br><br>
 
@@ -62,6 +63,7 @@
             </script>
             <div class="pluso" data-background="transparent"
                  data-options="medium,square,line,horizontal,nocounter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email"></div>
+            <h4><?= $translate->getAdapter()->translate("brand_label") ?>: <?php echo $this->ad->brand_name; ?></h4>
             <address><h4>
                 <a id="action-address" class="action-address" href="#action-address-modal" data-id="<?php echo $this->ad->id; ?>">
                     <?php echo $this->ad->address; ?>

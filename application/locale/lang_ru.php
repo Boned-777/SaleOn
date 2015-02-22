@@ -218,5 +218,6 @@ return array(
     "new_ad"=>"<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
     "new_ad_title"=>"Добавить акцию",
     'map'=>'Все адреса',
-    'lng_switcher' => 'Язык сайта'
+    'lng_switcher' => 'Язык сайта',
+    'brand_label' => 'Бренд'
 );

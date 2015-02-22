@@ -215,5 +215,6 @@ return array (
     "new_ad_title"=>"Add",
     'map'=>'All addresses',
     'social_share'=>'Share in social networks',
-    'lng_switcher' => 'Site language'
+    'lng_switcher' => 'Site language',
+    'brand_label' => 'Brand'
 );
