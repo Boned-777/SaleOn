@@ -32,35 +32,39 @@ class IndexController extends Zend_Controller_Action
     {
         global $translate;
         {
-// action body
-// Create form instance
+
+            $layout = Zend_Layout::getMvcInstance();
+            $view = $layout->getView();
             $form = new Application_Form_Contact();
 
-            /**
-             * Get request
-             */
             $request = $this->getRequest();
-            $post = $request->getPost(); // This contains the POST params
 
-            /**
-             * Check if form was sent
-             */
             if ($request->isPost()) {
-                /**
-                 * Check if form is valid
-                 */
-                if ($form->isValid($post)) {
-                    echo'<div id="ok">'.$translate->getAdapter()->translate("contact_ok").'</div>';
-                    $message = 'От: ' . $post['name'] . chr(10) . 'Email: ' . $post['email'] . chr(10) . 'Сообщение: ' . $post['message'];
-// send mail
-                    $mail = new Zend_Mail();
-                    mail('wantlookinfo@gmail.com', 'WantLOOK Feedback Form ' . $post['subject'], $message);
+                $data = $request->getPost();
+
+                if ($form->isValid($data)) {
+                    $message = "<h2>" . $data['name'] . "</h2><p>Email:&nbsp;" . $data['email'] . "</p><p>" . $data['message'] . "</p>";
+
+                    $email = new Application_Model_MandrillAdapter();
+                    $sendRes = $email->sendHTML('Новое сообщение через форму связи', $message,
+                        array(
+                            "saleoninfo@gmail.com" => "SaleON Admin"
+                        ),
+                        array(
+                            'headers' => array(
+                                'Reply-To' => $data['email']
+                            ),
+                            'important' => true
+                        )
+                    );
+                    if ($sendRes !== false) {
+                        $view->successMessage = $translate->getAdapter()->translate("contact_ok");
+                    }
+                    return true;
                 }
+                $view->errorMessage = $translate->getAdapter()->translate("error");;
             }
-
-// give form to view (needed in index.phtml file)
             $this->view->form = $form;
-
         }
     }
 
