@@ -1,9 +1,6 @@
 {
     "require": {
-        "solarium/solarium": "3.3.0"
-    },
-
-    "require": {
+        "solarium/solarium": "3.3.0",
         "mandrill/mandrill": "1.0.*"
     }
 
