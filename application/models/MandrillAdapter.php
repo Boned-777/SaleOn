@@ -73,6 +73,8 @@ class Application_Model_MandrillAdapter {
             );
         }
         $email["to"] = $receiversList;
+
+        $email = array_merge($email, $options);
         return $this->emailBody = $email;
     }
 

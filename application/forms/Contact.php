@@ -1,18 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Pavlo
- * Date: 12.08.14
- * Time: 09:34
- */
-
 class Application_Form_Contact extends Zend_Form
 {
 
     public function init()
     {
-
-
         global $translate;
         $this->setTranslator($translate);
         $this->setmethod('post');
@@ -35,15 +26,15 @@ class Application_Form_Contact extends Zend_Form
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("contact_text"),
             'required' => true,
-            'validators' => array( array('validator' => 'StringLength', 'options' => array(0, 20) )
+            'validators' => array( array('validator' => 'StringLength', 'options' => array(0, 250) )
             )));
 
-       /* $this->addElement('captcha', 'captcha', array(
-            'class' => "input-block-level",
-            'label'      => $translate->getAdapter()->translate("capcha"),
-            'required'   => true,
-            'captcha'    => array('captcha' => 'Figlet','wordLen' => 5,'timeout' => 300 )
-        ));*/
+//       $this->addElement('captcha', 'captcha', array(
+//            'class' => "input-block-level",
+//            'label'      => $translate->getAdapter()->translate("capcha"),
+//            'required'   => true,
+//            'captcha'    => array('captcha' => 'Figlet','wordLen' => 5,'timeout' => 300 )
+//        ));
 
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
