@@ -1,5 +1,6 @@
 /.idea
 /library/Google/config.php~
-application/locale
+/application/locale
 /solr/logs/solr.log
-/solr/solr/collection1/data/index/segments.gen
+/solr/solr/collection1/data/
+/vendor
