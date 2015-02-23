@@ -1512,6 +1512,14 @@ a.pluso-more{display: none !important;}
     width: 42px;
     height: 42px;
 }
+.youtube {
+    background-image: url("/img/youtube.png");
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 165px;
+    width: 42px;
+    height: 42px;
+}
 [class^="cicon-"], [class*=" cicon-"] {
     background-repeat: no-repeat;
     display: inline-block;
