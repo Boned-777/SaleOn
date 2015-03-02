@@ -83,6 +83,8 @@ return array (
     // ERRORS AND MESSAGES
     "wrong_email_or_password" => "Email or password is incorrect",
     "error_username_exists" => "A user with this email already exists",
+    "error_password_too_short" => "Password must be at least 6 characters",
+    "error_confirm_password" => "The passwords do not match",
     "too_long" => "Too long description",
     "no_data_available" => "Unfortunately, data are not available. Try changing the filters",
     "no_favorites_data_available" => "No event added to favorites",
