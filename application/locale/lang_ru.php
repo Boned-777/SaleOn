@@ -85,6 +85,8 @@ return array(
     //ERRORS AND MESSAGES
     'wrong_email_or_password' => "Электронная почта или пароль не верны",
     'error_username_exists' => "Пользователь с такой электронной почтой уже существует",
+    "error_password_too_short" => "Пароль должен содержать не менее 6 символов",
+    "error_confirm_password" => "Введенные пароли не совпадают",
     "too_long" => "Слишком длинное описание",
     "no_data_available" => "К сожалению, данные недоступны. Попробуйте поменять фильтры",
     "no_favorites_data_available" => "К сожалению, в избранное не добавлена ни одна акция",
