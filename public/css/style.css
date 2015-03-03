@@ -1028,7 +1028,13 @@ input[type="submit"] {
 }
 
 .input-block-level-date {
-    width: 250px;
+     width: 250px;
+ }
+.input-block-level-date[readonly] {
+    background-color: #ffffff;
+}
+.input-block-level-date[readonly]:hover{
+    cursor: pointer;
 }
 
 ul.errors {

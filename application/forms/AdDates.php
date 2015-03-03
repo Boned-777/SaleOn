@@ -32,15 +32,18 @@ class Application_Form_AdDates extends Zend_Form
         $this->getElement("form")->setDecorators(array('ViewHelper'));
 
         $this->addElement('text', 'public_dt', array(
+            'readonly' => "readonly",
             'class' => "input-block-level-date",
             'label' => $translate->getAdapter()->translate("public_date") . ' *',
             'required' => true,
+
         ));
 
         $public_dt = $this->getElement("public_dt");
         //$public_dt->addValidator($publicDTValidatorFalse);
 
         $this->addElement('text', 'end_dt', array(
+            'readonly' => "readonly",
             'class' => "input-block-level-date",
             'label' => $translate->getAdapter()->translate("end_date") . ' *',
             'required' => true,
