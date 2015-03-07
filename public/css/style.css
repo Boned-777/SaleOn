@@ -1716,3 +1716,18 @@ img#banner{
     left: 43%;
     margin-top: -5%;
 }
+
+.subscription-form-modal {
+    padding: 10px 25px 10px 15px;
+    top: 15% !important;
+}
+
+.subscription-form-modal .modal-close-btn {
+    float: right;
+    font-size: 20pt;
+    cursor: pointer;
+}
+
+.ui-autocomplete{
+    z-index: 2000;
+}
