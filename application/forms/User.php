@@ -20,8 +20,16 @@ class Application_Form_User extends Zend_Form
         $this->addElement('password', 'password', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("password"),
-            'validators' => array(
-                array('StringLength', false, array(0, 50)),
+            'validators'    => array(
+                array(
+                    'validator' =>  'StringLength',
+                    'options'   => array(
+                        'min' => 6,
+                        'messages'  =>  array(
+                            Zend_Validate_StringLength::TOO_SHORT => $translate->getAdapter()->translate("error_password_too_short"),
+                        )
+                    )
+                ),
             ),
             'required' => true,
         ));
@@ -31,7 +39,13 @@ class Application_Form_User extends Zend_Form
             'label' => $translate->getAdapter()->translate("confirm_password"),
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
-                array('Identical', true, array('password'))
+                array(
+                    'validator' =>  'Identical',
+                    'options'   => array('password', 'messages'  =>  array(
+                            Zend_Validate_Identical::NOT_SAME => $translate->getAdapter()->translate("error_confirm_password"),
+                        )
+                    )
+                ),
             ),
             'required' => true,
         ));

@@ -33,7 +33,7 @@ $(function () {
     });
 
     /*main menu tooltip*/
-    $(".btn-large").add("#link").add("#contact-btn").add("#lng-btn").tooltip({placement: "bottom"});
+    $(".btn-large").add("#link").add("#contact-btn").add("#lng-btn").add("#btn-subs-manager").add("#btn-subs-brand").tooltip({placement: "bottom"});
     
 
     /* Add browser depended classes */

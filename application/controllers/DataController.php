@@ -11,6 +11,7 @@ class DataController extends Zend_Controller_Action
     public function updateAction() {
         $s = new Application_Model_AdSolr();
         $s->updateAllSolrData();
+        $s->generateSitemap();
 
         exit;
     }

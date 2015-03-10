@@ -26,8 +26,19 @@ class Application_Form_Contact extends Zend_Form
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("contact_text"),
             'required' => true,
-            'validators' => array( array('validator' => 'StringLength', 'options' => array(0, 250) )
-            )));
+            'validators'    => array(
+                array(
+                    'validator' =>  'StringLength',
+                    'options'   => array(
+                        'encoding' => 'UTF-8',
+                        'max' => 1000,
+                        'messages'  =>  array(
+                            Zend_Validate_StringLength::TOO_LONG => $translate->getAdapter()->translate("too_long")
+                        )
+                    )
+                ),
+            ),
+        ));
 
 //       $this->addElement('captcha', 'captcha', array(
 //            'class' => "input-block-level",

@@ -159,4 +159,27 @@ class Application_Model_AdSolr {
 
         return $result->getStatus();
     }
+
+    public function generateSitemap() {
+        $data = $this->getAds();
+
+        $list = json_decode($data->getResponse()->getBody());
+
+        $file = fopen(APPLICATION_PATH . "/../public/sitemap.xml", "w");
+
+        $s = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+        fwrite($file, $s);
+
+        fwrite($file, '<url><loc>http://saleon.info</loc><changefreq>daily</changefreq></url>');
+        fwrite($file, '<url><loc>http://saleon.info/index/contacts</loc><changefreq>monthly</changefreq></url>');
+
+        foreach($list->response->docs as $doc) {
+            $url = "http://saleon.info/show/" . $doc->seo_name;
+            $sr = "<url><loc>$url</loc><changefreq>daily</changefreq></url>";
+            fwrite($file, $sr);
+        }
+
+        fwrite($file, "</urlset>");
+        fclose($file);
+    }
 }

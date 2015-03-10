@@ -152,6 +152,8 @@ return array (
     "mm_favorites" => "Вибране",
     "mm_user" => "Користувачам",
     "mm_admin"=>"Панель керування",
+    "mm_subscription_manager"=>"Менеджер підписок",
+    "mm_subscription_to_brand"=>"Підписатися на бренд",
 
 
     "main_title" => "Всі Акції та Знижки",
@@ -178,6 +180,8 @@ return array (
     "isEmpty" => "Поле не може бути пустим",
     "wrong_email_or_password" => "Електронна пошта або пароль не вірні",
     "error_username_exists" => "Користувач з такою електронною поштою вже існує",
+    "error_password_too_short" => "Пароль повинен містити не менше 6 символів",
+    "error_confirm_password" => "Введені паролі не співпадають",
     "too_long" => "Занадто довгий опис",
     "notActual" => "Вкажіть актуальну дату",
     "notLater" => "Дата не припустима",

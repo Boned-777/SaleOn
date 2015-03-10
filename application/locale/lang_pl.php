@@ -85,6 +85,8 @@ return array(
     //ERRORS AND MESSAGES
     "wrong_email_or_password" => "Adres e-mail lub hasło jest nieprawidłowe",
     "error_username_exists" => " Użytkownik z tego e-maila już istnieje",
+    "error_password_too_short" => "Hasło musi mieć co najmniej 6 znaków",
+    "error_confirm_password" => "Hasła nie pasują",
     "too_long" => "Opis jest zbyt długi",
     "no_data_available" => "Niestety brak jest danych. Spróbuj zmienić filtry",
     "no_favorites_data_available" => "Niestety nie dodał do ulubionych wszelkie działania",
@@ -158,6 +160,8 @@ return array(
     "mm_favorites" => "Ulubione",
     "mm_user" => "użytkowników",
     "mm_admin"=>"Panel kontrola",
+    "mm_subscription_manager"=>"Subskrypcja menedżer",
+    "mm_subscription_to_brand"=>"Zapisz się do marki",
 
 
     "main_title" => "All Special Offers",
