@@ -152,6 +152,8 @@ return array (
     "mm_favorites" => "Вибране",
     "mm_user" => "Користувачам",
     "mm_admin"=>"Панель керування",
+    "mm_subscription_manager"=>"Менеджер підписок",
+    "mm_subscription_to_brand"=>"Підписатися на бренд",
 
 
     "main_title" => "Всі Акції та Знижки",

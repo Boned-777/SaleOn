@@ -161,6 +161,8 @@ return array(
     "mm_favorites"=>"Избранное",
     "mm_user"=>"Пользователям",
     "mm_admin"=>"Панель управления",
+    "mm_subscription_manager"=>"Менеджер подписок",
+    "mm_subscription_to_brand"=>"Подписаться на бренд",
 
     "main_title" => "Все Акции и Скидки",
     "main_description" => "Все Акции в единственном месте!

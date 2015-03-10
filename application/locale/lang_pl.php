@@ -160,6 +160,8 @@ return array(
     "mm_favorites" => "Ulubione",
     "mm_user" => "użytkowników",
     "mm_admin"=>"Panel kontrola",
+    "mm_subscription_manager"=>"Subskrypcja menedżer",
+    "mm_subscription_to_brand"=>"Zapisz się do marki",
 
 
     "main_title" => "All Special Offers",

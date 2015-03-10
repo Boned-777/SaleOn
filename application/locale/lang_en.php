@@ -159,6 +159,8 @@ return array (
     "mm_favorites" => "Favorites",
     "mm_user" => "User",
     "mm_admin"=>"Control panel",
+    "mm_subscription_manager"=>"Subscription manager",
+    "mm_subscription_to_brand"=>"Subscribe to brand",
 
 
     "main_title" => "All Special Offers",
