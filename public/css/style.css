@@ -89,7 +89,7 @@ body {
 .subscription-wrapper {
     position: absolute;
     top: 40px;
-    left: -30px;
+    left: -10px;
 }
 
 .subscription-wrapper .tooltip-inner{
@@ -124,10 +124,15 @@ body {
         right: -15px;
     }
     .subscription-wrapper {
-        left: 15px;
+        left: 23px;
     }
 }
 
+@media (min-width: 1500px) {
+    .subscription-wrapper {
+        left: -50px;
+    }
+}
 
 .topbg {
     background: url("/img/topbg.png") center center repeat-x;
