@@ -48,7 +48,7 @@ class Application_Form_Subscription extends Zend_Form
             }'));
         $this->addElement($brand);
 
-        $this->addElement('textarea', 'subscription_description', array(
+        $this->addElement('textarea', 'description', array(
             'class' => "input-block-level hide",
             'label' => $translate->getAdapter()->translate("details"),
             'validators' => array(
