@@ -34,7 +34,11 @@ $(function () {
 
     /*main menu tooltip*/
     $(".btn-large").add("#link").add("#contact-btn").add("#lng-btn").add("#btn-subs-manager").add("#btn-subs-brand").tooltip({placement: "bottom"});
-    
+
+    /*show subscription modal window*/
+    $('#btn-subs-brand').click(function(){
+        $('.subscription-form-modal').modal({show: true});
+    });
 
     /* Add browser depended classes */
     if (navigator.sayswho.search("Firefox") != -1) {

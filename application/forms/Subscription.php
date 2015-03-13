@@ -25,6 +25,7 @@ class Application_Form_Subscription extends Zend_Form
 
         $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name', array(
             'class' => "input-block-level",
+            'placeholder'=>$translate->getAdapter()->translate("brand_name_placeholder"),
         ));
         $brand->setLabel($translate->getAdapter()->translate("subscription_brand"));
         $brand->setJQueryParam('source', '/brands/autocomp');
@@ -51,6 +52,7 @@ class Application_Form_Subscription extends Zend_Form
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level hide",
             'label' => $translate->getAdapter()->translate("details"),
+            'placeholder'=>$translate->getAdapter()->translate("details_placeholder"),
             'validators' => array(
                 array('StringLength', false, array(0, 500))
             ),

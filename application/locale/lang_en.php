@@ -162,6 +162,11 @@ return array (
     "mm_subscription_manager"=>"Subscription manager",
     "mm_subscription_to_brand"=>"Subscribe to brand",
 
+    "subscription_brand"=>"The brand name",
+    "details"=>"Specify the contact details of the owner of the brand",
+    "subscription_settings"=>"Subscription settings",
+    "brand_name_placeholder"=>"The brand name",
+    "details_placeholder"=>"e-mail, website, phone number or address",
 
     "main_title" => "All Special Offers",
     "copyright" => "© All Specials of Ukraine, 2014",
