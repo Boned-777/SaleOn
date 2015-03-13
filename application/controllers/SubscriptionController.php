@@ -28,7 +28,13 @@ class SubscriptionController extends Zend_Controller_Action
                     $request->getPost(),
                     array("user_id" => $this->user->id)
                 );
-                $item->create($data);
+                if ($item->create($data)) {
+                    $this->_helper->json(array("success" => true));
+                } else {
+                    $this->_helper->json(array("success" => false));
+                }
+            } else {
+                $this->_helper->json(array("success" => false));
             }
         }
 
