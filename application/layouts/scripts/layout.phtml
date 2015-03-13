@@ -211,17 +211,6 @@
     <div id="push"></div>
 </div>
 
-<div class="modal hide fade subscription-form-modal">
-    <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
-    <div>
-        <?php
-        $subscriptionForm = new Application_Form_Subscription();
-        echo $subscriptionForm;
-        ?>
-    </div>
-    <div><a href="/subscription/manager"><?php echo $translate->getAdapter()->translate("subscription_settings"); ?> >></a></div>
-</div>
-
 <div id="success-modal-block" class="footer-message alert-success hide">
     <p class="block-label text-center"><?php echo $this->successMessage; ?></p>
 </div>

@@ -13,9 +13,6 @@ class SubscriptionController extends Zend_Controller_Action
         $this->user = $auth->getIdentity();
     }
 
-    /**
-     *
-     */
     public function indexAction()
     {
         $request = $this->getRequest();
