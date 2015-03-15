@@ -1,9 +1,12 @@
+<?php
+global $translate;
+?>
 <div class="modal subscription-form-modal">
     <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
     <div>
         <?= $this->subscriptionForm; ?>
     </div>
-    <div><a href="/subscription/manager">Настройки подписки >></a></div>
+    <div><a href="/subscription/manager"><?php echo $translate->getAdapter()->translate("subscription_settings"); ?> >></a></div>
 </div>
 
 <script>

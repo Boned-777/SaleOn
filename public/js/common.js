@@ -51,8 +51,7 @@ $(function () {
             data: data,
             success: function(data) {
                 if(data.success == true ){
-                    $('form.subscription').hide();
-                    $('.subscription-form-modal').hide();
+                    $('.subscription-form-modal').modal('hide');
                 }
             }
         });
