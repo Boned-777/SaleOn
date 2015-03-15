@@ -40,6 +40,24 @@ $(function () {
         $('.subscription-form-modal').modal({show: true});
     });
 
+    /*Catch json success on submit subscription form */
+    $("form.subscription #subscription_submit").click( function(e) {
+        e.preventDefault();
+        var data = $("form.subscription").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/subscription/index",
+            dataType: "json",
+            data: data,
+            success: function(data) {
+                if(data.success == true ){
+                    $('form.subscription').hide();
+                    $('.subscription-form-modal').modal({show: false});
+                }
+            }
+        });
+    });
+
     /* Add browser depended classes */
     if (navigator.sayswho.search("Firefox") != -1) {
         $("body").addClass("firefox-slider");

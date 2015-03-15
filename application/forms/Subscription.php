@@ -8,7 +8,7 @@ class Application_Form_Subscription extends Zend_Form
         global $translate;
 
         $this->setAction("/subscription/index");
-
+        $this->setAttrib('class', 'subscription');
         $scriptElement = new Custom_Form_Element_Universal("script");
         $scriptElement->setValue("
             <script>
