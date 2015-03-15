@@ -52,7 +52,7 @@ $(function () {
             success: function(data) {
                 if(data.success == true ){
                     $('form.subscription').hide();
-                    $('.subscription-form-modal').modal({show: false});
+                    $('.subscription-form-modal').hide();
                 }
             }
         });
