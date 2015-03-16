@@ -61,10 +61,14 @@ class SubscriptionController extends Zend_Controller_Action
 
     public function listAction () {
         $item = new Application_Model_Subscription();
+        if (empty($this->user->id)) {
+            $this->_helper->json(array("success" => false));
+        }
         $subscriptionItems = $item->getByUserId($this->user->id);
 
         $this->_helper->json(array(
-            "list" => $subscriptionItems
+            "success" => true,
+            "list" => $subscriptionItems->toArray()
         ));
     }
 
