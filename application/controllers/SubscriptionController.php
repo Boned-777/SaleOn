@@ -51,10 +51,21 @@ class SubscriptionController extends Zend_Controller_Action
                     $subscriptionItem->delete();
                 }
             }
+
+            $this->_helper->json(array("success" => true));
         }
 
         $subscriptionItems = $item->getByUserId($this->user->id);
         $this->view->items = $subscriptionItems;
+    }
+
+    public function listAction () {
+        $item = new Application_Model_Subscription();
+        $subscriptionItems = $item->getByUserId($this->user->id);
+
+        $this->_helper->json(array(
+            "list" => $subscriptionItems
+        ));
     }
 
     public function sendAuction() {
