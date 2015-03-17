@@ -167,6 +167,9 @@ return array (
     "subscription_settings"=>"Subscription settings",
     "brand_name_placeholder"=>"The brand name",
     "details_placeholder"=>"e-mail, website, phone number or address",
+    "subscription_manager_title"=>"You have subscribed to brands",
+    "subscription_manager_error_title"=>"Your list of brands is empty",
+    "subscription_save_btn"=>"Save",
 
     "main_title" => "All Special Offers",
     "copyright" => "© All Specials of Ukraine, 2014",

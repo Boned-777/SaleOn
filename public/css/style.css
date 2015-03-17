@@ -107,6 +107,58 @@ body {
     margin-left: 10px;
 }
 
+.subscription-manager{
+    max-height: 700px;
+    padding: 10px 20px 20px 20px;
+    overflow: auto;
+}
+.subscription-manager h2 {
+    margin-top:  30px;
+}
+.subscription-manager .brand-list label{
+    float: left;
+    width: 144px;
+    margin: 0 49px 15px 0;
+    position: relative;
+    padding-right: 20px;
+    height: 40px;
+}
+
+.subscription-manager .brand-list label:nth-child(8n){
+    margin-right: 0;
+}
+
+.subscription-manager .clear {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+input.check-brand {
+    display: none;
+}
+
+input.check-brand + label.name-brand:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    letter-spacing: -5px;
+}
+
+input.check-brand + label.name-brand:before {
+    position: absolute;
+    right: 0;
+    top: -2px;
+    content: "\f006";
+    color: #cdcdcd;
+    font-size: 16px;
+}
+
+input.check-brand:checked + label.name-brand:before {
+    content: "\f005";
+    color: #e9cf21;
+}
+
 #footer .contacts:hover, .contact-btn:focus {
     border: 1px solid #999;
 }
@@ -1750,7 +1802,7 @@ img#banner{
     top: 15% !important;
 }
 
-.subscription-form-modal .modal-close-btn {
+.subscription-form-modal .modal-close-btn, .subscription-manager .modal-close-btn {
     float: right;
     font-size: 20pt;
     cursor: pointer;

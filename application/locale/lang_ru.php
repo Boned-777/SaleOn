@@ -169,6 +169,9 @@ return array(
     "subscription_settings"=>"Настройки подписки",
     "brand_name_placeholder"=>"Название бренда",
     "details_placeholder"=>"e-mail, сайт, телефон или адрес",
+    "subscription_manager_title"=>"Вы подписаны на бренды",
+    "subscription_manager_error_title"=>"Ваш список выбранных брендов пуст",
+    "subscription_save_btn"=>"Сохранить",
 
     "main_title" => "Все Акции и Скидки",
     "main_description" => "Все Акции в единственном месте!

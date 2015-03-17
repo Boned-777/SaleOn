@@ -168,6 +168,9 @@ return array(
     "subscription_settings"=>"Subskrypcja ustawienia",
     "brand_name_placeholder"=>"Nazwa marki",
     "details_placeholder"=>"e-mail, strony internetowej, numer telefonu lub adres",
+    "subscription_manager_title"=>"Subskrybujesz marek",
+    "subscription_manager_error_title"=>"Twoja lista jest pusta marek",
+    "subscription_save_btn"=>"Zapisz",
 
     "main_title" => "All Special Offers",
     "main_description" => "Wszystkie Akcje Ukrainy w jednym miejscu!",
