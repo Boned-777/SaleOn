@@ -72,7 +72,7 @@ $route = new Zend_Controller_Router_Route(
     'filter/:geo/:category/:brand/:product',
     array(
         'module' => "default",
-        'controller' => 'test',
+        'controller' => 'index',
         'action' => 'index'
     )
 );
@@ -82,7 +82,7 @@ $route = new Zend_Controller_Router_Route(
     'filter/:geo/:category/:brand/:product/:sort',
     array(
         'module' => "default",
-        'controller' => 'test',
+        'controller' => 'index',
         'action' => 'index'
     )
 );
