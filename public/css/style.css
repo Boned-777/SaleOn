@@ -1802,11 +1802,22 @@ img#banner{
     top: 15% !important;
 }
 
-<<<<<<< HEAD
-.subscription-form-modal .modal-close-btn {
-=======
 .subscription-form-modal .modal-close-btn, .subscription-manager .modal-close-btn {
->>>>>>> e2ca5030a331087dc7e2c5665ac522d291068c9a
+    float: right;
+    font-size: 20pt;
+    cursor: pointer;
+}
+
+.ui-autocomplete{
+    z-index: 2000;
+}
+
+.subscription-form-modal {
+    padding: 10px 25px 10px 15px;
+    top: 15% !important;
+}
+
+.subscription-form-modal .modal-close-btn {
     float: right;
     font-size: 20pt;
     cursor: pointer;

@@ -41,7 +41,6 @@ $(function () {
         $('.subscription-form-modal').modal({show: true});
     });
 
-<<<<<<< HEAD
     /*Show subscription-manager modal window*/
     $("#btn-subs-manager").click( function(e) {
         e.preventDefault();
@@ -102,7 +101,7 @@ $(function () {
              }
          });
      });
-=======
+
     /*Catch json success on submit subscription form */
     $("form.subscription #subscription_submit").click( function(e) {
         e.preventDefault();
@@ -119,7 +118,6 @@ $(function () {
             }
         });
     });
->>>>>>> remotes/origin/subs-form-ajax
 
     /* Add browser depended classes */
     if (navigator.sayswho.search("Firefox") != -1) {

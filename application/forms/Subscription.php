@@ -7,15 +7,12 @@ class Application_Form_Subscription extends Zend_Form
     {
         global $translate;
 
-<<<<<<< HEAD
-=======
         $this->setAction("/subscription/index");
         $this->setAttrib('class', 'subscription');
->>>>>>> remotes/origin/subs-form-ajax
         $scriptElement = new Custom_Form_Element_Universal("script");
         $scriptElement->setValue("
             <script>
-            $( document ).ready(function() {
+            jQuery ( document ).ready(function() {
                 $('#description-label').hide();
                 $('#description-element').hide();
             });

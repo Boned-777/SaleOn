@@ -23,12 +23,7 @@ class Application_Model_Brand extends Application_Model_FilterMapper
         return false;
     }
 
-<<<<<<< HEAD
-    public function getByName($name = "")
-=======
-    public function getByName ($name = "")
->>>>>>> e2ca5030a331087dc7e2c5665ac522d291068c9a
-    {
+    public function getByName($name = ""){
         $select = $this->dbItem->select()
             ->where("name = ?", $name);
         $res = $this->dbItem->fetchRow($select);
