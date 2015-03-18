@@ -41,6 +41,7 @@ $(function () {
         $('.subscription-form-modal').modal({show: true});
     });
 
+<<<<<<< HEAD
     /*Show subscription-manager modal window*/
     $("#btn-subs-manager").click( function(e) {
         e.preventDefault();
@@ -101,6 +102,24 @@ $(function () {
              }
          });
      });
+=======
+    /*Catch json success on submit subscription form */
+    $("form.subscription #subscription_submit").click( function(e) {
+        e.preventDefault();
+        var data = $("form.subscription").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/subscription/index",
+            dataType: "json",
+            data: data,
+            success: function(data) {
+                if(data.success == true ){
+                    $('.subscription-form-modal').modal('hide');
+                }
+            }
+        });
+    });
+>>>>>>> remotes/origin/subs-form-ajax
 
     /* Add browser depended classes */
     if (navigator.sayswho.search("Firefox") != -1) {
