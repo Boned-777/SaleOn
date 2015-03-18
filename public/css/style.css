@@ -86,25 +86,29 @@ body {
     right: -30px;
 }
 
-.subscription-wrapper {
+.btn-logout {
     position: absolute;
-    top: 40px;
-    left: -10px;
+    top: 42px;
+    right: 60px;
+    color: #3a3a3a;
 }
 
-.subscription-wrapper .tooltip-inner{
-    font-size: 11px !important;
-    font-weight: normal !important;
+.btn-logout + .tooltip .tooltip-inner {
+    font-weight: normal;
+    font-size: 11px;
 }
 
-.subscription-wrapper a {
-    font-size: 15px;
-    color: #686a6a;
+.btn-logout:hover {
+   color: #3a3a3a;
 }
 
-.subscription-wrapper #btn-subs-brand {
-    color: #69960d;
-    margin-left: 10px;
+.btn-subs-brand .fa{
+    color: #5a7c16;
+    margin-top:4px;
+}
+
+#btn-subs-manager .fa{
+    margin-top:4px;
 }
 
 .subscription-manager{
@@ -175,14 +179,19 @@ input.check-brand:checked + label.name-brand:before {
     .contact-lngswitcher-wrapper {
         right: -15px;
     }
-    .subscription-wrapper {
-        left: 23px;
-    }
 }
 
-@media (min-width: 1500px) {
-    .subscription-wrapper {
-        left: -50px;
+@media (max-width: 1199px){
+    .contact-lngswitcher-wrapper {
+        right: -50px;
+    }
+    .btn-logout {
+        right: 25px;
+    }
+}
+@media (min-width: 1500px){
+    .btn-logout {
+        right: 45px;
     }
 }
 
@@ -268,7 +277,9 @@ input.check-brand:checked + label.name-brand:before {
 
 /* Top menu buttons */
 [class^="myicon-"],
-[class*=" myicon-"] {
+[class*=" myicon-"],
+.btn-subs-brand,
+#btn-subs-manager{
     background-image: url("/img/menu-sprite-small.png");
     background-position: -2px 1px;
     background-repeat: no-repeat;
@@ -286,8 +297,10 @@ input.check-brand:checked + label.name-brand:before {
 .myicon-brands {
     background-position: -64px 0px;
 }
-.myicon-new {
-    background-position: -97px 2px;
+.btn-subs-brand, #btn-subs-manager {
+    background-image: none;
+    margin-top: -10px;
+    height: 24px;
 }
 .myicon-favorites {
     background-position: -129px 2px;

@@ -62,7 +62,9 @@
                 <a id="link" href="/" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("main_page")?>"><div class="logo"></div></a>
             </div>
             <div class="menu-button-wrapper">
-                <button id="btn4" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_news")?>" class="btn btn-large" ><i class="myicon-new"></i></button>
+                <a id="btn-subs-brand" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand")?>" class="btn btn-large btn-subs-brand" >
+                    <i class="fa fa-pencil fa-lg"></i>
+                </a>
                 <?php
                 $auth = Zend_Auth::getInstance();
                 if ($auth->hasIdentity()) { ?>
@@ -74,12 +76,9 @@
                         </a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                     <?php } else { ?>
-                        <div class="subscription-wrapper">
-                            <a href="/subscription/manager" id="btn-subs-manager" title="<?= $translate->getAdapter()->translate("mm_subscription_manager")?>"><i class="fa fa-cog fa-lg"></i></a>
-                            <a href="#" id="btn-subs-brand" title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand")?>"><i class="fa fa-pencil fa-lg"></i></a>
-                        </div>
                         <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
-                        <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
+                        <a href="/subscription/manager" id="btn-subs-manager" title="<?= $translate->getAdapter()->translate("mm_subscription_manager")?>" class="btn btn-large"><i class="fa fa-cog fa-lg"></i></a>
+                        <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn-logout"><i class="fa fa-sign-out fa-lg"></i></a>
                     <?php } ?>
                 <?php } else { ?>
                     <a href="/user/new" id="btn4" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="myicon-user"></i></a>
