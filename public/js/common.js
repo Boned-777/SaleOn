@@ -33,7 +33,12 @@ $(function () {
     });
 
     /*main menu tooltip*/
-    $(".btn-large").add("#link").add("#contact-btn").add("#lng-btn").add("#btn-subs-manager").add("#btn-subs-brand").tooltip({placement: "bottom"});
+    $(".btn-large").add("#link").add("#contact-btn").add("#lng-btn").add("#btn-subs-manager").add("#btn-subs-brand").add("#btn-logout.btn-logout").tooltip({placement: "bottom"});
+
+
+    if ($("#btn-logout").length<1){
+        $('a#btn-subs-brand').attr("href","/user/new").attr("id","");
+    }
 
     /*show subscription modal window*/
     $('#btn-subs-brand').click(function(e){
