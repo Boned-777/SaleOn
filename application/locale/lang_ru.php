@@ -161,6 +161,17 @@ return array(
     "mm_favorites"=>"Избранное",
     "mm_user"=>"Пользователям",
     "mm_admin"=>"Панель управления",
+    "mm_subscription_manager"=>"Менеджер подписок",
+    "mm_subscription_to_brand"=>"Подписаться на бренд",
+
+    "subscription_brand"=>"Название бренда",
+    "details"=>"Укажите контактные данные владельца бренда",
+    "subscription_settings"=>"Настройки подписки",
+    "brand_name_placeholder"=>"Название бренда",
+    "details_placeholder"=>"e-mail, сайт, телефон или адрес",
+    "subscription_manager_title"=>"Вы подписаны на бренды",
+    "subscription_manager_error_title"=>"Ваш список выбранных брендов пуст",
+    "subscription_save_btn"=>"Сохранить",
 
     "main_title" => "Все Акции и Скидки",
     "main_description" => "Все Акции в единственном месте!

@@ -1,0 +1,11 @@
+<div class="subscription-manager">
+    <h2>Вы подписаны на бренды</h2>
+    <form action="/subscription/manager" method="post">
+    <?php foreach($this->items as $item) :?>
+        <label for="brand_<?= $item->id; ?>"><?= $item->name; ?>
+            <input type="checkbox" name="brand[<?= $item->id; ?>]" id="brand_<?= $item->id; ?>" checked/>
+        </label>
+    <?php endforeach; ?>
+        <input type="submit" value="Save"/>
+    </form>
+</div>

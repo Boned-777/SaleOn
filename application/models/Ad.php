@@ -558,9 +558,13 @@ class Application_Model_Ad
     }
 
     public function createUrl() {
-        $translite = new Zend_Filter_Transliteration();
-        $seo_name = $this->id . "_" . $translite->filter($this->name);
+        $seo_name = $this->createAlias($this->id, $this->name);
         return "/show/" . $seo_name;
+    }
+
+    static function createAlias($id, $name) {
+        $translite = new Zend_Filter_Transliteration();
+        return $seo_name = $id . "_" . $translite->filter($name);
     }
 
     public function checkFavorites($user, $template="", &$url=null) {

@@ -152,7 +152,17 @@ return array (
     "mm_favorites" => "Вибране",
     "mm_user" => "Користувачам",
     "mm_admin"=>"Панель керування",
+    "mm_subscription_manager"=>"Менеджер підписок",
+    "mm_subscription_to_brand"=>"Підписатися на бренд",
 
+    "subscription_brand"=>"Назва бренду",
+    "details"=>"Вкажіть контактні дані власника бренду",
+    "subscription_settings"=>"Налаштування підписки",
+    "brand_name_placeholder"=>"Назва бренду",
+    "details_placeholder"=>"e-mail, сайт, телефон чи адреса",
+    "subscription_manager_title"=>"Ви підписалися на бренди",
+    "subscription_manager_error_title"=>"Ваш список обраних брендів порожній",
+    "subscription_save_btn"=>"Зберегти",
 
     "main_title" => "Всі Акції та Знижки",
     "main_description" => "Всі Акції України в єдиному місці!!!
