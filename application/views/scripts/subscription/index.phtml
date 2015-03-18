@@ -1,0 +1,13 @@
+<div class="modal subscription-form-modal">
+    <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
+    <div>
+        <?= $this->subscriptionForm; ?>
+    </div>
+    <div><a href="/subscription/manager">Настройки подписки >></a></div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.subscription-form-modal').modal({show: true});
+    });
+</script>

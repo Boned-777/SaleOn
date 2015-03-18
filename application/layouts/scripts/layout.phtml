@@ -24,6 +24,7 @@
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/redmond/jquery-ui-1.10.3.custom.min.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap-responsive.css')); ?>
     <?php echo $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap.css')); ?>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script type="text/javascript" src="/js/browser.js"></script>
     <script type="text/javascript" src="/js/jquery/jquery.cookie.js"></script>
 
@@ -73,6 +74,10 @@
                         </a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                     <?php } else { ?>
+                        <div class="subscription-wrapper">
+                            <a href="/subscription/manager" id="btn-subs-manager" title="<?= $translate->getAdapter()->translate("mm_subscription_manager")?>"><i class="fa fa-cog fa-lg"></i></a>
+                            <a href="#" id="btn-subs-brand" title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand")?>"><i class="fa fa-pencil fa-lg"></i></a>
+                        </div>
                         <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                     <?php } ?>

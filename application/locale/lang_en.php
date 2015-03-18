@@ -159,7 +159,17 @@ return array (
     "mm_favorites" => "Favorites",
     "mm_user" => "User",
     "mm_admin"=>"Control panel",
+    "mm_subscription_manager"=>"Subscription manager",
+    "mm_subscription_to_brand"=>"Subscribe to brand",
 
+    "subscription_brand"=>"The brand name",
+    "details"=>"Specify the contact details of the owner of the brand",
+    "subscription_settings"=>"Subscription settings",
+    "brand_name_placeholder"=>"The brand name",
+    "details_placeholder"=>"e-mail, website, phone number or address",
+    "subscription_manager_title"=>"You have subscribed to brands",
+    "subscription_manager_error_title"=>"Your list of brands is empty",
+    "subscription_save_btn"=>"Save",
 
     "main_title" => "All Special Offers",
     "copyright" => "© All Specials of Ukraine, 2014",

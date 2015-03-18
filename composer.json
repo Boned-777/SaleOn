@@ -1,7 +1,8 @@
 {
     "require": {
         "solarium/solarium": "3.3.0",
-        "mandrill/mandrill": "1.0.*"
+        "mandrill/mandrill": "1.0.*",
+        "liil/kint": "v1.0"
     }
 
 }
