@@ -13,9 +13,6 @@ class SubscriptionController extends Zend_Controller_Action
         $this->user = $auth->getIdentity();
     }
 
-    /**
-     *
-     */
     public function indexAction()
     {
         $request = $this->getRequest();
@@ -28,7 +25,13 @@ class SubscriptionController extends Zend_Controller_Action
                     $request->getPost(),
                     array("user_id" => $this->user->id)
                 );
-                $item->create($data);
+                if ($item->create($data)) {
+                    $this->_helper->json(array("success" => true));
+                } else {
+                    $this->_helper->json(array("success" => false));
+                }
+            } else {
+                $this->_helper->json(array("success" => false));
             }
         }
 
@@ -48,18 +51,30 @@ class SubscriptionController extends Zend_Controller_Action
                     $subscriptionItem->delete();
                 }
             }
+
+            $this->_helper->json(array("success" => true));
         }
 
         $subscriptionItems = $item->getByUserId($this->user->id);
         $this->view->items = $subscriptionItems;
     }
 
-    public function sendAction() {
+    public function listAction () {
+        $item = new Application_Model_Subscription();
+        if (empty($this->user->id)) {
+            $this->_helper->json(array("success" => false));
+        }
+        $subscriptionItems = $item->getByUserId($this->user->id);
+
+        $this->_helper->json(array(
+            "success" => true,
+            "list" => $subscriptionItems->toArray()
+        ));
+    }
+
+    public function sendAuction() {
         $subscription = new Application_Model_Subscription();
         $subscription->send();
     }
 
 }
-
-
-

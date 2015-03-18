@@ -160,7 +160,17 @@ return array(
     "mm_favorites" => "Ulubione",
     "mm_user" => "użytkowników",
     "mm_admin"=>"Panel kontrola",
+    "mm_subscription_manager"=>"Subskrypcja menedżer",
+    "mm_subscription_to_brand"=>"Zapisz się do marki",
 
+    "subscription_brand"=>"Nazwa marki",
+    "details"=>"Podaj dane kontaktowe właściciela marki",
+    "subscription_settings"=>"Subskrypcja ustawienia",
+    "brand_name_placeholder"=>"Nazwa marki",
+    "details_placeholder"=>"e-mail, strony internetowej, numer telefonu lub adres",
+    "subscription_manager_title"=>"Subskrybujesz marek",
+    "subscription_manager_error_title"=>"Twoja lista jest pusta marek",
+    "subscription_save_btn"=>"Zapisz",
 
     "main_title" => "All Special Offers",
     "main_description" => "Wszystkie Akcje Ukrainy w jednym miejscu!",

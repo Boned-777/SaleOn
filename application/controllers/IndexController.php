@@ -1,31 +1,63 @@
 <?php
-require_once APPLICATION_PATH.'/../library/Zend/Mail.php';
+require_once APPLICATION_PATH.'/../library/Google/Google_Client.php';
+require_once APPLICATION_PATH.'/../library/Google/contrib/Google_PlusService.php';
+require_once APPLICATION_PATH.'/../library/Google/contrib/Google_Oauth2Service.php';
+
 class IndexController extends Zend_Controller_Action
 {
 
     public function init()
     {
-		$auth = Zend_Auth::getInstance();
-		if ($auth->hasIdentity()) {
-			
-		} else {
-			//$this->_redirect("/auth");
-		}
+        $auth = Zend_Auth::getInstance();
+
+        if ($auth->hasIdentity()) {
+            $this->user = $auth->getIdentity();
+        }
     }
 
     public function indexAction()
     {
-        // action body
+        $this->view->subscriptionForm = new Application_Form_Subscription();
+
+        $params = $this->getAllParams();
+        $preparedParams = $this->prepareParams($params);
+        $pageTitle = implode(" / ", $preparedParams["filterNames"]);
+        $this->view->headTitle($pageTitle);
+        $this->view->headTitle()->setSeparator(' / ');
+        $userId = isset($this->user) ? $this->user : null;
+
+        if ($userId) {
+            $preparedParams["filterParams"]["user_id"] = $userId;
+            $preparedParams["filterParams"]["favorites_list"] = $this->user->favorites_ads ? $this->user->favorites_ads : "";
+        }
+
+        $ad = new Application_Model_Ad();
+        $res = $ad->getList($preparedParams["filterParams"], true);
+        $this->view->items = $res;
     }
 
-    public function favoritesAction()
-    {
-        // action body
-    }
-
-    public function newsAction()
-    {
-        // action body
+    protected function prepareParams($data) {
+        $filtersList = array("geo", "category", "brand", "product");
+        $filters = array();
+        $names = array();
+        foreach($filtersList as $filterName) {
+            if (isset($data[$filterName]) && $data[$filterName] != "all") {
+                $filterClass = "Application_Model_" . ucfirst($filterName);
+                $filter = new $filterClass();
+                $filterValue = $filter->getByAlias($data[$filterName]);
+                if ($filterValue) {
+                    $filters[$filterName] = $filterValue;
+                    $names[$filterName] = $filter->getName();
+                }
+            }
+        }
+        if (!empty($data["sort"])) {
+            $filters["sort"] = $data["sort"];
+        }
+        return array(
+            "filterParams" => $filters,
+            "filterNames" => $names
+        );
     }
 
     public function contactsAction()
@@ -67,5 +99,5 @@ class IndexController extends Zend_Controller_Action
             $this->view->form = $form;
         }
     }
-
 }
+

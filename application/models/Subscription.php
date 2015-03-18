@@ -133,4 +133,3 @@ class Application_Model_Subscription
 
     }
 }
-
