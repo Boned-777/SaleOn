@@ -47,16 +47,27 @@ $(function () {
     });
 
     /*Show subscription-manager modal window*/
-    $("#btn-subs-manager").click( function(e) {
+    $("#btn-subs-manager, .subscription-form-modal a").click( function(e) {
         e.preventDefault();
+        $('.brand-wrapper').remove();
+        $.getJSON('subscription/list', function(brand) {
+            for(var i=0;i<brand.list.length;i++){
+                $('.subscription-manager form.brand-list').prepend('<div class="brand-wrapper"><input type="checkbox" name="brand['+brand.list[i].id +']" id="brand_'+brand.list[i].id +'" class="check-brand" checked/>'+'<label for="brand_'+brand.list[i].id +'" class="name-brand">'+brand.list[i].name+'</label></div>');
+            }
+            if (brand.list.length == 0){
+                $('.subscription-manager h2:first-of-type').hide();
+                $(".save-brands").hide();
+                $('.subscription-manager h2:last-of-type').show();
+                $(".subscription-manager a").show();
+
+            }else {
+                $('.subscription-manager h2:last-of-type').hide();
+                $(".subscription-manager a").hide();
+                $('.subscription-manager h2:first-of-type').show();
+                $(".save-brands").show();
+            }
+        });
         $('.subscription-manager').modal({show: true});
-        var brands = $('input.check-brand').length;
-        if (brands == 0){
-            $('.subscription-manager h2:first-of-type').hide();
-            $(".save-brands").hide();
-            $('.subscription-manager h2:last-of-type').show();
-            $(".subscription-manager a").show();
-        }
     });
 
     /*Switch between subscription and subscription-manager modal windows*/
@@ -72,20 +83,6 @@ $(function () {
         $('.subscription-manager').modal('hide');
         $('.subscription-form-modal').modal({show: true});
     });
-
-    /*Get brand list from JSON and show it in subscription-manager modal*/
-     $.getJSON('subscription/list', function(brand) {
-            for(var i=0;i<brand.list.length;i++){
-            $('.subscription-manager form.brand-list').prepend('<input type="checkbox" name="brand['+brand.list[i].id +']" id="brand_'+brand.list[i].id +'" class="check-brand" checked/>'+'<label for="brand_'+brand.list[i].id +'" class="name-brand">'+brand.list[i].name+'</label>');
-            }
-         if (brand.list.length == 0){
-             $('.subscription-manager h2:first-of-type').hide();
-             $(".save-brands").hide();
-         }else {
-             $('.subscription-manager h2:last-of-type').hide();
-             $(".subscription-manager a").hide();
-         }
-     });
 
     /*Subscription-manager form. JSON success check*/
      $(".save-brands").click( function(e) {
