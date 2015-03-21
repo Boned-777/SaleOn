@@ -18,8 +18,17 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->view->subscriptionForm = new Application_Form_Subscription();
-
         $params = $this->getAllParams();
+
+        if (isset($params["sort"]) && $params["sort"] === "favorite") {
+            if (
+                $this->user === null ||
+                $this->user->role !== Application_Model_User::USER
+            ) {
+                $this->_helper->redirector("index");
+            }
+        }
+
         $preparedParams = $this->prepareParams($params);
         $pageTitle = implode(" / ", $preparedParams["filterNames"]);
         $this->view->headTitle($pageTitle);
