@@ -20,8 +20,8 @@
 
 <div class="modal hide fade subscription-manager">
     <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
-    <h2 class="well"><?php echo $translate->getAdapter()->translate("subscription_manager_title"); ?></h2>
-    <h2 class="well"><?php echo $translate->getAdapter()->translate("subscription_manager_error_title"); ?></h2>
+    <h2><?php echo $translate->getAdapter()->translate("subscription_manager_title"); ?></h2>
+    <h2><?php echo $translate->getAdapter()->translate("subscription_manager_error_title"); ?></h2>
     <form action="/subscription/manager" method="post" class="brand-list">
         <div class="clear"></div>
         <input type="submit" value="<?php echo $translate->getAdapter()->translate("subscription_save_btn"); ?>" class="save-brands"/>

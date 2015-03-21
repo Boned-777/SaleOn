@@ -52,10 +52,11 @@ class Application_Form_Subscription extends Zend_Form
 
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level hide",
-            'label' => $translate->getAdapter()->translate("subscription_details"),
+            'label' => $translate->getAdapter()->translate("details"),
             'validators' => array(
                 array('StringLength', false, array(0, 500))
             ),
+            'placeholder' => $translate->getAdapter()->translate("details_placeholder"),
             //'required' => true,
         ));
 
