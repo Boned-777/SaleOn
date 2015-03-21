@@ -76,6 +76,12 @@
                         </a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                     <?php } else { ?>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                           $('#btn-subs-brand').tooltip({placement: 'bottom', trigger: 'hover'}).tooltip('show');
+                           $('#btn-subs-brand + .tooltip').delay(5000).fadeOut();
+                        });
+                    </script>
                         <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
                         <a href="/subscription/manager" id="btn-subs-manager" title="<?= $translate->getAdapter()->translate("mm_subscription_manager")?>" class="btn btn-large"><i class="fa fa-cog fa-lg"></i></a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn-logout"><i class="fa fa-sign-out fa-lg"></i></a>
