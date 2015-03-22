@@ -50,7 +50,7 @@ $(function () {
     $("#btn-subs-manager, .subscription-form-modal a").click( function(e) {
         e.preventDefault();
         $('.brand-wrapper').remove();
-        $.getJSON('subscription/list', function(brand) {
+        $.getJSON('/subscription/list', function(brand) {
             for(var i=0;i<brand.list.length;i++){
                 $('.subscription-manager form.brand-list').prepend('<div class="brand-wrapper"><input type="checkbox" name="brand['+brand.list[i].id +']" id="brand_'+brand.list[i].id +'" class="check-brand" checked/>'+'<label for="brand_'+brand.list[i].id +'" class="name-brand">'+brand.list[i].name+'</label></div>');
             }
