@@ -78,14 +78,14 @@
                     <?php } else { ?>
                     <script type="text/javascript">
                         $(document).ready(function () {
-                            var cookie = $.cookie("cookie");
-                            if (cookie == null) {
-                                var cookie = $.cookie("cookie", 1);
+                            var tooltip = $.cookie("tooltip");
+                            if (tooltip == null) {
+                                var tooltip = $.cookie("tooltip", "hide");
                                 $('#btn-subs-brand').tooltip({placement: 'bottom', trigger: 'hover'}).tooltip('show');
                                 $('#btn-subs-brand + .tooltip').delay(5000).fadeOut();
                         }
                             $('#btn-logout').click(function(){
-                                $.removeCookie("cookie");
+                                $.removeCookie("tooltip");
                             });
                         });
                     </script>
@@ -95,7 +95,7 @@
                     <?php } ?>
                 <?php } else { ?>
                 <script type="text/javascript">
-                    $.removeCookie("cookie");
+                    $.removeCookie("tooltip");
                 </script>
                     <a href="/user/new" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="myicon-user"></i></a>
                     <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
