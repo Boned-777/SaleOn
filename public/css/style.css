@@ -86,7 +86,7 @@ body {
     right: -30px;
 }
 
-.btn-logout {
+a.btn-logout {
     position: absolute;
     top: 42px;
     right: 60px;
@@ -302,9 +302,7 @@ input.check-brand:checked + label.name-brand:before {
 
 /* Top menu buttons */
 [class^="myicon-"],
-[class*=" myicon-"],
-.btn-subs-brand,
-#btn-subs-manager{
+[class*=" myicon-"]{
     background-image: url("/img/menu-sprite-small.png");
     background-position: -2px 1px;
     background-repeat: no-repeat;
@@ -323,8 +321,8 @@ input.check-brand:checked + label.name-brand:before {
     background-position: -64px 0px;
 }
 .btn-subs-brand, #btn-subs-manager {
-    background-image: none;
-    margin-top: -10px;
+    width: 34px;
+    margin-top:0px;
     height: 24px;
 }
 .myicon-favorites {
