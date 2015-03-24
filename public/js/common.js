@@ -114,9 +114,7 @@ $(function () {
             dataType: "json",
             data: data,
             success: function(data) {
-                if(data.success == true ){
-                    $('.subscription-form-modal').modal('hide');
-                }
+                $('.subscription-form-modal').modal('hide');
             }
         });
     });
