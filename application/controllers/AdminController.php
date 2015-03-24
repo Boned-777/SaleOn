@@ -39,6 +39,14 @@ class AdminController extends Zend_Controller_Action
         return '<a href="/ad/edit/id/' . $id . '">' . $name . '</a>';
     }
 
+    public function _createBrandEditLink($id, $name)
+    {
+        global $translate;
+        if (empty($name))
+            $name = $translate->getAdapter()->translate("empty_name");
+        return '<a href="/brands/edit/id/' . $id . '">' . $name . '</a>';
+    }
+
     public function _paidText($val)
     {
         global $translate;
@@ -288,5 +296,34 @@ class AdminController extends Zend_Controller_Action
     {
         $geoEditForm = new Application_Form_GeoEdit();
         $this->view->geoEditForm = $geoEditForm;
+    }
+
+    public function brandsAction() {
+        $brands = new Application_Model_Brand();
+        $brandsArray = $brands->getAll();
+
+
+        global $translate;
+
+        $grid = Bvb_Grid::factory('Table');
+        $source = new Bvb_Grid_Source_Array($brandsArray);
+        $grid->setSource($source);
+        $grid->setGridColumns(array("name", "username", "status"));
+
+        $grid->updateColumn('name',array(
+            "title" =>  $translate->getAdapter()->translate("name"),
+            'callback'=>array(
+                'function'=>array($this, '_createBrandEditLink'),
+                'params'=>array('{{id}}', "{{name}}")
+            )
+        ));
+
+        $grid->setTemplateParams(array("cssClass" => array("table" => "table table-bordered table-striped")));
+        $grid->setNoFilters(true);
+        $grid->setExport(array());
+        $grid->setImagesUrl('/img/');
+
+        $this->view->grid = $grid;
+
     }
 }
