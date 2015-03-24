@@ -77,9 +77,16 @@
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="myicon-logout"></i></a>
                     <?php } else { ?>
                     <script type="text/javascript">
-                        $(document).ready(function(){
-                           $('#btn-subs-brand').tooltip({placement: 'bottom', trigger: 'hover'}).tooltip('show');
-                           $('#btn-subs-brand + .tooltip').delay(5000).fadeOut();
+                        $(document).ready(function () {
+                            var tooltip = $.cookie("tooltip");
+                            if (tooltip == null) {
+                                var tooltip = $.cookie("tooltip", "hide");
+                                $('#btn-subs-brand').tooltip({placement: 'bottom', trigger: 'hover'}).tooltip('show');
+                                $('#btn-subs-brand + .tooltip').delay(5000).fadeOut();
+                        }
+                            $('#btn-logout').click(function(){
+                                $.removeCookie("tooltip");
+                            });
                         });
                     </script>
                         <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="myicon-favorites"></i></a>
@@ -87,6 +94,9 @@
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn-logout"><i class="fa fa-sign-out fa-lg"></i></a>
                     <?php } ?>
                 <?php } else { ?>
+                <script type="text/javascript">
+                    $.removeCookie("tooltip");
+                </script>
                     <a href="/user/new" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="myicon-user"></i></a>
                     <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="myicon-partners"></i></a>
                 <?php }
