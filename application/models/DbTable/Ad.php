@@ -50,5 +50,11 @@ class Application_Model_DbTable_Ad extends Zend_Db_Table_Abstract
         $db->query($sql);
     }
 
+    public function changeBrandById($oldBrandId, $newBrandId) {
+        $sql = "UPDATE $this->_name SET brand='".$newBrandId."' WHERE brand=" . $oldBrandId;
+        $db = $this->getAdapter();
+        $db->query($sql);
+    }
+
 }
 
