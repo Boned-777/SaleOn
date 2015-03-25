@@ -35,9 +35,24 @@ $(function () {
     /*main menu tooltip*/
     $(".btn-large").add("#link").add("#contact-btn").add("#lng-btn").add("#btn-subs-manager").add("#btn-subs-brand").add("#btn-logout.btn-logout").tooltip({placement: "bottom"});
 
-
+    /*Redirect to auth page unregistered/unauthorized users and create "subscription=true" property*/
+    var subscription = $.cookie("subscription");
     if ($("#btn-logout").length<1){
         $('a#btn-subs-brand').attr("href","/user/new").attr("id","");
+        $('a.btn-subs-brand').click(function(){
+            var subscription = $.cookie("subscription", true );
+        });
+    }
+
+    /*Show subscription modal window for users who click at "Subscribe to brand" button when they were unregistered/unauthorized */
+    if (subscription != null) {
+        $.removeCookie("subscription");
+        $('.subscription-form-modal').modal({show: true});
+    }
+    /*Show subscription-manager modal window if "subscription_manager" property exist*/
+    if ($.cookie('subscription_manager') != null) {
+        $.removeCookie("subscription_manager");
+        $('.subscription-manager').modal({show: true});
     }
 
     /*show subscription modal window*/
