@@ -43,6 +43,9 @@ $(function () {
     /*show subscription modal window*/
     $('#btn-subs-brand').click(function(e){
         e.preventDefault();
+        $('input#brand_name').val('');
+        $('#description-label,#description-element').hide();
+        $('textarea#description').val('');
         $('.subscription-form-modal').modal({show: true});
     });
 
@@ -80,6 +83,9 @@ $(function () {
     /*Switch between subscription-manager and subscription modal windows*/
     $('.subscription-manager a').click(function(e){
         e.preventDefault();
+        $('input#brand_name').val('');
+        $('#description-label,#description-element').hide();
+        $('textarea#description').val('');
         $('.subscription-manager').modal('hide');
         $('.subscription-form-modal').modal({show: true});
     });
@@ -107,16 +113,18 @@ $(function () {
     /*Catch json success on submit subscription form */
     $("form.subscription #subscription_submit").click( function(e) {
         e.preventDefault();
-        var data = $("form.subscription").serialize();
-        $.ajax({
-            type: "POST",
-            url: "/subscription/index",
-            dataType: "json",
-            data: data,
-            success: function(data) {
-                $('.subscription-form-modal').modal('hide');
-            }
-        });
+        if ($.trim($('input#brand_name').val()) != ""){
+            var data = $("form.subscription").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/subscription/index",
+                dataType: "json",
+                data: data,
+                success: function(data) {
+                    $('.subscription-form-modal').modal('hide');
+                }
+            });
+        }
     });
 
     /* Add browser depended classes */
