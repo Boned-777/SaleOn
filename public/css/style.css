@@ -210,12 +210,12 @@ input.check-brand:checked + label.name-brand:before {
     .contact-lngswitcher-wrapper {
         right: -50px;
     }
-    .btn-logout {
+    a.btn-logout {
         right: 25px;
     }
 }
 @media (min-width: 1500px){
-    .btn-logout {
+    a.btn-logout {
         right: 45px;
     }
 }
