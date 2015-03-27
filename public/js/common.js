@@ -42,10 +42,13 @@ $(function () {
         $('a.btn-subs-brand').click(function(){
             var subscription = $.cookie("subscription", true );
         });
+        var sign_out = $.cookie("sign_out", true);
+    }else {
+        $.removeCookie("sign_out");
     }
 
     /*Show subscription modal window for users who click at "Subscribe to brand" button when they were unregistered/unauthorized */
-    if (subscription != null) {
+    if ((subscription != null) && !(sign_out)) {
         $.removeCookie("subscription");
         $('.subscription-form-modal').modal({show: true});
     }
