@@ -113,4 +113,9 @@ $(function () {
 
     });
 
+    /*disabled previous and next buttons on preview page*/
+    if (document.location.href.search("/ad/index/id/")!=-1){
+        $('.previous, .next').addClass('disabled');
+    }
+
 });
