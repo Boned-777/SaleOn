@@ -48,8 +48,7 @@ class Zend_View_Helper_AdminNavigationBar extends Zend_View_Helper_Abstract
             "active" => array("link" => array("/admin/active"), "caption" => $translate->getAdapter()->translate("active")),
             "archive" => array("link" => array("/admin/archive"), "caption" => $translate->getAdapter()->translate("archive")),
             "geo_edit" => array("link" => array("/admin/geo-edit"), "caption" => $translate->getAdapter()->translate("geo_edit")),
-
-
+            "brands" => array("link" => array("/admin/brands"), "caption" => $translate->getAdapter()->translate("brands")),
         );
 
 		if ($auth->hasIdentity()) {

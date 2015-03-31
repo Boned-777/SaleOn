@@ -34,11 +34,13 @@ class Application_Model_Brand {
         $this->owner = new Application_Model_Partner();
         if ($this->user_id) {
             $this->owner->getByUserId($this->user_id);
+            return $this->owner;
         }
     }
 
-    public function setOwner($partner) {
-        $this->owner = $partner;
+    public function setOwner($user) {
+        $this->owner = $user;
+        $this->user_id = $user->id;
         $this->save();
     }
 
@@ -92,7 +94,7 @@ class Application_Model_Brand {
         }
 
         if ($this->owner) {
-            $resArr["user_id"] = $this->owner->user_id;
+            $resArr["user_id"] = $this->owner->id;
         }
         return $resArr;
     }

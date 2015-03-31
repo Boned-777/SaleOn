@@ -23,10 +23,7 @@ class BrandsController extends Zend_Controller_Action
     public function listAction()
     {
         $params = null;
-        $request = new Zend_Controller_Request_Http();
-
         $params = Application_Model_FilterParameter::prepare(array("geo"));
-
         $item = new Application_Model_DbTable_Brand();
         $results = $item->search($this->_getParam('term'), $params);
         $this->_helper->json(array("list" => $results));
@@ -64,15 +61,16 @@ class BrandsController extends Zend_Controller_Action
                 $this->redirect("/admin/brands");
             }
 
-            $brand->getOwner();
+            $owner = $brand->getOwner();
+
+            $data = $brand->owner->toArray();
+            $data["owner_email"] = $owner->user->username;
+            $data["brand_id"] = $brand->id;
 
             $this->view->brandForm = new Application_Form_Brand();
             $this->view->ownerForm = new Application_Form_BrandOwner();
             $this->view->brandForm->populate($brand->toArray());
-            $this->view->ownerForm->populate(array_merge(
-                $brand->owner->toArray(),
-                array("brand_id" => $brand->id))
-            );
+            $this->view->ownerForm->populate($data);
 
 
         } else {
@@ -81,34 +79,25 @@ class BrandsController extends Zend_Controller_Action
     }
 
     public function editOwnerAction() {
-        $result = array();
-
         $brand = new Application_Model_Brand();
-
+        $partnerData = $this->getAllParams();
         if ($brand->get($this->getParam('brand_id', null))) {
-            $partner = new Application_Model_Partner();
-            var_dump($partner->getByUsername($this->getParam('email', null)));
+            if ($brand->getOwner()->user->username !== $partnerData["owner_email"]) {
+                $user = new Application_Model_User();
+                if (!$user->getByUsername($this->getParam('owner_email', null))) {
+                    $partnerData["password"] = uniqid();
+                    $partnerData["username"] = $partnerData["owner_email"];
+                    $partner = new Application_Model_Partner();
+                    $partner->create($partnerData);
+                    $user = $partner->user;
+                }
 
-            Zend_Debug::dump($partner); die();
-
-            if (!$partner->getByUsername($this->getParam('email', null))) {
-die();
-                $partnerData = $this->getAllParams();
-                $partnerData["password"] = "any_password";
-                $partnerData["username"] = $partnerData["email"];
-
-                $partner = new Application_Model_Partner();
-                $partner->create($partnerData);
+                $brand->setOwner($user);
             }
 
 
-
-            $brand->setOwner($partner);
-            $brand->save();
-
         }
-
-        $this->_helper->json($result);
+        $this->redirect("/brands/edit/id/" . $partnerData["brand_id"]);
     }
 
 }

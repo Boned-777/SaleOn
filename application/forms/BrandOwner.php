@@ -9,14 +9,14 @@ class Application_Form_BrandOwner extends Zend_Form
 
         $this->setAction('/brands/edit-owner');
 
-        $this->addElement('text', 'id');
+        $this->addElement('hidden', 'id');
         $this->getElement("id")->setDecorators(array('ViewHelper'));
 
-        $this->addElement('text', 'brand_id');
+        $this->addElement('hidden', 'brand_id');
         $this->getElement("brand_id")->setDecorators(array('ViewHelper'));
 
 
-        $this->addElement('text', 'email', array(
+        $this->addElement('text', 'owner_email', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("email"),
             'validators' => array(
@@ -28,6 +28,7 @@ class Application_Form_BrandOwner extends Zend_Form
         $this->addElement('text', 'address', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("address"),
+            'disabled' => true,
 //            'validators' => array(
 //                array('StringLength', false, array(0, 100))
 //            ),
@@ -40,6 +41,7 @@ class Application_Form_BrandOwner extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 14))
             ),
+            'disabled' => true,
 //            'required' => true,
         ));
 
@@ -49,6 +51,7 @@ class Application_Form_BrandOwner extends Zend_Form
             'validators' => array(
                 array('StringLength', false, array(0, 14))
             ),
+            'disabled' => true,
 //            'required' => true,
         ));
 
@@ -60,6 +63,7 @@ class Application_Form_BrandOwner extends Zend_Form
                 array('StringLength', false, array(0, 100)),
                 new Custom_Form_Validator_Url()
             ),
+            'disabled' => true,
 //            'required' => true,
         ));
 
