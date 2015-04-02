@@ -96,7 +96,11 @@ class Application_Model_Geo
         $this->id = $item->id;
         $this->code = $item->code;
         $this->name = $item->name;
-        $this->locale = is_null($item->locale) ? "" : unserialize($item->locale);
+        try {
+            $this->locale = unserialize($item->locale);
+        } catch (Exception $e) {
+            $this->locale = "";
+        }
     }
 
     public function getAllTree($adId = null, $editMode = false) {
