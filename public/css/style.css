@@ -70,45 +70,11 @@ body {
 #footer .btn-group {
     margin: 6px 0 0 10px;
 }
-.contact-btn {
-    background: url("/img/contacts6.png") center 2px no-repeat;
-    margin: 0;
-    border: none;
-    width: 36px;
-    height:24px;
-    position: absolute;
-    right: 35px;
-}
 
 .contact-lngswitcher-wrapper {
     position: absolute;
     top: 35px;
     right: -30px;
-}
-
-a.btn-logout {
-    position: absolute;
-    top: 42px;
-    right: 60px;
-    color: #3a3a3a;
-}
-
-.btn-logout + .tooltip .tooltip-inner {
-    font-weight: normal;
-    font-size: 11px;
-}
-
-.btn-logout:hover {
-   color: #3a3a3a;
-}
-
-.btn-subs-brand .fa{
-    color: #5a7c16;
-    margin-top:4px;
-}
-
-#btn-subs-manager .fa{
-    margin-top:4px;
 }
 
 .subscription-manager{
@@ -211,12 +177,12 @@ input.check-brand:checked + label.name-brand:before {
         right: -50px;
     }
     a.btn-logout {
-        right: 25px;
+        right: 20px !important;
     }
 }
 @media (min-width: 1500px){
     a.btn-logout {
-        right: 45px;
+        right: 40px !important;
     }
 }
 
@@ -298,56 +264,83 @@ input.check-brand:checked + label.name-brand:before {
         }
     */
 }
+
+.top-menu a, .top-menu button {
+    color: #4a4a4a;
+}
+.top-menu .fa{
+    font-size: 26px;
+}
+
 /*Top menu end*/
 
 /* Top menu buttons */
-[class^="myicon-"],
-[class*=" myicon-"]{
-    background-image: url("/img/menu-sprite-small.png");
-    background-position: -2px 1px;
-    background-repeat: no-repeat;
+[class^="fa-"],
+[class*=" fa-"]{
     display: inline-block;
-    height: 29px;
-    line-height: 14px;
-    margin-top: -5px;
-    vertical-align: text-top;
-    width: 34px;
-}
-
-.myicon-category {
-    background-position: -31px -1px;
-}
-.myicon-brands {
-    background-position: -64px 0px;
-}
-.btn-subs-brand, #btn-subs-manager {
-    width: 34px;
-    margin-top:0px;
     height: 24px;
+    width: 34px;
 }
-.myicon-favorites {
-    background-position: -129px 2px;
-}
-.myicon-admin {
 
+.myicon-admin {
     background-image: url("/img/admin.png");
     background-position: 0px 3px;
-}
-.myicon-user {
-    background-position: -162px 2px;
-}
-.myicon-partners {
-    background-position: -223px 2px;
-}
-.myicon-logout {
-    background-position: -190px 2px;
 }
 
 .btn-large {
     margin-right: 5px;
     padding: 6px 30px 6px 33px;
-    font-size: 17px;
 }
+
+#btn1.btn-large {
+    font-size: 28px;
+    padding: 4px 30px 7px 33px;
+}
+
+#btn1.btn-large .fa{
+    font-size: 28px;
+}
+
+a.btn-logout {
+    position: absolute;
+    top: 37px;
+    right: 55px;
+    color: #3a3a3a;
+}
+
+.btn-logout .fa {
+    font-size: 20px;
+    height: auto;
+    width: auto;
+}
+
+
+.btn-logout + .tooltip .tooltip-inner {
+    font-weight: normal;
+    font-size: 11px;
+}
+
+.btn-logout:hover {
+    color: #3a3a3a;
+}
+
+.btn-subs-brand .fa{
+    color: #5a7c16;
+}
+
+a.contact-btn{
+    font-size: 20px;
+    color: #9a9b9c;
+    margin: 0;
+    border: 1px solid transparent;
+    position: absolute;
+    right: 35px;
+    padding-left: 5px;
+    top: 0;
+    width: 25px;
+    height: 22px;
+}
+
 .menu-button-wrapper .tooltip-inner {
     font-size: 13px;
     font-weight: bold;
@@ -375,6 +368,9 @@ input.check-brand:checked + label.name-brand:before {
     .btn-large {
         margin-right: 10px;
         padding: 5px 20px;
+    }
+    #btn1.btn-large {
+        padding: 3px 20px 7px 20px;
     }
 }
 
@@ -1408,19 +1404,21 @@ a.pluso-more{display: none !important;}
     float: left;
 }
 .shopping-icon {
-    background: url("/img/shopping_cart.png") -3px -1px;
-    background-repeat: no-repeat;
     height: 48px;
-    width: 48px;
+    width: 60px;
     float: left;
 }
+.shopping-icon.fa, .services-icon.fa {
+    font-size: 45px;
+    color: #4a4a4a;
+}
+
 .services-icon {
-    background: url("/img/preferences-system.png") 5px -1px;
-    background-repeat: no-repeat;
     height: 48px;
-    width: 63px;
+    width: 60px;
     float: left;
 }
+
 .shopping-icon2 {
     background: url("/img/shopping_cart2.png") -3px -1px;
     background-repeat: no-repeat;
@@ -1648,16 +1646,14 @@ a.pluso-more{display: none !important;}
     height: 12px;
     line-height: 12px;
     margin-right: 8px;
+    padding-left: 3px;
     margin-top: 1px;
     vertical-align: text-top;
     width: 16px;
+    color: #4d4d4d;
 }
 .cicon-phone {
-    background-image: url("/img/phone.png");
-}
-
-.cicon-mail {
-    background-image: url("/img/mail.png");
+    padding-left: 4px;
 }
 
 [class^="icon-"], [class*=" icon-"] {
