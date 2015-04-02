@@ -5,12 +5,12 @@
 		var wawBrands = function (brandsData) {
 			this.mainTemplate = '<div class="row">\
         							<div data-id="0" class="span4 category-group alert alert-success">\
-        								<i class="shopping-icon"></i>\
+        								<i class="shopping-icon fa fa-bold"></i>\
         								<div class="category-group-text">$brands <span id="first-brand-group-count" class="counter"></span></div>\
         							</div>\
         							<div class="span1">&nbsp;</div>\
 						        	<div data-id="1" class="span4 category-group category-group-inactive">\
-						        		<i class="services-icon"></i>\
+						        		<i class="services-icon fa fa-bold"></i>\
 						        		<div class="category-group-text">$products <span id="second-brand-group-count" class="counter"></span></div>\
 						        	</div>\
 						      	</div>\
