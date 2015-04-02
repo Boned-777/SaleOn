@@ -5,7 +5,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     protected $_name = 'users';
 
-	public function create($vars) {
+	public function create($vars, $sendHello=true) {
 		$data = array();
 		$password = $vars["password"];
 		$data["salt"] = md5($this->_passwordGenerator(6));
@@ -27,9 +27,9 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		if ($res === false) {
 			return false;
 		}
-
-        $this->sendHelloMsg($data);
-		
+        if ($sendHello) {
+            $this->sendHelloMsg($data);
+        }
 		return $res;
 	}
 	
