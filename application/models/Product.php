@@ -2,7 +2,7 @@
 class Application_Model_Product extends Application_Model_FilterMapper
 {
     function __construct() {
-        $this->dbItem = new Application_Model_DbTable_Brand();
+        $this->dbItem = new Application_Model_DbTable_Product();
     }
 
     public function getByAlias ($alias = "")

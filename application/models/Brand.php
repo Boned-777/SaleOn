@@ -1,5 +1,5 @@
 <?php
-class Application_Model_Brand {
+class Application_Model_Brand extends Application_Model_FilterMapper{
     var $id;
     var $name;
     var $user_id;
@@ -14,6 +14,10 @@ class Application_Model_Brand {
     const ACTIVE = "ACTIVE";
     const INACTIVE = "INACTIVE";
     const NEW_BRAND = "NEW_BRAND";
+
+    function __construct() {
+        $this->dbItem = new Application_Model_DbTable_Brand();
+    }
 
     public function get($id) {
         if (!(int)$id) {
@@ -117,6 +121,20 @@ class Application_Model_Brand {
         $data = $brandDb->fetchAll($select);
 
         return $data->toArray();
+    }
+
+    public function getByAlias ($alias = "")
+    {
+        $aliasParts = explode("_", $alias);
+        $id = (int)$aliasParts[0];
+        if ($id) {
+            $res = $this->dbItem->find($id);
+            if ($res->count()) {
+                $this->loadData($res->current());
+                return $this->id;
+            }
+        }
+        return false;
     }
 
 
