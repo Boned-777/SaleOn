@@ -34,7 +34,7 @@ class Application_Form_AdMain extends Zend_Form
         $this->addElement('textarea', 'description', array(
             'class' => "input-block-level",
             'label' => $translate->getAdapter()->translate("description") . ' *',
-            'max_length' => 250,
+            'max_length' => 300,
             'validators'    => array(
                 array(
                     'validator' =>  'StringLength',
