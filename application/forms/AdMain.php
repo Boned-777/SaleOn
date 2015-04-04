@@ -61,7 +61,7 @@ class Application_Form_AdMain extends Zend_Form
                     'validator' =>  'StringLength',
                     'options'   => array(
                         'encoding' => 'UTF-8',
-                        'max' => 10050,
+                        'max' => 10000,
                         'messages'  =>  array(
                             Zend_Validate_StringLength::TOO_LONG => $translate->getAdapter()->translate("too_long"),
                         )
