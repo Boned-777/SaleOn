@@ -72,7 +72,7 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
         return true;
     }
 
-    public function create($brandName, $partnerId) {
+    public function create($brandName, $partnerId=null, $description=null) {
         $this->name = $brandName;
         $this->user_id = $partnerId;
         $this->status = self::NEW_BRAND;

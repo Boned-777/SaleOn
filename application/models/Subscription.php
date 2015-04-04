@@ -47,7 +47,11 @@ class Application_Model_Subscription
 
         if (empty($data["id"])) {
             $brandItem = new Application_Model_Brand();
-            $brandId = $brandItem->create($data);
+            $brandId = $brandItem->create(
+                $data["brand_name"],
+                $data["user_id"],
+                $data["description"]
+            );
 
             if ($brandId !== false) {
                 $data["brand_id"] = $brandId;
