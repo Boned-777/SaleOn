@@ -105,7 +105,12 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
 
     public function save() {
         $db = new Application_Model_DbTable_Brand();
-        return $db->save($this->toArray(), $this->id);
+        $item = $db->fetchRow('name="' . $this->name . '"');
+        if ($item) {
+            return $item->id;
+        } else {
+            return $db->save($this->toArray(), $this->id);
+        }
     }
 
     public function getAll() {

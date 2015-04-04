@@ -311,7 +311,7 @@ class Application_Model_Ad
         $sort = isset($params["sort"]) ? $params["sort"] : "regular";
         switch ($sort) {
             case "favorite" :
-                $items = $this->getFavorites($params["favorites_list"]);
+                $items = $this->getFavorites($params["favorites_list"], $params["user_id"]->id);
                 foreach ($items as $item) {
                     $resData[] = $item->toListArray($params["user_id"]);
                 }
@@ -373,12 +373,25 @@ class Application_Model_Ad
         }
     }
 
-    public function getFavorites($favorites_ads) {
-        if (!empty($favorites_ads)) {
+    public function getFavorites($favorites_ads, $userId=null) {
+        if (!empty($favorites_ads) && $userId) {
             $item = new Application_Model_DbTable_Ad();
             $stmt = $item->select()
-                ->where("end_dt > NOW() AND status = ? AND id IN (" . $favorites_ads . ")", Application_Model_DbTable_Ad::STATUS_ACTIVE)
-                ->order("end_dt");
+                ->from(array("a" => "ads"))
+                ->joinLeft(array("s" => "subscription"), "a.brand = s.brand_id")
+                ->where("a.end_dt > NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE)
+                ->order("a.end_dt")
+                ->setIntegrityCheck(false)
+                ->reset(Zend_Db_Select::COLUMNS)
+                ->columns("a.*");
+
+            if ($userId) {
+                $stmt->where("s.user_id=?", $userId);
+            }
+
+            if ($favorites_ads) {
+                $stmt->orWhere("a.id IN (" . $favorites_ads . ")");
+            }
             $data = $item->fetchAll($stmt);
             if ($data !== false) {
                 $res = array();
