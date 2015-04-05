@@ -1,5 +1,6 @@
 <?php global $translate; ?>
-<?php $this->headTitle($translate->getAdapter()->translate("enter")); ?>
+<?php $this->headTitle($translate->getAdapter()->translate("enter"));  ?>
+<?=$this->headTitle()->setSeparator(' / ');?>
 <div class="row">
     <div class="span6 offset3">
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
