@@ -1,0 +1,303 @@
+/* Icons for regions in regions pop-up */
+
+#regions-list div[data-region-seo-name] > .flagi-right{
+    padding-left: 40px;
+}
+
+#regions-list div[data-region-seo-name]{
+    background-repeat: no-repeat;
+    background-size: 30px Auto;
+    background-position: 10px 5px;
+}
+
+#areas-list div[data-region-seo-name]{
+    background-repeat: no-repeat;
+    background-size: 25px Auto;
+    background-position: 5px 3px;
+}
+
+/* Icons for regions */
+
+#regions-list div[data-region-seo-name="chernivecka-oblast"]{
+    background-image: url("../img/regions/regional-flags/chernivecka-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="chernigivska-oblast"]{
+    background-image: url("../img/regions/regional-flags/chernigivska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="cherkaska-oblast"]{
+    background-image: url("../img/regions/regional-flags/cherkaska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="hmelnicka-oblast"]{
+    background-image: url("../img/regions/regional-flags/hmelnicka-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="hersonska-oblast"]{
+    background-image: url("../img/regions/regional-flags/hersonska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="harkivska-oblast"]{
+    background-image: url("../img/regions/regional-flags/harkivska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="ternopilska-oblast"]{
+    background-image: url("../img/regions/regional-flags/ternopilska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="sumska-oblast"]{
+    background-image: url("../img/regions/regional-flags/sumska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="rivnenska-oblast"]{
+    background-image: url("../img/regions/regional-flags/rivnenska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="poltavska-oblast"]{
+    background-image: url("../img/regions/regional-flags/poltavska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="odeska-oblast"]{
+    background-image: url("../img/regions/regional-flags/odeska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="mikolayivska-oblast"]{
+    background-image: url("../img/regions/regional-flags/mikolayivska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="lvivska-oblast"]{
+    background-image: url("../img/regions/regional-flags/lvivska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="luganska-oblast"]{
+    background-image: url("../img/regions/regional-flags/luganska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="kirovogradska-oblast"]{
+    background-image: url("../img/regions/regional-flags/kirovogradska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="krim"]{
+    background-image: url("../img/regions/regional-flags/krim.png");
+}
+
+#regions-list div[data-region-seo-name="kiyivska-oblast"]{
+    background-image: url("../img/regions/regional-flags/kiyivska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="ivano-frankivska-oblast"]{
+    background-image: url("../img/regions/regional-flags/ivano-frankivska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="zaporizka-oblast"]{
+    background-image: url("../img/regions/regional-flags/zaporizka-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="zakarpatska-oblast"]{
+    background-image: url("../img/regions/regional-flags/zakarpatska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="zhitomirska-oblast"]{
+    background-image: url("../img/regions/regional-flags/zhitomirska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="donecka-oblast"]{
+    background-image: url("../img/regions/regional-flags/donecka-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="dnipropetrovska-oblast"]{
+    background-image: url("../img/regions/regional-flags/dnipropetrovska-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="vinnicka-oblast"]{
+    background-image: url("../img/regions/regional-flags/vinnicka-oblast.png");
+}
+
+#regions-list div[data-region-seo-name="volinska-oblast"]{
+    background-image: url("../img/regions/regional-flags/volinska-oblast.png");
+}
+
+/* Icons for areas */
+
+#areas-list div[data-region-seo-name="chernivtsi"]{
+    background-image: url("../img/regions/area-emblems/chernivtsi.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+#areas-list div[data-region-seo-name="chernihiv"]{
+    background-image: url("../img/regions/area-emblems/chernihiv.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+#areas-list div[data-region-seo-name="cherkasy"]{
+    background-image: url("../img/regions/area-emblems/cherkasy.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+#areas-list div[data-region-seo-name="khmelnitsky"]{
+    background-image: url("../img/regions/area-emblems/khmelnitsky.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+#areas-list div[data-region-seo-name="kherson"]{
+    background-image: url("../img/regions/area-emblems/kherson.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+#areas-list div[data-region-seo-name="kharkiv"]{
+    background-image: url("../img/regions/area-emblems/kharkiv.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+#areas-list div[data-region-seo-name="ternopil"]{
+    background-image: url("../img/regions/area-emblems/ternopil.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="sumy"]{
+    background-image: url("../img/regions/area-emblems/sumy.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="rovno"]{
+    background-image: url("../img/regions/area-emblems/rovno.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="poltava"]{
+    background-image: url("../img/regions/area-emblems/poltava.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="odessa"]{
+    background-image: url("../img/regions/area-emblems/odessa.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="nikolaev"]{
+    background-image: url("../img/regions/area-emblems/nikolaev.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="lviv"]{
+    background-image: url("../img/regions/area-emblems/lviv.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="lugansk"]{
+    background-image: url("../img/regions/area-emblems/lugansk.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="kirovograd"]{
+    background-image: url("../img/regions/area-emblems/kirovograd.png");
+    padding-left: 40px;
+    margin-right: -30px;
+    background-size: 30px Auto;
+    background-position: 5px 1px;
+}
+
+
+#areas-list div[data-region-seo-name="simferopol"]{
+    background-image: url("../img/regions/area-emblems/simferopol.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="kiev"]{
+    background-image: url("../img/regions/area-emblems/kiev.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="ivanofrank"]{
+    background-image: url("../img/regions/area-emblems/ivanofrank.png");
+    padding-left: 40px;
+    margin-right: -30px;
+    background-size: 30px Auto;
+    background-position: 5px 1px;
+}
+
+
+#areas-list div[data-region-seo-name="zaporozhye"]{
+    background-image: url("../img/regions/area-emblems/zaporozhye.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="uzhgorod"]{
+    background-image: url("../img/regions/area-emblems/uzhgorod.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="zhitomir"]{
+    background-image: url("../img/regions/area-emblems/zhitomir.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="donetsk"]{
+    background-image: url("../img/regions/area-emblems/donetsk.png");
+    padding-left: 40px;
+    margin-right: -30px;
+    background-size: 30px Auto;
+    background-position: 5px 1px;
+}
+
+
+#areas-list div[data-region-seo-name="dnepropetrovsk"]{
+    background-image: url("../img/regions/area-emblems/dnepropetrovsk.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+#areas-list div[data-region-seo-name="vinnitsa"]{
+    background-image: url("../img/regions/area-emblems/vinnitsa.png");
+    padding-left: 40px;
+    margin-right: -30px;
+    background-size: 30px Auto;
+    background-position: 5px 1px;
+}
+
+
+#areas-list div[data-region-seo-name="lutsk"]{
+    background-image: url("../img/regions/area-emblems/lutsk.png");
+    padding-left: 40px;
+    margin-right: -30px;
+}
+
+
+
+
+
+
