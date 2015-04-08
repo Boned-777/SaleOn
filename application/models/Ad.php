@@ -385,13 +385,20 @@ class Application_Model_Ad
                 ->reset(Zend_Db_Select::COLUMNS)
                 ->columns("a.*");
 
-            if ($userId) {
-                $stmt->where("s.user_id=?", $userId);
-            }
+            $orWhereStmt = array();
 
             if ($favorites_ads) {
-                $stmt->orWhere("a.id IN (" . $favorites_ads . ")");
+                $orWhereStmt[] = "a.id IN (" . $favorites_ads . ")";
             }
+
+            if ($userId) {
+                $orWhereStmt[] = "s.user_id=" . $userId;
+            }
+
+            if (count($orWhereStmt)) {
+                $stmt->where("(" . implode(" OR ", $orWhereStmt) . ")");
+            }
+
             $data = $item->fetchAll($stmt);
             if ($data !== false) {
                 $res = array();
@@ -503,15 +510,28 @@ class Application_Model_Ad
                 break;
 
             case "favorite" :
+                $item = new Application_Model_DbTable_Ad();
+                $select
+                    ->joinLeft(array("s" => "subscription"), "a.brand = s.brand_id")
+                    ->setIntegrityCheck(false);
+
+                $orWhereStmt = array();
 
                 if (isset($params["favorites_ads"])) {
-                    if (sizeof($params["favorites_ads"])) {
-                        $select
-                            ->where("id IN (" . $params["favorites_ads"] . ")")
-                            ->order("end_dt");
-                    }
+                    $orWhereStmt[] = "a.id IN (" . $params["favorites_ads"] . ")";
                 }
 
+                if (isset($params["user"])) {
+                    $orWhereStmt[] = "s.user_id=" . $params["user"];
+                }
+
+                if (count($orWhereStmt)) {
+                    $select->where("(" . implode(" OR ", $orWhereStmt) . ")");
+                }
+
+                $select->order("a.end_dt");
+
+                //echo $select->__toString(); die();
             default:
                 $select->order("a.order_index DESC");
 
@@ -522,6 +542,7 @@ class Application_Model_Ad
                 switch ($key) {
                     case "sort":
                     case "favorites_ads":
+                    case "user":
                         break;
 
                     case "geo" :

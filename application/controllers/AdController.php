@@ -51,6 +51,7 @@ class AdController extends Zend_Controller_Action
                 $this->view->isFavoritesUrl = $item->getFavoritesUrl(null, "remove");
                 $this->view->notFavoritesUrl = $item->getFavoritesUrl(null, "add");
                 $params["favorites_ads"] = $identity->favorites_ads;
+                $params["user"] = $identity->id;
             } else {
                 $this->view->isFavorite = false;
                 $this->view->isFavoritesUrl = $item->getFavoritesUrl();
