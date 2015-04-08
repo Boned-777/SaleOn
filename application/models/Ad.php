@@ -503,7 +503,7 @@ class Application_Model_Ad
         $select
             ->distinct()
             ->from(array("a" => "ads"), array("a.*"))
-            ->where("(a.end_dt >= NOW() - INTERVAL 1 DAY) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
+            ->where("(a.end_dt >= NOW()) AND a.public_dt <= NOW() AND a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
         switch (isset($params["sort"]) ? $params["sort"] : null) {
             case "new" :
                 $select->order("a.public_dt DESC");
@@ -531,7 +531,7 @@ class Application_Model_Ad
 
                 $select->order("a.end_dt");
 
-                //echo $select->__toString(); die();
+                echo $select->__toString(); die();
             default:
                 $select->order("a.order_index DESC");
 
