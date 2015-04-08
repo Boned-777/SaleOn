@@ -510,7 +510,6 @@ class Application_Model_Ad
                 break;
 
             case "favorite" :
-                $item = new Application_Model_DbTable_Ad();
                 $select
                     ->joinLeft(array("s" => "subscription"), "a.brand = s.brand_id")
                     ->setIntegrityCheck(false);
@@ -531,7 +530,6 @@ class Application_Model_Ad
 
                 $select->order("a.end_dt");
 
-                echo $select->__toString(); die();
             default:
                 $select->order("a.order_index DESC");
 
