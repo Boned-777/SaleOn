@@ -100,5 +100,39 @@ class BrandsController extends Zend_Controller_Action
         $this->redirect("/brands/edit/id/" . $partnerData["brand_id"]);
     }
 
+    public function combineAction() {
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity()) {
+            if ($auth->getIdentity()->role === Application_Model_User::ADMIN) {
+                $params = $this->getAllParams();
+                $currentBrand = new Application_Model_Brand();
+                $targetBrand = new Application_Model_Brand();
+
+                if (
+                    isset($params["current"]) &&
+                    isset($params["target"])
+                ){
+                    $currentBrand->get($params["current"]);
+                    $targetBrand->get($params["target"]);
+
+                    $currentBrand->status = Application_Model_Brand::INACTIVE;
+                    $targetBrand->status = Application_Model_Brand::ACTIVE;
+                    if (!$targetBrand->user_id) {
+                        $targetBrand->user_id = $currentBrand->user_id;
+                    }
+                    $currentBrand->saveItem();
+                    $targetBrand->saveItem();
+                    $ads = new Application_Model_Ad();
+                    $ads->changeAdsBrand($currentBrand->id, $targetBrand->id);
+                    $subscr = new Application_Form_Subscription();
+                    $subscr->changeSubscriptionsBrand($currentBrand->id, $targetBrand->id);
+                    return $this->_helper->json(array("success" => true));
+                }
+            }
+        }
+
+        return $this->_helper->json(array("success" => false));
+    }
+
 }
 

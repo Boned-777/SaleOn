@@ -103,6 +103,23 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
         return $resArr;
     }
 
+    protected function getDbItem($name="") {
+        if (!$this->dbItem) {
+            $db = new Application_Model_DbTable_Brand();
+            $this->dbItem = $db->fetchRow('name="' . $name . '"');
+        }
+        return $this->dbItem;
+    }
+
+    public function saveItem() {
+        $item = $this->getDbItem();
+        $data = $this->toArray();
+        foreach ($data as $key => $value) {
+            $item->$key = $value;
+        }
+        return $item->save($data, $this->id);
+    }
+
     public function save() {
         $db = new Application_Model_DbTable_Brand();
         $item = $db->fetchRow('name="' . $this->name . '"');

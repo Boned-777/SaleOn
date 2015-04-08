@@ -734,4 +734,18 @@ class Application_Model_Ad
         return $res;
     }
 
+    /**
+     * @param int $currentBrandId
+     * @param int $targetBrandId
+     */
+    public function changeAdsBrand($currentBrandId, $targetBrandId) {
+        $db = new Application_Model_DbTable_Ad();
+        $items = $db->fetchAll("`brand` = " . $currentBrandId);
+
+        foreach ($items as $item) {
+            $item->brand = $targetBrandId;
+            $item->save();
+        }
+    }
+
 }
