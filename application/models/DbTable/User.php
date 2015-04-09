@@ -6,6 +6,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     protected $_name = 'users';
 
 	public function create($vars, $sendHello=true) {
+        if ($itemData = $this->getByUsername($vars["username"])) {
+            return $itemData["id"];
+        }
+
 		$data = array();
 		$password = $vars["password"];
 		$data["salt"] = md5($this->_passwordGenerator(6));

@@ -132,14 +132,20 @@ class Application_Model_User
     }
 
     public function create($data) {
-        $dbItem = new Application_Model_DbTable_User();
-        $res = $dbItem->create(array(
+        $itemData = array(
             "password" => $data["password"],
             "username" => $data["username"],
-            "role" => $data["role"],
-        ));
-        if (!$res)
+            "role" => $data["role"]
+        );
+
+        $dbItem = new Application_Model_DbTable_User();
+        $res = $dbItem->create($itemData);
+        if (!$res) {
             return false;
+        }
+
+        $this->id = $res;
+        $this->load($itemData);
         return $res;
     }
 

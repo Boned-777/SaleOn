@@ -72,7 +72,7 @@
                         <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="fa fa-briefcase"></i></a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="fa fa-sign-out"></i></a>
                     <?php } elseif ($auth->getIdentity()->role == Application_Model_User::ADMIN) { ?>
-                        <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="myicon-admin"></i>
+                        <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="fa fa-gear"></i>
                         </a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="fa fa-sign-out"></i></a>
                     <?php } else { ?>

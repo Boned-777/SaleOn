@@ -9,7 +9,7 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
 
     var $owner;
 
-    var $_dbItem;
+    var $dbItem;
 
     const ACTIVE = "ACTIVE";
     const INACTIVE = "INACTIVE";
@@ -25,27 +25,39 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
         }
 
         $db = new Application_Model_DbTable_Brand();
-        $this->_dbItem = $db->find($id);
-        if ($this->_dbItem) {
-            $resArr = $this->_dbItem->toArray();
+        $this->dbItem = $db->find($id);
+        if ($this->dbItem) {
+            $resArr = $this->dbItem->toArray();
             $this->loadData($resArr[0]);
             return $resArr;
         }
         return false;
     }
 
+    /**
+     * @return Application_Model_Partner
+     */
     public function getOwner() {
-        $this->owner = new Application_Model_Partner();
-        if ($this->user_id) {
-            $this->owner->getByUserId($this->user_id);
-            return $this->owner;
+        if (empty($this->owner)) {
+            $this->owner = new Application_Model_Partner();
+            if ($this->user_id) {
+                $this->owner->getByUserId($this->user_id);
+            }
         }
+        return $this->owner;
     }
 
-    public function setOwner($user) {
-        $this->owner = $user;
-        $this->user_id = $user->id;
-        $this->save();
+    public function setOwner($username) {
+        $partner = new Application_Model_Partner();
+        if (!$partner->getByUsername($username)) {
+            $partnerData = array();
+            $partnerData["password"] = uniqid();
+            $partnerData["username"] = $username;
+            $partner->create($partnerData);
+        }
+        echo $this->user_id = $partner->getUser()->id;
+
+        $this->saveItem();
     }
 
     public function getByPartnerId($id) {
@@ -97,16 +109,17 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
             }
         }
 
-        if ($this->owner) {
-            $resArr["user_id"] = $this->owner->id;
-        }
         return $resArr;
     }
 
-    protected function getDbItem($name="") {
-        if (!$this->dbItem) {
+    protected function getDbItem() {
+        if (empty($this->dbItem) || empty($this->dbItem->id)) {
             $db = new Application_Model_DbTable_Brand();
-            $this->dbItem = $db->fetchRow('name="' . $name . '"');
+            $where = 'name="' . $this->name . '"';
+            if ($this->id) {
+                $where = 'id="' . $this->id . '"';
+            }
+            $this->dbItem = $db->fetchRow($where);
         }
         return $this->dbItem;
     }
