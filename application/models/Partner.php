@@ -17,21 +17,31 @@ class Application_Model_Partner
 
     public $user;
 
+
+    public function getUser() {
+        if (empty($this->user)) {
+            $this->user = new Application_Model_User();
+            $this->user->getByUserId($this->user_id);
+        }
+        return $this->user;
+    }
+
     public function create($data) {
-        $dbItem = new Application_Model_DbTable_User();
+        $dbItem = $this->getUser();
         $res = $dbItem->create(array(
             "password" => $data["password"],
             "username" => $data["username"],
             "role" => Application_Model_User::PARTNER
         ));
+
         if (!$res) {
             return false;
         }
+
         $this->load($data);
         $this->id = null;
-        $this->user = new Application_Model_User();
-        $this->user->getByUserId($res);
-        $this->user_id = $res;
+        $this->email = $this->getUser()->username;
+        $this->user_id = $this->getUser()->id;
         $this->save();
         return true;
     }
@@ -79,6 +89,9 @@ class Application_Model_Partner
         }
         $dbItem = new Application_Model_DbTable_Partner();
         $res = $dbItem->save($data, $this->id);
+        if ($res) {
+            $this->id = $res;
+        }
         return (bool)$res;
     }
 

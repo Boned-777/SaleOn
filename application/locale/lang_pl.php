@@ -228,5 +228,6 @@ return array(
     "new_ad" => "<img src='/img/no-image-gray-ua.png' class='img-polaroid'>",
     "map" => "Wszystkie adresy",
     'lng_switcher' => 'Język strony',
-    'brand_label' => 'Marka'
+    'brand_label' => 'Marka',
+    'brands' => 'Brands'
 );

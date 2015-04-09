@@ -57,21 +57,21 @@ class BrandsController extends Zend_Controller_Action
         if ($brand->get($brandId)) {
             if ($this->getRequest()->isPost()) {
                 $brand->loadData($this->getAllParams());
-                $brand->save();
-                $this->redirect("/admin/brands");
+                $brand->saveItem();
             }
 
             $owner = $brand->getOwner();
 
             $data = $brand->owner->toArray();
-            $data["owner_email"] = $owner->user->username;
+            if (isset($owner->user)) {
+                $data["owner_email"] = $owner->user->username;
+            }
             $data["brand_id"] = $brand->id;
 
             $this->view->brandForm = new Application_Form_Brand();
             $this->view->ownerForm = new Application_Form_BrandOwner();
             $this->view->brandForm->populate($brand->toArray());
             $this->view->ownerForm->populate($data);
-
 
         } else {
             $this->redirect("/admin/brands");
@@ -82,22 +82,45 @@ class BrandsController extends Zend_Controller_Action
         $brand = new Application_Model_Brand();
         $partnerData = $this->getAllParams();
         if ($brand->get($this->getParam('brand_id', null))) {
-            if ($brand->getOwner()->user->username !== $partnerData["owner_email"]) {
-                $user = new Application_Model_User();
-                if (!$user->getByUsername($this->getParam('owner_email', null))) {
-                    $partnerData["password"] = uniqid();
-                    $partnerData["username"] = $partnerData["owner_email"];
-                    $partner = new Application_Model_Partner();
-                    $partner->create($partnerData);
-                    $user = $partner->user;
-                }
-
-                $brand->setOwner($user);
+            if ($brand->getOwner()->getUser()->username !== $partnerData["owner_email"]) {
+                $brand->setOwner($partnerData["owner_email"]);
             }
-
-
         }
         $this->redirect("/brands/edit/id/" . $partnerData["brand_id"]);
+    }
+
+    public function combineAction() {
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity()) {
+            if ($auth->getIdentity()->role === Application_Model_User::ADMIN) {
+                $params = $this->getAllParams();
+                $currentBrand = new Application_Model_Brand();
+                $targetBrand = new Application_Model_Brand();
+
+                if (
+                    isset($params["current"]) &&
+                    isset($params["target"])
+                ){
+                    $currentBrand->get($params["current"]);
+                    $targetBrand->get($params["target"]);
+
+                    $currentBrand->status = Application_Model_Brand::INACTIVE;
+                    $targetBrand->status = Application_Model_Brand::ACTIVE;
+                    if (!$targetBrand->user_id) {
+                        $targetBrand->user_id = $currentBrand->user_id;
+                    }
+                    $currentBrand->saveItem();
+                    $targetBrand->saveItem();
+                    $ads = new Application_Model_Ad();
+                    $ads->changeAdsBrand($currentBrand->id, $targetBrand->id);
+                    $subscr = new Application_Form_Subscription();
+                    $subscr->changeSubscriptionsBrand($currentBrand->id, $targetBrand->id);
+                    return $this->_helper->json(array("success" => true));
+                }
+            }
+        }
+
+        return $this->_helper->json(array("success" => false));
     }
 
 }

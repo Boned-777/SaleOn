@@ -68,5 +68,19 @@ class Application_Form_Subscription extends Zend_Form
         ));
     }
 
+    /**
+     * @param int $currentBrandId
+     * @param int $targetBrandId
+     */
+    public function changeSubscriptionsBrand($currentBrandId, $targetBrandId) {
+        $db = new Application_Model_DbTable_Subscription();
+        $items = $db->fetchAll("`brand_id` = " . $currentBrandId);
+
+        foreach ($items as $item) {
+            $item->brand_id = $targetBrandId;
+            $item->save();
+        }
+    }
+
 }
 

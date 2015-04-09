@@ -228,5 +228,6 @@ return array (
     'map'=>'All addresses',
     'social_share'=>'Share in social networks',
     'lng_switcher' => 'Site language',
-    'brand_label' => 'Brand'
+    'brand_label' => 'Brand',
+    'brands' => 'Brands'
 );

@@ -232,5 +232,6 @@ return array (
     "new_ad_title"=>"Додати акцію",
     'map'=>'Всі адреси',
     'lng_switcher' => 'Мова сайту',
-    'brand_label' => 'Бренд'
+    'brand_label' => 'Бренд',
+    'brands' => 'Brands'
 );
