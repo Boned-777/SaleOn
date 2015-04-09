@@ -92,8 +92,6 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
     }
 
     public function save($data, $id=null) {
-        dd($data, $id);
-
         try {
             if (!empty($id)) {
                 $res = $this->update($data, 'id = '. (int)$id);
