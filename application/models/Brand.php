@@ -63,7 +63,7 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
     public function getByPartnerId($id) {
         $db = new Application_Model_DbTable_Brand();
         $select = $db->select()
-            ->where("partner = ?", $id)
+            ->where("user_id = ?", $id)
             ->order("name");
         return $db->fetchAll($select)->toArray();
     }
@@ -143,13 +143,16 @@ class Application_Model_Brand extends Application_Model_FilterMapper{
         }
     }
 
-    public function getAll() {
+    public function getAll($userId = null) {
         $brandDb = new Application_Model_DbTable_Brand();
         $select = $brandDb->select()
             ->from(array("b" => "brands"))
             ->joinLeft(array("u" => "users"), "u.id = b.user_id")
             ->setIntegrityCheck(false);
 
+        if ($userId !== null) {
+            $select->where("used_id = ?", $userId);
+        }
         $select->reset(Zend_Db_Select::COLUMNS);
         $select->columns(array("b.*", "u.username"));
 

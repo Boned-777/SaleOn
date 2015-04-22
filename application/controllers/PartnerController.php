@@ -57,7 +57,6 @@ class PartnerController extends Zend_Controller_Action
         $partner = new Application_Model_Partner();
         $partner->getByUserId($userId);
         $brands = $partner->getBrands();
-
         $grid = Bvb_Grid::factory('Table');
         $grid->setSource(new Bvb_Grid_Source_Array($brands));
         $grid->setGridColumns(array("name", 'status', 'stats'));

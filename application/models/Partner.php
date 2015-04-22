@@ -178,7 +178,7 @@ class Application_Model_Partner
 
     public function getBrands() {
         $brands = new Application_Model_Brand();
-        return $brands->getByPartnerId($this->id);
+        return $brands->getByPartnerId($this->user->id);
 
     }
 
