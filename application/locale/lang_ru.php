@@ -89,7 +89,7 @@ return array(
     "error_confirm_password" => "Введенные пароли не совпадают",
     "too_long" => "Слишком длинное описание",
     "no_data_available" => "К сожалению, данные недоступны. Попробуйте поменять фильтры",
-    "no_favorites_data_available" => "К сожалению, в избранное не добавлена ни одна акция",
+    "no_favorites_data_available" => "К сожалению, раздел подписок пуст.<br/>Попробуйте подписаться на бренды используя форму подписок в меню <i class='fa fa-pencil'></i>",
     "browser_not_supported" => "К сожалению, этот браузер не поддерживается. Установите, пожалуйста, более современный браузер",
     "date_compare_not_actual" => "Укажите актуальную дату",
     "date_compare_not_later" => "Дата недопустима",
@@ -158,7 +158,7 @@ return array(
     "mm_news"=>"Новые",
     "mm_partners"=>"Партнерам",
     "mm_exit"=>"Выйти",
-    "mm_favorites"=>"Избранное",
+    "mm_favorites"=>"Акции подписки",
     "mm_user"=>"Пользователям",
     "mm_admin"=>"Панель управления",
     "mm_subscription_manager"=>"Менеджер подписок",
@@ -166,11 +166,12 @@ return array(
 
     "subscription_brand"=>"Название бренда",
     "details"=>"Укажите контактные данные владельца бренда",
-    "subscription_settings"=>"Настройки подписки",
-    "brand_name_placeholder"=>"Название бренда",
+    "subscription_settings"=>"Изменить настройки подписки",
+    "brand_name_placeholder"=>"Введите название бренда",
     "details_placeholder"=>"e-mail, сайт, телефон или адрес",
     "subscription_manager_title"=>"Вы подписаны на бренды",
     "subscription_manager_error_title"=>"Ваш список выбранных брендов пуст",
+    "make_subscription"=>"Подписаться",
     "subscription_save_btn"=>"Сохранить",
 
     "main_title" => "Все Акции и Скидки",
@@ -233,5 +234,10 @@ return array(
     'map'=>'Все адреса',
     'lng_switcher' => 'Язык сайта',
     'brand_label' => 'Бренд',
-    'brands' => 'Brands'
+    'brands' => 'Brands',
+
+    "subscription_success_msg" => 'Ви подписались на бренд "{{brand}}"<div class="sub-msg">Оповещения о новых акциях этого бренда будет приходить на указанную Вами почту</div>',
+    "already_subscribed" => "Похоже что вы уже подписаны на новые акции этого бренда",
+    "no_brand_name" => "Укажите имя бренда",
+
 );

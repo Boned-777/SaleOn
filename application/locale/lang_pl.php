@@ -157,7 +157,7 @@ return array(
     "mm_news" => "Nowy",
     "mm_partners" => "partnerzy",
     "mm_exit" => "Wyloguj",
-    "mm_favorites" => "Ulubione",
+    "mm_favorites" => "Subskrypcja",
     "mm_user" => "użytkowników",
     "mm_admin"=>"Panel kontrola",
     "mm_subscription_manager"=>"Subskrypcja menedżer",
@@ -170,6 +170,7 @@ return array(
     "details_placeholder"=>"e-mail, strony internetowej, numer telefonu lub adres",
     "subscription_manager_title"=>"Subskrybujesz marek",
     "subscription_manager_error_title"=>"Twoja lista jest pusta marek",
+    "make_subscription"=>"Subskrypcja",
     "subscription_save_btn"=>"Zapisz",
 
     "main_title" => "All Special Offers",
@@ -229,5 +230,9 @@ return array(
     "map" => "Wszystkie adresy",
     'lng_switcher' => 'Język strony',
     'brand_label' => 'Marka',
-    'brands' => 'Brands'
+    'brands' => 'Brands',
+
+    "subscription_success_msg" => 'You successfully subscribed the brend "{{brand}}"<div class="sub-msg">We will inform you about any new actions of this brand via email</div>',
+    "already_subscribed" => "Looks like you already subscribed for this brand",
+    "no_brand_name" => "Please provide brand name",
 );

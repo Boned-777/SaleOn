@@ -62,13 +62,14 @@ $(function () {
     $('#btn-subs-brand').click(function(e){
         e.preventDefault();
         $('input#brand_name').val('');
+        $('#subscriptionFormMsg').html('');
         $('#description-label,#description-element').hide();
         $('textarea#description').val('');
         $('.subscription-form-modal').modal({show: true});
     });
 
     /*Show subscription-manager modal window*/
-    $("#btn-subs-manager, .subscription-form-modal a").click( function(e) {
+    $("#btn-subs-manager, .subscription-form-modal #subscriptionManagerBtn").click( function(e) {
         e.preventDefault();
         $('.brand-wrapper').remove();
         $.getJSON('/subscription/list', function(brand) {
@@ -92,7 +93,7 @@ $(function () {
     });
 
     /*Switch between subscription and subscription-manager modal windows*/
-    $('.subscription-form-modal a').click(function(e){
+    $('.subscription-form-modal #subscriptionManagerBtn').click(function(e){
         e.preventDefault();
         $('.subscription-form-modal').modal('hide');
         $('.subscription-manager').modal({show: true});
@@ -139,7 +140,11 @@ $(function () {
                 dataType: "json",
                 data: data,
                 success: function(data) {
-                    $('.subscription-form-modal').modal('hide');
+                    if (data.success === true) {
+
+                    }
+                    $("#subscriptionFormMsg").html(data.msg);
+                    //$('.subscription-form-modal').modal('hide');
                 }
             });
         }

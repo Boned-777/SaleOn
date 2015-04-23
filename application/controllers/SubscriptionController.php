@@ -15,6 +15,7 @@ class SubscriptionController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        global $translate;
         $request = $this->getRequest();
         $form = new Application_Form_Subscription();
 
@@ -27,12 +28,21 @@ class SubscriptionController extends Zend_Controller_Action
                 );
 
                 if ($item->create($data)) {
-                    $this->_helper->json(array("success" => true));
+                    $this->_helper->json(array(
+                        "success" => true,
+                        "msg" => str_replace("{{brand}}", $data["brand_name"], $translate->getAdapter()->translate("subscription_success_msg"))
+                    ));
                 } else {
-                    $this->_helper->json(array("success" => false));
+                    $this->_helper->json(array(
+                        "success" => false,
+                        "msg" => $translate->getAdapter()->translate("already_subscribed")
+                    ));
                 }
             } else {
-                $this->_helper->json(array("success" => false));
+                $this->_helper->json(array(
+                    "success" => false,
+                    "msg" => $translate->getAdapter()->translate("no_brand_name")
+                ));
             }
         }
 

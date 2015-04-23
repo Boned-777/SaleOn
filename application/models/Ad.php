@@ -374,6 +374,10 @@ class Application_Model_Ad
     }
 
     public function getFavorites($favorites_ads, $userId=null) {
+        //Disable favorites list
+        $favorites_ads=array();
+        //Disable favorites list
+
         if (!empty($favorites_ads) && $userId) {
             $item = new Application_Model_DbTable_Ad();
             $stmt = $item->select()

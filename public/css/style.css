@@ -144,13 +144,13 @@ input.check-brand + label.name-brand:before {
     position: absolute;
     right: 0;
     top: -2px;
-    content: "\f006";
+    content: "\f040";
     color: #cdcdcd;
     font-size: 16px;
 }
 
 input.check-brand:checked + label.name-brand:before {
-    content: "\f005";
+    content: "\f040";
     color: #e9cf21;
 }
 
@@ -2010,3 +2010,21 @@ img#banner{
     content: "\f0c8";
 }
 
+.subscription-nav-btn i{
+    width: 18px;
+    margin-left: 10px;
+}
+
+.subscription-fav {
+    float: right;
+}
+
+.subscription-msg {
+    text-align: center;
+    font-size: 14pt;
+}
+
+.sub-msg {
+    font-size: 10pt;
+    color: #7A7A7A;
+}

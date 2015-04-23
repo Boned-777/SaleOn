@@ -27,8 +27,9 @@ class Application_Form_Subscription extends Zend_Form
 
         $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name', array(
             'class' => "input-block-level",
+            'placeholder' => $translate->getAdapter()->translate("subscription_brand")
         ));
-        $brand->setLabel($translate->getAdapter()->translate("subscription_brand"));
+        //$brand->setLabel($translate->getAdapter()->translate("subscription_brand"));
         $brand->setJQueryParam('source', '/brands/autocomp');
         $brand->setJQueryParam('response', new Zend_Json_Expr(
             'function (e, data) {
@@ -61,10 +62,10 @@ class Application_Form_Subscription extends Zend_Form
         ));
 
         $this->addElement('submit', "subscription_submit", array(
-            //'class' => 'btn btn-large btn-primary',
+            'class' => 'btn btn-large btn-success',
             'required' => false,
             'ignore' => true,
-            'label' => $translate->getAdapter()->translate("update"),
+            'label' => $translate->getAdapter()->translate("make_subscription"),
         ));
     }
 

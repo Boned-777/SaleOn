@@ -36,12 +36,15 @@
                     <a href="<?= $this->nextAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
                 </li>
                 <li>
-                    <div id="favorites-link"
-                         data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>"
-                         title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>"
-                         data-id="<?= $this->ad->id ?>"
-                         data-status="<?= $this->isFavorite ? "on" : "off" ?>"
-                         class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>"></div>
+                    <?php if (false) { ?>
+                        <div id="favorites-link"
+                             data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>"
+                             title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>"
+                             data-id="<?= $this->ad->id ?>"
+                             data-status="<?= $this->isFavorite ? "on" : "off" ?>"
+                             class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>">
+                        </div>
+                    <?php } ?>
                 </li>
                 <li class="next  <?= $this->prevAdUrl ? "" : "disabled" ?>">
                     <a href="<?= $this->prevAdUrl ?>" onclick=""><?= $translate->getAdapter()->translate("next_ad") ?> &rarr;</a>

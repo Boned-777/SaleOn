@@ -82,7 +82,7 @@ return array (
 
     // ERRORS AND MESSAGES
     "no_data_available" => "На жаль , дані недоступні. Спробуйте поміняти фільтри",
-    "no_favorites_data_available" => "На жаль , в обране не додана жодна акція",
+    "no_favorites_data_available" => "На жаль, розділ підписок пустий.<br/>Спробуйте підписатися на оновлення акцій за допомогою форми підписки в меню <i class='fa fa-pencil'></i>",
     "browser_not_supported" => "На жаль , цей браузер не підтримується. Встановіть , будь ласка , більш сучасний браузер",
     "server_error" => "На жаль ця операція тимчасово недоступна. Повторіть спробу пізніше",
 
@@ -149,19 +149,20 @@ return array (
     "mm_news" => "Нові",
     "mm_partners" => "Партнерам",
     "mm_exit" => "Вийти",
-    "mm_favorites" => "Вибране",
+    "mm_favorites" => "Акції підписки",
     "mm_user" => "Користувачам",
     "mm_admin"=>"Панель керування",
     "mm_subscription_manager"=>"Менеджер підписок",
     "mm_subscription_to_brand"=>"Підписатися на бренд",
 
-    "subscription_brand"=>"Назва бренду",
+    "subscription_brand"=>"Введіть назву бренду",
     "details"=>"Вкажіть контактні дані власника бренду",
-    "subscription_settings"=>"Налаштування підписки",
+    "subscription_settings"=>"Змінити налаштування підписки",
     "brand_name_placeholder"=>"Назва бренду",
     "details_placeholder"=>"e-mail, сайт, телефон чи адреса",
     "subscription_manager_title"=>"Ви підписалися на бренди",
     "subscription_manager_error_title"=>"Ваш список обраних брендів порожній",
+    "make_subscription"=>"Підписатися",
     "subscription_save_btn"=>"Зберегти",
 
     "main_title" => "Всі Акції та Знижки",
@@ -233,5 +234,9 @@ return array (
     'map'=>'Всі адреси',
     'lng_switcher' => 'Мова сайту',
     'brand_label' => 'Бренд',
-    'brands' => 'Brands'
+    'brands' => 'Brands',
+
+    "subscription_success_msg" => 'Ви підписались на бренд "{{brand}}"<div class="sub-msg">Повідомлення про нові акції цього бренду будуть надходити на ваш E-mail, вказанний при реєстрації</div>',
+    "already_subscribed" => "Схоже ви вже підписані на цей бренд",
+    "no_brand_name" => "Введіть назву бренда",
 );

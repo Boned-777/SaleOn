@@ -38,7 +38,7 @@ $(function () {
 									<a class="img-wrapper" href="/show/$seoLink">\
 										<img src="/media/$imageLink" class="img-polaroid"/>\
 										<div class="post-link img-info">\
-												<div data-link="$favoriteLink" title="$favoritesTooltip" data-id="$link" class="favorites-icon $isFavorite"></div>\
+												<!-- <div data-link="$favoriteLink" title="$favoritesTooltip" data-id="$link" class="favorites-icon $isFavorite"></div>-->\
 												<p class="ellipsis">$name</p>\
 												<p class="ellipsis">$brand</p>\
 												<p class="ellipsis">$daysMsgText: $daysLeft</p>\

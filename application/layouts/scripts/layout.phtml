@@ -19,7 +19,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/normalize.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/style.css')); ?>
-    <?php $this->headLink()->prependStylesheet($this->baseUrl('css/region-icons.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/select2.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/datepicker.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/redmond/jquery-ui-1.10.3.custom.min.css')); ?>
@@ -70,29 +69,31 @@
                 $auth = Zend_Auth::getInstance();
                 if ($auth->hasIdentity()) { ?>
                     <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
+
                         <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="fa fa-briefcase"></i></a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="fa fa-sign-out"></i></a>
+
                     <?php } elseif ($auth->getIdentity()->role == Application_Model_User::ADMIN) { ?>
-                        <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="fa fa-gear"></i>
-                        </a>
+
+                        <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="fa fa-gear"></i></a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="fa fa-sign-out"></i></a>
+
                     <?php } else { ?>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            var tooltip = $.cookie("tooltip");
-                            if (tooltip == null) {
-                                var tooltip = $.cookie("tooltip", "hide");
-                                $('#btn-subs-brand').tooltip({placement: 'bottom', trigger: 'hover'}).tooltip('show');
-                                $('#btn-subs-brand + .tooltip').delay(5000).fadeOut();
-                        }
-                            $('#btn-logout').click(function(){
-                                $.removeCookie("tooltip");
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                var tooltip = $.cookie("tooltip");
+                                if (tooltip == null) {
+                                    var tooltip = $.cookie("tooltip", "hide");
+                                    $('#btn-subs-brand').tooltip({placement: 'bottom', trigger: 'hover'}).tooltip('show');
+                                    $('#btn-subs-brand + .tooltip').delay(5000).fadeOut();
+                                }
+                                $('#btn-logout').click(function(){
+                                    $.removeCookie("tooltip");
+                                });
                             });
-                        });
-                    </script>
+                        </script>
                         <a href="/filter/any/any/any/any/favorite" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_favorites")?>" class="btn btn-large"><i class="fa fa-star"></i></a>
-                        <a href="/subscription/manager" id="btn-subs-manager" title="<?= $translate->getAdapter()->translate("mm_subscription_manager")?>" class="btn btn-large"><i class="fa fa-pencil-square-o"></i></a>
-                        <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn-logout"><i class="fa fa-sign-out"></i></a>
+                        <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="fa fa-sign-out"></i></a>
                     <?php } ?>
                 <?php } else { ?>
                 <script type="text/javascript">

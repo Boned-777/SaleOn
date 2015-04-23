@@ -87,7 +87,7 @@ return array (
     "error_confirm_password" => "The passwords do not match",
     "too_long" => "Too long description",
     "no_data_available" => "Unfortunately, data are not available. Try changing the filters",
-    "no_favorites_data_available" => "No event added to favorites",
+    "no_favorites_data_available" => "Looks like that list is empty.<br/>Try to subscribe for brands news using subscription form menu button <i class='fa fa-pencil'></i>",
     "browser_not_supported" => "Sorry, this browser is not supported. Check please, more modern browser",
     "date_compare_not_actual" => "Indicate actual date",
     "date_compare_not_later" => "Invalid date",
@@ -156,19 +156,20 @@ return array (
     "mm_news" => "New",
     "mm_partners" => "Partners",
     "mm_exit" => "Exit",
-    "mm_favorites" => "Favorites",
+    "mm_favorites" => "Subscribed ads",
     "mm_user" => "User",
     "mm_admin"=>"Control panel",
     "mm_subscription_manager"=>"Subscription manager",
     "mm_subscription_to_brand"=>"Subscribe to brand",
 
-    "subscription_brand"=>"The brand name",
+    "subscription_brand"=>"Enter brand name",
     "details"=>"Specify the contact details of the owner of the brand",
-    "subscription_settings"=>"Subscription settings",
+    "subscription_settings"=>"Change subscription settings",
     "brand_name_placeholder"=>"The brand name",
     "details_placeholder"=>"e-mail, website, phone number or address",
     "subscription_manager_title"=>"You have subscribed to brands",
     "subscription_manager_error_title"=>"Your list of brands is empty",
+    "make_subscription"=>"Subscribe",
     "subscription_save_btn"=>"Save",
 
     "main_title" => "All Special Offers",
@@ -229,5 +230,9 @@ return array (
     'social_share'=>'Share in social networks',
     'lng_switcher' => 'Site language',
     'brand_label' => 'Brand',
-    'brands' => 'Brands'
+    'brands' => 'Brands',
+
+    "subscription_success_msg" => 'You successfully subscribed the brend "{{brand}}"<div class="sub-msg">We will inform you about any new actions of this brand via email</div>',
+    "already_subscribed" => "Looks like you already subscribed for this brand",
+    "no_brand_name" => "Please provide brand name",
 );

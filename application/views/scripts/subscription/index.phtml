@@ -6,7 +6,7 @@ global $translate;
     <div>
         <?= $this->subscriptionForm; ?>
     </div>
-    <div><a href="/subscription/manager"><?php echo $translate->getAdapter()->translate("subscription_settings"); ?> >></a></div>
+    <div><a href="/subscription/manager" class="subscription-manager-btn"><i class="fa fa-pencil-square-o"></i><?php echo $translate->getAdapter()->translate("subscription_settings"); ?></a></div>
 </div>
 
 <script>
