@@ -164,7 +164,7 @@ return array(
     "mm_subscription_manager"=>"Менеджер подписок",
     "mm_subscription_to_brand"=>"Подписаться на бренд",
 
-    "subscription_brand"=>"Название бренда",
+    "subscription_brand"=>"Введите название бренда",
     "details"=>"Укажите контактные данные владельца бренда",
     "subscription_settings"=>"Изменить настройки подписки",
     "brand_name_placeholder"=>"Введите название бренда",

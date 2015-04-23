@@ -74,7 +74,7 @@ $(function () {
         $('.brand-wrapper').remove();
         $.getJSON('/subscription/list', function(brand) {
             for(var i=0;i<brand.list.length;i++){
-                $('.subscription-manager form.brand-list').prepend('<div class="brand-wrapper"><input type="checkbox" name="brand['+brand.list[i].id +']" id="brand_'+brand.list[i].id +'" class="check-brand" checked/>'+'<label for="brand_'+brand.list[i].id +'" class="name-brand">'+brand.list[i].name+'</label></div>');
+                $('.subscription-manager form.brand-list').prepend('<div class="brand-wrapper" title="Відписатись"><input type="checkbox" name="brand['+brand.list[i].id +']" id="brand_'+brand.list[i].id +'" class="check-brand" checked/>'+'<label for="brand_'+brand.list[i].id +'" class="name-brand">'+brand.list[i].name+'</label></div>');
             }
             if (brand.list.length == 0){
                 $('.subscription-manager h2:first-of-type').hide();
@@ -140,11 +140,7 @@ $(function () {
                 dataType: "json",
                 data: data,
                 success: function(data) {
-                    if (data.success === true) {
-
-                    }
                     $("#subscriptionFormMsg").html(data.msg);
-                    //$('.subscription-form-modal').modal('hide');
                 }
             });
         }

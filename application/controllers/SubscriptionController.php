@@ -7,7 +7,7 @@ class SubscriptionController extends Zend_Controller_Action
     public function init()
     {
         $auth = Zend_Auth::getInstance();
-        if ($auth->getIdentity()->role != Application_Model_User::USER) {
+        if ($this->getParam("action") !== "send" && $auth->getIdentity()->role !== Application_Model_User::USER) {
             $this->_helper->redirector('index', 'auth');
         }
         $this->user = $auth->getIdentity();
