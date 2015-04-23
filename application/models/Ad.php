@@ -378,7 +378,8 @@ class Application_Model_Ad
         $favorites_ads=array();
         //Disable favorites list
 
-        if (!empty($favorites_ads) && $userId) {
+        if ( $userId) {
+
             $item = new Application_Model_DbTable_Ad();
             $stmt = $item->select()
                 ->from(array("a" => "ads"))
@@ -391,9 +392,9 @@ class Application_Model_Ad
 
             $orWhereStmt = array();
 
-            if ($favorites_ads) {
-                $orWhereStmt[] = "a.id IN (" . $favorites_ads . ")";
-            }
+//            if ($favorites_ads) {
+//                $orWhereStmt[] = "a.id IN (" . $favorites_ads . ")";
+//            }
 
             if ($userId) {
                 $orWhereStmt[] = "s.user_id=" . $userId;
