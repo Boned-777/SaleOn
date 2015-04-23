@@ -83,9 +83,12 @@ class SubscriptionController extends Zend_Controller_Action
         ));
     }
 
-    public function sendAuction() {
+    public function sendAction() {
         $subscription = new Application_Model_Subscription();
         $subscription->send();
+        $this->_helper->json(array(
+            "success" => true
+        ));
     }
 
 }
