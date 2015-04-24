@@ -1,16 +1,67 @@
 <?php
-global $translate;
+    global $translate;
 ?>
-<div class="modal subscription-form-modal">
+<div class="modal hide fade subscription-manager">
+    <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
+    <h2><?php echo $translate->getAdapter()->translate("subscription_manager_title"); ?></h2>
+    <h2><?php echo $translate->getAdapter()->translate("subscription_manager_error_title"); ?></h2>
+    <form action="/subscription/manager" method="post" class="brand-list">
+        <div class="clear"></div>
+        <input type="submit" class="btn btn-warning save-brands" value="<?php echo $translate->getAdapter()->translate("subscription_save_btn"); ?>" class="save-brands"/>
+    </form>
+</div>
+
+<div class="modal hide fade subscription-form-modal">
     <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
     <div>
-        <?= $this->subscriptionForm; ?>
+
+        <form enctype="application/x-www-form-urlencoded" action="/subscription/index" class="subscription" method="post"><dl class="zend_form">
+                <dd id="script-element">
+
+                    <script>
+                        jQuery ( document ).ready(function() {
+                            $('#description-label').hide();
+                            $('#description-element').hide();
+                        });
+                    </script>
+                </dd>
+
+                <input type="hidden" name="brand_id" value="" id="brand_id">
+                <dt id="brand_name-label">&nbsp;</dt>
+                <dd id="brand_name-element">
+                    <input type="text" name="brand_name" id="brand_name" value="" class="input-block-level" placeholder="Введіть назву бренду"></dd>
+                <dt id="description-label" style="display: none;"><label for="description" class="optional">Вкажіть контактні дані власника бренду</label></dt>
+                <dd id="description-element" style="display: none;">
+                    <textarea name="description" id="description" class="input-block-level hide" placeholder="e-mail, сайт, телефон чи адреса" rows="24" cols="80"></textarea></dd>
+                <dt id="subscription_submit-label">&nbsp;</dt><dd id="subscription_submit-element">
+                    <input type="submit" name="subscription_submit" id="subscription_submit" value="Підписатися" class="btn btn-large btn-success" data-original-title="" title=""></dd></dl></form>
+
     </div>
-    <div><a href="/subscription/manager" class="subscription-manager-btn"><i class="fa fa-pencil-square-o"></i><?php echo $translate->getAdapter()->translate("subscription_settings"); ?></a></div>
+    <div id="subscriptionFormMsg" class="subscription-msg"></div>
+    <hr/>
+    <div>
+        <a href="/subscription/manager" id="subscriptionManagerBtn" class="subscription-nav-btn"><i class="fa fa-pencil-square-o"></i><?php echo $translate->getAdapter()->translate("subscription_settings"); ?></a>
+        <a href="/filter/any/any/any/any/favorite" class="subscription-nav-btn subscription-fav"><i class="fa fa-star"></i><?php echo $translate->getAdapter()->translate("mm_favorites"); ?></a>
+    </div>
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('.subscription-form-modal').modal({show: true});
+    $(document).ready(function() {
+        $("#brand_name").autocomplete({"source":"\/brands\/autocomp","response":function (e, data) {
+            $("#brand_id").val("");
+            if (data.content.length) {
+                $("#description-label").hide();
+                $("#description-element").hide();
+            } else {
+                $("#description-label").show();
+                $("#description-element").show();
+            }
+            return false;
+        },"select":function (e, data) {
+            $("#brand_name").val(data.item.label);
+            $("#brand_id").val(data.item.value);
+            return false;
+        }});
     });
+
 </script>

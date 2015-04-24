@@ -18,28 +18,9 @@
 	</div>
 </div>
 
-<div class="modal hide fade subscription-manager">
-    <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
-    <h2><?php echo $translate->getAdapter()->translate("subscription_manager_title"); ?></h2>
-    <h2><?php echo $translate->getAdapter()->translate("subscription_manager_error_title"); ?></h2>
-    <form action="/subscription/manager" method="post" class="brand-list">
-        <div class="clear"></div>
-        <input type="submit" class="btn save-brands" value="<?php echo $translate->getAdapter()->translate("subscription_save_btn"); ?>" class="save-brands"/>
-    </form>
-</div>
 
-<div class="modal hide fade subscription-form-modal">
-    <div><span class="modal-close-btn" data-dismiss="modal">&times;</span></div>
-    <div>
-        <?= $this->subscriptionForm; ?>
-    </div>
-    <div id="subscriptionFormMsg" class="subscription-msg"></div>
-    <hr/>
-    <div>
-        <a href="/subscription/manager" id="subscriptionManagerBtn" class="subscription-nav-btn"><i class="fa fa-pencil-square-o"></i><?php echo $translate->getAdapter()->translate("subscription_settings"); ?></a>
-        <a href="/filter/any/any/any/any/favorite" class="subscription-nav-btn subscription-fav"><i class="fa fa-star"></i><?php echo $translate->getAdapter()->translate("mm_favorites"); ?></a>
-    </div>
-</div>
+
+
 
 <script type="text/javascript">
     <?php 

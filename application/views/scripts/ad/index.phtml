@@ -5,7 +5,6 @@
 <div class="row">
     <div class="span6 details-left">
         <a href="#">
-            <!-- /img/item2.jpg -->
             <?php if ($this->ad->video == "") { ?>
                 <img src="/media/<?php echo $this->ad->image; ?>" class="img-polaroid">
                 <div class="push"></div>
@@ -36,13 +35,14 @@
                     <a href="<?= $this->nextAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
                 </li>
                 <li>
-                    <?php if (false) { ?>
-                        <div id="favorites-link"
-                             data-link="<?= $this->isFavorite ? $this->isFavoritesUrl : $this->notFavoritesUrl ?>"
-                             title="<?= $this->isFavorite ? $translate->getAdapter()->translate("remove_from_favorites") : $translate->getAdapter()->translate("add_to_favorites") ?>"
-                             data-id="<?= $this->ad->id ?>"
-                             data-status="<?= $this->isFavorite ? "on" : "off" ?>"
-                             class="favorites-icon <?= $this->isFavorite ? "favorites-icon-on" : "favorites-icon-off" ?>">
+                    <?php if (true) { ?>
+                        <div id="adDetailsSubscribeLink"
+                             data-brand="<?= $this->ad->brand_name ?>"
+                             title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand"); ?>"
+                             data-id="<?= $this->ad->brand ?>"
+                             class="favorites-icon"
+                        >
+                            <i class="fa fa-pencil"></i>
                         </div>
                     <?php } ?>
                 </li>
@@ -116,7 +116,7 @@
         <div class="span2" style="position:relative; left: 46%; width:480px;">
           <div id="spanik">  <div class="location_item" style="color:red"><i class="icon-map-marker"></i>&nbsp;<?= $this->ad->address; ?></div></div>
             <?php foreach($this->ad->addresses->list as $addrItem) : ?>
-            <?php if ($addrItem["checked"]) : ?>
+                <?php if ($addrItem["checked"]) : ?>
                 <div class="location_item"><i class="icon-map-marker"></i>&nbsp;<?= $addrItem['name']; ?></div>
                 <?php endif ?>
             <?php endforeach ?>

@@ -59,13 +59,21 @@ $(function () {
     }
 
     /*show subscription modal window*/
-    $('#btn-subs-brand').click(function(e){
+    $('#btn-subs-brand, #adDetailsSubscribeLink').click(function(e){
         e.preventDefault();
+
         $('input#brand_name').val('');
         $('#subscriptionFormMsg').html('');
         $('#description-label,#description-element').hide();
         $('textarea#description').val('');
         $('.subscription-form-modal').modal({show: true});
+
+        if (e.currentTarget.dataset.brand) {
+            var brand_id = e.currentTarget.dataset.id;
+            var brand_name = e.currentTarget.dataset.brand;
+            $('input#brand_id').val(brand_id);
+            $('input#brand_name').val(brand_name);
+        }
     });
 
     /*Show subscription-manager modal window*/

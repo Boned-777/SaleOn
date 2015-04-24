@@ -151,7 +151,7 @@ input.check-brand + label.name-brand:before {
 
 input.check-brand:checked + label.name-brand:before {
     content: "\f040";
-    color: #e9cf21;
+    color: #5a7c16;
 }
 
 #footer .contacts:hover, .contact-btn:focus {
@@ -1251,9 +1251,10 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     width: 22px;
     cursor: pointer;
     position: relative;
-    right: 17px;
-    top: 5px;
-
+    right: 14px;
+    top: 1px;
+    color: #5a7c16;
+    font-size: 14pt;
 }
 .details-right .details-description{
     overflow: auto;
@@ -1262,7 +1263,7 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
 }
 @media (max-width: 1000px) {
 
-    .details-right .favorites-icon {
+    .details-right .favorites-icon, .details-right .subscribe-icon {
         display: inline-block;
         height: 22px;
         width: 22px;
