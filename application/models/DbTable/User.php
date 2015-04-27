@@ -157,7 +157,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     public function sendHelloMsg($data) {
 
         $text = "Рады приветствовать Вас на сайте saleon.info".
-            "\n\n\nWelcome on WantLook.info";
+            "\n\n\nWelcome on SaleOn.info";
 
         $email = new Application_Model_MandrillAdapter();
         $res = $email->sendText('Регистрация на saleon.info', $text, array($data["username"] => ""));

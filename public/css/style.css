@@ -1274,6 +1274,18 @@ div.span6.details-right{margin-left: -85px; width: 55%;  }
     }
 }
 
+.details-right .favorites-icon {
+    background: #6E8C33;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 0 3px 8px;
+    margin-right: 2px;
+}
+
+.details-right .favorites-icon:hover{
+    background: #5a7c16;
+}
+
 a.pluso-more{display: none !important;}
 .leftMargin {
     margin-top: 20px;
