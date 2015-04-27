@@ -61,6 +61,7 @@ class AdController extends Zend_Controller_Action
             $neighborArr = $item->getNeighborhood($params);
             $this->view->nextAdUrl = !is_null($neighborArr["previous"])?$neighborArr["previous"]->createUrl():null;
             $this->view->prevAdUrl = !is_null($neighborArr["next"])?$neighborArr["next"]->createUrl():null;
+            $this->view->isUser = (!empty($this->user->role) && $this->user->role === Application_Model_User::USER);
 
         } else {
             $this->redirect("/index/index");

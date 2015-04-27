@@ -35,7 +35,7 @@
                     <a href="<?= $this->nextAdUrl ?>">&larr; <?= $translate->getAdapter()->translate("prev_ad") ?></a>
                 </li>
                 <li>
-                    <?php if (true) { ?>
+                    <?php if ($this->isUser) { ?>
                         <div id="adDetailsSubscribeLink"
                              data-brand="<?= $this->ad->brand_name ?>"
                              title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand"); ?>"
