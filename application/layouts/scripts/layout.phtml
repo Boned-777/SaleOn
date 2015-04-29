@@ -63,23 +63,33 @@
                 <a id="link" href="/" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("main_page")?>"><div class="logo"></div></a>
             </div>
             <div class="menu-button-wrapper">
-                <a id="btn-subs-brand" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand")?>" class="btn btn-large btn-subs-brand" >
-                    <i class="fa fa-pencil"></i>
-                </a>
+
                 <?php
                 $auth = Zend_Auth::getInstance();
                 if ($auth->hasIdentity()) { ?>
-                    <?php if ($auth->getIdentity()->role == Application_Model_User::PARTNER) { ?>
+                    <?php if ($auth->getIdentity()->role === Application_Model_User::PARTNER) { ?>
+                        <script type="text/javascript">
+                            $.removeCookie("subscription", { path: '/' });
+                            $.removeCookie("subscription_manager", { path: '/' });
+                        </script>
 
+                        <a href="/ad/new"  title="<?= $translate->getAdapter()->translate("new_ad_title")?>" class="btn btn-large" ><i class="fa fa-plus-square-o"></i></a>
                         <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="fa fa-briefcase"></i></a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="fa fa-sign-out"></i></a>
 
-                    <?php } elseif ($auth->getIdentity()->role == Application_Model_User::ADMIN) { ?>
-
+                    <?php } elseif ($auth->getIdentity()->role === Application_Model_User::ADMIN) { ?>
+                        <script type="text/javascript">
+                            $.removeCookie("subscription", { path: '/' });
+                            $.removeCookie("subscription_manager", { path: '/' });
+                        </script>
+                        <a href="/partner/profile"  title="<?= $translate->getAdapter()->translate("new_ad_title")?>" class="btn btn-large" ><i class="fa fa-plus-square-o"></i></a>
                         <a href="/admin/ready" id="btn-fav" title="<?= $translate->getAdapter()->translate("mm_admin")?>" class="btn btn-large"><i class="fa fa-gear"></i></a>
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large" ><i class="fa fa-sign-out"></i></a>
 
                     <?php } else { ?>
+                        <a id="btn-subs-brand" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand")?>" class="btn btn-large btn-subs-brand" >
+                            <i class="fa fa-pencil"></i>
+                        </a>
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 var tooltip = $.cookie("tooltip");
@@ -97,8 +107,12 @@
                         <a href="/auth/logout" id="btn-logout" title="<?= $translate->getAdapter()->translate("mm_exit")?>" class="btn btn-large"><i class="fa fa-sign-out"></i></a>
                     <?php } ?>
                 <?php } else { ?>
+                    <a id="btn-subs-brand" data-toggle="tooltip" title="<?= $translate->getAdapter()->translate("mm_subscription_to_brand")?>" class="btn btn-large btn-subs-brand" >
+                        <i class="fa fa-pencil"></i>
+                    </a>
                 <script type="text/javascript">
                     $.removeCookie("tooltip");
+                    $.removeCookie("subscription");
                 </script>
                     <a href="/user/new" title="<?= $translate->getAdapter()->translate("mm_user")?>" class="btn btn-large" ><i class="fa fa-user"></i></a>
                     <a href="/partner/profile" id="btn5" title="<?= $translate->getAdapter()->translate("mm_partners")?>" class="btn btn-large" ><i class="fa fa-briefcase"></i></a>
@@ -255,6 +269,7 @@
 <script type="text/javascript" src="/js/bootstrap/bootstrap-popover.js"></script>
 <script type="text/javascript" src="/js/bootstrap/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/subscription.js"></script>
 
 <?php
 /** Ask about this code **/
