@@ -6,20 +6,20 @@ var subscription = $.cookie("subscription");
 if ($("#btn-logout").length<1){
     $('a#btn-subs-brand').attr("href","/user/new").attr("id","");
     $('a.btn-subs-brand').click(function(){
-        var subscription = $.cookie("subscription", true );
+        var subscription = $.cookie("subscription", true, { path: '/' });
     });
-    var sign_out = $.cookie("sign_out", true);
+    var sign_out = $.cookie("sign_out", true, { path: '/' });
 }else {
     $.removeCookie("sign_out", { path: '/' });
 }
 
 /*Show subscription modal window for users who click at "Subscribe to brand" button when they were unregistered/unauthorized */
-if ((subscription != null) && !(sign_out)) {
+if ((subscription) && !(sign_out)) {
     $.removeCookie("subscription", { path: '/' });
     $('.subscription-form-modal').modal({show: true});
 }
 /*Show subscription-manager modal window if "subscription_manager" property exist*/
-if ($.cookie('subscription_manager') != null) {
+if ($.cookie('subscription_manager')) {
     $.removeCookie("subscription_manager", { path: '/' });
     $('.subscription-manager').modal({show: true});
 }
