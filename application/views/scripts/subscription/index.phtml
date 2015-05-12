@@ -19,13 +19,13 @@
                 <input type="hidden" name="brand_id" value="" id="subscription-brand_id">
                 <dt id="subscription-brand_name-label">&nbsp;</dt>
                 <dd id="subscription-brand_name-element">
-                    <input type="text" name="brand_name" id="subscription-brand_name" value="" class="input-block-level" placeholder="Введіть назву бренду"></dd>
-                <dt id="subscription-description-label" style="display: none;"><label for="description" class="optional">Вкажіть контактні дані власника бренду</label></dt>
+                    <input type="text" name="brand_name" id="subscription-brand_name" value="" class="input-block-level" placeholder="<?= $translate->getAdapter()->translate("no_brand_name"); ?>"></dd>
+                <dt id="subscription-description-label" style="display: none;"><label for="description" class="optional"></label></dt>
                 <dd id="subscription-description-element" style="display: none;">
-                    <textarea name="description" id="subscription-description" class="input-block-level hide" placeholder="e-mail, сайт, телефон чи адреса" rows="24" cols="80"></textarea>
+                    <textarea name="description" id="subscription-description" class="input-block-level hide" placeholder="<?= $translate->getAdapter()->translate("details_placeholder"); ?>" rows="24" cols="80"></textarea>
                 </dd>
                 <dt id="subscription_submit-label">&nbsp;</dt><dd id="subscription_submit-element">
-                    <input type="submit" name="subscription_submit" id="subscription_submit" value="Підписатися" class="btn btn-large btn-success" data-original-title="" title="">
+                    <input type="submit" name="subscription_submit" id="subscription_submit" value="<?= $translate->getAdapter()->translate("make_subscription"); ?>" class="btn btn-large btn-success" data-original-title="" title="">
                 </dd>
             </dl>
         </form>

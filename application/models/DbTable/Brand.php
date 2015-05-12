@@ -8,6 +8,7 @@ class Application_Model_DbTable_Brand extends Zend_Db_Table_Abstract
     public function autocompleteSearch($condition) {
         $select = $this->select(array("name", "id"))
             ->where('name LIKE ? ', $condition . '%')
+            ->where('status = ?', Application_Model_Brand::ACTIVE)
             ->limit(15);
 
         $res = $this->fetchAll($select)->toArray();
