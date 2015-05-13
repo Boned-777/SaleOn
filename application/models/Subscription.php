@@ -116,7 +116,7 @@ class Application_Model_Subscription
                 "ad_brand" => "b.name",
                 "email" => "u.username"
             ))
-            ->where('a.public_dt = FORMAT(NOW(), "Y-m-d")')
+            ->where('a.public_dt = CURRENT_DATE()')
             ->where("a.status = ?", Application_Model_DbTable_Ad::STATUS_ACTIVE);
 
         $items = $dbItem->fetchAll($select);
