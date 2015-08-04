@@ -39,6 +39,9 @@ class AdController extends Zend_Controller_Action
 
         if (isset($vars["id"])) {
             $item->get($vars["id"]);
+            if ($this->getParam('json', false)) {
+                $this->_helper->json($item->toArray());
+            }
             $owner->getByUserId($item->owner);
             $this->view->ad = $item;
             $this->view->user = $owner;
