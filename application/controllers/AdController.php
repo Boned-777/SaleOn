@@ -357,7 +357,11 @@ class AdController extends Zend_Controller_Action
 
     public function listAction () {
         global $translate;
-        $filterParams = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
+        if($this->getParam("get_data")) {
+            $filterParams = Application_Model_FilterParameter::prepareFromRequest(array("category", "geo", "brand", "product"));
+        } else {
+            $filterParams = Application_Model_FilterParameter::prepare(array("category", "geo", "brand", "product"));
+        }
         $userId = isset($this->user) ? $this->user : null;
         if ($userId) {
             $filterParams["user_id"] = $userId;
