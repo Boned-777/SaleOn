@@ -1,30 +1,21 @@
 <?php global $translate; ?>
-<div id="main-page-slider" class="row-fluid">
-	<div id="myCarousel" class="carousel slide hide">
-		<div class="carousel-inner">
-			<div class="item active">
-				<div class="items-wrapper">
-					<div class="row-fluid">
-						<?php
-						    foreach ($this->items as $item) {
-						        echo $this->adItem($item);
-						    }
-						?>		
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div id="main-page-slider" class="row-fluid" style="display: none;">
+    <?php
+        foreach ($this->items as $item) {
+            echo $this->adItem($item);
+        }
+    ?>
 </div>
 
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/region-icons.css">
+<link rel="stylesheet" type="text/css" href="/static/css/cat-icons.css">
 
+<div id="app"></div>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/react-with-addons.min.js"></script>
+<script type="application/javascript" src="/static/js/app.js"></script>
 
-
-
-<script type="text/javascript">
-    <?php 
-    	echo "window.requestUrl  = \"/ad/list\";";
-    	echo "window.pageName 	 = \"mainPage\";";
-    ?>
-</script>

@@ -1,0 +1,41 @@
+{
+  "name": "saleon",
+  "version": "0.0.1",
+  "authors": [
+    "Andrey Kuts"
+  ],
+  "description": "UI for saleon project",
+  "homepage": "http://saleon.info",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "main": [
+    "./dist/css/bootstrap.css",
+    "./dist/js/bootstrap.js",
+    "./dist/fonts/glyphicons-halflings-regular.eot",
+    "./dist/fonts/glyphicons-halflings-regular.svg",
+    "./dist/fonts/glyphicons-halflings-regular.ttf",
+    "./dist/fonts/glyphicons-halflings-regular.woff"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1",
+    "react": "~0.13.0",
+    "font-awesome": "~4.3.0"
+  },
+  "overrides": {
+    "jquery": {
+      "main": "dist/jquery.min.js"
+    },
+    "react": {
+      "main": "dist/react-with-addons.js"
+    }//,
+    //"bootstrap": {
+    //  "main": [
+    //    "less/!(variables).less", "dist/fonts/*", "dist/js/*"
+    //  ]
+    //}
+  }
+}

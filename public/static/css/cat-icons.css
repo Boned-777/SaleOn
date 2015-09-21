@@ -1,0 +1,150 @@
+/* Categories modal window. Add icons for each category - common styles */
+
+#category-group-list div[data-cat-seo-name^="goods_"],
+#category-group-list div[data-cat-seo-name^="serv_"]{
+    position:relative;
+}
+
+#category-group-list div[data-cat-seo-name^="goods_"] > .flagi-right,
+#category-group-list div[data-cat-seo-name^="serv_"] > .flagi-right{
+    padding-left: 25px;
+}
+
+#category-group-list div[data-cat-seo-name^="goods_"]:before,
+#category-group-list div[data-cat-seo-name^="serv_"]:before{
+    position:absolute;
+    font-family: FontAwesome;
+    color: #4a4a4a;
+    font-size: 14px;
+    top:4px;
+    left:6px;
+}
+
+/* Icons for goods */
+
+#category-group-list div[data-cat-seo-name="goods_transport"]:before {
+    content: "\f1b9";
+}
+
+#category-group-list div[data-cat-seo-name="goods_hygiene"]:before {
+    content: "\f06c";
+}
+
+#category-group-list div[data-cat-seo-name="goods_equipment"]:before {
+    content: "\f0ad";
+}
+
+#category-group-list div[data-cat-seo-name="goods_food"]:before {
+    content: "\f0f5";
+    left:7px;
+}
+
+#category-group-list div[data-cat-seo-name="goods_building"]:before {
+    content: "\f015";
+    font-size: 16px;
+}
+
+#category-group-list div[data-cat-seo-name="goods_health"]:before {
+    content: "\f004";
+}
+
+#category-group-list div[data-cat-seo-name="goods_clothing"]:before {
+    content: "\f219";
+    left:5px;
+}
+
+#category-group-list div[data-cat-seo-name="goods_sport"]:before {
+    content: "\f1e3";
+}
+
+#category-group-list div[data-cat-seo-name="goods_transport"]:before {
+    content: "\f1b9";
+}
+
+#category-group-list div[data-cat-seo-name="goods_children"]:before {
+    content: "\f1ae";
+    font-size: 16px;
+    left:7px;
+}
+
+#category-group-list div[data-cat-seo-name="goods_furniture"]:before {
+    content: "\f0eb";
+    font-size: 17px;
+    left:8px;
+}
+
+#category-group-list div[data-cat-seo-name="goods_dishes"]:before {
+    content: "\f06b";
+    font-size: 17px;
+}
+
+#category-group-list div[data-cat-seo-name="goods_electronic"]:before {
+    content: "\f030";
+}
+
+#category-group-list div[data-cat-seo-name="goods_other_products"]:before {
+    content: "\f0c8";
+}
+
+/* Icons for services */
+
+#category-group-list div[data-cat-seo-name="serv_transport"]:before {
+    content: "\f1ba";
+}
+
+#category-group-list div[data-cat-seo-name="serv_health"]:before {
+    content: "\f004";
+}
+
+#category-group-list div[data-cat-seo-name="serv_advertising"]:before {
+    content: "\f201";
+}
+
+#category-group-list div[data-cat-seo-name="serv_travel"]:before {
+    content: "\f072";
+    font-size: 16px;
+    left:7px;
+}
+
+#category-group-list div[data-cat-seo-name="serv_construction"]:before {
+    content: "\f015";
+    font-size: 16px;
+    left:7px;
+}
+
+#category-group-list div[data-cat-seo-name="serv_education"]:before {
+    content: "\f19d";
+}
+
+#category-group-list div[data-cat-seo-name="serv_insurance"]:before {
+    content: "\f0e9";
+    font-size: 16px;
+    left:7px;
+}
+
+#category-group-list div[data-cat-seo-name="serv_financial"]:before {
+    content: "\f0d6";
+}
+
+#category-group-list div[data-cat-seo-name="serv_entertainment"]:before {
+    content: "\f000";
+}
+
+#category-group-list div[data-cat-seo-name="serv_household"]:before {
+    content: "\f043";
+    font-size: 16px;
+    left:8px;
+}
+
+#category-group-list div[data-cat-seo-name="serv_telecommunication"]:before {
+    content: "\f1eb";
+}
+
+#category-group-list div[data-cat-seo-name="serv_legal"]:before {
+    content: "\f0e3";
+    left:7px;
+}
+
+#category-group-list div[data-cat-seo-name="serv_other_services"]:before {
+    content: "\f0c8";
+}

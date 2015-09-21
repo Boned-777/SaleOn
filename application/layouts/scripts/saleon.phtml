@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php global $translate;?>
+    <?= $this->headTitle($translate->getAdapter()->translate("main_title"));?>
+    <?= $this->headMeta()->appendName('description', $translate->getAdapter()->translate("main_description"));?>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <?= $this->render("googleAnalitics.phtml"); ?>
+</head>
+<body>
+    <?= $this->render("googleAnalitics1.phtml"); ?>
+    <?= $this->layout()->content; ?>
+</body>
+</html>

@@ -17,6 +17,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $this->_helper->layout->setLayout('saleon');
         $this->view->subscriptionForm = new Application_Form_Subscription();
         $params = $this->getAllParams();
 

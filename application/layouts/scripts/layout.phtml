@@ -6,15 +6,6 @@
     <?= $this->headTitle($translate->getAdapter()->translate("main_title"));?>
     <?= $this->headMeta()->appendName('description', $translate->getAdapter()->translate("main_description"));?>
 
-
-    <?php
-    echo $this->jQuery()
-        ->setVersion('1.9.1')
-        ->setUiVersion('1.10.3')
-        ->enable()
-        ->uiEnable();
-    ?>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/normalize.css')); ?>
@@ -25,10 +16,6 @@
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/redmond/jquery-ui-1.10.3.custom.min.css')); ?>
     <?php $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap-responsive.css')); ?>
     <?php echo $this->headLink()->prependStylesheet($this->baseUrl('css/bootstrap/bootstrap.css')); ?>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="/js/browser.js"></script>
-    <script type="text/javascript" src="/js/jquery/jquery.cookie.js"></script>
-
 
     <script type="text/javascript" >
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
