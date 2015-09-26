@@ -7,10 +7,9 @@
     ?>
 </div>
 
-<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
-<link rel="stylesheet" type="text/css" href="/css/region-icons.css">
-<link rel="stylesheet" type="text/css" href="/static/css/cat-icons.css">
+<?php $this->headLink()->prependStylesheet($this->baseUrl('/css/region-icons.css')); ?>
+<?php $this->headLink()->prependStylesheet($this->baseUrl('/static/css/cat-icons.css')); ?>
+<?php $this->headLink()->prependStylesheet($this->baseUrl('/static/css/style.css')); ?>
 
 <div id="app"></div>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
