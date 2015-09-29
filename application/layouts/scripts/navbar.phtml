@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand" style="font-size: 16pt;">
+                <a href="/partner" style="text-decoration: none;"><span style="color:#ff611b">Sale</span><span style="color:#16ff00"><i class="fa fa-power-off"></i>N</span>&nbsp;<small>partner</small></a>
+            </div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">Реєстрація <strong class="caret"></strong></a>
+                    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                        <form method="post" action="/partner/new" accept-charset="UTF-8" style="width: 200px;">
+                            <input type="hidden" name="mode" value="partner" />
+                            <div class="form-group"><input class="form-control" type="text" placeholder="Пошта" id="username" name="username"></div>
+                            <div class="form-group"><input class="form-control" type="password" placeholder="Пароль" id="password" name="password"></div>
+                            <div class="form-group"><input class="form-control" type="password" placeholder="Підтвердження пароля" id="confirm_password" name="confirm_password"></div>
+                            <div class="form-group"><input class="btn btn-primary btn-block" type="submit" id="sign-up" value="Реєстрація"></div>
+                        </form>
+                    </div>
+                </li>
+                <li class="divider-vertical"></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">Вхід <strong class="caret"></strong></a>
+                    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                        <form method="post" action="/auth" accept-charset="UTF-8" style="width: 200px;">
+                            <div class="form-group"><input class="form-control" type="text" placeholder="Пошта" id="username" name="username"></div>
+                            <div class="form-group"><input class="form-control" type="password" placeholder="Пароль" id="password" name="password"></div>
+                            <input type="hidden" name="mode" value="partner" />
+                            <div class="form-group">
+                                <a href="/user/recovery">Відновлення пароля</a>
+                            </div>
+                            <div class="form-group"><input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Вхід"></div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

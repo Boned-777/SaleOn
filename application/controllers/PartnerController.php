@@ -4,6 +4,9 @@ class PartnerController extends Zend_Controller_Action
 {
     public $user;
 
+    /**
+     *
+     */
     public function init()
     {
         $auth = Zend_Auth::getInstance();
@@ -11,8 +14,10 @@ class PartnerController extends Zend_Controller_Action
             $this->user = $auth->getIdentity();
         } else {
             $vars = $this->getAllParams();
-            if ($vars["action"] != "new")
+
+            if (!in_array($vars["action"], array("new", "index"))) {
                 $this->_redirect("/partner/new");
+            }
         }
     }
 
@@ -49,6 +54,10 @@ class PartnerController extends Zend_Controller_Action
                 ));
             }
         }
+    }
+
+    public function indexAction() {
+
     }
 
     public function brandsAction() {
