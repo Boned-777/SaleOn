@@ -1,6 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
-
-<div class="col-lg-10 col-lg-offset-1">
+<div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 nopadding">
 <div class="page-block block-blue block header text-center">
     <div class="logo">
         <a href="/index.php"><span style="color:#ff611b">Sale</span><span style="color:#16ff00"><i class="fa fa-power-off"></i>N</span></a>
@@ -161,7 +159,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6 ">
-            <img style="width: 100%;" src="static/img/cupons.png"/>
+            <img style="width: 100%;" src="/static/img/cupons.png"/>
         </div>
     </div>
     <br/>
@@ -289,7 +287,7 @@
     }
 
     .header {
-        background: url("static/img/header.jpg") no-repeat;
+        background: url("/static/img/header.jpg") no-repeat;
         background-position-x: center;
         background-position-y: 30%;
     }
@@ -301,6 +299,11 @@
     @media (max-width: 768px) {
         .logo {
             font-size: 30pt;
+        }
+
+        .nopadding {
+            padding: 0 !important;
+            margin: 0 !important;
         }
     }
 </style>

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php
-    global $translate;
-    ?>
+    <?php global $translate;?>
     <?= $this->headTitle($translate->getAdapter()->translate("main_title"));?>
     <?= $this->headMeta()->appendName('description', $translate->getAdapter()->translate("main_description"));?>
 
@@ -11,6 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <?php $this->headLink()->prependStylesheet('//getbootstrap.com/dist/css/bootstrap-theme.min.css'); ?>
     <?php $this->headLink()->prependStylesheet('//getbootstrap.com/dist/css/bootstrap.min.css'); ?>
+    <?php $this->headLink()->prependStylesheet('/static/css/font-awesome.min.css'); ?>
     <?php echo $this->headLink() ?>
 
     <?= $this->render("googleAnalitics.phtml"); ?>
@@ -25,9 +24,9 @@
         config.lng = "<?= $session->locale; ?>";
     </script>
 
-    <?php echo $this->render("navbar.phtml"); ?>
+    <?php echo $this->mainMenu(); ?>
 
-    <div class="container" role="main">
+    <div class="row" role="main">
         <div class="navigation">
             <?php echo $this->navigationBar($this->link); ?>
             <?php echo $this->adminNavigationBar(); ?>

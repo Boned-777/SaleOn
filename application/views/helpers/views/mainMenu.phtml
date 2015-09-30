@@ -13,6 +13,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <?php if ($this->username) :?>
+                    <li><a href="/partner/profile"><?= $this->username ?></a></li>
+                    <li><a href="/auth/logout">Вихід</a></li>
+
+
+                <?php else : ?>
                 <li>
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">Реєстрація <strong class="caret"></strong></a>
                     <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
@@ -40,6 +46,7 @@
                         </form>
                     </div>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
