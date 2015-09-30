@@ -1,12 +1,13 @@
 <?php global $translate; ?>
 
-<div class="row">
-    <div class="span6">
-        <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
-        <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
+<div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="legend"><?= $translate->getAdapter()->translate("enter"); ?></div>
+        <div>
+            <?= $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
+        </div>
         <div id="contact_button">
-            <dd>
-                <input type="submit" onclick="window.location='/index/contacts';" value="<?= $translate->getAdapter()->translate("contacts") ?>"></dd>
+            <input type="submit" onclick="window.location='/index/contacts';" value="<?= $translate->getAdapter()->translate("contacts") ?>">
         </div>
         <div id="auth_through">
         <div class="legend"><?php echo $translate->getAdapter()->translate("enter_throw"); ?>
@@ -17,7 +18,7 @@
         <a href="/auth/auth/by/vkontakte" target="_blank"><div class="vk"></div></a></div>
     </div>
     </div>
-    <div class="span6">
+    <div class="col-xs-12 col-sm-6">
         <div class="legend"><?php echo $translate->getAdapter()->translate("new_user_reg"); ?></div>
         <?php echo $this->registrationForm->setAction($this->url()); ?>
     </div>

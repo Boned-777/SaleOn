@@ -7,14 +7,14 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <?php $this->headLink()->prependStylesheet('//getbootstrap.com/dist/css/bootstrap-theme.min.css'); ?>
+    <?php //$this->headLink()->prependStylesheet('//getbootstrap.com/dist/css/bootstrap-theme.min.css'); ?>
     <?php $this->headLink()->prependStylesheet('//getbootstrap.com/dist/css/bootstrap.min.css'); ?>
     <?php $this->headLink()->prependStylesheet('/static/css/font-awesome.min.css'); ?>
     <?php echo $this->headLink() ?>
 
     <?= $this->render("googleAnalitics.phtml"); ?>
 </head>
-<body role="document" style="overflow-x: hidden !important;">
+<body role="document">
 
     <?php
         global $session, $translate;
@@ -26,7 +26,7 @@
 
     <?php echo $this->mainMenu(); ?>
 
-    <div class="row" role="main">
+    <div>
         <div class="navigation">
             <?php echo $this->navigationBar($this->link); ?>
             <?php echo $this->adminNavigationBar(); ?>
