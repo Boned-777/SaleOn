@@ -11,7 +11,7 @@ class Application_Form_Partner extends Zend_Form
         $this->getElement("id")->setDecorators(array('ViewHelper'));
 
         $this->addElement('text', 'enterprise', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("enterprise"),
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
@@ -23,7 +23,7 @@ class Application_Form_Partner extends Zend_Form
         $this->getElement("brand")->setDecorators(array('ViewHelper'));
 
         $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
         ));
         $brand->setLabel($translate->getAdapter()->translate("brand"));
         $brand->setJQueryParam('source', '/brands/autocomp');
@@ -37,7 +37,7 @@ class Application_Form_Partner extends Zend_Form
         $this->addElement($brand);
 
         $this->addElement('text', 'address', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("address"),
 //            'validators' => array(
 //                array('StringLength', false, array(0, 100))
@@ -46,7 +46,7 @@ class Application_Form_Partner extends Zend_Form
         ));
 
         $this->addElement('text', 'phone', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("phone"),
             'validators' => array(
                 array('StringLength', false, array(0, 14))
@@ -55,7 +55,7 @@ class Application_Form_Partner extends Zend_Form
         ));
 
         $this->addElement('text', 'phone1', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("additional_phone"),
             'validators' => array(
                 array('StringLength', false, array(0, 14))
@@ -64,7 +64,7 @@ class Application_Form_Partner extends Zend_Form
         ));
 
         $this->addElement('text', 'phone2', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("additional_phone"),
             'validators' => array(
                 array('StringLength', false, array(0, 14))
@@ -74,7 +74,7 @@ class Application_Form_Partner extends Zend_Form
 
         $this->addElement('text', 'web', array(
             'filters' => array('StringTrim', 'StringToLower'),
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("url"),
             'validators' => array(
                 array('StringLength', false, array(0, 100)),
@@ -84,7 +84,7 @@ class Application_Form_Partner extends Zend_Form
         ));
 
         $this->addElement('text', 'email', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("email"),
             'validators' => array(
                 array('EmailAddress')
@@ -93,7 +93,7 @@ class Application_Form_Partner extends Zend_Form
         ));
 
         $this->addElement('submit', 'partner_save', array(
-            //'class' => 'btn btn-large btn-primary',
+            'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate("update"),

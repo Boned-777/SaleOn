@@ -1,8 +1,23 @@
 $(function () {
-    $("#new_address").geocomplete();
-    $(".add_address").click(function () {
-        addAddress();
-    })
+  //$("#new_address").geocomplete();
+  $(".add_address").click(function () {
+      addAddress();
+  });
+
+  $("#phone").add("#phone1").add("#phone2").mask("(999) 999-9999");
+  //$("#address").geocomplete();
+
+  var clearAutocompleter = function (select, hiddenInput) {
+    select.val("");
+    hiddenInput.val("0");
+  }
+  var brandName = $("#brand_name");
+  brandName.click(function() {
+    clearAutocompleter(brandName, $("#brand"));
+  });
+  brandName.focus(function() {
+    clearAutocompleter(brandName, $("#brand"));
+  });
 })
 
 function addAddress() {

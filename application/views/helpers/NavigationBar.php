@@ -58,8 +58,8 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
             if (isset($auth->getIdentity()->role))
 			    if ($auth->getIdentity()->role == "PARTNER") {
             ?>
-            <div class="row">
-                <ul class="nav nav-pills <?= ($session->locale=="ru") ? "nav-wide" : "" ?>">
+            <div class="partner-nav">
+                <ul class="nav nav-pills">
                     <?php 
                     foreach ($menuItems as $value) {
                         if (
@@ -74,6 +74,19 @@ class Zend_View_Helper_NavigationBar extends Zend_View_Helper_Abstract
                     ?>
                 </ul>
             </div>
+            <style>
+                .partner-nav .nav {
+                    float:none;
+                    display:inline-block;
+                    *display:inline; /* ie7 fix */
+                    *zoom:1; /* hasLayout ie7 trigger */
+                    vertical-align: top;
+                }
+
+                .partner-nav {
+                    text-align:center;
+                }
+            </style>
             <?php }
         }
 	}

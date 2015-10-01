@@ -21,7 +21,7 @@ class Application_Form_ChangePassword extends Zend_Form
 		$this->setMethod('post');
 
         $this->addElement('password', 'password', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("password"),
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
@@ -30,7 +30,7 @@ class Application_Form_ChangePassword extends Zend_Form
         ));
 
         $this->addElement('password', 'confirm_password', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("confirm_password"),
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
@@ -40,7 +40,7 @@ class Application_Form_ChangePassword extends Zend_Form
         ));
 
         $this->addElement('submit', 'login', array(
-            //'class' => 'btn btn-large btn-primary',
+            'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate("change_password"),
