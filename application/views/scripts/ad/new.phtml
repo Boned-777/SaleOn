@@ -1,5 +1,20 @@
+<?php $this->headScript()->appendFile($this->baseUrl("/js/select2/select2.min.js")) ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/select2/select2_locale_ru.js")) ?>
+<?php $this->headScript()->appendFile("//maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places") ?>
+<?php $this->headScript()->appendFile("//ubilabs.github.io/geocomplete/jquery.geocomplete.js") ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/jquery/jquery.maskedinput.min.js")) ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/ad.js")) ?>
+<?php $this->headScript()->appendScript("
+    $('#end_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+    $('#public_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+") ?>
+
 <?php global $translate; ?>
-<div id="view-content">
+<div class="col-sm-12">
     <ul class="nav nav-tabs" id="ad">
         <li class="active"><a href="#main"><?php echo $translate->getAdapter()->translate("main"); ?></a></li>
         <li><a href="#dates"><?php echo $translate->getAdapter()->translate("dates"); ?></a></li>
@@ -30,17 +45,7 @@
         <?php echo "window.location.hash = \"" . $this->gotoTab . "\";"; ?>
     </script>
 <?php } ?>
-<script src="/js/select2/select2.min.js"></script>
-<script src="/js/select2/select2_locale_ru.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-<script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
-<script type="text/javascript" src="/js/jquery/jquery.maskedinput.min.js"></script>
-<script type="text/javascript">$('#end_dt').on('changeDate', function(ev){
-        $(this).datepicker('hide');
-    });
-    $('#public_dt').on('changeDate', function(ev){
-        $(this).datepicker('hide');
-    });</script>
+
 
 <script>
     var smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="<?= $translate->getAdapter()->translate("banner_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
@@ -48,4 +53,4 @@
     var videoHelp = '&nbsp;<i class="icon-info-sign" id="video-help" data-content="<?= $translate->getAdapter()->translate("video_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
 </script>
 
-<script src="/js/ad.js"></script>
+

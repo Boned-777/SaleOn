@@ -1,3 +1,28 @@
+<?php $this->headScript()->appendFile($this->baseUrl("/js/select2/select2.min.js")) ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/select2/select2_locale_ru.js")) ?>
+<?php $this->headScript()->appendFile("//maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places") ?>
+<?php $this->headScript()->appendFile("//ubilabs.github.io/geocomplete/jquery.geocomplete.js") ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/jquery/jquery.maskedinput.min.js")) ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/ad.js")) ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/aciTree/jquery.aciPlugin.min.js")) ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/aciTree/jquery.aciTree.min.js")) ?>
+<?php $this->headLink()->prependStylesheet($this->baseUrl("/css/aciTree.css")) ?>
+
+<?php $this->headScript()->appendScript("
+    $('#geo').aciTree({
+        ajax: {
+            url: '/geo/get-list'
+        },
+        selectable: true
+    });
+    $('#end_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+    $('#public_dt').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
+") ?>
+
 <?php global $translate; ?>
 
 <div id="view-content">
@@ -64,45 +89,18 @@
     </script>
 <?php } ?>
 
-<script src="/js/select2/select2.min.js"></script>
-<script src="/js/select2/select2_locale_ru.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-<script type="text/javascript" src="/js/jquery/jquery.geocomplete.min.js"></script>
-<script type="text/javascript" src="/js/jquery/jquery.maskedinput.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="/css/aciTree.css" media="all">
-<script type="text/javascript" src="/js/aciTree/jquery.aciPlugin.min.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.min.js"></script>
-
 <script>
     var bigBannerHelp = '&nbsp;<i class="icon-info-sign" id="big-banner-help" data-content="<?= $translate->getAdapter()->translate("image_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
     var smallBannerHelp = '&nbsp;<i class="icon-info-sign" id="small-banner-help" data-content="<?= $translate->getAdapter()->translate("banner_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
     var videoHelp = '&nbsp;<i class="icon-info-sign" id="video-help" data-content="<?= $translate->getAdapter()->translate("video_info_text"); ?>" data-placement="top" data-toggle="popover" data-trigger="hover"></i>';
 </script>
 
-<script type="application/javascript">
-    $('#geo').aciTree({
-        ajax: {
-            url: '/geo/get-list'
-        },
-        selectable: true
-    });
-</script>
-<script type="text/javascript">$('#end_dt').on('changeDate', function(ev){
-        $(this).datepicker('hide');
-    });
-    $('#public_dt').on('changeDate', function(ev){
-        $(this).datepicker('hide');
-    });</script>
-<script src="/js/ad.js"></script>
 
-
-<?php $this->headLink()->prependStylesheet($this->baseUrl('css/aciTree.css')); ?>
-<script type="text/javascript" src="/js/aciTree/jquery.aciPlugin.min.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.min.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.core.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.checkbox.js"></script>
-<script type="text/javascript" src="/js/aciTree/jquery.aciTree.utils.js"></script>
-<script type="text/javascript" src="/js/geo-tree.js"></script>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/aciTree/jquery.aciPlugin.min.js")); ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/aciTree/jquery.aciTree.min.js")); ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/aciTree/jquery.aciTree.core.js")); ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/aciTree/jquery.aciTree.checkbox.js")); ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/aciTree/jquery.aciTree.utils.js")); ?>
+<?php $this->headScript()->appendFile($this->baseUrl("/js/geo-tree.js")); ?>
 
 
