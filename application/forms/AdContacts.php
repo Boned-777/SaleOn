@@ -23,7 +23,7 @@ class Application_Form_AdContacts extends Zend_Form
         $this->getElement("form")->setDecorators(array('ViewHelper'));
 
         $this->addElement('text', 'address', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("address") . ' *',
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
@@ -33,7 +33,7 @@ class Application_Form_AdContacts extends Zend_Form
 
         $this->addElement('text', 'phone', array(
             'filters' => array('StringTrim', 'StringToLower'),
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("phone") . ' *',
             'validators' => array(
                 array('StringLength', false, array(0, 45)),
@@ -42,7 +42,7 @@ class Application_Form_AdContacts extends Zend_Form
         ));
 
         $this->addElement('text', 'phone1', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("additional_phone"),
             'validators' => array(
                 array('StringLength', false, array(0, 14))
@@ -51,7 +51,7 @@ class Application_Form_AdContacts extends Zend_Form
         ));
 
         $this->addElement('text', 'phone2', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("additional_phone"),
             'validators' => array(
                 array('StringLength', false, array(0, 14))
@@ -60,7 +60,7 @@ class Application_Form_AdContacts extends Zend_Form
         ));
 
         $this->addElement('text', 'email', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("email") . ' *',
             'validators' => array(
                 array('EmailAddress')
@@ -71,7 +71,7 @@ class Application_Form_AdContacts extends Zend_Form
 
         $this->addElement('text', 'url', array(
             'filters' => array('StringTrim', 'StringToLower'),
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("url"),
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
@@ -81,7 +81,7 @@ class Application_Form_AdContacts extends Zend_Form
         ));
 
         $this->addElement('submit', 'login', array(
-            //'class' => 'btn btn-large btn-primary',
+            'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")

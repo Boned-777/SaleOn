@@ -23,7 +23,7 @@ class Application_Form_AdSettings extends Zend_Form
 
         $categories = new Application_Model_Category();
         $this->addElement('select', 'category', array(
-            'class' => "input-block-level",
+            //'class' => "form-control",
             'label' => $translate->getAdapter()->translate("category") . ' *',
             'multiOptions' => $categories->getAll()
         ));
@@ -32,7 +32,7 @@ class Application_Form_AdSettings extends Zend_Form
         $this->getElement("brand")->setDecorators(array('ViewHelper'));
 
         $brand = new ZendX_JQuery_Form_Element_AutoComplete('brand_name', array(
-            'class' => "input-block-level",
+            'class' => "form-control"
         ));
         $brand->setLabel($translate->getAdapter()->translate("brand") . ' *');
         $brand->setJQueryParam('source', '/brands/autocomp');
@@ -48,7 +48,7 @@ class Application_Form_AdSettings extends Zend_Form
         $this->getElement("product")->setDecorators(array('ViewHelper'));
 
         $product = new ZendX_JQuery_Form_Element_AutoComplete('product_name', array(
-            'class' => "input-block-level",
+            'class' => "form-control"
         ));
         $product->setLabel($translate->getAdapter()->translate("product"));
         $product->setJQueryParam('source', '/products/autocomp');
@@ -61,7 +61,7 @@ class Application_Form_AdSettings extends Zend_Form
         $this->addElement($product);
 
         $this->addElement('submit', 'settings_submit', array(
-            //'class' => 'btn btn-large btn-primary',
+            'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")

@@ -23,7 +23,7 @@ class Application_Form_AdMain extends Zend_Form
         $this->getElement("form")->setDecorators(array('ViewHelper'));
 
         $this->addElement('text', 'name', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("name") . ' *',
             'validators' => array(
                 array('StringLength', false, array(0, 255)),
@@ -32,7 +32,7 @@ class Application_Form_AdMain extends Zend_Form
         ));
 
         $this->addElement('textarea', 'description', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("description") . ' *',
             'max_length' => 300,
             'validators'    => array(
@@ -53,7 +53,7 @@ class Application_Form_AdMain extends Zend_Form
 
 
         $this->addElement('textarea', 'full_description', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("full_description"),
             'max_length' => 10000,
             'validators'    => array(
@@ -71,7 +71,7 @@ class Application_Form_AdMain extends Zend_Form
         ));
 
         $this->addElement('submit', 'ad_save', array(
-            //'class' => 'btn btn-large btn-primary',
+            'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")

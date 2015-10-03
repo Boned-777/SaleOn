@@ -42,7 +42,7 @@ class Application_Form_AdMedia extends Zend_Form
         ));
 
         $this->addElement('submit', 'submit', array(
-            //'class' => 'btn btn-primary',
+            'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate($this->isReady?"finish":"save_and_next")
