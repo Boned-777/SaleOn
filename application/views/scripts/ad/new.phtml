@@ -24,13 +24,13 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="main"><?php echo $this->mainForm->setAction($this->url()); ?></div>
-        <div class="tab-pane" id="dates"><div class="col-xs-3 col-sm-3"><?php echo $this->datesForm->setAction($this->url()); ?></div></div>
-        <div class="tab-pane" id="settings"><div class="col-xs-6 col-sm-6"><?php echo $this->settingsForm->setAction($this->url()); ?></div></div>
-        <div class="tab-pane" id="contacts"><div class="col-xs-6 col-sm-6"><?php echo $this->contactsForm->setAction($this->url()); ?></div></div>
+        <div class="tab-pane" id="dates"><div class="col-xs-12 col-sm-3"><?php echo $this->datesForm->setAction($this->url()); ?></div></div>
+        <div class="tab-pane" id="settings"><div class="col-xs-12 col-sm-6"><?php echo $this->settingsForm->setAction($this->url()); ?></div></div>
+        <div class="tab-pane" id="contacts"><div class="col-xs-12 col-sm-6"><?php echo $this->contactsForm->setAction($this->url()); ?></div></div>
         <div class="tab-pane" id="media">
             <div class="row-fluid">
-                <div class="col-xs-6 col-sm-6"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
-                <div class="col-xs-6 col-sm-6">
+                <div class="col-xs-12 col-sm-6"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
+                <div class="col-xs-12 col-sm-6">
                     <?php if (!empty($this->image)) { ?>
                         <img src="/media/<?php echo $this->image; ?>" class="img-polaroid"/><br/><br/>
                     <?php } ?>

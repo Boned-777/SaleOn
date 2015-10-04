@@ -98,7 +98,6 @@ class Application_Form_AdSettings extends Zend_Form
     }
 
     public function processData($formData) {
-        $geoItem = new Application_Model_Geo();
         $itemData = array();
         if ((!empty($formData["brand_name"])) && (!$formData["brand"])) {
             $formData["brand_name"] = str_replace("\"", "", $formData["brand_name"]);

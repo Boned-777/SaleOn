@@ -25,7 +25,7 @@ $(function () {
                 $.each(res, function (id, data) {
                     $("#" + target).append($('<option value="' + data["value"] + '">' + data["option"] + '</option>'));
                 });
-                $("#" + target).select2();
+                $("#" + target).select2({ width: 'resolve' });
             },
             dataType: "json"
         })

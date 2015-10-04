@@ -54,7 +54,7 @@ class Application_Form_AdMain extends Zend_Form
         $this->addElement('textarea', 'full_description', array(
             'class' => "form-control",
             'label' => $translate->getAdapter()->translate("full_description"),
-            'style' => "height: 300px; width: 100%;",
+            'style' => "height: 200px; width: 100%;",
             'max_length' => 10000,
             'validators'    => array(
                 array(
