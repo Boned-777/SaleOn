@@ -34,10 +34,9 @@ class Application_Form_AdMedia extends Zend_Form
             //'required' => true
         ));
 
-
-
         $this->addElement('textarea', 'video', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
+            'style' => "height: 150px;",
             'label' => $translate->getAdapter()->translate("video"),
         ));
 

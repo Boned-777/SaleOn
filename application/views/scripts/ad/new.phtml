@@ -14,7 +14,7 @@
 ") ?>
 
 <?php global $translate; ?>
-<div class="col-sm-12">
+<div class="col-sm-12 col-lg-offset-2 col-lg-8">
     <ul class="nav nav-tabs" id="ad">
         <li class="active"><a href="#main"><?php echo $translate->getAdapter()->translate("main"); ?></a></li>
         <li><a href="#dates"><?php echo $translate->getAdapter()->translate("dates"); ?></a></li>
@@ -24,18 +24,20 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="main"><?php echo $this->mainForm->setAction($this->url()); ?></div>
-        <div class="tab-pane" id="dates"><?php echo $this->datesForm->setAction($this->url()); ?></div>
-        <div class="tab-pane" id="settings"><?php echo $this->settingsForm->setAction($this->url()); ?></div>
-        <div class="tab-pane" id="contacts"><?php echo $this->contactsForm->setAction($this->url()); ?></div>
+        <div class="tab-pane" id="dates"><div class="col-xs-3 col-sm-3"><?php echo $this->datesForm->setAction($this->url()); ?></div></div>
+        <div class="tab-pane" id="settings"><div class="col-xs-6 col-sm-6"><?php echo $this->settingsForm->setAction($this->url()); ?></div></div>
+        <div class="tab-pane" id="contacts"><div class="col-xs-6 col-sm-6"><?php echo $this->contactsForm->setAction($this->url()); ?></div></div>
         <div class="tab-pane" id="media">
-            <div class="span4"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
-            <div class="span5">
-                <?php if (!empty($this->image)) { ?>
-                    <img src="/media/<?php echo $this->image; ?>" class="img-polaroid"/><br/><br/>
-                <?php } ?>
-                <?php if (!empty($this->banner)) { ?>
-                    <img id="banner" src="/media/<?php echo $this->banner; ?>" class="img-polaroid"/>
-                <?php } ?>
+            <div class="row-fluid">
+                <div class="col-xs-6 col-sm-6"><?php echo $this->mediaForm->setAction($this->url()); ?></div>
+                <div class="col-xs-6 col-sm-6">
+                    <?php if (!empty($this->image)) { ?>
+                        <img src="/media/<?php echo $this->image; ?>" class="img-polaroid"/><br/><br/>
+                    <?php } ?>
+                    <?php if (!empty($this->banner)) { ?>
+                        <img id="banner" src="/media/<?php echo $this->banner; ?>" class="img-polaroid"/>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </div>

@@ -33,6 +33,7 @@ class Application_Form_AdMain extends Zend_Form
 
         $this->addElement('textarea', 'description', array(
             'class' => "form-control",
+            'style' => "height: 150px",
             'label' => $translate->getAdapter()->translate("description") . ' *',
             'max_length' => 300,
             'validators'    => array(
@@ -50,11 +51,10 @@ class Application_Form_AdMain extends Zend_Form
             'required' => true,
         ));
 
-
-
         $this->addElement('textarea', 'full_description', array(
             'class' => "form-control",
             'label' => $translate->getAdapter()->translate("full_description"),
+            'style' => "height: 300px; width: 100%;",
             'max_length' => 10000,
             'validators'    => array(
                 array(

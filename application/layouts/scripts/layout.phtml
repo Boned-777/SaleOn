@@ -13,6 +13,14 @@
     <?php $this->headLink()->appendStylesheet('/css/select2.css'); ?>
     <?php echo $this->headLink(); ?>
 
+    <style rel="stylesheet">
+        ul.errors {
+            color: red;
+            list-style: none;
+            padding: 0;
+        }
+    </style>
+
     <?= $this->render("googleAnalitics.phtml"); ?>
 </head>
 <body role="document">
@@ -48,8 +56,6 @@
     <?php $this->headScript()->prependFile("//code.jquery.com/ui/1.11.3/jquery-ui.min.js") ?>
     <?php $this->headScript()->prependFile("//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js") ?>
     <?php $this->headScript()->appendFile($this->baseUrl("/static/js/bootstrap.min.js")) ?>
-
-
     <?php echo $this->headScript(); ?>
 </body>
 </html>
