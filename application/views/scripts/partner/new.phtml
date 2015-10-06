@@ -1,20 +1,17 @@
 <?php global $translate; ?>
 
-<div class="row">
-    <div class="span6">
-        <div class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></div>
+<div>
+    <div class="col-xs-12 col-sm-6 col-lg-offset-1 col-lg-5">
+        <h2 class="legend"><?php echo $translate->getAdapter()->translate("enter"); ?></h2>
         <?php echo $this->loginForm->setAction($this->url(array('controller'=>'auth', 'action'=>'index'))); ?>
         <div id="contact_button">
-
-
-                <dd>
-                    <input type="submit" onclick="window.location='/index/contacts';" value="<?= $translate->getAdapter()->translate("contacts") ?>"></dd>
-
+            <!-- <input class="btn btn-default" type="submit" onclick="window.location='/index/contacts';" value="<?= $translate->getAdapter()->translate("contacts") ?>"> -->
+        </div>
     </div>
-        </div>
-    <div class="span6">
-        <div class="legend"><?php echo $translate->getAdapter()->translate("new_partner_reg"); ?>
-        </div>
+    <div class="col-xs-12 col-sm-6 col-lg-5">
+        <h2 class="legend">
+            <?php echo $translate->getAdapter()->translate("new_partner_reg"); ?>
+        </h2>
         <?php echo $this->registrationForm->setAction($this->url()); ?>
     </div>
 </div>

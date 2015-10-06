@@ -57,7 +57,10 @@ class PartnerController extends Zend_Controller_Action
     }
 
     public function indexAction() {
-
+        //config layout
+        $layoutInstance = Zend_Layout::getMvcInstance();
+        $layout = $layoutInstance->getView();
+        $layout->showPageHeader = true;
     }
 
     public function brandsAction() {

@@ -35,7 +35,26 @@
 
     <?php echo $this->mainMenu(); ?>
 
+    <?php if ($this->showPageHeader) : ?>
+        <div class="page-header text-center">
+            <div class="logo">
+                <a href="/index.php"><span style="color:#ff611b">Sale</span><span style="color:#16ff00"><i class="fa fa-power-off"></i>N</span></a>
+            </div>
+
+            <p class="lead text-center" style="color: white; width: 100%">
+                Отримайте
+                гарячу аудиторію підписників на акції та<br/> знижки
+                Вашої компанії <strong>БЕЗКОШТОВНО</strong>!
+                <br/>
+                <br/>
+                <a href="#details-block"><button class="btn btn-lg btn-success">Дізнатися детальніше</button></a>
+
+            </p>
+        </div>
+    <?php endif; ?>
+
     <div>
+
         <div class="col-xs-12 col-sm-12">
             <?php echo $this->navigationBar($this->link); ?>
             <?php echo $this->adminNavigationBar(); ?>

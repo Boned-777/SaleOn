@@ -1,9 +1,9 @@
 <?php global $translate; ?>
-<?php $this->headTitle($translate->getAdapter()->translate("enter")); ?>
+<?php //$this->headTitle($translate->getAdapter()->translate("enter")."/"); ?>
 <div class="col-sm-12 col-sm-4 col-sm-offset-4">
     <h3><?php echo $translate->getAdapter()->translate("enter"); ?></h3>
     <?php if ($this->errorStatus) { ?>
-        <div class="alert alert-error">
+        <div class="alert alert-danger">
             <h4>
                 <?php echo $translate->getAdapter()->translate("error"); ?>!
             </h4>

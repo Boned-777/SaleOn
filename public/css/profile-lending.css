@@ -1,0 +1,85 @@
+html, body {height:100%;}
+
+.block {
+    padding: 40px;
+    margin: 0;
+}
+
+.block-blue {
+    color: #ffffff;
+}
+
+.details-block div i.fa,
+.more-details-block div i.fa,
+.not-coupon-block div i.fa {
+    background: white;
+    padding: 7px;
+    text-align: center;
+    border-radius: 16px;
+    width: 30px;
+    height: 30px;
+}
+
+.details-block div i.fa {
+    color: #ce4844;
+    border: 1px solid #ce4844;
+}
+
+.more-details-block div i.fa {
+    color: #1b809e;
+    border: 1px solid #1b809e;
+}
+
+.not-coupon-block div i.fa {
+    color: #468847;
+    border: 1px solid #468847;
+    font-weight: bold;
+}
+
+.video-block {
+    padding: 40px 0;
+}
+
+div.page-header {
+    background: url("/static/img/header.jpg") no-repeat;
+    background-position-x: center;
+    background-position-y: 30%;
+    background-size:cover;
+}
+
+.logo {
+    font-size: 50pt;;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 30pt;
+    }
+
+    .nopadding {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+.landing-wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+div.page-header {
+    height: auto !important;
+    height: 100%;
+    min-height: 100%;
+    margin-top: -70px;
+    padding-top: 90px;
+}
+
+div.page-header .lead {
+    position: absolute;
+    bottom: 30px;
+}
+
+div.page-wrapper {
+    margin-top: -20px;
+}

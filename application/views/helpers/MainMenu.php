@@ -9,7 +9,13 @@ class Zend_View_Helper_MainMenu extends Zend_View_Helper_Abstract
 
         $params = array();
 		if ($auth->hasIdentity()) {
-            if (isset($auth->getIdentity()->role) && $auth->getIdentity()->role === Application_Model_User::PARTNER){
+            if (
+                isset($auth->getIdentity()->role) &&
+                (
+                    $auth->getIdentity()->role === Application_Model_User::PARTNER ||
+                    $auth->getIdentity()->role === Application_Model_User::ADMIN
+                )
+            ){
                 $params["username"] = $auth->getIdentity()->username;
             }
         }

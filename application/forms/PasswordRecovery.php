@@ -12,7 +12,7 @@ class Application_Form_PasswordRecovery extends Zend_Form
 
         $this->addElement('text', 'username', array(
 			'filters' => array('StringTrim', 'StringToLower'),
-			'class' => "input-block-level",
+			'class' => "form-control",
             'label' => $translate->getAdapter()->translate("email"),
 			'validators' => array(
 				array('StringLength', false, array(0, 50)),
@@ -21,6 +21,7 @@ class Application_Form_PasswordRecovery extends Zend_Form
 		));
 		
 		$this->addElement('submit', 'recover', array(
+            'class' => "btn btn-primary",
 			'required' => false,
 			'ignore' => true,
 			'label' => $translate->getAdapter()->translate("recover"),

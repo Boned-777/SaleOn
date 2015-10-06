@@ -9,7 +9,7 @@ class Application_Form_User extends Zend_Form
 
         $this->addElement('text', 'username', array(
             'filters' => array('StringTrim', 'StringToLower'),
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("email"),
             'validators' => array(
                 array('EmailAddress', true),
@@ -18,7 +18,7 @@ class Application_Form_User extends Zend_Form
         ));
 
         $this->addElement('password', 'password', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("password"),
             'validators'    => array(
                 array(
@@ -35,7 +35,7 @@ class Application_Form_User extends Zend_Form
         ));
 
         $this->addElement('password', 'confirm_password', array(
-            'class' => "input-block-level",
+            'class' => "form-control",
             'label' => $translate->getAdapter()->translate("confirm_password"),
             'validators' => array(
                 array('StringLength', false, array(0, 50)),
@@ -51,7 +51,7 @@ class Application_Form_User extends Zend_Form
         ));
 
         $this->addElement('submit', 'login', array(
-            //'class' => 'btn btn-large btn-primary',
+            'class' => 'btn btn-primary',
             'required' => false,
             'ignore' => true,
             'label' => $translate->getAdapter()->translate("register"),
