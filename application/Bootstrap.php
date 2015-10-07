@@ -15,6 +15,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$autoloader = new Zend_Application_Module_Autoloader (array ('namespace' => '', 'basePath' => APPLICATION_PATH));
     	$autoloader->addResourceType ('Custom_Form_Element', 'forms/elements', 'Custom_Form_Element_');
 		$autoloader->addResourceType ('Custom_Form_Validator', 'forms/validators', 'Custom_Form_Validator_');
+
+        $view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
+        $view->jQuery()->addStylesheet('//code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css')
+            ->setLocalPath('//code.jquery.com/jquery-1.11.3.min.js')
+            ->setUiLocalPath('//code.jquery.com/ui/1.11.4/jquery-ui.min.js');
 	}
 
     protected function _initConfig()

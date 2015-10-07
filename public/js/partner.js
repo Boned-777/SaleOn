@@ -1,11 +1,11 @@
 $(function () {
-  //$("#new_address").geocomplete();
+  $("#new_address").geocomplete();
   $(".add_address").click(function () {
       addAddress();
   });
 
   $("#phone").add("#phone1").add("#phone2").mask("(999) 999-9999");
-  //$("#address").geocomplete();
+  $("#address").geocomplete();
 
   var clearAutocompleter = function (select, hiddenInput) {
     select.val("");

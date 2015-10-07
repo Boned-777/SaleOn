@@ -22,6 +22,7 @@
     </style>
 
     <?= $this->render("googleAnalitics.phtml"); ?>
+    <?php echo $this->jQuery()->enable()->UIenable(); ?>
 </head>
 <body role="document">
 
@@ -72,8 +73,7 @@
     </div>
 
     <?= $this->render("googleAnalitics1.phtml"); ?>
-    <?php $this->headScript()->prependFile("//code.jquery.com/ui/1.11.3/jquery-ui.min.js") ?>
-    <?php $this->headScript()->prependFile("//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js") ?>
+
     <?php $this->headScript()->appendFile($this->baseUrl("/static/js/bootstrap.min.js")) ?>
     <?php echo $this->headScript(); ?>
 </body>
