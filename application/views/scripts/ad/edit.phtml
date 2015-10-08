@@ -23,6 +23,12 @@
     });
 ") ?>
 
+<style>
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+
 <?php global $translate; ?>
 
 <div id="view-content" class="col-sm-12 col-lg-offset-2 col-lg-8">
@@ -77,7 +83,7 @@
                     <img src="<?php echo $this->serverUrl() . "/media/" . $this->banner; ?>" class="img-polaroid"/><br/><br/>
                 <?php } ?>
                 <?php if (!empty($this->image)) { ?>
-                    <img id="banner" src="<?php echo $this->serverUrl() . "/media/" . $this->image; ?>" class="img-polaroid"/>
+                    <img id="banner" style="width:100%;" src="<?php echo $this->serverUrl() . "/media/" . $this->image; ?>" class="img-polaroid"/>
                 <?php } ?>
             </div>
         </div>
