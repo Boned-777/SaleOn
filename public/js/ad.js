@@ -181,6 +181,8 @@ $(function () {
         initScreen(href);
     });
 
+  $("#address").geocomplete();
+
 });
 
 

@@ -15,7 +15,7 @@ class PartnerController extends Zend_Controller_Action
         } else {
             $vars = $this->getAllParams();
 
-            if (!in_array($vars["action"], array("new", "index"))) {
+            if (!in_array($vars["action"], array("new", "index", ""))) {
                 $this->_redirect("/partner/new");
             }
         }
