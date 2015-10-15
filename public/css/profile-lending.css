@@ -60,6 +60,11 @@ div.page-header {
         padding: 0 !important;
         margin: 0 !important;
     }
+
+    div.page-header .lead {
+        position: relative !important;
+        margin-top: 100px !important;
+    }
 }
 
 .landing-wrapper {
