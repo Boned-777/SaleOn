@@ -39,6 +39,7 @@ class Application_Model_AdSolr {
             "post_id",
             "post_full_url",
             "brand_name",
+            "category_name",
             "name",
             "photoimg",
             "description",

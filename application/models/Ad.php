@@ -10,6 +10,7 @@ class Application_Model_Ad
 	public $end_dt;
 	public $region;
 	public $category;
+    public $category_name;
 	public $brand;
     public $brand_name;
     public $product;
@@ -41,6 +42,13 @@ class Application_Model_Ad
                     if ($data['brand']) {
                         $item = new Application_Model_DbTable_Brand();
                         $this->brand_name = $item->getNameById($data['brand']);
+                    }
+                    break;
+
+                case "category_name":
+                    if ($data['category']) {
+                        $item = new Application_Model_DbTable_Category();
+                        $this->category_name = $item->getNameById($data['category']);
                     }
                     break;
 
@@ -297,7 +305,6 @@ class Application_Model_Ad
             foreach ($data AS $val) {
                 $tmp = new Application_Model_Ad();
                 $tmp->load($val);
-
                 $res[] = $tmp;
             }
             return $res;
@@ -691,6 +698,7 @@ class Application_Model_Ad
             "description" => "description",
             "photoimg" => "banner",
             "category" => "category",
+            "category_name" => "category_name",
             "brand" => "brand",
             "brand_name" => "brand_name",
             "product" => "product",
