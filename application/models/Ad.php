@@ -119,6 +119,7 @@ class Application_Model_Ad
                 case "full_description":
                 case "product":
                 case "product_name":
+                case "category_name":
                 case "paid":
                 case "phone1":
                 case "phone2":
